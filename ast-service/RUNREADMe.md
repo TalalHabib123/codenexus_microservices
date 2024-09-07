@@ -1,3 +1,5 @@
+Before doing anything cd into this file otherwise commands wont work
+
 Run the Service Using this command
 uvicorn app.main:app --reload
 

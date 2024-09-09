@@ -27,6 +27,6 @@ def generate_ast(code: str) -> dict:
     except Exception as e:
         return {
             'success': False,
-            'error': "Syntax Error"
+            'error': str(e)
         }
     

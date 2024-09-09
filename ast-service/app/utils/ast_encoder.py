@@ -22,5 +22,7 @@ class ASTEncoder(json.JSONEncoder):
             return obj
         elif obj is None:
             return obj
+        elif obj is Ellipsis:
+            return "..."
         else:
             return super().default(obj)

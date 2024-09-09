@@ -15,12 +15,12 @@ class Import(BaseModel):
     module: Optional[str] = None
 
 class CodeResponse(BaseModel):
-    ast: str
-    function_names: List[str]
-    class_details: List[Dict[str, Union[str, List[str]]]]
-    global_variables: List[GlobalVariable]
-    is_main_block_present: bool
-    imports: Dict[str, List[Import]] 
-    is_standalone_file: bool
+    ast: Optional[str]
+    function_names: Optional[List[str]]
+    class_details: Optional[List[Dict[str, Union[str, List[str]]]]]
+    global_variables: Optional[List[GlobalVariable]]
+    is_main_block_present: Optional[bool]
+    imports: Optional[Dict[str, List[Import]]]
+    is_standalone_file: Optional[bool]
     success: bool = True
     error: Optional[str] = None

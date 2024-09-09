@@ -7,6 +7,7 @@ class CodeRequest(BaseModel):
 class GlobalVariable(BaseModel):
     variable_name: str
     variable_type: str
+    class_or_function_name: str = None
 
 class Import(BaseModel):
     name: str

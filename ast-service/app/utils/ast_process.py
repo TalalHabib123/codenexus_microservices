@@ -56,37 +56,97 @@ def get_class_details_from_ast(ast_json):
     traverse(ast_dict)
     return class_details
 
+# def get_global_variables_from_ast(ast_json):
+#     def traverse(node):
+#         if isinstance(node, dict):
+#             if node.get('_type') == 'Assign':
+#                 for target in node['targets']:
+#                     if isinstance(target, dict) and target.get('_type') == 'Name':
+#                         var_name = target['id']
+#                         var_type = get_type(node['value'])
+#                         global_variables.append({
+#                             'variable_name': var_name,
+#                             'variable_type': var_type
+#                         })
+#             for key, value in node.items():
+#                 traverse(value)
+#         elif isinstance(node, list):
+#             for item in node:
+#                 traverse(item)
+
+#     def get_type(value_node):
+#         if isinstance(value_node, dict):
+#             if value_node.get('_type') == 'Constant':
+#                 return 'constant'
+#             elif value_node.get('_type') == 'Call':
+#                 func = value_node['func']
+#                 if isinstance(func, dict) and func.get('_type') == 'Name':
+#                     return func['id']
+#             elif value_node.get('_type') == 'List':
+#                 return 'list'
+#             elif value_node.get('_type') == 'Dict':
+#                 return 'dict'
+#             return value_node.get('_type')
+#         return 'unknown'
+
+#     ast_dict = json.loads(ast_json)
+#     global_variables = []
+#     traverse(ast_dict)
+#     return global_variables
+
 def get_global_variables_from_ast(ast_json):
-    def traverse(node):
+    def traverse(node, inside_function=False, inside_conditional=False, inside_class=False):
         if isinstance(node, dict):
-            if node.get('_type') == 'Assign':
+            node_type = node.get('_type')
+
+            # Track if we are inside a class definition
+            if node_type == 'ClassDef':
+                inside_class = True
+            
+            # Skip variables inside functions, conditionals, or classes
+            if node_type in ['FunctionDef', 'If', 'While', 'For']:
+                inside_function = True if node_type == 'FunctionDef' else inside_function
+                inside_conditional = True if node_type in ['If', 'While', 'For'] else inside_conditional
+
+            # Capture global variables not in functions, conditionals, or classes
+            if node_type == 'Assign' and not inside_function and not inside_conditional and not inside_class:
                 for target in node['targets']:
                     if isinstance(target, dict) and target.get('_type') == 'Name':
                         var_name = target['id']
-                        var_type = get_type(node['value'])
+                        var_type, class_or_func = get_type(node['value'])
                         global_variables.append({
                             'variable_name': var_name,
-                            'variable_type': var_type
+                            'variable_type': var_type,
+                            'class_or_function': class_or_func
                         })
+            
             for key, value in node.items():
-                traverse(value)
+                traverse(value, inside_function, inside_conditional, inside_class)
         elif isinstance(node, list):
             for item in node:
-                traverse(item)
+                traverse(item, inside_function, inside_conditional, inside_class)
 
     def get_type(value_node):
         if isinstance(value_node, dict):
-            if value_node.get('_type') == 'Constant':
-                return 'constant'
-            elif value_node.get('_type') == 'Call':
+            value_type = value_node.get('_type')
+
+            if value_type == 'Constant':
+                return 'constant', None
+            elif value_type == 'Call':
                 func = value_node['func']
                 if isinstance(func, dict) and func.get('_type') == 'Name':
-                    return func['id']
-            elif value_node.get('_type') == 'List':
-                return 'list'
-            elif value_node.get('_type') == 'Dict':
-                return 'dict'
-        return 'unknown'
+                    return 'function_call', func['id']
+            elif value_type == 'List':
+                return 'list', None
+            elif value_type == 'Dict':
+                return 'dict', None
+            elif value_type == 'Name':
+                return 'variable', value_node['id']  # For variable assignments
+            elif value_type == 'ClassDef':
+                return 'class_instance', value_node['name']
+
+            return value_type, None
+        return 'unknown', None
 
     ast_dict = json.loads(ast_json)
     global_variables = []

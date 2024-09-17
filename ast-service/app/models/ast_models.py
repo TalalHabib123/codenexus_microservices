@@ -25,3 +25,18 @@ class CodeResponse(BaseModel):
     is_standalone_file: Optional[bool]
     success: bool = True
     error: Optional[str] = None
+    
+class DeadCodeRequest(BaseModel):
+    code: str
+    function_names: List[str]
+    class_details: List[Dict[str, Union[str, List[str]]]]
+    global_variables: List[GlobalVariable]
+    imports: Dict[str, List[Import]]
+    
+class DeadCodeResponse(BaseModel):
+    function_names: Optional[List[str]]
+    class_details: Optional[List[Dict[str, Union[str, List[str]]]]]
+    global_variables: Optional[List[GlobalVariable]]
+    imports : Optional[Dict[str, List[Import]]]
+    success: bool = True
+    error: Optional[str] = None

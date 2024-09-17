@@ -1,9 +1,10 @@
 from fastapi import FastAPI
-from app.api.endpoints import ast_gen
+from app.api.endpoints import ast_gen, ast_analysis
 
 app = FastAPI()
 
 app.include_router(ast_gen.router)
+app.include_router(ast_analysis.router)
 
 if __name__ == "__main__":
     import uvicorn

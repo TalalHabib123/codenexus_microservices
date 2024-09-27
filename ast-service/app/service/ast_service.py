@@ -3,6 +3,9 @@ import json
 from typing import List, Dict, Union
 from app.models.ast_models import GlobalVariable, Import
 from app.utils.ast_encoder import ASTEncoder
+
+# All detection functions go here
+
 from app.utils.ast_process import (
     get_function_names_from_ast,
     get_class_details_from_ast,
@@ -16,7 +19,6 @@ from app.utils.ast_analysis import (
     get_unutilized_functions,
     get_unutilized_classes
 )
-
 
 def deadcode_analysis(code: str, 
                       function_names: List[str], 
@@ -32,12 +34,24 @@ def deadcode_analysis(code: str,
             'imports': None,
             'success': True
         }
-    
     except Exception as e:
         return {
             'success': False,
             'error': str(e)
         }
+    
+def magic_num_analysis(code: str):
+    try:
+        parsed_ast = ast.parse(code)
+        
+    except Exception as e: 
+        return {
+            'success': False,
+            'error': str(e)
+        }
+
+
+
 
 def generate_ast(code: str) -> dict:
     try: 

@@ -204,3 +204,4 @@ def check_standalone_file(ast_json):
 
     ast_dict = json.loads(ast_json)
     return traverse(ast_dict)
+

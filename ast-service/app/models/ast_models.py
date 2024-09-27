@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Dict, Union, Optional
+from typing import List, Dict, Union, Optional, Any
 
 class CodeRequest(BaseModel):
     code: str
@@ -29,14 +29,12 @@ class CodeResponse(BaseModel):
 class DeadCodeRequest(BaseModel):
     code: str
     function_names: List[str]
-    class_details: List[Dict[str, Union[str, List[str]]]]
-    global_variables: List[GlobalVariable]
-    imports: Dict[str, List[Import]]
+    global_variables: List[str]
     
 class DeadCodeResponse(BaseModel):
     function_names: Optional[List[str]]
     class_details: Optional[List[Dict[str, Union[str, List[str]]]]]
-    global_variables: Optional[List[GlobalVariable]]
-    imports : Optional[Dict[str, List[Import]]]
+    global_variables: Optional[List[str]]
+    imports : Optional[Dict[str, List[Dict[str, Any]]]]
     success: bool = True
     error: Optional[str] = None

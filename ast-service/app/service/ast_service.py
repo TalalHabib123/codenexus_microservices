@@ -1,7 +1,7 @@
 import ast
 import json
 from typing import List, Dict, Union
-from app.models.ast_models import GlobalVariable, Import
+from app.models.ast_models import Import
 from app.utils.ast_encoder import ASTEncoder
 
 # All detection functions go here
@@ -17,21 +17,21 @@ from app.utils.ast_process import (
 
 from app.utils.ast_analysis import (
     get_unutilized_functions,
-    get_unutilized_classes
+    get_unutilized_classes,
+    get_unutilized_global_variables,
+    get_imports_from_ast
 )
 
 def deadcode_analysis(code: str, 
                       function_names: List[str], 
-                      class_details: List[Dict[str, Union[str, List[str]]]], 
-                      global_variables: List[GlobalVariable], 
-                      imports: Dict[str, List[Import]]) -> dict:
+                      global_variables: list) -> dict:
     try:
         parsed_ast = ast.parse(code)
         return {
             'function_names': get_unutilized_functions(parsed_ast, function_names),
-            'class_details': get_unutilized_classes(parsed_ast, class_details),
-            'global_variables': None,
-            'imports': None,
+            'class_details': get_unutilized_classes(parsed_ast),
+            'global_variables': get_unutilized_global_variables(parsed_ast, global_variables),
+            'imports': get_imports_from_ast(parsed_ast),
             'success': True
         }
     except Exception as e:

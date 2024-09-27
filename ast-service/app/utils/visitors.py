@@ -1,7 +1,110 @@
 import ast
 import re
 from collections import defaultdict
-from typing import List, Dict, Union
+
+class GlobalVariableVisitor(ast.NodeVisitor):
+    def __init__(self, global_var_list):
+        self.declared_globals = set(global_var_list) 
+        self.used_globals = set()  
+
+    def visit_Assign(self, node):
+        for target in node.targets:
+            if isinstance(target, ast.Name) and target.id in self.declared_globals:
+                self.declared_globals.add(target.id)
+        
+        self.generic_visit(node)
+
+    def visit_Name(self, node):
+        if isinstance(node.ctx, ast.Load):
+            if node.id in self.declared_globals:
+                self.used_globals.add(node.id)
+        
+        self.generic_visit(node)
+
+    def get_unused_globals(self):
+        return self.declared_globals - self.used_globals
+    
+class ImportVisitor(ast.NodeVisitor):
+    def __init__(self):
+        self.imports = {}  
+        self.used_imports = set() 
+
+    def visit_Import(self, node):
+        for alias in node.names:
+            module = alias.name
+            asname = alias.asname if alias.asname else alias.name
+            self.imports[asname] = {"original": module, "items": []}
+        self.generic_visit(node)
+
+    def visit_ImportFrom(self, node):
+        module = node.module
+        if module:
+            if module not in self.imports:
+                self.imports[module] = {"original": module, "items": []}
+            for alias in node.names:
+                item = alias.name
+                asname = alias.asname if alias.asname else alias.name
+                self.imports[module]["items"].append({"alias": asname, "original": item})
+        self.generic_visit(node)
+
+    def visit_Name(self, node):
+        if isinstance(node.ctx, ast.Load):
+            if node.id in self.imports: 
+                self.used_imports.add(node.id)
+            else:
+                for module, data in self.imports.items():
+                    for item in data["items"]:
+                        if node.id == item["alias"]:
+                            self.used_imports.add((module, item["alias"]))
+        self.generic_visit(node)
+
+    def get_dead_imports(self):
+        dead_imports = []
+        for module, data in self.imports.items():
+            if not data["items"]: 
+                if module not in self.used_imports:
+                    dead_imports.append({
+                        "alias": module,
+                        "original": data["original"],
+                        "items": []
+                    })
+            else:
+                unused_items = [
+                    {"alias": item["alias"], "original": item["original"]}
+                    for item in data["items"]
+                    if (module, item["alias"]) not in self.used_imports
+                ]
+                if unused_items:
+                    dead_imports.append({
+                        "alias": module,
+                        "original": data["original"],
+                        "items": unused_items
+                    })
+        return dead_imports
+
+    def get_used_imports(self):
+        used_imports = []
+        for module, data in self.imports.items():
+            if not data["items"]:  
+                if module in self.used_imports:
+                    used_imports.append({
+                        "alias": module,
+                        "original": data["original"],
+                        "items": []
+                    })
+            else:
+                used_items = [
+                    {"alias": item["alias"], "original": item["original"]}
+                    for item in data["items"]
+                    if (module, item["alias"]) in self.used_imports
+                ]
+                if used_items:
+                    used_imports.append({
+                        "alias": module,
+                        "original": data["original"],
+                        "items": used_items
+                    })
+        return used_imports
 
 class ClassVisitor(ast.NodeVisitor):
     def __init__(self):

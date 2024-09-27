@@ -15,11 +15,11 @@ from app.utils.ast_process import (
     check_standalone_file
 )
 
-from app.utils.ast_analysis import (
+from app.utils.analysis.dead_code import (
     get_unutilized_functions,
     get_unutilized_classes,
     get_unutilized_global_variables,
-    get_imports_from_ast
+    get_imports_data_from_ast
 )
 
 def deadcode_analysis(code: str, 
@@ -31,7 +31,7 @@ def deadcode_analysis(code: str,
             'function_names': get_unutilized_functions(parsed_ast, function_names),
             'class_details': get_unutilized_classes(parsed_ast),
             'global_variables': get_unutilized_global_variables(parsed_ast, global_variables),
-            'imports': get_imports_from_ast(parsed_ast),
+            'imports': get_imports_data_from_ast(parsed_ast),
             'success': True
         }
     except Exception as e:

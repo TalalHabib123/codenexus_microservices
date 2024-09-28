@@ -38,3 +38,11 @@ class DeadCodeResponse(BaseModel):
     imports : Optional[Dict[str, List[Dict[str, Any]]]]
     success: bool = True
     error: Optional[str] = None
+
+class AnalysisRequest(BaseModel):
+    code: str
+
+class AnalysisResponse(BaseModel):
+    data: Optional[Any]
+    sucess: bool = True
+    error: Optional[str] = None

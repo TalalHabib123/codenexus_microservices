@@ -275,9 +275,6 @@ class FunctionVisitor(ast.NodeVisitor):
         return self.function_arguments
     
     def get_unused_variables(self):
-        print("def vars", self.def_vars)
-        print("used vars", self.used_vars)
-
         unused_vars = {}
 
         # Combine all used variables from all lines into a set
@@ -307,9 +304,10 @@ class GlobalVisitor(ast.NodeVisitor):
         if isinstance(node.value, (int, float)):
             self.magic_numbers[node.value] = self.magic_numbers.get(node.value, 0) + 1
         self.generic_visit(node)  
+        
     def get_magic_numbers(self, node):
         self.visit(node)
-        return [num for num, count in self.magic_numbers.items() if count >= 3]
+        return [num for num, count in self.magic_numbers.items() if count >= 0]
 
     def get_duplicated_code(self, node):
         self.visit(node)

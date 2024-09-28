@@ -6,6 +6,14 @@ from app.utils.ast_encoder import ASTEncoder
 
 # All detection functions go here
 
+from app.utils.ast_analysis import (
+    get_magic_numbers,
+    get_parameter_list,
+    get_duplicated_code,
+    get_unused_variables,
+    get_naming_convention
+)
+
 from app.utils.ast_process import (
     get_function_names_from_ast,
     get_class_details_from_ast,
@@ -40,17 +48,76 @@ def deadcode_analysis(code: str,
             'error': str(e)
         }
     
+    
 def magic_num_analysis(code: str):
     try:
         parsed_ast = ast.parse(code)
-        
-    except Exception as e: 
+        magic_nums = get_magic_numbers(parsed_ast)
+        return {
+            'data': magic_nums,
+            'success': True
+        }
+    except Exception as e:
         return {
             'success': False,
             'error': str(e)
         }
 
+def unused_variables_analysis(code: str):
+    try:
+        parsed_ast = ast.parse(code)
+        unused_variables = get_unused_variables(parsed_ast)
+        return {
+            'data': unused_variables,
+            'success': True
+        }
+    except Exception as e:
+        return {
+            'success': False,
+            'error': str(e)
+        }
 
+def naming_convention_analysis(code: str):
+    try:
+        parsed_ast = ast.parse(code)
+        naming_convention = get_naming_convention(parsed_ast)
+        return {
+            'data': naming_convention,
+            'success': True
+        }
+    except Exception as e:
+        return {
+            'success': False,
+            'error': str(e)
+        }
+
+def duplicated_code_analysis(code: str):
+    try:
+        parsed_ast = ast.parse(code)
+        duplicated_code = get_duplicated_code(parsed_ast)
+        return {
+            'data': duplicated_code,
+            'success': True
+        }
+    except Exception as e:
+        return {
+            'success': False,
+            'error': str(e)
+        }
+
+def parameter_list_analysis(code: str):
+    try:
+        parsed_ast = ast.parse(code)
+        parameter_list = get_parameter_list(parsed_ast)
+        return {
+            'data': parameter_list,
+            'success': True
+        }
+    except Exception as e:
+        return {
+            'success': False,
+            'error': str(e)
+        }
 
 
 def generate_ast(code: str) -> dict:

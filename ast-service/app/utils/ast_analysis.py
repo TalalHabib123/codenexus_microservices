@@ -12,7 +12,6 @@ def get_magic_numbers(parsed_ast: str):
 def get_parameter_list(parsed_ast:str):
     visitor = FunctionVisitor()
     visitor.visit(parsed_ast)
-    params = visitor.get_function_arguments()
     return visitor.get_function_arguments()
 
 
@@ -39,9 +38,11 @@ def get_naming_convention(parsed_ast:str):
         total += len(conventions[key])
     snake_percent = (len(snake_case)/total) * 100
     camel_percent = (len(camel_case)/total) * 100
-    pascal_percent = 100 - (snake_percent + camel_percent)
+    pascal_percent = (len(pascal_case)/total) * 100
+    unknown = 100 - (snake_percent + camel_percent + pascal_percent)
     return {
         'snake_case': snake_percent,
         'camel_case': camel_percent,
-        'pascal_case': pascal_percent
+        'pascal_case': pascal_percent,
+        'unknown': unknown
     }

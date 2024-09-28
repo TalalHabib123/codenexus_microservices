@@ -27,6 +27,7 @@ async def magic_numbers(request: AnalysisRequest):
         raise HTTPException(status_code=400, detail="Invalid code")
     elif result.get('success') is False:
         print(result.get('error'))
+    print(result)
     return result
     
 @router.post("/unused-variables", response_model=AnalysisResponse)

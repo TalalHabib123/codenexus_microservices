@@ -52,6 +52,7 @@ def deadcode_analysis(code: str,
 def magic_num_analysis(code: str):
     try:
         parsed_ast = ast.parse(code)
+        print(ast.dump(parsed_ast))
         magic_nums = get_magic_numbers(parsed_ast)
         return {
             'data': magic_nums,

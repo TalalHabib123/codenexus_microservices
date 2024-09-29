@@ -7,7 +7,6 @@ from app.utils.visitors import (
 )
 
 
-# Functions to extract data from the AST
 def get_unutilized_functions(parsed_ast: str, function_names: list) -> list:
     visitor = FunctionVisitor()
     visitor.visit(parsed_ast)

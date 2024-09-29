@@ -170,6 +170,8 @@ class ClassVisitor(ast.NodeVisitor):
             if isinstance(body_item, ast.FunctionDef):
                 class_functions.add(body_item.name)
                 self.defined_functions.add(f"{class_name}.{body_item.name}") 
+                
+                # Iterate over the body of the function
                 for subbody_item in body_item.body:
                     if isinstance(subbody_item, ast.Call):
                         if isinstance(subbody_item.func, ast.Attribute):
@@ -183,12 +185,13 @@ class ClassVisitor(ast.NodeVisitor):
                                 var_name = target.attr
                                 class_variables.add(var_name)
                                 self.defined_variables.add(f"{class_name}.{var_name}") 
-            elif isinstance(subbody_item, ast.Assign):
+
+            elif isinstance(body_item, ast.Assign):
                 for target in body_item.targets:
                     if isinstance(target, ast.Attribute) and isinstance(target.value, ast.Name) and target.value.id == 'self':
                         var_name = target.attr
                         class_variables.add(var_name)
-                        self.defined_variables.add(f"P{class_name}.{var_name}")  
+                        self.defined_variables.add(f"{class_name}.{var_name}")
 
         self.class_details.append({
             'class_name': class_name,

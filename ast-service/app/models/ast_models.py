@@ -32,10 +32,10 @@ class DeadCodeRequest(BaseModel):
     global_variables: List[str]
     
 class DeadCodeResponse(BaseModel):
-    function_names: Optional[List[str]]
-    class_details: Optional[List[Dict[str, Union[str, List[str]]]]]
-    global_variables: Optional[List[str]]
-    imports : Optional[Dict[str, List[Dict[str, Any]]]]
+    function_names: Optional[List[str]] = []
+    class_details: Optional[List[Dict[str, Union[str, List[str]]]]] = []
+    global_variables: Optional[List[str]] = []
+    imports: Optional[Dict[str, List[Dict[str, Any]]]] = {"dead_imports": [], "unused_imports": []}
     success: bool = True
     error: Optional[str] = None
 

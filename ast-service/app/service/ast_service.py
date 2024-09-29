@@ -39,11 +39,15 @@ def deadcode_analysis(code: str,
             'function_names': get_unutilized_functions(parsed_ast, function_names),
             'class_details': get_unutilized_classes(parsed_ast),
             'global_variables': get_unutilized_global_variables(parsed_ast, global_variables),
-            'imports': get_imports_data_from_ast(parsed_ast),
+            'imports':get_imports_data_from_ast(parsed_ast),
             'success': True
         }
     except Exception as e:
         return {
+            'function_names': [],
+            'class_details': [],
+            'global_variables': [],
+            'imports': {"dead_imports": [], "unused_imports": []},
             'success': False,
             'error': str(e)
         }

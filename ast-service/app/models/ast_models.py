@@ -46,3 +46,16 @@ class AnalysisResponse(BaseModel):
     data: Optional[Any]
     sucess: bool = True
     error: Optional[str] = None
+    
+class DeadClassRequest(BaseModel):
+    code: str
+    class_name: str
+    
+class ClassDetails(BaseModel):
+    methods: List[str]
+    variables: List[str]
+    
+class DeadClassResponse(BaseModel):
+    class_details: Optional[ClassDetails] = []
+    success: bool = True
+    error: Optional[str] = None

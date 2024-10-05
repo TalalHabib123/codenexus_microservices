@@ -2,6 +2,54 @@ import ast
 import re
 from collections import defaultdict
 
+def track_object_usage(code_ast: str, class_name: str):
+    # Parse the code into an AST
+    tree = code_ast
+    
+    # To track objects of the specified class and their method and variable calls
+    objects = {}
+    method_calls = set()
+    variable_accesses = set()
+
+    class ObjectTracker(ast.NodeVisitor):
+        def visit_Assign(self, node):
+            # Check if the assigned value is an instantiation of the target class
+            if isinstance(node.value, ast.Call):
+                # Check if the instantiation is a simple name (e.g., "Test") or an attribute (e.g., "MyClassFile.Test")
+                if (isinstance(node.value.func, ast.Name) and node.value.func.id == class_name) or \
+                   (isinstance(node.value.func, ast.Attribute) and node.value.func.attr == class_name):
+                    # Track variable names that are instances of the class
+                    for target in node.targets:
+                        if isinstance(target, ast.Name):
+                            objects[target.id] = class_name
+            self.generic_visit(node)
+
+        def visit_Attribute(self, node):
+            # Check if the attribute is called on a tracked object
+            if isinstance(node.value, ast.Name) and node.value.id in objects:
+                if isinstance(node.ctx, ast.Load):
+                    variable_accesses.add(node.attr)
+            self.generic_visit(node)
+        
+        def visit_Call(self, node):
+            # Check if the call is on an attribute of a tracked object
+            if isinstance(node.func, ast.Attribute) and isinstance(node.func.value, ast.Name):
+                if node.func.value.id in objects:
+                    method_calls.add(node.func.attr)
+            self.generic_visit(node)
+
+    tracker = ObjectTracker()
+    tracker.visit(tree)
+
+    # Remove variable accesses that are actually method calls
+    variable_accesses -= method_calls
+
+    return {
+        "methods": sorted(method_calls),
+        "variables": sorted(variable_accesses)
+    }
+    
+    
 class GlobalVariableVisitor(ast.NodeVisitor):
     def __init__(self, global_var_list):
         self.declared_globals = set(global_var_list) 

@@ -3,9 +3,20 @@ from app.utils.visitors import (
     FunctionVisitor,
     ClassVisitor,
     GlobalVariableVisitor,
-    ImportVisitor
+    ImportVisitor,
+    track_object_usage
 )
 
+
+def get_class_utiliztion_details(parsed_ast: str, class_name : str) -> List[Dict[str, Union[str, List[str]]]]:
+    try:
+        return track_object_usage(parsed_ast, class_name)
+    except Exception as e:
+        # print(str(e))
+        return {
+            'methods': [],
+            'variables': []
+        }
 
 def get_unutilized_functions(parsed_ast: str, function_names: list) -> list:
     try:

@@ -27,8 +27,23 @@ from app.utils.analysis.dead_code import (
     get_unutilized_functions,
     get_unutilized_classes,
     get_unutilized_global_variables,
-    get_imports_data_from_ast
+    get_imports_data_from_ast,
+    get_class_utiliztion_details
 )
+
+def dead_class_analysis(code: str, class_name: str) -> dict:
+    try:
+        parsed_ast = ast.parse(code)
+        return {
+            'class_details': get_class_utiliztion_details(parsed_ast, class_name),
+            'success': True
+        }
+    except Exception as e:
+        return {
+            'class_details': [],
+            'success': False,
+            'error': str(e)
+        }
 
 def deadcode_analysis(code: str, 
                       function_names: List[str], 

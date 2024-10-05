@@ -3,6 +3,10 @@ from app.api.endpoints import ast_gen, ast_analysis
 
 app = FastAPI()
 
+@app.get("/")
+def health_check():
+    return {"status": "ok"}
+
 app.include_router(ast_gen.router)
 app.include_router(ast_analysis.router)
 

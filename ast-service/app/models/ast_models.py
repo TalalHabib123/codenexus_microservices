@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Dict, Union, Optional, Any
+from typing import List, Dict, Union, Optional, Any, Tuple
 
 class CodeRequest(BaseModel):
     code: str
@@ -57,5 +57,22 @@ class ClassDetails(BaseModel):
     
 class DeadClassResponse(BaseModel):
     class_details: Optional[ClassDetails] = []
+    success: bool = True
+    error: Optional[str] = None
+    
+class VariableConflictAnalysis(BaseModel):
+    variable: str
+    assignments: List[Tuple[str, int]] 
+    local_assignments: List[Tuple[str, int]]  
+    usages: List[Tuple[str, int]] 
+    conflicts: List[str] 
+    warnings: List[str] 
+
+class VariableConflictRequest(BaseModel):
+    code: str 
+    global_variables: List[str] 
+
+class VariableConflictResponse(BaseModel):
+    conflicts_report: List[VariableConflictAnalysis]
     success: bool = True
     error: Optional[str] = None

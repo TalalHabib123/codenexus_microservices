@@ -5,7 +5,9 @@ from app.models.ast_models import (
     AnalysisRequest, 
     AnalysisResponse,
     DeadClassRequest,
-    DeadClassResponse
+    DeadClassResponse,
+    VariableConflictRequest,
+    VariableConflictResponse
 )
 from app.service.ast_service import (
     deadcode_analysis,
@@ -14,7 +16,8 @@ from app.service.ast_service import (
     naming_convention_analysis,
     duplicated_code_analysis,
     parameter_list_analysis,
-    dead_class_analysis
+    dead_class_analysis,
+    global_variable_analysis
 )
 
 router = APIRouter()
@@ -79,6 +82,15 @@ async def duplicated_code(request: AnalysisRequest):
 @router.post("/parameter-list", response_model=AnalysisResponse)
 async def parameter_list(request: AnalysisRequest):
     result = parameter_list_analysis(request.code)
+    if result is None:
+        raise HTTPException(status_code=400, detail="Invalid code")
+    elif result.get('success') is False:
+        print(result.get('error'))
+    return result
+
+@router.post("/global-conflict", response_model=VariableConflictResponse)
+async def global_conflict(request: VariableConflictRequest):
+    result = global_variable_analysis(request.code, request.global_variables)
     if result is None:
         raise HTTPException(status_code=400, detail="Invalid code")
     elif result.get('success') is False:

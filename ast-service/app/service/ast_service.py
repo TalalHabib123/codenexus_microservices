@@ -31,6 +31,22 @@ from app.utils.analysis.dead_code import (
     get_class_utiliztion_details
 )
 
+from app.utils.analysis.global_conflict import global_variable_conflicts
+
+def global_variable_analysis(code: str, global_variables: list) -> dict:
+    try:
+        parsed_ast = ast.parse(code)
+        return {
+            'conflicts_report': global_variable_conflicts(parsed_ast, global_variables),
+            'success': True
+        }
+    except Exception as e:
+        return {
+            'conflicts_report': [],
+            'success': False,
+            'error': str(e)
+        }
+
 def dead_class_analysis(code: str, class_name: str) -> dict:
     try:
         parsed_ast = ast.parse(code)

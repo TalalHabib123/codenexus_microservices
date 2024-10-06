@@ -8,7 +8,9 @@ from app.models.detection_models import (
     AnalysisRequest,
     AnalysisResponse,
     CodeRequest,
-    CodeResponse
+    CodeResponse,
+    VariableConflictRequest,
+    VariableConflictResponse
 )
 
 detecton_gateway_router = APIRouter()
@@ -83,6 +85,14 @@ async def gateway_duplicated_code(request: AnalysisRequest):
 async def gateway_parameter_list(request: AnalysisRequest):
     async with httpx.AsyncClient(timeout=30.0) as client:
         response = await client.post(f"{DETECTION_SERVICE_URL}/parameter-list", json=request.model_dump())
+    if response.status_code != 200:
+        raise HTTPException(status_code=response.status_code, detail=response.text)
+    return response.json()
+
+@detecton_gateway_router.post("/global-conflict", response_model=VariableConflictResponse)
+async def gateway_global_conflict(request: VariableConflictRequest):
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        response = await client.post(f"{DETECTION_SERVICE_URL}/global-conflict", json=request.model_dump())
     if response.status_code != 200:
         raise HTTPException(status_code=response.status_code, detail=response.text)
     return response.json()

@@ -1,8 +1,6 @@
 import json
-from app.utils.visitors import (
-    FunctionVisitor,
-    GlobalVisitor
-)
+from app.utils.visitors.function_visitor import FunctionVisitor
+from app.utils.visitors.global_visitor import GlobalVisitor
 
 # extract magic numbers from the ast 
 def get_magic_numbers(parsed_ast: str):

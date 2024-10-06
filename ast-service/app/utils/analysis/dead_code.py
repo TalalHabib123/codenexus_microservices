@@ -1,11 +1,11 @@
 from typing import List, Dict, Union, Any
-from app.utils.visitors import (
-    FunctionVisitor,
+from app.utils.visitors.function_visitor import FunctionVisitor
+from app.utils.visitors.class_visitor import (
     ClassVisitor,
-    GlobalVariableVisitor,
-    ImportVisitor,
     track_object_usage
 )
+from app.utils.visitors.global_visitor import GlobalVariableVisitor
+from app.utils.visitors.import_visitor import ImportVisitor
 
 
 def get_class_utiliztion_details(parsed_ast: str, class_name : str) -> List[Dict[str, Union[str, List[str]]]]:

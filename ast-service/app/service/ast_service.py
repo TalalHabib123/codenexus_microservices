@@ -52,7 +52,6 @@ def deadcode_analysis(code: str,
 def magic_num_analysis(code: str):
     try:
         parsed_ast = ast.parse(code)
-        print(ast.dump(parsed_ast))
         magic_nums = get_magic_numbers(parsed_ast)
         return {
             'data': magic_nums,
@@ -95,7 +94,7 @@ def naming_convention_analysis(code: str):
 def duplicated_code_analysis(code: str):
     try:
         parsed_ast = ast.parse(code)
-        duplicated_code = get_duplicated_code(parsed_ast)
+        duplicated_code = get_duplicated_code(code)
         return {
             'data': duplicated_code,
             'success': True
@@ -111,6 +110,7 @@ def parameter_list_analysis(code: str):
         parsed_ast = ast.parse(code)
         parameter_list = get_parameter_list(parsed_ast)
         return {
+            'type': 'long-parameter',
             'data': parameter_list,
             'success': True
         }

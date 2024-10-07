@@ -237,16 +237,15 @@ class FunctionVisitor(ast.NodeVisitor):
     
     def visit_FunctionDef(self, node):
         self.defined_functions.add(node.name)
+        self.function_arguments[node.name]=len(node.args.args)
         self.generic_visit(node)
 
     def visit_Call(self, node):
         if isinstance(node.func, ast.Name):
             self.used_functions.add(node.func.id)
-            self.function_arguments[node.func.id].extend(self.get_arguments(node))
         elif isinstance(node.func, ast.Attribute):
             full_func_name = self.get_full_name(node.func)
             self.used_functions.add(full_func_name)
-            self.function_arguments[full_func_name].extend(self.get_arguments(node))
 
         self.generic_visit(node)
     
@@ -292,28 +291,28 @@ class FunctionVisitor(ast.NodeVisitor):
 
         return unused_vars
 
+
     
 class GlobalVisitor(ast.NodeVisitor):
     def __init__(self):
-        self.magic_numbers = {}  
+        self.magic_numbers = {}
         self.code_snippets = defaultdict(int)  
         self.line_numbers = defaultdict(list)  
         self.naming_conventions = defaultdict(list)  
 
-    def visit_Constant(self, node):
+    def identify_constant(self, node):
         if isinstance(node.value, (int, float)):
             self.magic_numbers[node.value] = self.magic_numbers.get(node.value, 0) + 1
         self.generic_visit(node)  
         
     def get_magic_numbers(self, node):
         self.visit(node)
-        return [num for num, count in self.magic_numbers.items() if count >= 0]
+        return self.magic_numbers #[num for num, count in self.magic_numbers.items() if count >= 0]
 
     def get_duplicated_code(self, node):
         self.visit(node)
-        duplicated_code = [code for code, count in self.code_snippets.items() if count > 1]
         duplicated_lines = {code: lines for code, lines in self.line_numbers.items() if len(lines) > 1}
-        return duplicated_code, duplicated_lines
+        return duplicated_lines
 
     def get_naming_convention(self, node):
         self.visit(node)
@@ -333,7 +332,6 @@ class GlobalVisitor(ast.NodeVisitor):
 
 
     def check_convention(self, name):
-        # Helper method to check naming conventions
         if re.match(r'^[a-z_]+$', name):
             return 'snake_case'
         elif re.match(r'^[a-z]+[A-Za-z0-9]*$', name):
@@ -357,4 +355,5 @@ class GlobalVisitor(ast.NodeVisitor):
             self.check_class_convention(node)
         elif isinstance(node, ast.Name):
             self.check_var_convention(node)
-          
+        elif isinstance(node, ast.Constant):
+            self.identify_constant(node)          

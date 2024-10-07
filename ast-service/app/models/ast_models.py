@@ -44,5 +44,5 @@ class AnalysisRequest(BaseModel):
 
 class AnalysisResponse(BaseModel):
     data: Optional[Any]
-    sucess: bool = True
+    success: bool = True
     error: Optional[str] = None

@@ -1,10 +1,7 @@
 import ast
 import json
-from typing import List, Dict, Union
-from app.models.ast_models import Import
+from typing import List
 from app.utils.ast_encoder import ASTEncoder
-
-# All detection functions go here
 
 from app.utils.ast_analysis import (
     get_magic_numbers,
@@ -32,6 +29,36 @@ from app.utils.analysis.dead_code import (
 )
 
 from app.utils.analysis.global_conflict import global_variable_conflicts
+
+from app.utils.analysis.conditionals import analyze_condition_complexity
+
+from app.utils.analysis.unreachable import unreachable_code_analysis
+
+def unreachable_code_check(code: str) -> dict:
+    try:
+        return {
+            'unreachable_code': unreachable_code_analysis(code),
+            'success': True
+        }
+    except Exception as e:
+        return {
+            'unreachable_code': [],
+            'success': False,
+            'error': str(e)
+        }
+
+def overly_complex_conditionals_analysis(code: str) -> dict:
+    try:
+        return {
+            'conditionals': analyze_condition_complexity(code),
+            'success': True
+        }
+    except Exception as e:
+        return {
+            'conditionals': [],
+            'success': False,
+            'error': str(e)
+        }
 
 def global_variable_analysis(code: str, global_variables: list) -> dict:
     try:

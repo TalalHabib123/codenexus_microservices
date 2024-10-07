@@ -90,22 +90,22 @@ def get_global_variables_from_ast(ast_json):
             value_type = value_node.get('_type')
 
             if value_type == 'Constant':
-                return 'constant', None
+                return 'constant', ''
             elif value_type == 'Call':
                 func = value_node['func']
                 if isinstance(func, dict) and func.get('_type') == 'Name':
                     return 'function_call', func['id']
             elif value_type == 'List':
-                return 'list', None
+                return 'list', ''
             elif value_type == 'Dict':
-                return 'dict', None
+                return 'dict', ''
             elif value_type == 'Name':
                 return 'variable', value_node['id'] 
             elif value_type == 'ClassDef':
                 return 'class_instance', value_node['name']
 
             return value_type, None
-        return 'unknown', None
+        return 'unknown', ''
 
     ast_dict = json.loads(ast_json)
     global_variables = []

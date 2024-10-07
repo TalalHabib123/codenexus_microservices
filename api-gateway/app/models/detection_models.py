@@ -7,7 +7,7 @@ class CodeRequest(BaseModel):
 class GlobalVariable(BaseModel):
     variable_name: str
     variable_type: str
-    class_or_function_name: str = None
+    class_or_function_name: Optional[str] = None
 
 class Import(BaseModel):
     name: str
@@ -44,37 +44,7 @@ class AnalysisRequest(BaseModel):
 
 class AnalysisResponse(BaseModel):
     data: Optional[Any]
-    success: bool = True
-    error: Optional[str] = None
-    
-class DeadClassRequest(BaseModel):
-    code: str
-    class_name: str
-    
-class ClassDetails(BaseModel):
-    methods: List[str]
-    variables: List[str]
-    
-class DeadClassResponse(BaseModel):
-    class_details: Optional[ClassDetails] = []
-    success: bool = True
-    error: Optional[str] = None
-    
-class VariableConflictAnalysis(BaseModel):
-    variable: str
-    assignments: List[Tuple[str, int]] 
-    local_assignments: List[Tuple[str, int]]  
-    usages: List[Tuple[str, int]] 
-    conflicts: List[str] 
-    warnings: List[str] 
-
-class VariableConflictRequest(BaseModel):
-    code: str 
-    global_variables: List[str] 
-
-class VariableConflictResponse(BaseModel):
-    conflicts_report: List[VariableConflictAnalysis]
-    success: bool = True
+    sucess: bool = True
     error: Optional[str] = None
     
 class DeadClassRequest(BaseModel):

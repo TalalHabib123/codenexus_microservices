@@ -27,8 +27,39 @@ from app.utils.analysis.dead_code import (
     get_unutilized_functions,
     get_unutilized_classes,
     get_unutilized_global_variables,
-    get_imports_data_from_ast
+    get_imports_data_from_ast,
+    get_class_utiliztion_details
 )
+
+from app.utils.analysis.global_conflict import global_variable_conflicts
+
+def global_variable_analysis(code: str, global_variables: list) -> dict:
+    try:
+        parsed_ast = ast.parse(code)
+        return {
+            'conflicts_report': global_variable_conflicts(parsed_ast, global_variables),
+            'success': True
+        }
+    except Exception as e:
+        return {
+            'conflicts_report': [],
+            'success': False,
+            'error': str(e)
+        }
+
+def dead_class_analysis(code: str, class_name: str) -> dict:
+    try:
+        parsed_ast = ast.parse(code)
+        return {
+            'class_details': get_class_utiliztion_details(parsed_ast, class_name),
+            'success': True
+        }
+    except Exception as e:
+        return {
+            'class_details': [],
+            'success': False,
+            'error': str(e)
+        }
 
 def deadcode_analysis(code: str, 
                       function_names: List[str], 
@@ -39,11 +70,15 @@ def deadcode_analysis(code: str,
             'function_names': get_unutilized_functions(parsed_ast, function_names),
             'class_details': get_unutilized_classes(parsed_ast),
             'global_variables': get_unutilized_global_variables(parsed_ast, global_variables),
-            'imports': get_imports_data_from_ast(parsed_ast),
+            'imports':get_imports_data_from_ast(parsed_ast),
             'success': True
         }
     except Exception as e:
         return {
+            'function_names': [],
+            'class_details': [],
+            'global_variables': [],
+            'imports': {"dead_imports": [], "unused_imports": []},
             'success': False,
             'error': str(e)
         }

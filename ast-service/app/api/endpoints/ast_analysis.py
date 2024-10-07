@@ -1,5 +1,14 @@
 from fastapi import APIRouter, HTTPException
-from app.models.ast_models import DeadCodeRequest, DeadCodeResponse, AnalysisRequest, AnalysisResponse
+from app.models.ast_models import (
+    DeadCodeRequest, 
+    DeadCodeResponse, 
+    AnalysisRequest, 
+    AnalysisResponse,
+    DeadClassRequest,
+    DeadClassResponse,
+    VariableConflictRequest,
+    VariableConflictResponse
+)
 from app.service.ast_service import (
     deadcode_analysis,
     magic_num_analysis,
@@ -7,6 +16,8 @@ from app.service.ast_service import (
     naming_convention_analysis,
     duplicated_code_analysis,
     parameter_list_analysis,
+    dead_class_analysis,
+    global_variable_analysis
 )
 
 router = APIRouter()
@@ -18,8 +29,18 @@ async def dead_code(request: DeadCodeRequest):
         raise HTTPException(status_code=400, detail="Invalid code")
     elif result.get('success') is False:
         print(result.get('error'))
-    return result    
+    return result   
+
+@router.post("/dead-class", response_model=DeadClassResponse)
+async def dead_class(request: DeadClassRequest):
+    result = dead_class_analysis(request.code, request.class_name)
+    if result is None:
+        raise HTTPException(status_code=400, detail="Invalid code")
+    elif result.get('success') is False:
+        print(result.get('error'))
+    return result 
     
+
 @router.post("/magic-numbers", response_model=AnalysisResponse)
 async def magic_numbers(request: AnalysisRequest):
     result = magic_num_analysis(request.code)
@@ -61,6 +82,15 @@ async def duplicated_code(request: AnalysisRequest):
 @router.post("/parameter-list", response_model=AnalysisResponse)
 async def parameter_list(request: AnalysisRequest):
     result = parameter_list_analysis(request.code)
+    if result is None:
+        raise HTTPException(status_code=400, detail="Invalid code")
+    elif result.get('success') is False:
+        print(result.get('error'))
+    return result
+
+@router.post("/global-conflict", response_model=VariableConflictResponse)
+async def global_conflict(request: VariableConflictRequest):
+    result = global_variable_analysis(request.code, request.global_variables)
     if result is None:
         raise HTTPException(status_code=400, detail="Invalid code")
     elif result.get('success') is False:

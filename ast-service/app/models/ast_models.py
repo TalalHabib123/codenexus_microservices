@@ -106,3 +106,24 @@ class VariableConflictResponse(BaseModel):
     conflicts_report: List[VariableConflictAnalysis]
     success: bool = True
     error: Optional[str] = None
+    
+class TemporaryVariableResponse(BaseModel):
+    temporary_fields: Optional[List[str]] = []
+    success: bool = True
+    error: Optional[str] = None
+    
+class UnreachableResponse(BaseModel):
+    unreachable_code: Optional[List[str]] = []
+    success: bool = True
+    error: Optional[str] = None
+    
+class ConditionDetails(BaseModel):
+    line_range: Tuple[int, int]
+    condition_code: str
+    complexity_score: int
+    code_block: str
+    
+class ComplexConditonalResponse(BaseModel):
+    conditionals: Optional[List[ConditionDetails]] = []
+    success: bool = True
+    error: Optional[str] = None

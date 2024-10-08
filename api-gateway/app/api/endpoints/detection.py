@@ -10,12 +10,42 @@ from app.models.detection_models import (
     CodeRequest,
     CodeResponse,
     VariableConflictRequest,
-    VariableConflictResponse
+    VariableConflictResponse,
+    TemporaryVariableResponse,
+    UnreachableResponse,
+    ComplexConditonalResponse
 )
 
 detecton_gateway_router = APIRouter()
 
 DETECTION_SERVICE_URL = "http://127.0.0.1:8001"
+
+# Route for overly complex conditionals detection
+@detecton_gateway_router.post("/overly-complex-conditionals", response_model=ComplexConditonalResponse)
+async def gateway_overly_complex_conditionals(request: AnalysisRequest):
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        response = await client.post(f"{DETECTION_SERVICE_URL}/overly-complex-conditionals", json=request.model_dump())
+    if response.status_code != 200:
+        raise HTTPException(status_code=response.status_code, detail=response.text)
+    return response.json()
+
+# Route for unreachable code detection
+@detecton_gateway_router.post("/unreachable-code", response_model=UnreachableResponse)
+async def gateway_unreachable_code(request: AnalysisRequest):
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        response = await client.post(f"{DETECTION_SERVICE_URL}/unreachable-code", json=request.model_dump())
+    if response.status_code != 200:
+        raise HTTPException(status_code=response.status_code, detail=response.text)
+    return response.json()
+
+# Route for temporary field detection
+@detecton_gateway_router.post("/temporary-field", response_model=TemporaryVariableResponse)
+async def gateway_temporary_field(request: AnalysisRequest):
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        response = await client.post(f"{DETECTION_SERVICE_URL}/temporary-field", json=request.model_dump())
+    if response.status_code != 200:
+        raise HTTPException(status_code=response.status_code, detail=response.text)
+    return response.json()
 
 # Route for AST analysis
 @detecton_gateway_router.post("/analyze-ast", response_model=CodeResponse)

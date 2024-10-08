@@ -7,8 +7,12 @@ from app.models.ast_models import (
     DeadClassRequest,
     DeadClassResponse,
     VariableConflictRequest,
-    VariableConflictResponse
+    VariableConflictResponse,
+    TemporaryVariableResponse,
+    UnreachableResponse,
+    ComplexConditonalResponse
 )
+
 from app.service.ast_service import (
     deadcode_analysis,
     magic_num_analysis,
@@ -17,10 +21,40 @@ from app.service.ast_service import (
     duplicated_code_analysis,
     parameter_list_analysis,
     dead_class_analysis,
-    global_variable_analysis
+    global_variable_analysis,
+    overly_complex_conditionals_analysis,
+    unreachable_code_check,
+    check_temporary_field
 )
 
 router = APIRouter()
+
+@router.post("/overly-complex-conditionals", response_model=ComplexConditonalResponse)
+async def overly_complex_conditionals(request: AnalysisRequest):
+    result = overly_complex_conditionals_analysis(request.code)
+    if result is None:
+        raise HTTPException(status_code=400, detail="Invalid code")
+    elif result.get('success') is False:
+        print(result.get('error'))
+    return result
+
+@router.post("/unreachable-code", response_model=UnreachableResponse)
+async def unreachable_code(request: AnalysisRequest):
+    result = unreachable_code_check(request.code)
+    if result is None:
+        raise HTTPException(status_code=400, detail="Invalid code")
+    elif result.get('success') is False:
+        print(result.get('error'))
+    return result
+
+@router.post("/temporary-field", response_model=TemporaryVariableResponse)
+async def temporary_field(request: AnalysisRequest):
+    result = check_temporary_field(request.code)
+    if result is None:
+        raise HTTPException(status_code=400, detail="Invalid code")
+    elif result.get('success') is False:
+        print(result.get('error'))
+    return result
 
 @router.post("/dead-code", response_model=DeadCodeResponse)
 async def dead_code(request: DeadCodeRequest):

@@ -34,6 +34,22 @@ from app.utils.analysis.conditionals import analyze_condition_complexity
 
 from app.utils.analysis.unreachable import unreachable_code_analysis
 
+from app.utils.analysis.temporary_field import analyze_temporary_fields
+
+def check_temporary_field(code: str) -> dict:
+    try:
+        parsed_ast = ast.parse(code)    
+        return {
+            'temporary_fields': analyze_temporary_fields(parsed_ast),
+            'success': True
+        }
+    except Exception as e:
+        return {
+            'temporary_fields': [],
+            'success': False,
+            'error': str(e)
+        }
+
 def unreachable_code_check(code: str) -> dict:
     try:
         return {

@@ -44,7 +44,7 @@ class AnalysisRequest(BaseModel):
 
 class AnalysisResponse(BaseModel):
     data: Optional[Any]
-    success: bool = True
+    sucess: bool = True
     error: Optional[str] = None
     
 class DeadClassRequest(BaseModel):
@@ -74,56 +74,5 @@ class VariableConflictRequest(BaseModel):
 
 class VariableConflictResponse(BaseModel):
     conflicts_report: List[VariableConflictAnalysis]
-    success: bool = True
-    error: Optional[str] = None
-    
-class DeadClassRequest(BaseModel):
-    code: str
-    class_name: str
-    
-class ClassDetails(BaseModel):
-    methods: List[str]
-    variables: List[str]
-    
-class DeadClassResponse(BaseModel):
-    class_details: Optional[ClassDetails] = []
-    success: bool = True
-    error: Optional[str] = None
-    
-class VariableConflictAnalysis(BaseModel):
-    variable: str
-    assignments: List[Tuple[str, int]] 
-    local_assignments: List[Tuple[str, int]]  
-    usages: List[Tuple[str, int]] 
-    conflicts: List[str] 
-    warnings: List[str] 
-
-class VariableConflictRequest(BaseModel):
-    code: str 
-    global_variables: List[str] 
-
-class VariableConflictResponse(BaseModel):
-    conflicts_report: List[VariableConflictAnalysis]
-    success: bool = True
-    error: Optional[str] = None
-    
-class TemporaryVariableResponse(BaseModel):
-    temporary_fields: Optional[List[str]] = []
-    success: bool = True
-    error: Optional[str] = None
-    
-class UnreachableResponse(BaseModel):
-    unreachable_code: Optional[List[str]] = []
-    success: bool = True
-    error: Optional[str] = None
-    
-class ConditionDetails(BaseModel):
-    line_range: Tuple[int, int]
-    condition_code: str
-    complexity_score: int
-    code_block: str
-    
-class ComplexConditonalResponse(BaseModel):
-    conditionals: Optional[List[ConditionDetails]] = []
     success: bool = True
     error: Optional[str] = None

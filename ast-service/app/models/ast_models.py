@@ -76,3 +76,6 @@ class VariableConflictResponse(BaseModel):
     conflicts_report: List[VariableConflictAnalysis]
     success: bool = True
     error: Optional[str] = None
+    
+    
+    

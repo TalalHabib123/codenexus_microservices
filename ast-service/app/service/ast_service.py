@@ -3,13 +3,12 @@ import json
 from typing import List
 from app.utils.ast_encoder import ASTEncoder
 
-from app.utils.ast_analysis import (
-    get_magic_numbers,
-    get_parameter_list,
-    get_duplicated_code,
-    get_unused_variables,
-    get_naming_convention
-)
+from app.utils.analysis.long_parameters import get_parameter_list
+from app.utils.analysis.duplicate_code import get_duplicated_code
+from app.utils.analysis.naming_convention import get_naming_convention
+from app.utils.analysis.magic_number import get_magic_numbers
+from app.utils.analysis.unused_variables import get_unused_variables
+
 
 from app.utils.ast_process import (
     get_function_names_from_ast,
@@ -166,6 +165,7 @@ def naming_convention_analysis(code: str):
     except Exception as e:
         return {
             'success': False,
+            'data':[],
             'error': str(e)
         }
 
@@ -188,13 +188,13 @@ def parameter_list_analysis(code: str):
         parsed_ast = ast.parse(code)
         parameter_list = get_parameter_list(parsed_ast)
         return {
-            'type': 'long-parameter',
             'data': parameter_list,
             'success': True
         }
     except Exception as e:
         return {
             'success': False,
+            'data': [],
             'error': str(e)
         }
 

@@ -11,16 +11,15 @@ class FunctionVisitor(ast.NodeVisitor):
     
     def visit_FunctionDef(self, node):
         self.defined_functions.add(node.name)
+        self.function_arguments[node.name].extend([arg.arg for arg in node.args.args])
         self.generic_visit(node)
 
     def visit_Call(self, node):
         if isinstance(node.func, ast.Name):
             self.used_functions.add(node.func.id)
-            self.function_arguments[node.func.id].extend(self.get_arguments(node))
         elif isinstance(node.func, ast.Attribute):
             full_func_name = self.get_full_name(node.func)
             self.used_functions.add(full_func_name)
-            self.function_arguments[full_func_name].extend(self.get_arguments(node))
 
         self.generic_visit(node)
     

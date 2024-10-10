@@ -97,3 +97,4 @@ class ComplexConditonalResponse(BaseModel):
     conditionals: Optional[List[ConditionDetails]] = []
     success: bool = True
     error: Optional[str] = None
+    

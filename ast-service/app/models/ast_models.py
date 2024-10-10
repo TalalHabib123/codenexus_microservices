@@ -69,7 +69,15 @@ class LongParameterListResponse(BaseModel):
     success: bool 
     error: Optional[str] = None 
     
-     
+class UnusedVariablesDetails(BaseModel):
+    variable_name: str
+    line_number: int
+
+class UnusedVariablesResponse(BaseModel):
+    unused_variables: Optional[List[UnusedVariablesDetails]] = None
+    success: bool
+    error: Optional[str] = None
+
 class DeadClassRequest(BaseModel):
     code: str
     class_name: str

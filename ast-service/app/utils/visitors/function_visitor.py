@@ -65,12 +65,11 @@ class FunctionVisitor(ast.NodeVisitor):
             }
             for details in self.function_arguments.values()
         ]
-    
     def get_unused_variables(self):
         unused_vars = {}
-
-        # Combine all used variables from all lines into a set
         all_used_vars = set()
+
+        # Collect all used variables from all lines into a set
         for vars in self.used_vars.values():
             all_used_vars.update(vars)
 
@@ -80,6 +79,10 @@ class FunctionVisitor(ast.NodeVisitor):
                 if var not in all_used_vars:
                     if lineno not in unused_vars:
                         unused_vars[lineno] = []
-                    unused_vars[lineno].append(var)
+                    unused_vars[lineno].append({"variable": var, "line_number": lineno})
 
-        return unused_vars
+        # Return list of unused variables, flattened from the dictionary
+        return [
+            {"variable_name": var_info["variable"], "line_number": var_info["line_number"]}
+            for var_list in unused_vars.values() for var_info in var_list
+        ]

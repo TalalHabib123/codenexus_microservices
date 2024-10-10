@@ -12,7 +12,8 @@ from app.models.ast_models import (
     UnreachableResponse,
     ComplexConditonalResponse,
     MagicNumbersResponse,
-    LongParameterListResponse
+    LongParameterListResponse,
+    UnusedVariablesResponse
 )
 
 from app.service.ast_service import (
@@ -87,13 +88,15 @@ async def magic_numbers(request: AnalysisRequest):
     print(result)
     return result
     
-@router.post("/unused-variables", response_model=AnalysisResponse)
+@router.post("/unused-variables", response_model=UnusedVariablesResponse)
 async def unused_variables(request: AnalysisRequest):
-    result = unused_variables_analysis(request.code)
+    result = unused_variables_analysis(request.code)  
+    
     if result is None:
         raise HTTPException(status_code=400, detail="Invalid code")
     elif result.get('success') is False:
         print(result.get('error'))
+    print(result)
     return result
 
 

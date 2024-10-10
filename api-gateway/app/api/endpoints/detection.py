@@ -15,7 +15,8 @@ from app.models.detection_models import (
     UnreachableResponse,
     ComplexConditonalResponse,
     MagicNumbersResponse,
-    LongParameterListResponse
+    LongParameterListResponse,
+    UnusedVariablesResponse
 )
 
 detecton_gateway_router = APIRouter()
@@ -86,12 +87,13 @@ async def gateway_magic_numbers(request: AnalysisRequest):
     return response.json()
 
 # Route for unused variables detection
-@detecton_gateway_router.post("/unused-variables", response_model=AnalysisResponse)
+@detecton_gateway_router.post("/unused-variables", response_model=UnusedVariablesResponse)
 async def gateway_unused_variables(request: AnalysisRequest):
     async with httpx.AsyncClient(timeout=30.0) as client:
         response = await client.post(f"{DETECTION_SERVICE_URL}/unused-variables", json=request.model_dump())
     if response.status_code != 200:
         raise HTTPException(status_code=response.status_code, detail=response.text)
+    print(response.json())
     return response.json()
 
 # Route for naming convention detection

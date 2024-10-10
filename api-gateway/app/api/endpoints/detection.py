@@ -13,7 +13,9 @@ from app.models.detection_models import (
     VariableConflictResponse,
     TemporaryVariableResponse,
     UnreachableResponse,
-    ComplexConditonalResponse
+    ComplexConditonalResponse,
+    MagicNumbersResponse,
+    LongParameterListResponse
 )
 
 detecton_gateway_router = APIRouter()
@@ -75,7 +77,7 @@ async def gateway_dead_class(request: DeadClassRequest):
     return response.json()
 
 # Route for magic numbers detection
-@detecton_gateway_router.post("/magic-numbers", response_model=AnalysisResponse)
+@detecton_gateway_router.post("/magic-numbers", response_model=MagicNumbersResponse)
 async def gateway_magic_numbers(request: AnalysisRequest):
     async with httpx.AsyncClient(timeout=30.0) as client:
         response = await client.post(f"{DETECTION_SERVICE_URL}/magic-numbers", json=request.model_dump())
@@ -111,7 +113,7 @@ async def gateway_duplicated_code(request: AnalysisRequest):
     return response.json()
 
 # Route for parameter list detection
-@detecton_gateway_router.post("/parameter-list", response_model=AnalysisResponse)
+@detecton_gateway_router.post("/parameter-list", response_model=LongParameterListResponse)
 async def gateway_parameter_list(request: AnalysisRequest):
     async with httpx.AsyncClient(timeout=30.0) as client:
         response = await client.post(f"{DETECTION_SERVICE_URL}/parameter-list", json=request.model_dump())

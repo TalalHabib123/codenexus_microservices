@@ -47,6 +47,29 @@ class AnalysisResponse(BaseModel):
     success: bool = True
     error: Optional[str] = None
     
+
+class MagicNumbersDetails(BaseModel):
+    magic_number: int | float
+    line_number: int
+
+class MagicNumbersResponse(BaseModel):
+    magic_numbers: Optional[List[MagicNumbersDetails]] = None
+    success: bool
+    error: Optional[str] = None
+    
+class ParameterListDetails(BaseModel):
+    function_name: str 
+    parameters: List[str] 
+    long_parameter_count: int 
+    long_parameter: bool 
+    line_number: int
+
+class LongParameterListResponse(BaseModel):
+    long_parameter_list: Optional[List[ParameterListDetails]] = None 
+    success: bool 
+    error: Optional[str] = None 
+    
+     
 class DeadClassRequest(BaseModel):
     code: str
     class_name: str

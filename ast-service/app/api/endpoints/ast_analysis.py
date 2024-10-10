@@ -10,7 +10,9 @@ from app.models.ast_models import (
     VariableConflictResponse,
     TemporaryVariableResponse,
     UnreachableResponse,
-    ComplexConditonalResponse
+    ComplexConditonalResponse,
+    MagicNumbersResponse,
+    LongParameterListResponse
 )
 
 from app.service.ast_service import (
@@ -75,7 +77,7 @@ async def dead_class(request: DeadClassRequest):
     return result 
     
 
-@router.post("/magic-numbers", response_model=AnalysisResponse)
+@router.post("/magic-numbers", response_model=MagicNumbersResponse)
 async def magic_numbers(request: AnalysisRequest):
     result = magic_num_analysis(request.code)
     if result is None:
@@ -113,7 +115,7 @@ async def duplicated_code(request: AnalysisRequest):
         print(result.get('error'))
     return result
 
-@router.post("/parameter-list", response_model=AnalysisResponse)
+@router.post("/parameter-list", response_model=LongParameterListResponse)
 async def parameter_list(request: AnalysisRequest):
     result = parameter_list_analysis(request.code)
     if result is None:

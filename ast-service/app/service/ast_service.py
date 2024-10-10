@@ -131,7 +131,7 @@ def magic_num_analysis(code: str):
         parsed_ast = ast.parse(code)
         magic_nums = get_magic_numbers(parsed_ast)
         return {
-            'data': magic_nums,
+            'magic_numbers': magic_nums,
             'success': True
         }
     except Exception as e:
@@ -188,13 +188,12 @@ def parameter_list_analysis(code: str):
         parsed_ast = ast.parse(code)
         parameter_list = get_parameter_list(parsed_ast)
         return {
-            'data': parameter_list,
+            'long_parameter_list': parameter_list,
             'success': True
         }
     except Exception as e:
         return {
             'success': False,
-            'data': [],
             'error': str(e)
         }
 

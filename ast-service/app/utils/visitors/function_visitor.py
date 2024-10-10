@@ -10,9 +10,19 @@ class FunctionVisitor(ast.NodeVisitor):
         self.used_vars = defaultdict(list)
     
     def visit_FunctionDef(self, node):
-        self.defined_functions.add(node.name)
-        self.function_arguments[node.name].extend([arg.arg for arg in node.args.args])
+        function_name = node.name
+        parameters = [arg.arg for arg in node.args.args]
+        param_count = len(parameters)
+        long_parameter = param_count > 3
+        self.function_arguments[function_name] = {
+            "function_name": function_name,
+            "parameters": parameters,
+            "long_parameter_count": param_count,
+            "long_parameter": long_parameter,
+            "line_number": node.lineno 
+        }
         self.generic_visit(node)
+
 
     def visit_Call(self, node):
         if isinstance(node.func, ast.Name):
@@ -45,7 +55,16 @@ class FunctionVisitor(ast.NodeVisitor):
         return [ast.dump(arg) for arg in node.args]
 
     def get_function_arguments(self):
-        return self.function_arguments
+        return [
+            {
+                "function_name": details["function_name"],
+                "parameters": details["parameters"],
+                "long_parameter_count": details["long_parameter_count"],
+                "long_parameter": details["long_parameter"],
+                "line_number": details["line_number"]
+            }
+            for details in self.function_arguments.values()
+        ]
     
     def get_unused_variables(self):
         unused_vars = {}

@@ -1,6 +1,7 @@
 import ast
 import re
 from collections import defaultdict
+from app.models.ast_models import MagicNumbersDetails
 
 class GlobalVariableConflictAnalyzer(ast.NodeVisitor):
     def __init__(self, global_vars_list):
@@ -215,3 +216,25 @@ class GlobalVisitor(ast.NodeVisitor):
             self.check_class_convention(node)
         elif isinstance(node, ast.Name):
             self.check_var_convention(node)
+
+
+class MagicNumGlobalVisitor(ast.NodeVisitor):
+    def __init__(self):
+        self.magic_numbers = {}  
+
+
+    def visit_Constant(self, node):
+        if isinstance(node.value, (int, float)) and not isinstance(node.value, bool):
+            if node.value in self.magic_numbers:
+                self.magic_numbers[node.value]['count'] += 1
+            else:
+                self.magic_numbers[node.value] = {
+                    'count': 1,
+                    'line_number': node.lineno
+                }
+        self.generic_visit(node)  
+        
+    def get_magic_numbers(self, node):
+        self.visit(node)
+        return [{'magic_number': num, 'line_number': details['line_number']} for num, details in self.magic_numbers.items() if details['count'] > 0]
+

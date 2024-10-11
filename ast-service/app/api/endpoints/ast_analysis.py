@@ -13,7 +13,8 @@ from app.models.ast_models import (
     ComplexConditonalResponse,
     MagicNumbersResponse,
     LongParameterListResponse,
-    UnusedVariablesResponse
+    UnusedVariablesResponse,
+    InconsistentNamingResponse
 )
 
 from app.service.ast_service import (
@@ -100,7 +101,7 @@ async def unused_variables(request: AnalysisRequest):
     return result
 
 
-@router.post("/naming-convention", response_model=AnalysisResponse)
+@router.post("/naming-convention", response_model=InconsistentNamingResponse)
 async def naming_convention(request: AnalysisRequest):
     result = naming_convention_analysis(request.code)
     if result is None:

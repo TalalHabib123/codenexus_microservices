@@ -159,7 +159,7 @@ def naming_convention_analysis(code: str):
         parsed_ast = ast.parse(code)
         naming_convention = get_naming_convention(parsed_ast)
         return {
-            'data': naming_convention,
+            'inconsistent_naming': naming_convention,
             'success': True
         }
     except Exception as e:

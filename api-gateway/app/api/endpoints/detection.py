@@ -16,7 +16,8 @@ from app.models.detection_models import (
     ComplexConditonalResponse,
     MagicNumbersResponse,
     LongParameterListResponse,
-    UnusedVariablesResponse
+    UnusedVariablesResponse, 
+    InconsistentNamingResponse
 )
 
 detecton_gateway_router = APIRouter()
@@ -97,7 +98,7 @@ async def gateway_unused_variables(request: AnalysisRequest):
     return response.json()
 
 # Route for naming convention detection
-@detecton_gateway_router.post("/naming-convention", response_model=AnalysisResponse)
+@detecton_gateway_router.post("/naming-convention", response_model=InconsistentNamingResponse)
 async def gateway_naming_convention(request: AnalysisRequest):
     async with httpx.AsyncClient(timeout=30.0) as client:
         response = await client.post(f"{DETECTION_SERVICE_URL}/naming-convention", json=request.model_dump())

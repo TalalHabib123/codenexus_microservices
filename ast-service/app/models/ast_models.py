@@ -77,6 +77,16 @@ class UnusedVariablesResponse(BaseModel):
     unused_variables: Optional[List[UnusedVariablesDetails]] = None
     success: bool
     error: Optional[str] = None
+    
+class InconsistentNamingDetails(BaseModel):
+    type: str
+    total_count: int
+    type_count: int
+
+class InconsistentNamingResponse(BaseModel):
+    inconsistent_naming: Optional[List[InconsistentNamingDetails]] = None
+    success: bool
+    error: Optional[str] = None
 
 class DeadClassRequest(BaseModel):
     code: str

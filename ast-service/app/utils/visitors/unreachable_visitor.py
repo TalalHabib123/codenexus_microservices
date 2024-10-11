@@ -61,8 +61,6 @@ class UnreachableCodeAnalyzer(ast.NodeVisitor):
                         message = f"Unreachable 'if' block at line {node.lineno}"
                         self.unreachable_blocks.append(message)
                         self.mark_unreachable_code(node.body, block_type='if')
-                        message = f"Unreachable 'else' block at line {node.orelse[0].lineno}"
-                        self.unreachable_blocks.append(message)
                         self.mark_unreachable_code(node.body, block_type='if')
                         self.detect_unreachable_code(node.orelse, reachable)
                     else:
@@ -122,7 +120,6 @@ class UnreachableCodeAnalyzer(ast.NodeVisitor):
         for node in body:
             message = f"Unreachable code at line {node.lineno}"
             self.unreachable_blocks.append(message)
-
             # Now, recursively process any nested bodies
             if isinstance(node, ast.If):
                 # For 'if' statements, pass 'if' or 'else' as the block type
@@ -139,6 +136,8 @@ class UnreachableCodeAnalyzer(ast.NodeVisitor):
                 self.unreachable_blocks.append(message)
                 self.mark_unreachable_code(node.body, block_type=loop_type)
                 if node.orelse:
+                    message = f"Unreachable 'else' block at line {node.orelse[0].lineno}"
+                    self.unreachable_blocks.append(message)
                     self.mark_unreachable_code(node.orelse, block_type='else')
             elif isinstance(node, ast.Try):
                 # For 'try' blocks, handle all components
@@ -197,9 +196,3 @@ def correct_unreachable_unique(unreachable_blocks):
     unique_blocks = list(set(unreachable_blocks))
     unique_blocks.sort(key=lambda x: int(x.split('line')[-1]))
     return unique_blocks
-
-def analyze_code(code):
-    tree = ast.parse(code)
-    analyzer = UnreachableCodeAnalyzer()
-    analyzer.visit(tree)
-    return correct_unreachable_unique(correct_unreachable_lines(analyzer.unreachable_blocks, code))

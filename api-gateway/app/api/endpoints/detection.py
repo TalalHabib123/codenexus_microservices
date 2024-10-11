@@ -17,7 +17,8 @@ from app.models.detection_models import (
     MagicNumbersResponse,
     LongParameterListResponse,
     UnusedVariablesResponse, 
-    InconsistentNamingResponse
+    InconsistentNamingResponse,
+    DuplicateCodeResponse
 )
 
 detecton_gateway_router = APIRouter()
@@ -107,7 +108,7 @@ async def gateway_naming_convention(request: AnalysisRequest):
     return response.json()
 
 # Route for duplicated code detection
-@detecton_gateway_router.post("/duplicated-code", response_model=AnalysisResponse)
+@detecton_gateway_router.post("/duplicated-code", response_model=DuplicateCodeResponse)
 async def gateway_duplicated_code(request: AnalysisRequest):
     async with httpx.AsyncClient(timeout=30.0) as client:
         response = await client.post(f"{DETECTION_SERVICE_URL}/duplicated-code", json=request.model_dump())

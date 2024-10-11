@@ -14,7 +14,8 @@ from app.models.ast_models import (
     MagicNumbersResponse,
     LongParameterListResponse,
     UnusedVariablesResponse,
-    InconsistentNamingResponse
+    InconsistentNamingResponse,
+    DuplicateCodeResponse
 )
 
 from app.service.ast_service import (
@@ -110,7 +111,7 @@ async def naming_convention(request: AnalysisRequest):
         print(result.get('error'))
     return result
 
-@router.post("/duplicated-code", response_model=AnalysisResponse)
+@router.post("/duplicated-code", response_model=DuplicateCodeResponse)
 async def duplicated_code(request: AnalysisRequest):
     result = duplicated_code_analysis(request.code)
     if result is None:

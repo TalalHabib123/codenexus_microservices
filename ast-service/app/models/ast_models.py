@@ -77,16 +77,40 @@ class UnusedVariablesResponse(BaseModel):
     unused_variables: Optional[List[UnusedVariablesDetails]] = None
     success: bool
     error: Optional[str] = None
+
+class NamingConventionVars (BaseModel):
+    variable: str
+    line_number: int
+
     
 class InconsistentNamingDetails(BaseModel):
     type: str
     total_count: int
     type_count: int
+    vars: List[NamingConventionVars]
 
 class InconsistentNamingResponse(BaseModel):
     inconsistent_naming: Optional[List[InconsistentNamingDetails]] = None
     success: bool
     error: Optional[str] = None
+    
+class Duplicates(BaseModel):
+    code: str
+    start_line: int
+    end_line: int
+
+class DuplicateCodeDetails(BaseModel):
+    original_code: str
+    start_line: int
+    end_line: int
+    duplicates: List[Duplicates]
+    duplicate_count: int
+
+class DuplicateCodeResponse(BaseModel):
+    duplicate_code: Optional[List[DuplicateCodeDetails]] = None
+    success: bool
+    error: Optional[str] = None
+    
 
 class DeadClassRequest(BaseModel):
     code: str

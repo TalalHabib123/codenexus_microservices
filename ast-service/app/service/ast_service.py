@@ -171,10 +171,10 @@ def naming_convention_analysis(code: str):
 
 def duplicated_code_analysis(code: str):
     try:
-        parsed_ast = ast.parse(code)
         duplicated_code = get_duplicated_code(code)
+        print(duplicated_code)
         return {
-            'data': duplicated_code,
+            'duplicate_code': duplicated_code,
             'success': True
         }
     except Exception as e:

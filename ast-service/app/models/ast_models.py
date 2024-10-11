@@ -77,11 +77,17 @@ class UnusedVariablesResponse(BaseModel):
     unused_variables: Optional[List[UnusedVariablesDetails]] = None
     success: bool
     error: Optional[str] = None
+
+class NamingConventionVars (BaseModel):
+    variable: str
+    line_number: int
+
     
 class InconsistentNamingDetails(BaseModel):
     type: str
     total_count: int
     type_count: int
+    vars: List[NamingConventionVars]
 
 class InconsistentNamingResponse(BaseModel):
     inconsistent_naming: Optional[List[InconsistentNamingDetails]] = None

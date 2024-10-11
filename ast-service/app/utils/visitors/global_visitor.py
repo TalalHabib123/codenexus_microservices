@@ -180,15 +180,15 @@ class GlobalVisitor(ast.NodeVisitor):
     
     def check_func_convention(self, node):
         convention = self.check_convention(node.name)
-        self.naming_conventions[convention].append(f"Function: {node.name}")
+        self.naming_conventions[convention].append({"variable": node.name, "line_number": node.lineno})
 
     def check_class_convention(self, node):
         convention = self.check_convention(node.name)
-        self.naming_conventions[convention].append(f"Class: {node.name}")
+        self.naming_conventions[convention].append({"variable": node.name, "line_number": node.lineno})
     
     def check_var_convention(self, node):
         convention = self.check_convention(node.id)
-        self.naming_conventions[convention].append(f"Variable: {node.id}")
+        self.naming_conventions[convention].append({"variable": node.id, "line_number": node.lineno})
 
 
     def check_convention(self, name):

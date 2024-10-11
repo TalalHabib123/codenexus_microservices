@@ -53,14 +53,14 @@ class UnreachableCodeAnalyzer(ast.NodeVisitor):
                 if isinstance(node.test, ast.Constant):
                     if node.test.value is True:
                         # 'if True', 'else' block is unreachable
-                        self.mark_unreachable_code(node.orelse, block_type='else')
+                        message = f"Unreachable 'else' block at line {node.orelse[0].lineno - 1}"
+                        self.unreachable_blocks.append(message)
                         self.mark_unreachable_code(node.orelse, block_type='else')
                         self.detect_unreachable_code(node.body, reachable)
                     elif node.test.value is False:
                         # 'if False', 'if' body is unreachable
                         message = f"Unreachable 'if' block at line {node.lineno}"
                         self.unreachable_blocks.append(message)
-                        self.mark_unreachable_code(node.body, block_type='if')
                         self.mark_unreachable_code(node.body, block_type='if')
                         self.detect_unreachable_code(node.orelse, reachable)
                     else:

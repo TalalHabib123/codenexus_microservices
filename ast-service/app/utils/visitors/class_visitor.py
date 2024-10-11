@@ -151,9 +151,12 @@ class ClassVisitor(ast.NodeVisitor):
             class_functions = class_detail['functions']
             class_variables = class_detail['variables']
 
+            # Check if there is an instance of this class
+            has_instance = any(instance_class == class_name for instance_class in self.class_instances.values())
+
             unutilized_functions = [
                 fn for fn in class_functions 
-                if not (fn.startswith('__') and fn.endswith('__'))  
+                if not (fn.startswith('__') and fn.endswith('__'))  # Ignore special methods
                 and all(f"{class_name}.{fn}" != used_fn and not used_fn.startswith(f"{class_name}.{fn}") for used_fn in self.used_functions)
             ]
 
@@ -164,7 +167,8 @@ class ClassVisitor(ast.NodeVisitor):
             unutilized_details.append({
                 'class_name': class_name,
                 'unutilized_functions': unutilized_functions,
-                'unutilized_variables': unutilized_variables
+                'unutilized_variables': unutilized_variables,
+                'has_instance': has_instance  # Include the flag for class instances
             })
 
         return unutilized_details

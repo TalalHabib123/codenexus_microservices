@@ -53,6 +53,8 @@ class GlobalVariableConflictAnalyzer(ast.NodeVisitor):
             if var_name in self.global_vars:
                 if self.current_function is None:  # Assignment at module level
                     self.global_vars[var_name]["assignments"].append(("module", node.lineno))
+                elif var_name in self.global_declarations and self.current_function in self.global_declarations[var_name]:
+                    self.global_vars[var_name]["assignments"].append((self.current_function, node.lineno))
                 else:
                     self.local_assignments[var_name].append((self.current_function, node.lineno))
         self.generic_visit(node)
@@ -62,23 +64,6 @@ class GlobalVariableConflictAnalyzer(ast.NodeVisitor):
         if var_name in self.global_vars and self.current_function:
             if var_name not in self.local_variable_names[self.current_function]:
                 self.global_vars[var_name]["usages"].append((self.current_function, node.lineno))
-
-    def visit_Expr(self, node):
-        if isinstance(node.value, ast.Name):
-            self.visit_Name(node.value)
-        self.generic_visit(node)
-
-    def visit_Call(self, node):
-        for arg in node.args:
-            if isinstance(arg, ast.Name):
-                self.visit_Name(arg)
-        self.generic_visit(node)
-
-    def visit_BinOp(self, node):
-        if isinstance(node.left, ast.Name):
-            self.visit_Name(node.left)
-        if isinstance(node.right, ast.Name):
-            self.visit_Name(node.right)
         self.generic_visit(node)
 
     def analyze_conflicts(self):
@@ -102,7 +87,7 @@ class GlobalVariableConflictAnalyzer(ast.NodeVisitor):
                 )
 
             # Conflict detection: Usage without assignment
-            if not all_assignments and var in self.global_vars and data.get("usages", []):
+            if not data["assignments"] and var in self.global_vars and data.get("usages", []):
                 conflict_details["warnings"].append(
                     f"Variable '{var}' used without assignment."
                 )
@@ -129,7 +114,7 @@ class GlobalVariableConflictAnalyzer(ast.NodeVisitor):
             conflicts_report.append(conflict_details)
         
         return conflicts_report
-
+    
 class GlobalVariableVisitor(ast.NodeVisitor):
     def __init__(self, global_var_list):
         self.declared_globals = set(global_var_list) 

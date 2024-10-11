@@ -110,9 +110,8 @@ class DuplicateCodeResponse(BaseModel):
     duplicate_code: Optional[List[DuplicateCodeDetails]] = None
     success: bool
     error: Optional[str] = None
-    
 
-    
+
 class DeadClassRequest(BaseModel):
     code: str
     class_name: str

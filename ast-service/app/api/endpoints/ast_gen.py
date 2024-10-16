@@ -2,9 +2,9 @@ from fastapi import APIRouter, HTTPException
 from app.models.ast_models import CodeRequest, CodeResponse
 from app.service.ast_service import generate_ast
 
-router = APIRouter()
+gen_router = APIRouter()
 
-@router.post("/analyze-ast", response_model=CodeResponse)
+@gen_router.post("/analyze-ast", response_model=CodeResponse)
 async def analyze_ast(request: CodeRequest):
     result = generate_ast(request.code)
     if result is None:

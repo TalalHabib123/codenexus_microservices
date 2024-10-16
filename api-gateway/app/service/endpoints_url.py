@@ -1,0 +1,3 @@
+BOTO_CLIENT_URL = 'http://localhost:4566'
+BOTO_CLIENT_REGION = 'us-east-1'
+DETECTION_SERVICE_URL = "http://127.0.0.1:8001"

@@ -3,7 +3,6 @@ from app.models.ast_models import (
     DeadCodeRequest, 
     DeadCodeResponse, 
     AnalysisRequest, 
-    AnalysisResponse,
     DeadClassRequest,
     DeadClassResponse,
     VariableConflictRequest,
@@ -32,9 +31,9 @@ from app.service.ast_service import (
     check_temporary_field
 )
 
-router = APIRouter()
+analysis_router = APIRouter()
 
-@router.post("/overly-complex-conditionals", response_model=ComplexConditonalResponse)
+@analysis_router.post("/overly-complex-conditionals", response_model=ComplexConditonalResponse)
 async def overly_complex_conditionals(request: AnalysisRequest):
     result = overly_complex_conditionals_analysis(request.code)
     if result is None:
@@ -43,7 +42,7 @@ async def overly_complex_conditionals(request: AnalysisRequest):
         print(result.get('error'))
     return result
 
-@router.post("/unreachable-code", response_model=UnreachableResponse)
+@analysis_router.post("/unreachable-code", response_model=UnreachableResponse)
 async def unreachable_code(request: AnalysisRequest):
     result = unreachable_code_check(request.code)
     if result is None:
@@ -52,7 +51,7 @@ async def unreachable_code(request: AnalysisRequest):
         print(result.get('error'))
     return result
 
-@router.post("/temporary-field", response_model=TemporaryVariableResponse)
+@analysis_router.post("/temporary-field", response_model=TemporaryVariableResponse)
 async def temporary_field(request: AnalysisRequest):
     result = check_temporary_field(request.code)
     if result is None:
@@ -61,7 +60,7 @@ async def temporary_field(request: AnalysisRequest):
         print(result.get('error'))
     return result
 
-@router.post("/dead-code", response_model=DeadCodeResponse)
+@analysis_router.post("/dead-code", response_model=DeadCodeResponse)
 async def dead_code(request: DeadCodeRequest):
     result = deadcode_analysis(request.code, request.function_names, request.global_variables)
     if result is None:
@@ -70,7 +69,7 @@ async def dead_code(request: DeadCodeRequest):
         print(result.get('error'))
     return result   
 
-@router.post("/dead-class", response_model=DeadClassResponse)
+@analysis_router.post("/dead-class", response_model=DeadClassResponse)
 async def dead_class(request: DeadClassRequest):
     result = dead_class_analysis(request.code, request.class_name)
     if result is None:
@@ -80,7 +79,7 @@ async def dead_class(request: DeadClassRequest):
     return result 
     
 
-@router.post("/magic-numbers", response_model=MagicNumbersResponse)
+@analysis_router.post("/magic-numbers", response_model=MagicNumbersResponse)
 async def magic_numbers(request: AnalysisRequest):
     result = magic_num_analysis(request.code)
     if result is None:
@@ -90,7 +89,7 @@ async def magic_numbers(request: AnalysisRequest):
     print(result)
     return result
     
-@router.post("/unused-variables", response_model=UnusedVariablesResponse)
+@analysis_router.post("/unused-variables", response_model=UnusedVariablesResponse)
 async def unused_variables(request: AnalysisRequest):
     result = unused_variables_analysis(request.code)  
     
@@ -102,7 +101,7 @@ async def unused_variables(request: AnalysisRequest):
     return result
 
 
-@router.post("/naming-convention", response_model=InconsistentNamingResponse)
+@analysis_router.post("/naming-convention", response_model=InconsistentNamingResponse)
 async def naming_convention(request: AnalysisRequest):
     result = naming_convention_analysis(request.code)
     if result is None:
@@ -111,7 +110,7 @@ async def naming_convention(request: AnalysisRequest):
         print(result.get('error'))
     return result
 
-@router.post("/duplicated-code", response_model=DuplicateCodeResponse)
+@analysis_router.post("/duplicated-code", response_model=DuplicateCodeResponse)
 async def duplicated_code(request: AnalysisRequest):
     result = duplicated_code_analysis(request.code)
     if result is None:
@@ -120,7 +119,7 @@ async def duplicated_code(request: AnalysisRequest):
         print(result.get('error'))
     return result
 
-@router.post("/parameter-list", response_model=LongParameterListResponse)
+@analysis_router.post("/parameter-list", response_model=LongParameterListResponse)
 async def parameter_list(request: AnalysisRequest):
     result = parameter_list_analysis(request.code)
     if result is None:
@@ -129,7 +128,7 @@ async def parameter_list(request: AnalysisRequest):
         print(result.get('error'))
     return result
 
-@router.post("/global-conflict", response_model=VariableConflictResponse)
+@analysis_router.post("/global-conflict", response_model=VariableConflictResponse)
 async def global_conflict(request: VariableConflictRequest):
     result = global_variable_analysis(request.code, request.global_variables)
     if result is None:

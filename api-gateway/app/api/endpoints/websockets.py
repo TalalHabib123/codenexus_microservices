@@ -1,23 +1,23 @@
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+import httpx
 import json
 import uuid
 import asyncio
 import boto3
 from contextlib import asynccontextmanager
+from app.service.endpoints_url import BOTO_CLIENT_URL, BOTO_CLIENT_REGION, DETECTION_SERVICE_URL
 
 websocket_gateway_router = FastAPI()
 
 # SQS client configuration (Using LocalStack)
 sqs = boto3.client(
     'sqs', 
-    endpoint_url='http://localhost:4566', 
-    region_name='us-east-1',
+    endpoint_url=BOTO_CLIENT_URL, 
+    region_name=BOTO_CLIENT_REGION,
     aws_access_key_id='test',
     aws_secret_access_key = 'test'
 )
 
-# Create or retrieve task and response queues
-task_queue_url = sqs.create_queue(QueueName='LLMTaskQueue')['QueueUrl']
 response_queue_url = sqs.create_queue(QueueName='LLMResponseQueue')['QueueUrl']
 
 # Store WebSocket connections mapped by correlation IDs
@@ -41,46 +41,73 @@ async def websocket_endpoint(websocket: WebSocket):
 
     try:
         while True:
-            # Wait for messages from the WebSocket client
             data = await websocket.receive_text()
             message = json.loads(data)
+            
             task_data = message.get("data")
             task_type = message.get("task")
+            task_job = message.get("job")
 
-            # Generate a unique correlation ID for the task
+            if not isinstance(task_data, dict):
+                await websocket.send_text(json.dumps({
+                    "status": "task_failed",
+                    "error": "Invalid task data format. Expected a dictionary with file paths as keys and code as values."
+                }))
+                continue
+
             correlation_id = str(uuid.uuid4())
 
-            # Store WebSocket connection for the correlation ID
             ws_connections[correlation_id] = websocket
 
-            # Send acknowledgment to the client
-            await websocket.send_text(json.dumps({
-                "status": "task_started",
-                "correlation_id": correlation_id
-            }))
+            task_started = await send_task_to_llm(correlation_id, task_type, task_job, task_data)
 
-            # Send task to the LLM task queue via SQS
-            await send_task_to_llm(correlation_id, task_type, task_data)
+            if task_started:
+                await websocket.send_text(json.dumps({
+                    "status": "task_started",
+                    "correlation_id": correlation_id
+                }))
+            else:
+                await websocket.send_text(json.dumps({
+                    "status": "task_failed",
+                    "correlation_id": correlation_id,
+                    "error": "Task failed to start"
+                }))
 
     except WebSocketDisconnect:
         print(f"Client disconnected: {websocket.client}")
 
 
-async def send_task_to_llm(correlation_id: str, task_type: str, task_data: str):
-    # Prepare message for the task queue
+async def send_task_to_llm(correlation_id: str, task_type: str, task_job: str, task_data: dict) -> bool:
     task_message = {
         'correlation_id': correlation_id,
         'task_type': task_type,
-        'task_data': task_data
+        'task_data': task_data, 
+        'task_job': task_job
     }
     
-    # Send the message to the LLM task queue
-    sqs.send_message(QueueUrl=task_queue_url, MessageBody=json.dumps(task_message))
+    if task_type == 'detection':
+        return await forward_task_to_service(DETECTION_SERVICE_URL, task_message)
+    elif task_type == 'refactoring':
+        return await forward_task_to_service(DETECTION_SERVICE_URL, task_message)
+    else:
+        return False
 
-# This function will constantly poll the response queue to send results back to the WebSocket client
+async def forward_task_to_service(service_url: str, task_message: dict) -> bool:
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.post(service_url, json=task_message)
+            if response.status_code == 200:
+                return True
+            else:
+                print(f"Failed to forward task: {response.text}")
+                return False
+    except Exception as e:
+        print(f"Exception during forwarding task: {e}")
+        return False
+
+
 async def consume_response_queue():
     while True:
-        # Poll the response queue for processed results
         response = sqs.receive_message(QueueUrl=response_queue_url, MaxNumberOfMessages=1, WaitTimeSeconds=10)
         messages = response.get('Messages', [])
         
@@ -89,19 +116,15 @@ async def consume_response_queue():
             correlation_id = message_body['correlation_id']
             processed_data = message_body['processed_data']
 
-            # Retrieve the WebSocket connection using the correlation ID
             websocket = ws_connections.get(correlation_id)
             if websocket:
-                # Send the processed result back to the WebSocket client
                 await websocket.send_text(json.dumps({
                     "status": "task_completed",
                     "correlation_id": correlation_id,
                     "processed_data": processed_data
                 }))
-                # Clean up connection once message is sent
                 del ws_connections[correlation_id]
 
-            # Delete the processed message from the response queue
             sqs.delete_message(QueueUrl=response_queue_url, ReceiptHandle=messages[0]['ReceiptHandle'])
 
-        await asyncio.sleep(1)  # Small delay to avoid busy-waiting 
+        await asyncio.sleep(1) 

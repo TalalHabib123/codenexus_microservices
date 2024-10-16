@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api.endpoints import ast_gen, ast_analysis
+from app.api.endpoints import ast_gen, ast_analysis, task_forwarding
 
 app = FastAPI()
 
@@ -7,8 +7,9 @@ app = FastAPI()
 def health_check():
     return {"status": "ok"}
 
-app.include_router(ast_gen.router)
-app.include_router(ast_analysis.router)
+app.include_router(ast_gen.gen_router)
+app.include_router(ast_analysis.analysis_router)
+app.include_router(task_forwarding.forwarding_router)
 
 if __name__ == "__main__":
     import uvicorn

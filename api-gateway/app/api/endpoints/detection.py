@@ -21,9 +21,9 @@ from app.models.detection_models import (
     DuplicateCodeResponse
 )
 
-detecton_gateway_router = APIRouter()
+from app.service.endpoints_url import DETECTION_SERVICE_URL
 
-DETECTION_SERVICE_URL = "http://127.0.0.1:8001"
+detecton_gateway_router = APIRouter()
 
 # Route for overly complex conditionals detection
 @detecton_gateway_router.post("/overly-complex-conditionals", response_model=ComplexConditonalResponse)

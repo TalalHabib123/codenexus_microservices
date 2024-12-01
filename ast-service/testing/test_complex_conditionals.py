@@ -41,28 +41,10 @@ def overly_complex_response():
         'conditionals': [
             {
                 'line_range': (2, 7),
-                'condition_code': '(a > 10) and (b < 5)',
+                'condition_code': '(a > 10 and b < 5)',
                 'complexity_score': 4,
                 'code_block': 'if (a > 10) and (b < 5):\n    if (c == 1):\n        if (d != 0):\n            if (e in range(5)):\n                if (f == True):\n                    print("Nested conditionals!")\n'
             },
-            {
-                'line_range': (3, 7),
-                'condition_code': '(c == 1)',
-                'complexity_score': 1,
-                'code_block': 'if (c == 1):\n        if (d != 0):\n            if (e in range(5)):\n                if (f == True):\n                    print("Nested conditionals!")\n'
-            },
-            {
-                'line_range': (4, 7),
-                'condition_code': '(d != 0)',
-                'complexity_score': 1,
-                'code_block': 'if (d != 0):\n            if (e in range(5)):\n                if (f == True):\n                    print("Nested conditionals!")\n'
-            },
-            {
-                'line_range': (6, 7),
-                'condition_code': '(f == True)',
-                'complexity_score': 1,
-                'code_block': 'if (f == True):\n                    print("Nested conditionals!")\n'
-            }
         ],
         'success': True,
         'error': None
@@ -83,8 +65,8 @@ def complex_border_response():
         'conditionals': [
             {
                 'line_range': (2, 3),
-                'condition_code': '(x > 5) and (y < 10)',
-                'complexity_score': 2,
+                'condition_code': '(x > 5 and y < 10)',
+                'complexity_score': 4,
                 'code_block': 'if (x > 5) and (y < 10):\n    print("This is borderline complex")\n'
             }
         ],

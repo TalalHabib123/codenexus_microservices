@@ -45,66 +45,167 @@ def my_function():
 """
 
 @pytest.fixture
-def naming_convention_response():
+def snake_case_response():
     return {
-        'conditionals': [
+        "inconsistent_naming": [
             {
-                'line_range': (2, 7),
-                'condition_code': '(a > 10) and (b < 5)',
-                'complexity_score': 4,
-                'code_block': 'if (a > 10) and (b < 5):\n    if (c == 1):\n        if (d != 0):\n            if (e in range(5)):\n                if (f == True):\n                    print("Nested conditionals!")\n'
+                "type": "snake_case",
+                "total_count": 5,
+                "type_count": 5,
+                "vars": [
+                    {"variable": "my_variable", "line_number": 3},
+                    {"variable": "another_variable", "line_number": 4},
+                    {"variable": "my_variable", "line_number": 5},
+                    {"variable": "another_variable", "line_number": 5},
+                    {"variable": "my_function", "line_number": 2},
+                ],
             },
             {
-                'line_range': (3, 7),
-                'condition_code': '(c == 1)',
-                'complexity_score': 1,
-                'code_block': 'if (c == 1):\n        if (d != 0):\n            if (e in range(5)):\n                if (f == True):\n                    print("Nested conditionals!")\n'
+                "type": "camel_case",
+                "total_count": 5,
+                "type_count": 0,
+                "vars": [],
             },
             {
-                'line_range': (4, 7),
-                'condition_code': '(d != 0)',
-                'complexity_score': 1,
-                'code_block': 'if (d != 0):\n            if (e in range(5)):\n                if (f == True):\n                    print("Nested conditionals!")\n'
+                "type": "pascal_case",
+                "total_count": 5,
+                "type_count": 0,
+                "vars": [],
             },
-            {
-                'line_range': (6, 7),
-                'condition_code': '(f == True)',
-                'complexity_score': 1,
-                'code_block': 'if (f == True):\n                    print("Nested conditionals!")\n'
-            }
         ],
-        'success': True,
-        'error': None
+        "success": True,
+        "error": None,
     }
+    
+@pytest.fixture
+def camel_case_response():
+    return {
+        "inconsistent_naming": [
+            {
+                "type": "snake_case",
+                "total_count": 5,
+                "type_count": 0,
+                "vars": [],
+            },
+            {
+                "type": "camel_case",
+                "total_count": 5,
+                "type_count": 5,
+                "vars": [
+                    {"variable": "myVariable", "line_number": 3},
+                    {"variable": "anotherVariable", "line_number": 4},
+                    {"variable": "myVariable", "line_number": 5},
+                    {"variable": "anotherVariable", "line_number": 5},
+                    {"variable": "myFunction", "line_number": 2},
+                ],
+            },
+            {
+                "type": "pascal_case",
+                "total_count": 5,
+                "type_count": 0,
+                "vars": [],
+            },
+        ],
+        "success": True,
+        "error": None,
+    }
+
 
 @pytest.fixture
-def no_dead_code_response():
+def pascal_case_response():
     return {
-        'conditionals': [],
-        'success': True,
-        'error': None
+  "inconsistent_naming": [
+    {
+      "type": "snake_case",
+      "total_count": 5,
+      "type_count": 0,
+      "vars": []
+    },
+    {
+      "type": "camel_case",
+      "total_count": 5,
+      "type_count": 0,
+      "vars": []
+    },
+    {
+      "type": "pascal_case",
+      "total_count": 5,
+      "type_count": 5,
+      "vars": [
+        {
+          "variable": "MyVariable",
+          "line_number": 3
+        },
+        {
+          "variable": "AnotherVariable",
+          "line_number": 4
+        },
+        {
+          "variable": "MyVariable",
+          "line_number": 5
+        },
+        {
+          "variable": "AnotherVariable",
+          "line_number": 5
+        },
+        {
+          "variable": "MyFunction",
+          "line_number": 2
+        }
+      ]
     }
+  ],
+  "success": True,
+  "error": None
+}
+
 
 
 @pytest.fixture
-def active_dead_classes_response():
+def mixed_case_response():
     return {
-        'conditionals': [
+        "inconsistent_naming": [
             {
-                'line_range': (2, 3),
-                'condition_code': '(x > 5) and (y < 10)',
-                'complexity_score': 2,
-                'code_block': 'if (x > 5) and (y < 10):\n    print("This is borderline complex")\n'
-            }
+                "type": "snake_case",
+                "total_count": 10,
+                "type_count": 1,
+                "vars": [
+                    {"variable": "my_function", "line_number": 2},
+                ],
+            },
+            {
+                "type": "camel_case",
+                "total_count": 10,
+                "type_count": 5,
+                "vars": [
+                    {"variable": "myVariable", "line_number": 3},
+                    {"variable": "anotherVariable", "line_number": 6},
+                    {"variable": "wishVariable", "line_number": 7},
+                    {"variable": "myVariable", "line_number": 8},
+                    {"variable": "anotherVariable", "line_number": 8},
+                ],
+            },
+            {
+                "type": "pascal_case",
+                "total_count": 10,
+                "type_count": 4,
+                "vars": [
+                    {"variable": "AnotherVariable", "line_number": 4},
+                    {"variable": "SomeVariable", "line_number": 5},
+                    {"variable": "AnotherVariable", "line_number": 8},
+                    {"variable": "SomeVariable", "line_number": 8},
+                ],
+            },
         ],
-        'success': True,
-        'error': None
+        "success": True,
+        "error": None,
     }
+
 
 
 
 @pytest.mark.asyncio
-async def test_sample_snake_case(sample_snake_case, naming_convention_response):
+async def test_sample_snake_case(sample_snake_case, snake_case_response):
     url = f"{BASE_URL}/naming-convention"
     async with httpx.AsyncClient() as client:
         response = await client.post(url, json={"code": sample_snake_case})
@@ -118,8 +219,8 @@ async def test_sample_snake_case(sample_snake_case, naming_convention_response):
         assert validated_response.success is True
         assert validated_response.error is None
         
-        naming_convention_response = InconsistentNamingResponse(**naming_convention_response)
-        assert validated_response == naming_convention_response
+        snake_case_response = InconsistentNamingResponse(**snake_case_response)
+        assert validated_response == snake_case_response
             
     except ValidationError as e:
         print(f"Response validation failed: {e}")
@@ -128,7 +229,7 @@ async def test_sample_snake_case(sample_snake_case, naming_convention_response):
 
 
 @pytest.mark.asyncio
-async def test_sample_camel_case(sample_camel_case, naming_convention_response):
+async def test_sample_camel_case(sample_camel_case, camel_case_response):
     url = f"{BASE_URL}/naming-convention"
     async with httpx.AsyncClient() as client:
         response = await client.post(url, json={"code": sample_camel_case})
@@ -142,8 +243,8 @@ async def test_sample_camel_case(sample_camel_case, naming_convention_response):
         assert validated_response.success is True
         assert validated_response.error is None
         
-        naming_convention_response = InconsistentNamingResponse(**naming_convention_response)
-        assert validated_response == naming_convention_response
+        camel_case_response = InconsistentNamingResponse(**camel_case_response)
+        assert validated_response == camel_case_response
             
     except ValidationError as e:
         print(f"Response validation failed: {e}")
@@ -151,7 +252,7 @@ async def test_sample_camel_case(sample_camel_case, naming_convention_response):
 
 
 @pytest.mark.asyncio
-async def test_sample_pascal_case(sample_pascal_case, naming_convention_response):
+async def test_sample_pascal_case(sample_pascal_case, pascal_case_response):
     url = f"{BASE_URL}/naming-convention"
     async with httpx.AsyncClient() as client:
         response = await client.post(url, json={"code": sample_pascal_case})
@@ -165,15 +266,15 @@ async def test_sample_pascal_case(sample_pascal_case, naming_convention_response
         assert validated_response.success is True
         assert validated_response.error is None
         
-        naming_convention_response = InconsistentNamingResponse(**naming_convention_response)
-        assert validated_response == naming_convention_response
+        pascal_case_response = InconsistentNamingResponse(**pascal_case_response)
+        assert validated_response == pascal_case_response
             
     except ValidationError as e:
         print(f"Response validation failed: {e}")
         pytest.fail(f"Response validation failed: {e}") 
 
 @pytest.mark.asyncio
-async def test_sample_mixed_case(sample_mixed_case, naming_convention_response):
+async def test_sample_mixed_case(sample_mixed_case, mixed_case_response):
     url = f"{BASE_URL}/naming-convention"
     async with httpx.AsyncClient() as client:
         response = await client.post(url, json={"code": sample_mixed_case})
@@ -187,8 +288,8 @@ async def test_sample_mixed_case(sample_mixed_case, naming_convention_response):
         assert validated_response.success is True
         assert validated_response.error is None
         
-        naming_convention_response = InconsistentNamingResponse(**naming_convention_response)
-        assert validated_response == naming_convention_response
+        mixed_case_response = InconsistentNamingResponse(**mixed_case_response)
+        assert validated_response == mixed_case_response
             
     except ValidationError as e:
         print(f"Response validation failed: {e}")

@@ -55,31 +55,8 @@ nested_conditions(True)
 @pytest.fixture
 def unreachable_code_response():
     return {
-        'conditionals': [
-            {
-                'line_range': (2, 7),
-                'condition_code': '(a > 10) and (b < 5)',
-                'complexity_score': 4,
-                'code_block': 'if (a > 10) and (b < 5):\n    if (c == 1):\n        if (d != 0):\n            if (e in range(5)):\n                if (f == True):\n                    print("Nested conditionals!")\n'
-            },
-            {
-                'line_range': (3, 7),
-                'condition_code': '(c == 1)',
-                'complexity_score': 1,
-                'code_block': 'if (c == 1):\n        if (d != 0):\n            if (e in range(5)):\n                if (f == True):\n                    print("Nested conditionals!")\n'
-            },
-            {
-                'line_range': (4, 7),
-                'condition_code': '(d != 0)',
-                'complexity_score': 1,
-                'code_block': 'if (d != 0):\n            if (e in range(5)):\n                if (f == True):\n                    print("Nested conditionals!")\n'
-            },
-            {
-                'line_range': (6, 7),
-                'condition_code': '(f == True)',
-                'complexity_score': 1,
-                'code_block': 'if (f == True):\n                    print("Nested conditionals!")\n'
-            }
+        'unreachable_code': [
+                "Unreachable code at line 6"
         ],
         'success': True,
         'error': None
@@ -88,7 +65,7 @@ def unreachable_code_response():
 @pytest.fixture
 def no_unreachable_code_response():
     return {
-        'conditionals': [],
+        'unreachable_code': [],
         'success': True,
         'error': None
     }
@@ -97,13 +74,10 @@ def no_unreachable_code_response():
 @pytest.fixture
 def unreachable_code_response_2():
     return {
-        'conditionals': [
-            {
-                'line_range': (2, 3),
-                'condition_code': '(x > 5) and (y < 10)',
-                'complexity_score': 2,
-                'code_block': 'if (x > 5) and (y < 10):\n    print("This is borderline complex")\n'
-            }
+        'unreachable_code': [
+                "Unreachable code at line 5",
+                "Unreachable code at line 8",
+                "Unreachable code at line 10"
         ],
         'success': True,
         'error': None

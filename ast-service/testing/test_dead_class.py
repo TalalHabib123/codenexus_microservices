@@ -47,7 +47,9 @@ class ActiveClass:
                             print("This nested conditional is unlikely to execute")
                             return True
         return False
+        
 active = ActiveClass()
+active.complex_method(10, 4, 1, 1, 3, True)
 """,
         'class_name': 'ActiveClass'
     }
@@ -55,7 +57,10 @@ active = ActiveClass()
 @pytest.fixture
 def dead_class_response():
     return {
-        'class_details': [],
+        'class_details': {
+            'methods': [],
+            'variables': []
+        },
         'success': True,
         'error': None
     }
@@ -63,10 +68,10 @@ def dead_class_response():
 @pytest.fixture
 def no_dead_class_response():
     return {
-        'class_details': [{
+        'class_details': {
             'methods': ['complex_method'],
-            'variables': ['x', 'y']
-        }],
+            'variables': []
+        },
         'success': True,
         'error': None
     }
@@ -87,8 +92,8 @@ async def test_sample_dead_class_code(sample_code_dead_class_request, dead_class
         
         assert validated_response.success is True
         assert validated_response.error is None
-        
         expected_response = DeadClassResponse(**dead_class_response)
+        
         assert validated_response.class_details == expected_response.class_details
     
     except ValidationError as e:

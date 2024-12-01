@@ -10,7 +10,7 @@ retrieval_model = SentenceTransformer('all-MiniLM-L6-v2')
 
 nn_cache = {}
 
-@lru_cache(maxsize=10000)
+@lru_cache(maxsize=1000)
 def get_embedding(smell_code):
     # Encode the smell_code string and return the embedding
     embedding = retrieval_model.encode([smell_code])[0]

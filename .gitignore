@@ -1,2 +1,3 @@
 **/__pycache__/
 **/models
+ast-service/testing/test_global_variable_conflict.py

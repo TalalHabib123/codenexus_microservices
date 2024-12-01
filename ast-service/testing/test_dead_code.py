@@ -34,36 +34,16 @@ print("Hello world")
 fun()
 """
 
-
 @pytest.fixture
 def dead_code_response():
     return {
-        'conditionals': [
-            {
-                'line_range': (2, 7),
-                'condition_code': '(a > 10) and (b < 5)',
-                'complexity_score': 4,
-                'code_block': 'if (a > 10) and (b < 5):\n    if (c == 1):\n        if (d != 0):\n            if (e in range(5)):\n                if (f == True):\n                    print("Nested conditionals!")\n'
-            },
-            {
-                'line_range': (3, 7),
-                'condition_code': '(c == 1)',
-                'complexity_score': 1,
-                'code_block': 'if (c == 1):\n        if (d != 0):\n            if (e in range(5)):\n                if (f == True):\n                    print("Nested conditionals!")\n'
-            },
-            {
-                'line_range': (4, 7),
-                'condition_code': '(d != 0)',
-                'complexity_score': 1,
-                'code_block': 'if (d != 0):\n            if (e in range(5)):\n                if (f == True):\n                    print("Nested conditionals!")\n'
-            },
-            {
-                'line_range': (6, 7),
-                'condition_code': '(f == True)',
-                'complexity_score': 1,
-                'code_block': 'if (f == True):\n                    print("Nested conditionals!")\n'
-            }
-        ],
+        'function_names': ['fun'],
+        'class_details': [],
+        'global_variables': [],
+        'imports': {
+            'dead_imports': [],
+            'unused_imports': []
+        },
         'success': True,
         'error': None
     }
@@ -71,23 +51,13 @@ def dead_code_response():
 @pytest.fixture
 def no_dead_code_response():
     return {
-        'conditionals': [],
-        'success': True,
-        'error': None
-    }
-
-
-@pytest.fixture
-def active_dead_classes_response():
-    return {
-        'conditionals': [
-            {
-                'line_range': (2, 3),
-                'condition_code': '(x > 5) and (y < 10)',
-                'complexity_score': 2,
-                'code_block': 'if (x > 5) and (y < 10):\n    print("This is borderline complex")\n'
-            }
-        ],
+        'function_names': [],
+        'class_details': [],
+        'global_variables': [],
+        'imports': {
+            'dead_imports': [],
+            'unused_imports': []
+        },
         'success': True,
         'error': None
     }
@@ -96,9 +66,9 @@ def active_dead_classes_response():
 
 @pytest.mark.asyncio
 async def test_dead_code(sample_code_dead, dead_code_response):
-    url = f"{BASE_URL}/dead-class"
+    url = f"{BASE_URL}/dead-code"
     async with httpx.AsyncClient() as client:
-        response = await client.post(url, json={"code": sample_code_dead})
+        response = await client.post(url, json={"code": sample_code_dead, "function_names": ["fun"] , "global_variables": []})
     
     assert response.status_code == 200
 
@@ -121,9 +91,9 @@ async def test_dead_code(sample_code_dead, dead_code_response):
 @pytest.mark.asyncio
 async def test_not_complex_conditionals(sample_code_active, no_dead_code_response):
    
-    url = f"{BASE_URL}/dead-class"
+    url = f"{BASE_URL}/dead-code"
     async with httpx.AsyncClient() as client:
-        response = await client.post(url, json={"code": sample_code_active})
+        response = await client.post(url, json={"code": sample_code_active, "function_names": ["fun"] , "global_variables": []})
     assert response.status_code == 200
 
     try:

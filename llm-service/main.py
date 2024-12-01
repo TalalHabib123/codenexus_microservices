@@ -1,8 +1,8 @@
 import boto3
 import json
 import asyncio
+from utils.llm_processor import load_model_pipeline, process_with_llm
 
-# SQS client configuration (using LocalStack for local testing)
 sqs = boto3.client(
     'sqs', 
     endpoint_url='http://localhost:4566', 
@@ -14,6 +14,9 @@ sqs = boto3.client(
 # Create or retrieve task and response queues
 task_queue_url = sqs.create_queue(QueueName='LLMTaskQueue')['QueueUrl']
 response_queue_url = sqs.create_queue(QueueName='LLMResponseQueue')['QueueUrl']
+
+# Load the LLM model pipeline
+model_pipeline = load_model_pipeline()
 
 async def process_tasks_from_queue():
     while True:
@@ -27,9 +30,13 @@ async def process_tasks_from_queue():
             correlation_id = message_body['correlation_id']
             task_type = message_body['task_type']
             task_data = message_body['task_data']
+            task_job = message_body['task_job'] 
             
-            # Simulate processing the task (placeholder logic)
-            processed_result = f"Processed {task_type}: {task_data}"
+            #Dummy data, doesn't do anything (the create_prompt function is not implemented)
+            messages = task_data['message']
+            
+            
+            processed_result = process_with_llm(model_pipeline, messages)
 
             # Send the processed result to the response queue with the same correlation ID
             response_message = {

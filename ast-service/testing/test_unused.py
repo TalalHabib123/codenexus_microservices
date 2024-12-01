@@ -78,6 +78,15 @@ def sample_dead_variable_response():
         "error": None,
     }
 
+
+@pytest.fixture
+def no_dead_variable_response():
+    return {
+        "unused_variables": [],
+        "success": True,
+        "error": None,
+    }
+
 @pytest.mark.asyncio
 async def test_one_unused_variable(sample_one_unused_variable, unused_variable_response):
     url = f"{BASE_URL}/unused-variables"
@@ -128,6 +137,25 @@ async def test_dead_var(sample_dead_variable, sample_dead_variable_response):
         assert validated_response.success is True
         assert validated_response.error is None
         assert validated_response.unused_variables == sample_dead_variable_response["unused_variables"]
+
+    except ValidationError as e:
+        pytest.fail(f"Response validation failed: {e}")
+
+
+@pytest.mark.asyncio
+async def test_dead_conditional(sample_dead_conditional, no_dead_variable_response):
+    url = f"{BASE_URL}/unused-variables"
+    async with httpx.AsyncClient() as client:
+        response = await client.post(url, json={"code": sample_dead_conditional})
+    assert response.status_code == 200
+
+    try:
+        response_data = response.json()
+        validated_response = UnusedVariablesResponse(**response_data)
+
+        assert validated_response.success is True
+        assert validated_response.error is None
+        assert validated_response.unused_variables == no_dead_variable_response["unused_variables"]
 
     except ValidationError as e:
         pytest.fail(f"Response validation failed: {e}")

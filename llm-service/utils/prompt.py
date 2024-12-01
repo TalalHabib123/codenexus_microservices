@@ -1,5 +1,5 @@
-from utils.function_extractor import extract_functions_from_code
-from utils.class_extractor import extract_classes_from_code
+from utils.helpers.function_extractor import extract_functions_from_code
+from utils.helpers.class_extractor import extract_classes_from_code
 from utils.system_prompts.long_function import LONG_FUNCTION
 from utils.system_prompts.god_object import GOD_OBJECT
 

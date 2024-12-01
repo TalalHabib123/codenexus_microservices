@@ -6,7 +6,7 @@ from app.models.ast_models import Duplicates, DuplicateCodeDetails
 def get_duplicated_code(source_code: str) -> str:
     duplicates = []
     lines = source_code.split('\n')
-    print(lines)
+    #print(lines)
     normalized_lines = [line.strip() for line in lines]
     line_count = len(normalized_lines)
     min_sequence_length = 2  

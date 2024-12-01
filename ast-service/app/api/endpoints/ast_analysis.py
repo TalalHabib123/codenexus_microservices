@@ -130,7 +130,9 @@ async def parameter_list(request: AnalysisRequest):
 
 @analysis_router.post("/global-conflict", response_model=VariableConflictResponse)
 async def global_conflict(request: VariableConflictRequest):
+    
     result = global_variable_analysis(request.code, request.global_variables)
+    print("result",result)
     if result is None:
         raise HTTPException(status_code=400, detail="Invalid code")
     elif result.get('success') is False:

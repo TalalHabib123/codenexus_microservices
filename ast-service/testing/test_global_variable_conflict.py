@@ -7,7 +7,7 @@ from app.models.ast_models import VariableConflictResponse
 @pytest.fixture
 def sample_conflict_code():
     return """
-    global="helloWorld"
+global_var = "helloWorld"
 def fun(): 
     global_var = 3
     a = 10
@@ -31,8 +31,10 @@ print("Hello world")
 fun()
 """
 @pytest.fixture
-def no_conflict_code():
+def sample_conflict_code2():
     return """
+x=1 
+y=1
 def fun():
     print("This is a function")
     x = 10
@@ -47,27 +49,25 @@ fun()
 
 @pytest.fixture
 def conflict_code_response():
-    return {
-        'conflicts_report': [
-            {
-                'variable': 'global',
-                'assignments': [('module', 3), ('fun', 4)],
-                'local_assignments': [],
-                'usages': [],
-                'conflicts': [
-                    "Multiple assignments to 'global' detected. Potential conflict!"
-                ],
-                'warnings': []
-            }
-        ],
-        'success': True,
-        'error': None
-    }
+    return {'conflicts_report': 
+            [
+                {
+                    'variable': 'global_var', 
+                    'assignments': [('module', 2)],
+                    'local_assignments': [('fun', 4)], 
+                    'usages': [], 
+                    'conflicts': ["Multiple assignments to 'global_var' detected. Potential conflict!", "Shadowing issue in function 'fun': Local variable 'global_var' may shadow the global variable."], 
+                    'warnings': []
+                    }
+             ],
+             'success': True,
+             'error':None
+             }
 
 @pytest.fixture
 def no_conflict_code_response():
     return {
-        'conflicts_report': [],
+        'conflicts_report': [{'variable': 'global', 'assignments': [], 'local_assignments': [], 'usages': [], 'conflicts': [], 'warnings': []}],
         'success': True,
         'error': None
     }
@@ -77,23 +77,21 @@ def conflict_code_response_2():
     return {
         'conflicts_report': [
             {
-                'variable': 'x',
-                'assignments': [('fun', 3), ('fun2', 9)],
-                'local_assignments': [],
-                'usages': [],
-                'conflicts': [
-                    "Multiple assignments to 'x' detected. Potential conflict!"
-                ],
-                'warnings': []
+            'variable': 'x', 
+            'assignments': [('module', 2)], 
+            'local_assignments': [('fun', 6)], 
+            'usages': [], 
+            'conflicts': ["Multiple assignments to 'x' detected. Potential conflict!", 
+                          "Shadowing issue in function 'fun': Local variable 'x' may shadow the global variable."], 
+            'warnings': []
             },
             {
-                'variable': 'y',
-                'assignments': [('fun', 4), ('fun2', 10)],
-                'local_assignments': [],
-                'usages': [],
-                'conflicts': [
-                    "Multiple assignments to 'y' detected. Potential conflict!"
-                ],
+               'variable': 'y',
+                'assignments': [('module', 3)],
+                'local_assignments': [('fun', 7)], 
+                'usages': [], 
+                'conflicts': ["Multiple assignments to 'y' detected. Potential conflict!", 
+                              "Shadowing issue in function 'fun': Local variable 'y' may shadow the global variable."], 
                 'warnings': []
             }
         ],
@@ -105,7 +103,7 @@ def conflict_code_response_2():
 async def test_conflict_code(sample_conflict_code, conflict_code_response):
     url = f"{BASE_URL}/global-conflict"
     async with httpx.AsyncClient() as client:
-        global_variables = ["global"]
+        global_variables = ["global_var"]
         response = await client.post(url, json={"code": sample_conflict_code, "global_variables": global_variables})
     
     assert response.status_code == 200
@@ -146,7 +144,8 @@ async def test_no_conflict_code(no_conflict_code, no_conflict_code_response):
 async def test_2_conflict_code(sample_conflict_code2, conflict_code_response_2):
     url = f"{BASE_URL}/global-conflict"
     async with httpx.AsyncClient() as client:
-        global_variables = []
+        global_variables = ['x','y']
+        print("sampke",sample_conflict_code2,"global", global_variables)
         response = await client.post(url, json={"code": sample_conflict_code2, "global_variables": global_variables})
     assert response.status_code == 200
 

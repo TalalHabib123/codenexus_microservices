@@ -11,6 +11,7 @@ GOD_OBJECT = {
                 1. Only include files where a Large Class code smell has been detected.
                 2. If no Large Class code smells are found, respond with 'None.'
                 3. If any Large Class code smells are detected, provide the file name and the specific class name in the following format:
+                4. For ease, a file with muliple classes has been divided, so muliple File will have same names but different Classes.
 
                 File: `{file_name}.py`  
                 Detected: `{class_name}`

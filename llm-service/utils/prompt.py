@@ -29,9 +29,7 @@ def create_detection_prompt(task_job, task_data, knowledge_base_detection, nn_mo
         content_prompt
     ]
     return prompt
-    
-    
-    
+
 
 def create_prompt(task_type, task_data, task_job, knowledge_base_detection, nn_model):
     if task_type == "detection":

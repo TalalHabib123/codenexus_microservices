@@ -2,6 +2,8 @@ import boto3
 import json
 import asyncio
 from utils.llm_processor import load_model_pipeline, process_with_llm
+from utils.rag.retrieval import initialize_knowledge_base_detection
+from utils.prompt import create_prompt
 
 sqs = boto3.client(
     'sqs', 
@@ -17,6 +19,7 @@ response_queue_url = sqs.create_queue(QueueName='LLMResponseQueue')['QueueUrl']
 
 # Load the LLM model pipeline
 model_pipeline = load_model_pipeline()
+knowledge_base_detection, nn_model, embeddings = initialize_knowledge_base_detection()
 
 async def process_tasks_from_queue():
     while True:
@@ -33,8 +36,7 @@ async def process_tasks_from_queue():
             task_job = message_body['task_job'] 
             
             #Dummy data, doesn't do anything (the create_prompt function is not implemented)
-            messages = task_data['message']
-            
+            messages = create_prompt(task_type, task_data, task_job, knowledge_base_detection, nn_model)
             
             processed_result = process_with_llm(model_pipeline, messages)
 
@@ -43,7 +45,7 @@ async def process_tasks_from_queue():
                 'correlation_id': correlation_id,
                 'processed_data': processed_result
             }
-            print(f"Processed task: {task_type} - {task_data}")
+            
             sqs.send_message(QueueUrl=response_queue_url, MessageBody=json.dumps(response_message))
 
             # Delete the processed message from the task queue

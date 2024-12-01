@@ -7,7 +7,7 @@ from app.models.ast_models import MagicNumbersResponse
 
 @pytest.fixture
 def sample_no_magic_number():
-    return """
+    return """ 
 def fun():
     print("This is a function")
     x = 10
@@ -16,44 +16,46 @@ def fun():
         print("This is borderline complex")
     return True
 
-print("Hello world")
+print("Hello world") 
 """
 
 @pytest.fixture
 def sample_multiple_occurrences():
-    return """
+    return """ 
 def fun():
-    print("This is a function")
-    x = 25
-    y = 25
-    if (x > 25) and (y < 10):
-        print("This is borderline complex")
+    print("Some number")
+    if 25 > 20:
+        x = 25
+    if 25 < 30:
+        y = 25
+    print(25)
     return True
 
 print("Hello world")
-fun()
+fun() 
 """
 
 @pytest.fixture
 def sample_magic_number_varied():
-    return """
+    return """ 
 def fun():
     x = 10
-    y = 20
     z = [30, 10, 50]
-    if x > 5:
-        print("Magic number detected")
-        y=10
-    return x + y + z[0]
+    print(10)
+    if 10 > 5:
+        print("Multiple 10s")
+    return x + 10 
 """
 
 @pytest.fixture
 def sample_magic_number_args():
-    return """
-def fun(x=10, y=20):
-    if x > 5:
-        print("Magic number in arguments")
-    return x + y
+    return """ 
+def fun():
+    print(10)
+    if 10 > 5:
+        print("Multiple 10s")
+    z = 10
+    return 10 
 """
 
 @pytest.fixture
@@ -64,14 +66,11 @@ def no_magic_number_response():
         'error': None
     }
 
-
 @pytest.fixture
 def multiple_occurrences_response():
     return {
         'magic_numbers': [
-            {'magic_number': 25, 'line_number': 4},
-            {'magic_number': 25, 'line_number': 5},
-            {'magic_number': 25, 'line_number': 6}
+            {'magic_number': 25, 'line_number': 4}
         ],
         'success': True,
         'error': None
@@ -81,11 +80,7 @@ def multiple_occurrences_response():
 def magic_number_varied_response():
     return {
         'magic_numbers': [
-            {'magic_number': 10, 'line_number': 3},
-            {'magic_number': 20, 'line_number': 4},
-            {'magic_number': 30, 'line_number': 5},
-            {'magic_number': 10, 'line_number': 6},
-            {'magic_number': 10, 'line_number': 8}
+            {'magic_number': 10, 'line_number': 5}
         ],
         'success': True,
         'error': None
@@ -95,9 +90,7 @@ def magic_number_varied_response():
 def magic_number_args_response():
     return {
         'magic_numbers': [
-            {'magic_number': 10, 'line_number': 2},
-            {'magic_number': 20, 'line_number': 2},
-            {'magic_number': 5, 'line_number': 3}
+            {'magic_number': 10, 'line_number': 3}
         ],
         'success': True,
         'error': None

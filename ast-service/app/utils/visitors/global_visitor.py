@@ -207,10 +207,17 @@ class MagicNumGlobalVisitor(ast.NodeVisitor):
     def __init__(self):
         self.magic_numbers = {}  
 
+    def generic_visit(self, node: ast.AST):
+        # Assign parent attribute to child nodes
+        for child in ast.iter_child_nodes(node):
+            child.parent = node
+        super().generic_visit(node)
 
     def visit_Constant(self, node):
+        # Check if the constant is a numeric value (int or float, but not bool)
         if isinstance(node.value, (int, float)) and not isinstance(node.value, bool):
-            if not isinstance(node.parent, (ast.List, ast.Tuple, ast.Assign)):
+            # Exclude numbers in lists, tuples, or assignments
+            if not isinstance(getattr(node, 'parent', None), (ast.List, ast.Tuple, ast.Assign)):
                 if node.value in self.magic_numbers:
                     self.magic_numbers[node.value]['count'] += 1
                 else:
@@ -218,14 +225,15 @@ class MagicNumGlobalVisitor(ast.NodeVisitor):
                         'count': 1,
                         'line_number': node.lineno
                     }
-        self.generic_visit(node)
-    
-    def generic_visit(self, node: ast.AST):
-        for child in ast.iter_child_nodes(node):
-            child.parent = node
-        return super().generic_visit(node)  
         
+        # Continue traversing the AST
+        self.generic_visit(node)
+
     def get_magic_numbers(self):
-        # self.visit(node)
-        return [{'magic_number': num, 'line_number': details['line_number']} for num, details in self.magic_numbers.items() if details['count'] > 2]
+        # Return magic numbers that appear more than twice
+        return [
+            {'magic_number': num, 'line_number': details['line_number']} 
+            for num, details in self.magic_numbers.items() 
+            if details['count'] > 2
+        ]
 

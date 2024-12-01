@@ -225,7 +225,7 @@ class MagicNumGlobalVisitor(ast.NodeVisitor):
             child.parent = node
         return super().generic_visit(node)  
         
-    def get_magic_numbers(self, node):
-        self.visit(node)
+    def get_magic_numbers(self):
+        # self.visit(node)
         return [{'magic_number': num, 'line_number': details['line_number']} for num, details in self.magic_numbers.items() if details['count'] > 2]
 

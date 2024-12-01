@@ -130,6 +130,7 @@ def magic_num_analysis(code: str):
     try:
         parsed_ast = ast.parse(code)
         magic_nums = get_magic_numbers(parsed_ast)
+        print("Magic Number", magic_nums)
         return {
             'magic_numbers': magic_nums,
             'success': True

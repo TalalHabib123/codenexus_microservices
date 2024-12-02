@@ -125,7 +125,7 @@ def retrieve_relevant_info_detection(smell_type, code_snippet, knowledge_base_de
     code_embedding = code_embedding.reshape(1, -1)
 
     distances, indices = nn_model.kneighbors(code_embedding, n_neighbors=top_k)
-    relevant_docs = [knowledge_base_detection[idx] for idx in indices[0]]
+    relevant_docs = [knowledge_base_detection[idx] for idx in indices[0] if knowledge_base_detection[idx]['smell'] == smell_type]
     nn_cache[smell_code] = relevant_docs
 
     return relevant_docs

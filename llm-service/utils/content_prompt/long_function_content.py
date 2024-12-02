@@ -37,8 +37,9 @@ def create_long_function_prompt(task_data, knowledge_base_detection, nn_model):
             "\nThe following documents are provided as references. These documents contain examples of "
             "Long Function Code Smells. Use them as references when analyzing the above files and their functions:\n"
         )
-        for index, doc in enumerate(relevant_docs, start=1):
-            content += f"Reference {index}:\n{{\n{doc}\n}}\n"
+        for index, (key, doc) in enumerate(relevant_docs.items(), start=1):
+            if key != "smell":
+                content += f"Reference {index}:\n{{\n{doc}\n}}\n"
 
     # Return the complete prompt as a dictionary
     return {

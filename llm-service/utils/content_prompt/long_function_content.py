@@ -21,51 +21,47 @@ def create_long_function_prompt(task_data, knowledge_base_detection, nn_model):
     # Add files and their respective functions
     for file_path, functions in processed_data.items():
         for func_info in functions:
-            class_part = f"{func_info['class_name']}." if func_info['class_name'] != "None" else ""
-            # Include function details in the prompt
+            # If class_name is None or empty, just use the function name; otherwise format CLASSNAME.FUNCTIONNAME
+            class_name = func_info['class_name']+"." if func_info['class_name'] else ""
             content += (
                 f"File:{{{file_path}}}\n"
-                f"Function:{{{class_part}{func_info['function_name']}}}\n"
+                f"Function:{{func_info['function_name']}}\n"
                 f"Code:{{\n{func_info['function_code']}\n}}\n"
             )
 
-    # Add detailed instructions for the LLM
+    # Add instructions for identifying long functions
     content += """
-        Now, I want you to identify any functions that suffer from a "Long Function" code smell.
+        Now, identify any functions that qualify as a "Long Function" code smell based on the definition:
+        - Exceeds a reasonable line threshold (~100 lines of substantive code).
+        - Performs multiple unrelated tasks.
+        - Is excessively complex or deeply nested.
 
-        A "Long Function" is characterized by:
-        - Being excessively long or doing too many distinct tasks.
-        - Lacking cohesion and performing multiple responsibilities that should be split into smaller, focused functions.
-        - Having a large number of lines or complex logic beyond what is necessary for a single task.
-
-        If the function is defined inside a class (Not None), you must return it in the format:
-        CLASSNAME.FUNCTIONNAME
-
-        If the function is defined at the top-level (not inside a class), just return FUNCTIONNAME as-is.
-
-        If you find any functions that qualify as a long function, respond with them in the following format (and only this format, no extra commentary):
-
+        Follow these response rules exactly:
+        - If no long functions are found, respond with 'None' only.
+        - If any are found, respond only in this format, no extra commentary:
+        - If it a function contains multiple Issues, list them in one response under one issue and separate them with "."
+        
         File:{file_name}.py
         Detected:{CLASSNAME.FUNCTIONNAME or FUNCTIONNAME}
+        Issue:{brief description of why it is long, e.g. multiple tasks or excessive lines}
+        
+        Multiple detections in the same file should be listed under the same File line, each Detected and Issue on new lines.
 
-        If there are multiple long functions in the same file, list them each on a new line after the same File: line.
-
-        If no functions qualify as long functions, respond with:
-        None
+        Do not mention correlation IDs or processed data lines.
+        Do not provide additional commentary beyond what is requested.
     """
 
-    # Include relevant reference documents if available
+    # Include relevant docs if available
     if relevant_docs:
         content += (
-            "\nThe following reference documents are provided. They contain examples or definitions related "
-            "to long function code smells. Use them as references when analyzing the above files and their functions:\n"
+            "\nThe following reference documents are provided for additional context on long functions:\n"
         )
         for documents in relevant_docs:
             for index, (key, doc) in enumerate(documents.items(), start=1):
                 content += f"Reference {index}:\n{{\n{doc}\n}}\n"
 
-    # Return the prompt and processed data
     return {
         "role": "user",
         "content": content.strip()
     }, processed_data
+

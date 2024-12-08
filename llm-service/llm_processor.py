@@ -25,7 +25,7 @@ def load_model_pipeline(use_inference_api=False, hf_model_id="meta-llama/Llama-3
                 "text-generation",
                 model=hf_model_id,
                 use_auth_token=hf_token,
-                max_new_tokens=256
+                max_new_tokens=512
             )
             logger.info("Model pipeline loaded from Hugging Face Inference API")
             return model_pipeline
@@ -48,7 +48,8 @@ def load_model_pipeline(use_inference_api=False, hf_model_id="meta-llama/Llama-3
             model_pipeline = pipeline(
                 "text-generation",
                 model=model,
-                tokenizer=tokenizer
+                tokenizer=tokenizer,
+                max_new_tokens=512
             )
             logger.info(f"Local model pipeline loaded: {model_id}")
             return model_pipeline

@@ -249,3 +249,150 @@ Issue: The class is not flagged as a large class as it is cohesive and single-pu
 File: Download_Data.py  
 Detected: GaTectorDataset  
 Issue: The class takes on multiple unrelated responsibilities, including data loading, data augmentation, and image processing, violating the Single Responsibility Principle.
+2024-12-08 22:44:10,173 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-08 22:44:10,200 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-08 22:44:10,248 - llm_processor - INFO - Models directory: E:\FYP\codenexus_microservices\codenexus_microservices\llm-service\models\LLAMA-3.1_8_I
+2024-12-08 22:44:10,248 - llm_processor - INFO - Loading local model pipeline: E:\FYP\codenexus_microservices\codenexus_microservices\llm-service\models\LLAMA-3.1_8_I
+2024-12-08 22:44:10,787 - accelerate.utils.modeling - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2024-12-08 22:44:14,890 - accelerate.big_modeling - WARNING - Some parameters are on the meta device because they were offloaded to the cpu.
+2024-12-08 22:44:14,891 - llm_processor - INFO - Local model pipeline loaded: E:\FYP\codenexus_microservices\codenexus_microservices\llm-service\models\LLAMA-3.1_8_I
+2024-12-08 22:44:14,891 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-08 22:44:14,892 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-08 22:44:14,892 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-08 22:44:14,899 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-08 22:44:14,899 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-08 22:45:16,142 - __main__ - INFO - Received task message
+2024-12-08 22:45:16,144 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-08 22:45:16,145 - __main__ - INFO - Task type: detection
+2024-12-08 22:45:16,146 - __main__ - INFO - Task job: long_function
+2024-12-08 22:45:16,558 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-08 22:45:16,558 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-08 22:51:58,750 - llm_processor - INFO - Processed result: File: OrderProcessing.py  
+Detected: OrderProcessor.OrderProcessor.process_order  
+Issue: Function spans 35 lines and performs multiple tasks such as validating order items, deducting stock, processing payment, and notifying the customer.
+
+File: UserDataProcessing.py  
+Detected: process_user_data  
+Issue: Function spans 23 lines and performs multiple tasks such as reading data from a file, validating the data, storing it in a database, and sending confirmation emails.
+
+File: Logging.py  
+Detected: log_message  
+Issue: Function spans 16 lines and performs multiple tasks such as logging messages at different levels.
+
+File: DatabaseUtils.py  
+Detected: connect_to_database  
+Issue: Function spans 8 lines and performs a single task of establishing a connection to the database.
+
+File: DatabaseUtils.py  
+Detected: add_user_to_database  
+Issue: Function spans 12 lines and performs a single task of adding a user to the database.
+
+File: OrderProcessing.py  
+Detected: OrderProcessor.OrderProcessor.process_order  
+Issue: Function contains deeply nested if-else statements and performs both data cleaning and visualization tasks, which should be separated into smaller functions.
+
+File: UserDataProcessing.py  
+Detected: process_user_data  
+Issue: Function contains multiple tasks that should be split into
+2024-12-08 22:57:43,359 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-08 22:57:43,367 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-08 22:57:43,415 - llm_processor - INFO - Models directory: E:\FYP\codenexus_microservices\codenexus_microservices\llm-service\models\LLAMA-3.1_8_I
+2024-12-08 22:57:43,415 - llm_processor - INFO - Loading local model pipeline: E:\FYP\codenexus_microservices\codenexus_microservices\llm-service\models\LLAMA-3.1_8_I
+2024-12-08 22:57:43,885 - accelerate.utils.modeling - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2024-12-08 22:57:46,206 - accelerate.big_modeling - WARNING - Some parameters are on the meta device because they were offloaded to the cpu.
+2024-12-08 22:57:46,207 - llm_processor - INFO - Local model pipeline loaded: E:\FYP\codenexus_microservices\codenexus_microservices\llm-service\models\LLAMA-3.1_8_I
+2024-12-08 22:57:46,208 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-08 22:57:46,208 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-08 22:57:46,209 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-08 22:57:46,210 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-08 22:57:46,211 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-08 22:57:57,066 - __main__ - INFO - Received task message
+2024-12-08 22:57:57,068 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-08 22:57:57,070 - __main__ - INFO - Task type: detection
+2024-12-08 22:57:57,071 - __main__ - INFO - Task job: long_function
+2024-12-08 22:57:57,308 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-08 22:57:57,310 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-08 23:08:59,298 - llm_processor - INFO - Processed result: File:OrderProcessing.py  
+Detected:process_order  
+Issue:Performs multiple tasks such as inventory validation, payment processing, and notification sending, and is too long to be easily maintained.
+
+File:UserDataProcessing.py  
+Detected:process_user_data  
+Issue:Performs multiple tasks such as file reading, data validation, database storage, and email sending, and is too long to be easily maintained.
+
+File:OrderProcessing.py  
+Detected:process_order  
+Issue:Has complicated logic due to excessive nesting and multiple conditional statements.
+
+File:UserDataProcessing.py  
+Detected:process_user_data  
+Issue:Has complicated logic due to excessive nesting and multiple conditional statements.
+
+File:OrderProcessing.py  
+Detected:process_order  
+Issue:Exceeds a reasonable line threshold with more than 30 lines of substantive code.
+
+File:UserDataProcessing.py  
+Detected:process_user_data  
+Issue:Exceeds a reasonable line threshold with more than 30 lines of substantive code.
+
+File:Logging.py  
+Detected:log_message  
+Issue:Performs multiple tasks such as logging at different levels and handling unknown log levels, and is too complex to be easily maintained.
+
+File:DatabaseUtils.py  
+Detected:connect_to_database  
+Issue:Performs multiple tasks such
+2024-12-08 23:11:16,236 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-08 23:11:16,260 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-08 23:11:16,313 - llm_processor - INFO - Models directory: E:\FYP\codenexus_microservices\codenexus_microservices\llm-service\models\LLAMA-3.1_8_I
+2024-12-08 23:11:16,314 - llm_processor - INFO - Loading local model pipeline: E:\FYP\codenexus_microservices\codenexus_microservices\llm-service\models\LLAMA-3.1_8_I
+2024-12-08 23:11:16,790 - accelerate.utils.modeling - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2024-12-08 23:11:19,159 - accelerate.big_modeling - WARNING - Some parameters are on the meta device because they were offloaded to the cpu.
+2024-12-08 23:11:19,160 - llm_processor - INFO - Local model pipeline loaded: E:\FYP\codenexus_microservices\codenexus_microservices\llm-service\models\LLAMA-3.1_8_I
+2024-12-08 23:11:19,161 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-08 23:11:19,161 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-08 23:11:19,161 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-08 23:11:19,162 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-08 23:11:19,163 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-08 23:11:26,736 - __main__ - INFO - Received task message
+2024-12-08 23:11:26,736 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-08 23:11:26,736 - __main__ - INFO - Task type: detection
+2024-12-08 23:11:26,737 - __main__ - INFO - Task job: long_function
+2024-12-08 23:11:26,980 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-08 23:11:26,980 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-08 23:22:46,285 - llm_processor - INFO - Processed result: File:OrderProcessing.py
+Detected:process_order
+Issue:Performs multiple tasks and is too long to be easily maintained.
+
+File:UserDataProcessing.py
+Detected:process_user_data
+Issue:Performs multiple tasks and is too long to be easily maintained.
+
+File:OrderProcessing.py
+Detected:process_order
+Issue:Has complicated logic due to excessive nesting and multiple responsibilities.
+
+File:UserDataProcessing.py
+Detected:process_user_data
+Issue:Has complicated logic due to excessive nesting and multiple responsibilities.
+
+File:Logging.py
+Detected:log_message
+Issue:Exceeds a reasonable line threshold and performs multiple unrelated tasks.
+
+File:DatabaseUtils.py
+Detected:connect_to_database
+Issue:Exceeds a reasonable line threshold and performs multiple unrelated tasks.
+
+File:DatabaseUtils.py
+Detected:add_user_to_database
+Issue:Exceeds a reasonable line threshold and performs multiple unrelated tasks.
+
+File:OrderProcessing.py
+Detected:process_order
+Issue:Has multiple responsibilities such as inventory management, payment processing, and notification sending.
+
+File:UserDataProcessing.py
+Detected:process_user_data
+Issue:Has multiple responsibilities such as data validation, database storage, and email sending.

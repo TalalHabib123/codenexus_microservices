@@ -3,10 +3,10 @@ import json
 from typing import List
 from app.utils.ast_encoder import ASTEncoder
 
-from app.utils.analysis.long_parameters import get_parameter_list #done
+from app.utils.analysis.long_parameters import get_parameter_list 
 from app.utils.analysis.duplicate_code import get_duplicated_code
 from app.utils.analysis.naming_convention import get_naming_convention
-from app.utils.analysis.magic_number import get_magic_numbers #done
+from app.utils.analysis.magic_number import get_magic_numbers 
 from app.utils.analysis.unused_variables import get_unused_variables
 
 

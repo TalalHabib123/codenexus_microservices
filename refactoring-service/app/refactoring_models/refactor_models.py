@@ -7,6 +7,7 @@ class RefactorRequest(BaseModel):
     refactor_type: str
     refactor_details: Dict[str, Any] 
 
+
 class UnusedVariablesRefactorRequest(BaseModel):
     code: str
     unused_variables: List[str]

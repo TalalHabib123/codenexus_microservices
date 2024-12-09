@@ -1,6 +1,9 @@
 from utils.helpers.class_extractor import extract_classes_from_code
 from utils.rag.retrieval import retrieve_relevant_info_detection
 
+from utils.content_prompt.detection.utils.process_data import process_data
+from utils.content_prompt.detection.utils.retrieve_relevant_docs import retrieve_relevant_info_detection
+
 def create_relevant_docs(processed_data, knowledge_base_detection, nn_model):
     relevant_docs = []
     for file_path, classes in processed_data.items():
@@ -11,12 +14,13 @@ def create_relevant_docs(processed_data, knowledge_base_detection, nn_model):
 
 
 def create_god_object_prompt(task_data, knowledge_base_detection, nn_model):
-    processed_data = {}
-    for file_path, content in task_data.items():
-        processed_data[file_path] = extract_classes_from_code(content)
+    processed_data = process_data(task_data, "classes", "God Object")
+    # for file_path, content in task_data.items():
+    #     processed_data[file_path] = extract_classes_from_code(content)
         
-    relevant_docs = create_relevant_docs(processed_data, knowledge_base_detection, nn_model)
-
+    # relevant_docs = create_relevant_docs(processed_data, knowledge_base_detection, nn_model)
+    relevant_docs = retrieve_relevant_info_detection("God Object", processed_data, knowledge_base_detection, nn_model)
+    
     # Create the base content with the processed data
     content = (
         "I am providing you with files and classes structured as follows:\n\n"
@@ -39,6 +43,8 @@ def create_god_object_prompt(task_data, knowledge_base_detection, nn_model):
         
         File:{file_name}.py
         Detected:{class_name}
+        Issue:{brief description of why this class is considered large}
+        
         If there are multiple classes in the same file that qualify, list them separately under the same file heading.
         
         If no classes qualify as large classes, respond with:

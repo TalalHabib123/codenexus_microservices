@@ -1,4 +1,5 @@
 from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
+from huggingface_hub import InferenceClient
 import torch
 from logger_config import get_logger
 import os
@@ -21,13 +22,8 @@ def load_model_pipeline(use_inference_api=False, hf_model_id="meta-llama/Llama-3
             # the model is on the hub and you have an HF token. You may need `revision` if model is gated.
             # Note: If you want to specifically use the hosted Inference API endpoint, you can configure `pipeline`
             # with `model=hf_model_id` and `use_auth_token=hf_token`. The pipeline should handle this.
-            model_pipeline = pipeline(
-                "text-generation",
-                model=hf_model_id,
-                use_auth_token=hf_token,
-                max_new_tokens=512
-            )
-            logger.info("Model pipeline loaded from Hugging Face Inference API")
+            model_pipeline = InferenceClient(api_key="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")
+            logger.info("Model Client loaded from Hugging Face Inference API")
             return model_pipeline
         except Exception as e:
             logger.error(f"Error loading model pipeline from Inference API: {hf_model_id}")
@@ -59,15 +55,22 @@ def load_model_pipeline(use_inference_api=False, hf_model_id="meta-llama/Llama-3
             exit(1)
 
 
-def process_with_llm(model_pipeline, prompt):
-    # Process the task using the LLM
+def process_with_llm(model_pipeline, prompt, use_inference_api=False, hf_model_id="meta-llama/Llama-3.1-70B-Instruct"):
+    processed_result = ""
     logger.info(f"Processing task with LLM model pipeline")
-    # For inference API, pipeline handles requests. For local model, it runs locally.
-    outputs = model_pipeline(
-        prompt,
-        max_new_tokens=256,
-        return_full_text=False,
-    )
-    processed_result = outputs[0]["generated_text"]
-    logger.info(f"Processed result: {processed_result}")
+    if use_inference_api:
+        completion = model_pipeline.chat.completions.create(
+            model=hf_model_id,
+            messages=prompt,
+            max_tokens=1024,
+        )
+        processed_result = completion.choices[0].message.content
+    else:
+        outputs = model_pipeline(
+            prompt,
+            max_new_tokens=512,
+            return_full_text=False,
+        )
+        processed_result = outputs[0]["generated_text"]
+        logger.info(f"Processed result: {processed_result}")
     return processed_result

@@ -9,6 +9,8 @@ from logger_config import get_logger
 from dotenv import load_dotenv
 from botocore.exceptions import ClientError
 
+INFERENCING_API = True
+
 load_dotenv()
 
 logger = get_logger(__name__)
@@ -55,7 +57,7 @@ task_queue_url = get_or_create_queue(os.getenv('TASK_QUEUE_NAME'))
 response_queue_url = get_or_create_queue(os.getenv('RESPONSE_QUEUE_NAME'))
 
 # Load the LLM model pipeline
-model_pipeline = load_model_pipeline()
+model_pipeline = load_model_pipeline(use_inference_api=INFERENCING_API)
 try:
     logger.info("Initializing knowledge base for detection")
     knowledge_base_detection, nn_model, embeddings = initialize_knowledge_base_detection()
@@ -90,7 +92,7 @@ async def process_tasks_from_queue():
                 messages_prompt, processed_data = create_prompt(task_type, task_data, task_job,knowledge_base_detection, nn_model)  #knowledge_base_detection, nn_model
                 try:
                     logger.info(f"Generating response for task message with correlation ID: {correlation_id}")
-                    processed_result = process_with_llm(model_pipeline, messages_prompt)
+                    processed_result = process_with_llm(model_pipeline, messages_prompt, use_inference_api=INFERENCING_API)
                 except Exception as e:
                     logger.error(f"Error generating response for task message with correlation ID: {correlation_id}")
                     logger.error(e)

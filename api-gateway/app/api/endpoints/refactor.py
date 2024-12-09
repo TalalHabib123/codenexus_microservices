@@ -1,6 +1,6 @@
 import httpx
 from fastapi import APIRouter, HTTPException
-from app.models.refactor_models import (
+from app.models.refactoring_models import (
     RefactorResponse, 
     DeadCodeRefactorRequest,
     UnusedVariablesRefactorRequest,

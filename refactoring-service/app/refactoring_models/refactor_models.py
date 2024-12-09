@@ -30,7 +30,12 @@ class InconsistentNamingRefactorRequest(BaseModel):
 class UnreachableCodeRequest (BaseModel):
     code: str
     unreachable_code_lines: List[int]
-    
+
+class DeadCodeRefactorRequest(BaseModel):
+    code: str
+    entity_name: str
+    entity_type: str
+        
 
 class RefactorResponse(BaseModel):
     refactored_code: str

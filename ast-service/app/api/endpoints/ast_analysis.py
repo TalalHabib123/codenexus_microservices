@@ -63,6 +63,7 @@ async def temporary_field(request: AnalysisRequest):
 @analysis_router.post("/dead-code", response_model=DeadCodeResponse)
 async def dead_code(request: DeadCodeRequest):
     result = deadcode_analysis(request.code, request.function_names, request.global_variables)
+    print('result',result)
     if result is None:
         raise HTTPException(status_code=400, detail="Invalid code")
     elif result.get('success') is False:

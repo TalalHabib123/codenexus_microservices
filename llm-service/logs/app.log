@@ -396,3 +396,162 @@ Issue:Has multiple responsibilities such as inventory management, payment proces
 File:UserDataProcessing.py
 Detected:process_user_data
 Issue:Has multiple responsibilities such as data validation, database storage, and email sending.
+2024-12-09 13:47:11,442 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-09 13:47:11,475 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-09 13:47:11,527 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-09 13:47:11,527 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-09 13:47:11,527 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-09 13:47:11,528 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-09 13:47:11,528 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-09 13:47:11,535 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-09 13:47:11,536 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-09 13:47:23,734 - __main__ - INFO - Received task message
+2024-12-09 13:47:23,735 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 13:47:23,735 - __main__ - INFO - Task type: detection
+2024-12-09 13:47:23,736 - __main__ - INFO - Task job: long_function
+2024-12-09 13:47:23,928 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 13:47:23,928 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 13:49:12,753 - __main__ - INFO - Received task message
+2024-12-09 13:49:12,754 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 13:49:12,754 - __main__ - INFO - Task type: detection
+2024-12-09 13:49:12,755 - __main__ - INFO - Task job: long_function
+2024-12-09 13:49:12,757 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 13:49:12,757 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 13:49:33,342 - __main__ - INFO - Received task message
+2024-12-09 13:49:33,342 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 13:49:33,343 - __main__ - INFO - Task type: detection
+2024-12-09 13:49:33,343 - __main__ - INFO - Task job: long_function
+2024-12-09 13:49:33,345 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 13:49:33,346 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 13:49:50,522 - __main__ - INFO - Received task message
+2024-12-09 13:49:50,523 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 13:49:50,523 - __main__ - INFO - Task type: detection
+2024-12-09 13:49:50,523 - __main__ - INFO - Task job: long_function
+2024-12-09 13:49:50,525 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 13:49:50,525 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 13:50:39,845 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-09 13:50:39,873 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-09 13:50:39,926 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-09 13:50:39,927 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-09 13:50:39,927 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-09 13:50:39,927 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-09 13:50:39,928 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-09 13:50:39,929 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-09 13:50:39,929 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-09 13:50:48,182 - __main__ - INFO - Received task message
+2024-12-09 13:50:48,183 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 13:50:48,183 - __main__ - INFO - Task type: detection
+2024-12-09 13:50:48,183 - __main__ - INFO - Task job: long_function
+2024-12-09 13:50:48,252 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 13:50:48,253 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 13:52:35,426 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-09 13:52:35,455 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-09 13:52:35,504 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-09 13:52:35,505 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-09 13:52:35,505 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-09 13:52:35,505 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-09 13:52:35,505 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-09 13:52:35,506 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-09 13:52:35,507 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-09 13:52:40,235 - __main__ - INFO - Received task message
+2024-12-09 13:52:40,236 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 13:52:40,236 - __main__ - INFO - Task type: detection
+2024-12-09 13:52:40,237 - __main__ - INFO - Task job: long_function
+2024-12-09 13:52:40,311 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 13:52:40,311 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 13:54:44,274 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-09 13:54:44,295 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-09 13:54:44,341 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-09 13:54:44,342 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-09 13:54:44,342 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-09 13:54:44,342 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-09 13:54:44,342 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-09 13:54:44,343 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-09 13:54:44,343 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-09 13:54:52,097 - __main__ - INFO - Received task message
+2024-12-09 13:54:52,097 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 13:54:52,098 - __main__ - INFO - Task type: detection
+2024-12-09 13:54:52,098 - __main__ - INFO - Task job: god_object
+2024-12-09 13:54:52,181 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 13:54:52,182 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 13:55:44,228 - __main__ - INFO - Received task message
+2024-12-09 13:55:44,228 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 13:55:44,229 - __main__ - INFO - Task type: detection
+2024-12-09 13:55:44,229 - __main__ - INFO - Task job: god_object
+2024-12-09 13:55:44,240 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 13:55:44,240 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 13:57:10,432 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-09 13:57:10,464 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-09 13:57:10,510 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-09 13:57:10,510 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-09 13:57:10,511 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-09 13:57:10,511 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-09 13:57:10,511 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-09 13:57:10,512 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-09 13:57:10,513 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-09 13:57:20,125 - __main__ - INFO - Received task message
+2024-12-09 13:57:20,125 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 13:57:20,126 - __main__ - INFO - Task type: detection
+2024-12-09 13:57:20,126 - __main__ - INFO - Task job: god_object
+2024-12-09 13:57:20,206 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 13:57:20,207 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 13:57:29,282 - llm_processor - INFO - Processed result: File:{Data_Cleaning.py}
+Detected:{GodClass}
+
+Explanation:
+The GodClass is a large class that takes on multiple unrelated responsibilities such as configuration, database connection, logging, data processing, and user interaction. This class handles more than one clear domain concern, making it a God Object code smell.
+2024-12-09 13:57:39,917 - __main__ - INFO - Received task message
+2024-12-09 13:57:39,917 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 13:57:39,918 - __main__ - INFO - Task type: detection
+2024-12-09 13:57:39,918 - __main__ - INFO - Task job: long_function
+2024-12-09 13:57:39,971 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 13:57:39,972 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 13:57:40,218 - llm_processor - INFO - Processed result: File:OrderProcessing.py  
+Detected:OrderProcessor.process_order  
+Issue:Performs multiple unrelated tasks, including order validation, inventory management, payment processing, notification, and logging.
+
+File:UserDataProcessing.py  
+Detected:process_user_data  
+Issue:Performs multiple unrelated tasks, including file reading, data validation, database operations, and email sending.
+2024-12-09 14:01:44,556 - __main__ - INFO - Received task message
+2024-12-09 14:01:44,557 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 14:01:44,564 - __main__ - INFO - Task type: detection
+2024-12-09 14:01:44,564 - __main__ - INFO - Task job: god_object
+2024-12-09 14:01:44,576 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 14:01:44,577 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 14:01:44,825 - llm_processor - INFO - Processed result: File:{Data_Cleaning.py}
+Detected:{GodClass}
+
+Explanation:
+The GodClass is a large class that takes on multiple unrelated responsibilities such as configuration, database connection, logging, data processing, and user interaction. This class handles more than one clear domain concern, making it a God Object code smell.
+2024-12-09 14:02:02,605 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-09 14:02:02,613 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-09 14:02:02,659 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-09 14:02:02,660 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-09 14:02:02,660 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-09 14:02:02,660 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-09 14:02:02,661 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-09 14:02:02,662 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-09 14:02:02,662 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-09 14:02:09,426 - __main__ - INFO - Received task message
+2024-12-09 14:02:09,427 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 14:02:09,427 - __main__ - INFO - Task type: detection
+2024-12-09 14:02:09,427 - __main__ - INFO - Task job: god_object
+2024-12-09 14:02:09,507 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 14:02:09,508 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 14:02:19,651 - llm_processor - INFO - Processed result: File:Data_Cleaning.py  
+Detected:GodClass  
+Issue:This class handles unrelated responsibilities such as configuration loading, database connection, data caching, logging, user login, item addition, data processing, and user interaction. It is far from cohesive and handles multiple domain concerns, making it a God Object.
+2024-12-09 14:02:25,201 - __main__ - INFO - Received task message
+2024-12-09 14:02:25,202 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 14:02:25,203 - __main__ - INFO - Task type: detection
+2024-12-09 14:02:25,203 - __main__ - INFO - Task job: long_function
+2024-12-09 14:02:25,255 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 14:02:25,256 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 14:02:25,489 - llm_processor - INFO - Processed result: File:OrderProcessing.py  
+Detected:OrderProcessor.process_order  
+Issue:Performs multiple unrelated tasks, including order validation, inventory management, payment processing, notification, and logging.
+
+File:UserDataProcessing.py  
+Detected:process_user_data  
+Issue:Performs multiple unrelated tasks, including file reading, data validation, database operations, and email sending.

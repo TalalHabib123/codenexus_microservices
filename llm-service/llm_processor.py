@@ -72,5 +72,6 @@ def process_with_llm(model_pipeline, prompt, use_inference_api=False, hf_model_i
             return_full_text=False,
         )
         processed_result = outputs[0]["generated_text"]
-        logger.info(f"Processed result: {processed_result}")
+        
+    logger.info(f"Processed result: {processed_result}")
     return processed_result

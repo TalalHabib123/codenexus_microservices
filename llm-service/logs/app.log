@@ -862,3 +862,201 @@ Issue:Performs multiple tasks like inventory validation, payment processing, and
 File:{b701f4.py}
 Detected:process_user_data
 Issue:Exceeds a reasonable line threshold, performs multiple tasks like data validation, database storage, and email sending, involving excessive file operations and database interactions.
+2024-12-09 20:57:42,940 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-09 20:57:42,970 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-09 20:57:43,017 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-09 20:57:43,018 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-09 20:57:43,018 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-09 20:57:43,018 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-09 20:57:43,018 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-09 20:57:43,025 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-09 20:57:43,026 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-09 20:58:07,947 - __main__ - INFO - Received task message
+2024-12-09 20:58:07,947 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 20:58:07,947 - __main__ - INFO - Task type: detection
+2024-12-09 20:58:07,948 - __main__ - INFO - Task job: god_object
+2024-12-09 20:58:07,953 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 20:58:07,953 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 20:58:12,030 - llm_processor - INFO - Processed result: File:{a276f9.py}
+Detected:GaTectorDataset
+Issue:The class has multiple unrelated responsibilities, including data loading, data transformation, data augmentation, and data preprocessing, making it a large class that can be hard to maintain and understand.
+2024-12-09 20:58:31,220 - __main__ - INFO - Received task message
+2024-12-09 20:58:31,221 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 20:58:31,221 - __main__ - INFO - Task type: detection
+2024-12-09 20:58:31,222 - __main__ - INFO - Task job: god_object
+2024-12-09 20:58:31,223 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 20:58:31,223 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 20:58:31,601 - llm_processor - INFO - Processed result: None
+2024-12-09 20:58:58,404 - __main__ - INFO - Received task message
+2024-12-09 20:58:58,405 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 20:58:58,405 - __main__ - INFO - Task type: detection
+2024-12-09 20:58:58,405 - __main__ - INFO - Task job: god_object
+2024-12-09 20:58:58,417 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 20:58:58,417 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 20:59:01,547 - llm_processor - INFO - Processed result: File:{3fd860.py}
+Detected:GodClass
+Issue:The class takes on multiple unrelated responsibilities such as configuration, database connection, logging, user interaction, and data processing, making it non-cohesive and hard to maintain.
+2024-12-09 20:59:32,746 - __main__ - INFO - Received task message
+2024-12-09 20:59:32,747 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 20:59:32,748 - __main__ - INFO - Task type: detection
+2024-12-09 20:59:32,748 - __main__ - INFO - Task job: god_object
+2024-12-09 20:59:32,755 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 20:59:32,755 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 20:59:41,235 - llm_processor - INFO - Processed result: File:{3fd860.py}
+Detected:GodClass
+Issue:The GodClass takes on multiple unrelated responsibilities, including configuration, database connection, user authentication, logging, data caching, and user interface input, making it a large class (God Object) code smell.
+
+File:{3fd860.py}
+Detected:GodClass
+Issue:The GodClass class has 14 methods, many of which are not related to a single domain concern, making it difficult to maintain or understand.
+
+File:{a276f9.py}
+Detected:GaTectorDataset
+Issue:The GaTectorDataset class has many methods and handles multiple responsibilities, including data loading, transformation, and processing, but it is a relatively domain-specific class with a clear purpose, so it is cohesive and not considered a large class code smell.
+2024-12-09 21:06:20,520 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-09 21:06:20,528 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-09 21:06:20,573 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-09 21:06:20,574 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-09 21:06:20,574 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-09 21:06:20,574 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-09 21:06:20,574 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-09 21:06:20,575 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-09 21:06:20,575 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-09 21:07:20,218 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-09 21:07:20,244 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-09 21:07:20,293 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-09 21:07:20,293 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-09 21:07:20,294 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-09 21:07:20,294 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-09 21:07:20,294 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-09 21:07:20,296 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-09 21:07:20,296 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-09 21:07:52,361 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-09 21:07:52,390 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-09 21:07:52,443 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-09 21:07:52,443 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-09 21:07:52,444 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-09 21:07:52,444 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-09 21:07:52,445 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-09 21:07:52,445 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-09 21:07:52,446 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-09 21:08:05,697 - __main__ - INFO - Received task message
+2024-12-09 21:08:05,697 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 21:08:05,698 - __main__ - INFO - Task type: detection
+2024-12-09 21:08:05,698 - __main__ - INFO - Task job: god_object
+2024-12-09 21:08:05,698 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 21:08:05,699 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 21:08:06,507 - llm_processor - INFO - Processed result: None
+2024-12-09 21:08:06,509 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 21:08:06,510 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 21:08:11,710 - llm_processor - INFO - Processed result: File:3fd860.py
+Detected:GodClass
+Issue:The class takes on multiple unrelated responsibilities such as configuration management, database connections, logging, user authentication, data caching, and user interaction, violating the Single Responsibility Principle and making it a 'God Object' class.
+
+Note: The other provided class, 'StringUtils', does not qualify as a large class (God Object) as it is a cohesive, single-purpose utility class focusing on string manipulation.
+2024-12-09 21:08:11,715 - __main__ - ERROR - Error generating response for task message with correlation ID: 1234
+2024-12-09 21:08:11,716 - __main__ - ERROR - 'str' object is not a mapping
+2024-12-09 21:09:38,639 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-09 21:09:38,661 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-09 21:09:38,714 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-09 21:09:38,714 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-09 21:09:38,715 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-09 21:09:38,715 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-09 21:09:38,715 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-09 21:09:38,716 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-09 21:09:38,716 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-09 21:09:44,877 - __main__ - INFO - Received task message
+2024-12-09 21:09:44,877 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 21:09:44,878 - __main__ - INFO - Task type: detection
+2024-12-09 21:09:44,878 - __main__ - INFO - Task job: god_object
+2024-12-09 21:09:44,879 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 21:09:44,879 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 21:09:45,683 - llm_processor - INFO - Processed result: None
+2024-12-09 21:09:45,686 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 21:09:45,687 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 21:09:45,925 - llm_processor - INFO - Processed result: File:3fd860.py
+Detected:GodClass
+Issue:The class takes on multiple unrelated responsibilities such as configuration management, database connections, logging, user authentication, data caching, and user interaction, violating the Single Responsibility Principle and making it a 'God Object' class.
+
+Note: The other provided class, 'StringUtils', does not qualify as a large class (God Object) as it is a cohesive, single-purpose utility class focusing on string manipulation.
+2024-12-09 21:09:45,929 - __main__ - ERROR - Error generating response for task message with correlation ID: 1234
+2024-12-09 21:09:45,930 - __main__ - ERROR - '3fd860.py'
+2024-12-09 21:10:57,313 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-09 21:10:57,330 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-09 21:10:57,384 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-09 21:10:57,384 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-09 21:10:57,385 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-09 21:10:57,385 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-09 21:10:57,385 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-09 21:10:57,387 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-09 21:10:57,387 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-09 21:11:02,360 - __main__ - INFO - Received task message
+2024-12-09 21:11:02,361 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 21:11:02,361 - __main__ - INFO - Task type: detection
+2024-12-09 21:11:02,361 - __main__ - INFO - Task job: god_object
+2024-12-09 21:11:02,369 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 21:11:02,369 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 21:11:03,334 - llm_processor - INFO - Processed result: File:{3fd860.py}
+Detected:GodClass
+Issue:The class takes on multiple unrelated responsibilities such as configuration, database connection, logging, user interaction, and data processing, making it non-cohesive and hard to maintain.
+2024-12-09 21:12:32,352 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-09 21:12:32,382 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-09 21:12:32,432 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-09 21:12:32,432 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-09 21:12:32,433 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-09 21:12:32,433 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-09 21:12:32,433 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-09 21:12:32,434 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-09 21:12:32,434 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-09 21:12:39,502 - __main__ - INFO - Received task message
+2024-12-09 21:12:39,503 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 21:12:39,503 - __main__ - INFO - Task type: detection
+2024-12-09 21:12:39,503 - __main__ - INFO - Task job: god_object
+2024-12-09 21:12:39,511 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 21:12:39,512 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 21:12:40,517 - llm_processor - INFO - Processed result: File:{3fd860.py}
+Detected:GodClass
+Issue:The class takes on multiple unrelated responsibilities such as configuration, database connection, logging, user interaction, and data processing, making it non-cohesive and hard to maintain.
+2024-12-09 21:12:59,664 - __main__ - INFO - Received task message
+2024-12-09 21:12:59,665 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 21:12:59,665 - __main__ - INFO - Task type: detection
+2024-12-09 21:12:59,666 - __main__ - INFO - Task job: god_object
+2024-12-09 21:12:59,673 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 21:12:59,674 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 21:12:59,910 - llm_processor - INFO - Processed result: File:{3fd860.py}
+Detected:GodClass
+Issue:The class takes on multiple unrelated responsibilities such as configuration, database connection, logging, user interaction, and data processing, making it non-cohesive and hard to maintain.
+2024-12-09 21:25:47,715 - __main__ - INFO - Received task message
+2024-12-09 21:25:47,716 - __main__ - INFO - Processing task message with correlation ID: a2cc23e6-f4bd-4995-8109-47bc260b1f41
+2024-12-09 21:25:47,717 - __main__ - INFO - Task type: detection
+2024-12-09 21:25:47,717 - __main__ - INFO - Task job: god_object
+2024-12-09 21:25:47,759 - __main__ - INFO - Generating response for task message with correlation ID: a2cc23e6-f4bd-4995-8109-47bc260b1f41
+2024-12-09 21:25:47,760 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 21:25:59,834 - llm_processor - INFO - Processed result: File:{44dafd.py}
+Detected:GaTectorBody
+Issue:This class appears to take on multiple responsibilities, as it implements both the main logic of the GaTector model and the GOO network, which is a part of the attention mechanism. The class is also quite large and complex, indicating that it may be handling more than one clear domain concern.
+
+File:{9d1b30.py}
+Detected:ResNet
+Issue:This class, which implements a ResNet architecture, appears to be overly complex and may be taking on too many responsibilities. It not only defines the layers of the ResNet but also implements additional layers specific to the GOO network (e.g., `layer5_scene` and `layer5_face`). This mixing of concerns could make the class harder to maintain and understand.
+2024-12-09 21:31:09,125 - __main__ - INFO - Received task message
+2024-12-09 21:31:09,126 - __main__ - INFO - Processing task message with correlation ID: 7f14453c-6775-4b5b-bc12-e27d444e3401
+2024-12-09 21:31:09,127 - __main__ - INFO - Task type: detection
+2024-12-09 21:31:09,127 - __main__ - INFO - Task job: god_object
+2024-12-09 21:31:09,172 - __main__ - INFO - Generating response for task message with correlation ID: 7f14453c-6775-4b5b-bc12-e27d444e3401
+2024-12-09 21:31:09,173 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 21:31:26,179 - llm_processor - INFO - Processed result: File:{d22b3c.py}
+Detected:GaTectorDataset
+Issue: This class handles data processing, image loading, image transformations, augmentation, and target preparation, making it a large class that handles multiple responsibilities.
+
+File:{44dafd.py}
+Detected:GaTectorBody
+Issue: This class handles multiple tasks such as backbone feature extraction, feature map processing, upsampling, detection, and GOO network processing. The class is quite large and has multiple responsibilities.
+
+File:{2dfdd7.py}
+Detected:YOLO
+Issue: This class handles multiple tasks such as model initialization, image processing, object detection, text drawing, and performance evaluation. It also contains a lot of logic related to the YOLO model and object detection, making it a large and complex class.
+
+File:{6affa8.py}
+Detected:YOLOLoss
+Issue: This class handles the loss calculation for the YOLO object detection model. While loss calculation might seem like a singular task, the class has grown to handle multiple aspects of object detection such as boundary box adjustments, overlaps, and cross-entropy.

@@ -96,24 +96,29 @@ async def process_tasks_from_queue():
                 try:
                     logger.info(f"Generating response for task message with correlation ID: {correlation_id}")
                     processed_result = process_with_llm(model_pipeline, messages_prompt, use_inference_api=INFERENCING_API)
+                    if processed_result == "None":
+                        continue
                     if task_type =="detection":
                         processed_data = parse_code_smell_output(processed_result, modified_task_data)
                         final_result = revert_task_data_keys(processed_data, name_to_path_mapping)
                 except Exception as e:
                     logger.error(f"Error generating response for task message with correlation ID: {correlation_id}")
                     logger.error(e)
-                    task_status = "error"
+                    task_status = e
+                    break
             except Exception as e:
                 logger.error(f"Error processing task message with correlation ID: {correlation_id}")
                 logger.error(e)
-                task_status = "error"
+                task_status = e
                 
 
             # Send the processed result to the response queue with the same correlation ID
             response_message = {
                 'correlation_id': correlation_id,
                 'processed_data': final_result,
-                'task_status': task_status
+                'task_status': task_status,
+                'task_type': task_type,
+                'task_job': task_job
             }
             
             sqs.send_message(QueueUrl=response_queue_url, MessageBody=json.dumps(response_message))

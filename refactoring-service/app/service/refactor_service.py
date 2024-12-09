@@ -8,7 +8,7 @@ from app.utils.Analysis.dead_code_refactor import dead_code_refactor
 def refactor_inconsistent_naming(code, target_convention):
     try: 
         return {
-            "code": inconsistent_naming_refactor(code, target_convention),
+            "refactored_code": inconsistent_naming_refactor(code, target_convention),
             "success": True
         }
     except Exception as e:
@@ -20,7 +20,7 @@ def refactor_inconsistent_naming(code, target_convention):
 def refactor_magic_numbers(code, magic_numbers):
     try:
         return {
-            "code": magic_numbers_refactor(magic_numbers, code),
+            "refactored_code": magic_numbers_refactor(magic_numbers, code),
             "success": True
         }
     except Exception as e:
@@ -32,7 +32,7 @@ def refactor_magic_numbers(code, magic_numbers):
 def refactor_unreachable_code(unreachable, code):
     try:
         return {
-            "code": unreachable_code_refactor(code, unreachable),
+            "refactored_code": unreachable_code_refactor(code, unreachable),
             "success": True
         }
     except Exception as e:
@@ -44,7 +44,7 @@ def refactor_unreachable_code(unreachable, code):
 def refactor_unused_variables(unused_variables, code):
     try:
         return {
-            "code": unused_variables_refactor(unused_variables, code),
+            "refactored_code": unused_variables_refactor(unused_variables, code),
             "success": True
         }
     except Exception as e:
@@ -56,7 +56,7 @@ def refactor_unused_variables(unused_variables, code):
 def refactor_dead_code(entity_name, entity_type, code):
     try:
         return {
-            "code": dead_code_refactor(entity_name, entity_type, code),
+            "refactored_code": dead_code_refactor(entity_name, entity_type, code),
             "success": True
         }
     except Exception as e:

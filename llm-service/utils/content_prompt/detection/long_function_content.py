@@ -1,15 +1,6 @@
-from utils.helpers.function_extractor import extract_functions_from_code
-from utils.rag.retrieval import retrieve_relevant_info_detection
-
 from utils.content_prompt.detection.utils.process_data import process_data
-from utils.content_prompt.detection.utils.retrieve_relevant_docs import retrieve_relevant_info_detection
+from utils.content_prompt.detection.utils.retrieve_relevant_docs import retrieve_relevant_docs_for_
 
-def create_relevant_docs_for_long_functions(processed_data, knowledge_base_detection, nn_model):
-    relevant_docs = []
-    for file_path, functions in processed_data.items():
-        for function_code in functions:
-            relevant_docs.extend(retrieve_relevant_info_detection("Long Function", function_code, knowledge_base_detection, nn_model))
-    return relevant_docs
 
 def create_long_function_prompt(task_data, knowledge_base_detection, nn_model):
     processed_data = process_data(task_data, "functions", "Long Function")
@@ -17,7 +8,7 @@ def create_long_function_prompt(task_data, knowledge_base_detection, nn_model):
     #     processed_data[file_path] = extract_functions_from_code(content)
 
     # relevant_docs = create_relevant_docs_for_long_functions(processed_data, knowledge_base_detection, nn_model)
-    relevant_docs = retrieve_relevant_info_detection("Long Function", processed_data, knowledge_base_detection, nn_model)
+    relevant_docs = retrieve_relevant_docs_for_("Long Function", processed_data, knowledge_base_detection, nn_model)
     
     # Base content for the prompt
     content = "I am providing you with files and their functions as follows:\n\n"

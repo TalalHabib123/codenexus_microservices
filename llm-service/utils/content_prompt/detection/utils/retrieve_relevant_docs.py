@@ -3,7 +3,7 @@ from logger_config import get_logger
 
 logger = get_logger(__name__)
 
-def retrieve_relevant_docs_for_excessive_flags(task_type, processed_data, knowledge_base_detection, nn_model):
+def retrieve_relevant_docs_for_(task_type, processed_data, knowledge_base_detection, nn_model):
     relevant_docs = []
     for file_path, codes in processed_data.items():
         for code in codes:

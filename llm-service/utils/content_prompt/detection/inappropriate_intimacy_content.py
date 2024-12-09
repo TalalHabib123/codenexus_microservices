@@ -1,19 +1,14 @@
-from utils.helpers.class_extractor import extract_classes_from_code
-from utils.rag.retrieval import retrieve_relevant_info_detection
+from utils.content_prompt.detection.utils.process_data import process_data
+from utils.content_prompt.detection.utils.retrieve_relevant_docs import retrieve_relevant_docs_for_
 
-def create_relevant_docs_for_inappropriate_intimacy(processed_data, knowledge_base_detection, nn_model):
-    relevant_docs = []
-    for file_path, classes in processed_data.items():
-        for class_code in classes:
-            relevant_docs.extend(retrieve_relevant_info_detection("Inappropriate Intimacy", class_code, knowledge_base_detection, nn_model))
-    return relevant_docs
 
 def create_inappropriate_intimacy_prompt(task_data, knowledge_base_detection, nn_model):
-    processed_data = {}
-    for file_path, content in task_data.items():
-        processed_data[file_path] = extract_classes_from_code(content)
+    processed_data = process_data(task_data, "classes", "Inappropriate Intimacy")
+    # for file_path, content in task_data.items():
+    #     processed_data[file_path] = extract_classes_from_code(content)
         
-    relevant_docs = create_relevant_docs_for_inappropriate_intimacy(processed_data, knowledge_base_detection, nn_model)
+    # relevant_docs = create_relevant_docs_for_inappropriate_intimacy(processed_data, knowledge_base_detection, nn_model)
+    relevant_docs = retrieve_relevant_docs_for_("Inappropriate Intimacy", processed_data, knowledge_base_detection, nn_model)
 
     # Create the base content with the processed data
     content = (

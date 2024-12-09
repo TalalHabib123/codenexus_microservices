@@ -555,3 +555,310 @@ Issue:Performs multiple unrelated tasks, including order validation, inventory m
 File:UserDataProcessing.py  
 Detected:process_user_data  
 Issue:Performs multiple unrelated tasks, including file reading, data validation, database operations, and email sending.
+2024-12-09 14:25:33,894 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-09 14:25:33,921 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-09 14:25:33,975 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-09 14:25:33,976 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-09 14:25:33,976 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-09 14:25:33,977 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-09 14:25:33,977 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-09 14:25:33,978 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-09 14:25:33,979 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-09 14:25:47,635 - __main__ - INFO - Received task message
+2024-12-09 14:25:47,635 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 14:25:47,636 - __main__ - INFO - Task type: detection
+2024-12-09 14:25:47,636 - __main__ - INFO - Task job: god_object
+2024-12-09 14:25:47,813 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 14:25:47,814 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 14:27:55,545 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-09 14:27:55,573 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-09 14:27:55,626 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-09 14:27:55,626 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-09 14:27:55,627 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-09 14:27:55,627 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-09 14:27:55,627 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-09 14:27:55,628 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-09 14:27:55,629 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-09 14:28:01,789 - __main__ - INFO - Received task message
+2024-12-09 14:28:01,790 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 14:28:01,791 - __main__ - INFO - Task type: detection
+2024-12-09 14:28:01,791 - __main__ - INFO - Task job: god_object
+2024-12-09 14:28:01,799 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 14:28:01,799 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 14:28:02,842 - llm_processor - INFO - Processed result: File:Data_Cleaning.py  
+Detected:GodClass  
+Issue:This class handles unrelated responsibilities such as configuration loading, database connection, data caching, logging, user login, item addition, data processing, and user interaction. It is far from cohesive and handles multiple domain concerns, making it a God Object.
+2024-12-09 14:29:37,019 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-09 14:29:37,027 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-09 14:29:37,075 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-09 14:29:37,075 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-09 14:29:37,076 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-09 14:29:37,076 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-09 14:29:37,076 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-09 14:29:37,077 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-09 14:29:37,077 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-09 14:29:45,213 - __main__ - INFO - Received task message
+2024-12-09 14:29:45,214 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 14:29:45,214 - __main__ - INFO - Task type: detection
+2024-12-09 14:29:45,215 - __main__ - INFO - Task job: god_object
+2024-12-09 14:29:45,404 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 14:29:45,404 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 14:30:33,769 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-09 14:30:33,798 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-09 14:30:33,844 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-09 14:30:33,845 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-09 14:30:33,845 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-09 14:30:33,846 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-09 14:30:33,846 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-09 14:30:33,847 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-09 14:30:33,847 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-09 14:30:42,141 - __main__ - INFO - Received task message
+2024-12-09 14:30:42,142 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 14:30:42,142 - __main__ - INFO - Task type: detection
+2024-12-09 14:30:42,143 - __main__ - INFO - Task job: god_object
+2024-12-09 14:30:42,150 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 14:30:42,151 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 14:30:43,076 - llm_processor - INFO - Processed result: File:Data_Cleaning.py  
+Detected:GodClass  
+Issue:This class handles unrelated responsibilities such as configuration loading, database connection, data caching, logging, user login, item addition, data processing, and user interaction. It is far from cohesive and handles multiple domain concerns, making it a God Object.
+2024-12-09 14:30:50,214 - __main__ - INFO - Received task message
+2024-12-09 14:30:50,215 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 14:30:50,215 - __main__ - INFO - Task type: detection
+2024-12-09 14:30:50,216 - __main__ - INFO - Task job: god_object
+2024-12-09 14:30:50,227 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 14:30:50,227 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 14:30:50,457 - llm_processor - INFO - Processed result: File:Data_Cleaning.py  
+Detected:GodClass  
+Issue:This class handles unrelated responsibilities such as configuration loading, database connection, data caching, logging, user login, item addition, data processing, and user interaction. It is far from cohesive and handles multiple domain concerns, making it a God Object.
+2024-12-09 14:31:00,881 - __main__ - INFO - Received task message
+2024-12-09 14:31:00,881 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 14:31:00,882 - __main__ - INFO - Task type: detection
+2024-12-09 14:31:00,883 - __main__ - INFO - Task job: long_function
+2024-12-09 14:31:00,884 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 14:31:00,885 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 14:31:05,766 - llm_processor - INFO - Processed result: File:OrderProcessing.py
+Detected:OrderProcessor.process_order
+Issue:Performs multiple tasks such as validating order items, deducting stock, processing payment, and notifying the customer, making the function overly complex and hard to maintain.
+
+File:UserDataProcessing.py
+Detected:process_user_data
+Issue:Performs multiple unrelated tasks such as reading data from a file, validating the data, storing it in a database, and sending confirmation emails, making the function excessively long and hard to maintain.
+2024-12-09 14:31:25,391 - __main__ - INFO - Received task message
+2024-12-09 14:31:25,391 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 14:31:25,392 - __main__ - INFO - Task type: detection
+2024-12-09 14:31:25,392 - __main__ - INFO - Task job: feature_envy
+2024-12-09 14:31:25,393 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 14:31:25,394 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 14:31:38,905 - llm_processor - INFO - Processed result: File: OrderProcessing.py  
+Detected: OrderProcessor.process_order  
+Issue: The method excessively interacts with the `payment_service` and `inventory` objects, accessing their methods (`charge`, `check_stock`, and `update_stock`) to process an order, instead of delegating responsibilities to these classes.
+
+File: UserManagement.py  
+Detected: UserManager.add_user  
+Issue: The method relies heavily on the `db` object's `add_user` method, which might be more appropriate as part of the `Database` class.
+
+File: UserManagement.py  
+Detected: UserManager.login  
+Issue: The method excessively interacts with the `db` object, accessing its `validate_credentials` method to validate login credentials, instead of delegating this responsibility to the `Database` class.
+2024-12-09 14:32:05,852 - __main__ - INFO - Received task message
+2024-12-09 14:32:05,853 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 14:32:05,853 - __main__ - INFO - Task type: detection
+2024-12-09 14:32:05,854 - __main__ - INFO - Task job: inappropriate_intimacy
+2024-12-09 14:32:05,855 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 14:32:05,855 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 14:32:14,898 - llm_processor - INFO - Processed result: File:{OrderProcessor.py}
+Detected:{OrderProcessor.process_order_direct_access}
+Issue: The method directly accesses and modifies private attribute `_stock` of the `Inventory` class, bypassing its public interface and tightly coupling the two classes.
+
+File:{CustomerAndNotification.py}
+Detected:{NotificationService.send_direct_access}
+Issue: The method directly accesses private attributes `name` and `email` of the `Customer` class, bypassing its public interface and tightly coupling the two classes.
+2024-12-09 14:32:46,072 - __main__ - INFO - Received task message
+2024-12-09 14:32:46,073 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 14:32:46,073 - __main__ - INFO - Task type: detection
+2024-12-09 14:32:46,074 - __main__ - INFO - Task job: excessive_flags
+2024-12-09 14:32:46,075 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 14:32:46,075 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 14:33:19,199 - llm_processor - INFO - Processed result: File: {OrderProcessor.py}
+Detected: {OrderProcessor.OrderProcessor.process_order}
+Issue: The function takes multiple flags (`is_priority`, `is_gift`, `requires_signature`) that significantly alter its behavior, leading to multiple unrelated tasks being handled within the same function.
+
+File: {OrderProcessor.py}
+Detected: {process_refund}
+Issue: The function uses two flags (`is_partial`, `is_expedited`) to control its behavior, resulting in distinct execution paths that could be split into separate, more focused functions.
+
+File: {PaymentHandler.py}
+Detected: {PaymentHandler.PaymentHandler.handle_payment}
+Issue: The function accepts multiple flags (`is_recurring`, `apply_discount`, `is_refund`) that alter its behavior and lead to multiple unrelated tasks being handled within the same function.
+
+File: {StandaloneFunctions.py}
+Detected: {send_notification}
+Issue: The function uses three flags (`is_email`, `is_sms`, `is_push`) to control its behavior, resulting in multiple execution paths that could be split into separate, more focused functions.
+
+File: {StandaloneFunctions.py}
+Detected: {handle_shipping}
+Issue: The function uses two flags (`is_expedited`, `is_international`) to control its behavior, leading to multiple unrelated tasks being handled within the same function.
+2024-12-09 14:34:23,667 - __main__ - INFO - Received task message
+2024-12-09 14:34:23,668 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 14:34:23,668 - __main__ - INFO - Task type: detection
+2024-12-09 14:34:23,668 - __main__ - INFO - Task job: middle_man
+2024-12-09 14:34:23,670 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 14:34:23,670 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 14:34:36,226 - llm_processor - INFO - Processed result: File:{OrderManager.py}
+Detected:{OrderManager}
+
+The `OrderManager` class serves as an intermediary between the `InventoryManager` class and the user interface, primarily delegating its work to the `InventoryManager` class. 
+
+Detected:{OrderManager.place_order_redundant}
+
+The method `place_order_redundant` of the `OrderManager` class also solely delegates its work to the `InventoryManager` class by calling the `check_stock` method, which indicates redundancy.
+
+File:{CustomerManager.py}
+Detected:{CustomerManager.notify_customer_direct_delegate}
+2024-12-09 14:35:12,318 - __main__ - INFO - Received task message
+2024-12-09 14:35:12,319 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 14:35:12,319 - __main__ - INFO - Task type: detection
+2024-12-09 14:35:12,320 - __main__ - INFO - Task job: switch_statement_abuser
+2024-12-09 14:35:12,321 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 14:35:12,322 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 14:35:16,923 - llm_processor - INFO - Processed result: File: PaymentProcessor.py
+Detected: PaymentProcessor.PaymentProcessor.process_payment
+Detected: process_refund
+
+File: OrderHandler.py
+Detected: OrderHandler.OrderHandler.handle_order
+Detected: process_shipping
+2024-12-09 14:35:44,680 - __main__ - INFO - Received task message
+2024-12-09 14:35:44,680 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 14:35:44,681 - __main__ - INFO - Task type: detection
+2024-12-09 14:35:44,681 - __main__ - INFO - Task job: excessive_flags
+2024-12-09 14:35:44,683 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 14:35:44,683 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 14:35:44,911 - llm_processor - INFO - Processed result: File: {OrderProcessor.py}
+Detected: {OrderProcessor.OrderProcessor.process_order}
+Issue: The function takes multiple flags (`is_priority`, `is_gift`, `requires_signature`) that significantly alter its behavior, leading to multiple unrelated tasks being handled within the same function.
+
+File: {OrderProcessor.py}
+Detected: {process_refund}
+Issue: The function uses two flags (`is_partial`, `is_expedited`) to control its behavior, resulting in distinct execution paths that could be split into separate, more focused functions.
+
+File: {PaymentHandler.py}
+Detected: {PaymentHandler.PaymentHandler.handle_payment}
+Issue: The function accepts multiple flags (`is_recurring`, `apply_discount`, `is_refund`) that alter its behavior and lead to multiple unrelated tasks being handled within the same function.
+
+File: {StandaloneFunctions.py}
+Detected: {send_notification}
+Issue: The function uses three flags (`is_email`, `is_sms`, `is_push`) to control its behavior, resulting in multiple execution paths that could be split into separate, more focused functions.
+
+File: {StandaloneFunctions.py}
+Detected: {handle_shipping}
+Issue: The function uses two flags (`is_expedited`, `is_international`) to control its behavior, leading to multiple unrelated tasks being handled within the same function.
+2024-12-09 14:35:53,139 - __main__ - INFO - Received task message
+2024-12-09 14:35:53,139 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 14:35:53,140 - __main__ - INFO - Task type: detection
+2024-12-09 14:35:53,140 - __main__ - INFO - Task job: inappropriate_intimacy
+2024-12-09 14:35:53,142 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 14:35:53,142 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 14:35:53,378 - llm_processor - INFO - Processed result: File:{OrderProcessor.py}
+Detected:{OrderProcessor.process_order_direct_access}
+Issue: The method directly accesses and modifies private attribute `_stock` of the `Inventory` class, bypassing its public interface and tightly coupling the two classes.
+
+File:{CustomerAndNotification.py}
+Detected:{NotificationService.send_direct_access}
+Issue: The method directly accesses private attributes `name` and `email` of the `Customer` class, bypassing its public interface and tightly coupling the two classes.
+2024-12-09 15:12:31,810 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-09 15:12:31,837 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-09 15:12:31,891 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-09 15:12:31,891 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-09 15:12:31,891 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-09 15:12:31,892 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-09 15:12:31,892 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-09 15:12:31,894 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-09 15:12:31,894 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-09 15:13:56,250 - __main__ - INFO - Received task message
+2024-12-09 15:13:56,251 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 15:13:56,251 - __main__ - INFO - Task type: detection
+2024-12-09 15:13:56,252 - __main__ - INFO - Task job: inappropriate_intimacy
+2024-12-09 15:13:56,253 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 15:13:56,253 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 15:14:06,823 - llm_processor - INFO - Processed result: File: OrderProcessor.py
+Detected: OrderProcessor.process_order_direct_access
+Issue: The method directly accesses private attribute `_stock` of the `Inventory` class, bypassing its public interface and tightly coupling the two classes.
+
+File: CustomerAndNotification.py
+Detected: NotificationService.send_direct_access
+Issue: The method directly accesses private attributes `name` and `email` of the `Customer` class, but in Python these attributes are public, which changes the risk.
+
+Upon reevaluation based on your parameters the revised answer is: 
+
+File: OrderProcessor.py
+Detected: OrderProcessor.process_order_direct_access
+Issue: The method directly accesses private attribute `_stock` of the `Inventory` class, bypassing its public interface and tightly coupling the two classes.
+2024-12-09 15:14:57,767 - __main__ - INFO - Received task message
+2024-12-09 15:14:57,768 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 15:14:57,768 - __main__ - INFO - Task type: detection
+2024-12-09 15:14:57,768 - __main__ - INFO - Task job: excessive_flags
+2024-12-09 15:14:57,770 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 15:14:57,770 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 15:15:28,198 - llm_processor - INFO - Processed result: File: OrderProcessor.py
+Detected: OrderProcessor.OrderProcessor.process_order
+Issue: The method takes three flags (`is_priority`, `is_gift`, `requires_signature`) that significantly alter its behavior, making it harder to understand and maintain.
+
+File: OrderProcessor.py
+Detected: process_refund
+Issue: The function uses two flags (`is_partial`, `is_expedited`) to handle different refund scenarios, leading to distinct behaviors within the same function.
+
+File: PaymentHandler.py
+Detected: PaymentHandler.PaymentHandler.handle_payment
+Issue: The method relies on three flags (`is_recurring`, `apply_discount`, `is_refund`) to handle different payment scenarios, making the function prone to errors and harder to test.
+
+File: StandaloneFunctions.py
+Detected: send_notification
+Issue: The function takes three flags (`is_email`, `is_sms`, `is_push`) to send different types of notifications, resulting in a function that handles multiple tasks and becomes harder to understand.
+
+File: StandaloneFunctions.py
+Detected: handle_shipping
+Issue: The function uses two flags (`is_expedited`, `is_international`) to handle different shipping scenarios, leading to multiple behaviors within the same function.
+2024-12-09 15:15:45,796 - __main__ - INFO - Received task message
+2024-12-09 15:15:45,796 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 15:15:45,797 - __main__ - INFO - Task type: detection
+2024-12-09 15:15:45,797 - __main__ - INFO - Task job: switch_statement_abuser
+2024-12-09 15:15:45,799 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 15:15:45,799 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 15:16:00,207 - llm_processor - INFO - Processed result: File: {PaymentProcessor.py}
+Detected: {PaymentProcessor.PaymentProcessor.process_payment}
+Issue: Tightly coupled logic handling multiple distinct payment types, leading to a large conditional structure with four cases, making it hard to extend or maintain.
+
+File: {PaymentProcessor.py}
+Detected: {process_refund}
+Issue: Overly complex function with four distinct refund cases, each performing non-encapsulated tasks, resulting in a heavy reliance on conditionals and difficulties in testing or extending the function.
+
+File: {OrderHandler.py}
+Detected: {OrderHandler.OrderHandler.handle_order}
+Issue: Function handling multiple order types with tightly coupled logic across three distinct cases, making it challenging to maintain, extend, or test due to its complexity.
+
+File: {OrderHandler.py}
+Detected: {process_shipping}
+Issue: Excessive use of conditionals to differentiate between shipping types, leading to a function with three distinct but non-modularized cases, resulting in tightly coupled logic.
+2024-12-09 16:00:31,084 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-09 16:00:31,112 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-09 16:00:31,166 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-09 16:00:31,167 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-09 16:00:31,167 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-09 16:00:31,167 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-09 16:00:31,168 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-09 16:00:31,169 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-09 16:00:31,169 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-09 16:00:37,551 - __main__ - INFO - Received task message
+2024-12-09 16:00:37,551 - __main__ - INFO - Processing task message with correlation ID: 1234
+2024-12-09 16:00:37,552 - __main__ - INFO - Task type: detection
+2024-12-09 16:00:37,552 - __main__ - INFO - Task job: long_function
+2024-12-09 16:00:37,554 - __main__ - INFO - Generating response for task message with correlation ID: 1234
+2024-12-09 16:00:37,554 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-09 16:00:43,639 - llm_processor - INFO - Processed result: File:{928d61.py}
+Detected:OrderProcessor.process_order
+Issue:Performs multiple tasks like inventory validation, payment processing, and notification sending, making it long and prone to complexity.
+ 
+File:{b701f4.py}
+Detected:process_user_data
+Issue:Exceeds a reasonable line threshold, performs multiple tasks like data validation, database storage, and email sending, involving excessive file operations and database interactions.

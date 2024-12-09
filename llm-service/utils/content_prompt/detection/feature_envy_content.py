@@ -20,7 +20,7 @@ def create_feature_envy_prompt(task_data, knowledge_base_detection, nn_model):
             class_name = func_info['class_name']+"." if func_info['class_name'] else ""
             content += (
                 f"File:{{{file_path}}}\n"
-                f"Function:{{{class_name}{func_info['function_name']}}}\n"
+                f"Function:{{{func_info['function_name']}}}\n"
                 f"Code:{{\n{func_info['function_code']}\n}}\n"
             )
 

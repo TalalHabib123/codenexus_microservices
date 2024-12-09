@@ -3,56 +3,54 @@ from utils.content_prompt.detection.utils.retrieve_relevant_docs import retrieve
 
 def create_middle_man_prompt(task_data, knowledge_base_detection, nn_model):
     processed_data = process_data(task_data, "classes", "Middle Man")
-    # for file_path, content in task_data.items():
-    #     processed_data[file_path] = extract_classes_from_code(content)
-        
-    # relevant_docs = create_relevant_docs_for_middle_man(processed_data, knowledge_base_detection, nn_model)
     relevant_docs = retrieve_relevant_docs_for_("Middle Man", processed_data, knowledge_base_detection, nn_model)
 
-    # Create the base content with the processed data
-    content = (
-        "I am providing you with files and classes structured as follows:\n\n"
-    )
-    
-    # Add the files and their respective classes from the processed_data
+    # Base content for the prompt
+    content = "I am providing you with files and their classes as follows:\n\n"
+
+    # Add files and their respective classes
     for file_path, classes in processed_data.items():
         for class_code in classes:
             content += f"File:{{{file_path}}}\nCode:{{\n{class_code}\n}}\n"
 
-    # Append the instruction part of the prompt
+    # Add detailed instructions for identifying Middle Man code smells
     content += """
-        Review all provided classes from each file and determine if they exhibit a Middle Man code smell.
-        A class is said to exhibit the **Middle Man** code smell when:
-        - It serves as an intermediary between other classes without adding meaningful functionality of its own.
-        - Most of its methods are simple delegations to another class or set of classes.
-        - It provides little to no additional logic, computation, or abstraction beyond forwarding calls.
+        Analyze the provided classes and determine if any exhibit the Middle Man code smell.
+
+        A **Middle Man** is a class that:
+        - Acts primarily as an intermediary between other classes without adding significant functionality of its own.
+        - Delegates most of its methods to other classes without introducing meaningful logic or abstraction.
+        - Encapsulates little or no additional behavior or responsibilities beyond forwarding calls.
 
         Characteristics of a Middle Man:
-        - The class primarily exists to forward method calls or access methods in other classes.
-        - It does not encapsulate meaningful behavior or responsibilities.
+        - The class contains a high number of methods that are simple pass-throughs to another class or set of classes.
+        - It does not provide significant computation, logic, or domain-specific behavior.
+        - It increases indirection without improving modularity or reducing complexity.
 
-        If you find any classes that qualify as a Middle Man based on these criteria, respond with them in the following format:
-        Your Answer Should only contain the following File Name and Detected Class in the exact format (including the braces):
+        Follow these response rules exactly:
+        - If no Middle Man code smells are found, respond with 'None' only.
+        - If any are found, respond only in this format, no extra commentary:
         
         File:{file_name}.py
         Detected:{class_name}
-        If there are multiple classes in the same file that qualify, list them separately under the same file heading.
+        Issue:{brief description of why it is considered a Middle Man (e.g., excessive delegation, no meaningful behavior)}
 
-        If no classes qualify as a Middle Man, respond with:
-        None
+        If multiple Middle Man classes are found in the same file, list each under the same File heading with their Detected and Issue lines.
+
+        Do not mention correlation IDs or processed data lines.
+        Do not provide additional commentary beyond what is requested.
     """
 
-    # Add relevant documents to the prompt if available
+    # Include relevant reference documents if available
     if relevant_docs:
         content += (
-            "\nThe following documents are provided as references. These documents contain examples of "
-            "Middle Man Code Smells. Use them as references when analyzing the above files and their classes:\n"
+            "\nThe following reference documents are provided for additional context on Middle Man code smells:\n"
         )
         for documents in relevant_docs:
             for index, (key, doc) in enumerate(documents.items(), start=1):
                 content += f"Reference {index}:\n{{\n{doc}\n}}\n"
 
-    # Return the complete prompt as a dictionary
+    # Return the prompt and processed data
     return {
         "role": "user",
         "content": content.strip()

@@ -3,7 +3,6 @@ from app.service.end_point_urls import (
     BOTO_CLIENT_REGION, 
     AWS_ACCESS_KEY, 
     AWS_SECRET_ACCESS_KEY
-
 )
 import boto3
 import json

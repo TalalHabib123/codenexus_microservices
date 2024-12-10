@@ -8,6 +8,8 @@ from utils.prompt import create_prompt
 from logger_config import get_logger
 from dotenv import load_dotenv
 from botocore.exceptions import ClientError
+from utils.string_parser import parse_code_smell_output
+from utils.file_hasher import create_mapped_task_data, revert_task_data_keys
 
 INFERENCING_API = True
 
@@ -79,6 +81,7 @@ async def process_tasks_from_queue():
             correlation_id = message_body['correlation_id']
             task_type = message_body['task_type']
             task_data = message_body['task_data']
+            modified_task_data, name_to_path_mapping = create_mapped_task_data(task_data)
             task_job = message_body['task_job'] 
             response_message = {}
             final_result = ""
@@ -89,25 +92,33 @@ async def process_tasks_from_queue():
                 logger.info(f"Processing task message with correlation ID: {correlation_id}")
                 logger.info(f"Task type: {task_type}")
                 logger.info(f"Task job: {task_job}")
-                messages_prompt, processed_data = create_prompt(task_type, task_data, task_job,knowledge_base_detection, nn_model)  #knowledge_base_detection, nn_model
+                messages_prompt, processed_data = create_prompt(task_type, modified_task_data, task_job,knowledge_base_detection, nn_model)  #knowledge_base_detection, nn_model
                 try:
                     logger.info(f"Generating response for task message with correlation ID: {correlation_id}")
                     processed_result = process_with_llm(model_pipeline, messages_prompt, use_inference_api=INFERENCING_API)
+                    if processed_result == "None":
+                        continue
+                    if task_type =="detection":
+                        processed_data = parse_code_smell_output(processed_result, modified_task_data)
+                        final_result = revert_task_data_keys(processed_data, name_to_path_mapping)
                 except Exception as e:
                     logger.error(f"Error generating response for task message with correlation ID: {correlation_id}")
                     logger.error(e)
-                    task_status = "error"
+                    task_status = e
+                    break
             except Exception as e:
                 logger.error(f"Error processing task message with correlation ID: {correlation_id}")
                 logger.error(e)
-                task_status = "error"
+                task_status = e
                 
 
             # Send the processed result to the response queue with the same correlation ID
             response_message = {
                 'correlation_id': correlation_id,
-                'processed_data': processed_result,
-                'task_status': task_status
+                'processed_data': final_result,
+                'task_status': task_status,
+                'task_type': task_type,
+                'task_job': task_job
             }
             
             sqs.send_message(QueueUrl=response_queue_url, MessageBody=json.dumps(response_message))

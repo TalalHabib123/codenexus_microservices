@@ -1,24 +1,49 @@
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, APIRouter, WebSocket, WebSocketDisconnect
 import httpx
 import json
 import uuid
 import asyncio
 import boto3
 from contextlib import asynccontextmanager
-from app.service.endpoints_url import BOTO_CLIENT_URL, BOTO_CLIENT_REGION, DETECTION_SERVICE_URL
+from botocore.exceptions import ClientError
+from app.service.endpoints_url import (
+    BOTO_CLIENT_URL, 
+    BOTO_CLIENT_REGION, 
+    DETECTION_SERVICE_URL,
+    AWS_ACCESS_KEY,
+    AWS_SECRET_ACCESS_KEY,
+    REFACTOR_SERVICE_URL
+)
 
-websocket_gateway_router = FastAPI()
+websocket_gateway_router = APIRouter()
 
 # SQS client configuration (Using LocalStack)
 sqs = boto3.client(
     'sqs', 
     endpoint_url=BOTO_CLIENT_URL, 
     region_name=BOTO_CLIENT_REGION,
-    aws_access_key_id='test',
-    aws_secret_access_key = 'test'
+    aws_access_key_id=AWS_ACCESS_KEY,
+    aws_secret_access_key = AWS_SECRET_ACCESS_KEY
 )
 
-response_queue_url = sqs.create_queue(QueueName='LLMResponseQueue')['QueueUrl']
+def get_or_create_queue(queue_name):
+    try:
+        response = sqs.get_queue_url(QueueName=queue_name)
+        queue_url = response['QueueUrl']
+    except ClientError as e:
+        if e.response['Error']['Code'] == 'AWS.SimpleQueueService.NonExistentQueue':
+            try:
+                response = sqs.create_queue(QueueName=queue_name)
+                queue_url = response['QueueUrl']
+            except ClientError as e:
+                exit(1)
+        else:
+            exit(1)
+    return queue_url
+
+
+# response_queue_url = sqs.create_queue(QueueName='LLMResponseQueue')['QueueUrl']
+response_queue_url = get_or_create_queue('LLMResponseQueue')
 
 # Store WebSocket connections mapped by correlation IDs
 ws_connections = {}
@@ -63,12 +88,12 @@ async def websocket_endpoint(websocket: WebSocket):
 
             if task_started:
                 await websocket.send_text(json.dumps({
-                    "status": "task_started",
+                    "task_status": "task_started",
                     "correlation_id": correlation_id
                 }))
             else:
                 await websocket.send_text(json.dumps({
-                    "status": "task_failed",
+                    "task_status": "task_failed",
                     "correlation_id": correlation_id,
                     "error": "Task failed to start"
                 }))
@@ -86,9 +111,9 @@ async def send_task_to_llm(correlation_id: str, task_type: str, task_job: str, t
     }
     
     if task_type == 'detection':
-        return await forward_task_to_service(DETECTION_SERVICE_URL, task_message)
+        return await forward_task_to_service(DETECTION_SERVICE_URL + "/forward-task", task_message)
     elif task_type == 'refactoring':
-        return await forward_task_to_service(DETECTION_SERVICE_URL, task_message)
+        return await forward_task_to_service(REFACTOR_SERVICE_URL + "/forward-task", task_message)
     else:
         return False
 
@@ -115,15 +140,23 @@ async def consume_response_queue():
             message_body = json.loads(messages[0]['Body'])
             correlation_id = message_body['correlation_id']
             processed_data = message_body['processed_data']
+            task_status = message_body['task_status']
+            task_type = message_body['task_type']
+            task_job = message_body['task_job']
+            
 
             websocket = ws_connections.get(correlation_id)
             if websocket:
                 await websocket.send_text(json.dumps({
-                    "status": "task_completed",
+                    "task_status": task_status,
                     "correlation_id": correlation_id,
-                    "processed_data": processed_data
+                    "processed_data": processed_data,
+                    "task_type": task_type,
+                    "task_job": task_job
                 }))
                 del ws_connections[correlation_id]
+                await websocket.close(code=1000)
+            
 
             sqs.delete_message(QueueUrl=response_queue_url, ReceiptHandle=messages[0]['ReceiptHandle'])
 

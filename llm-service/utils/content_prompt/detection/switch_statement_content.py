@@ -4,62 +4,59 @@ from utils.content_prompt.detection.utils.retrieve_relevant_docs import retrieve
 
 def create_switch_statement_abuser_prompt(task_data, knowledge_base_detection, nn_model):
     processed_data = process_data(task_data, "functions", "Switch Statement Abuser")
-    # for file_path, content in task_data.items():
-    #     processed_data[file_path] = extract_functions_from_code(content)
-        
-    # relevant_docs = create_relevant_docs_for_switch_statement_abuser(processed_data, knowledge_base_detection, nn_model)
     relevant_docs = retrieve_relevant_docs_for_("Switch Statement Abuser", processed_data, knowledge_base_detection, nn_model)
 
-    # Create the base content with the processed data
-    content = (
-        "I am providing you with files and their functions as follows:\n\n"
-    )
-    
-    # Add the files and their respective functions
+    # Base content for the prompt
+    content = "I am providing you with files and their functions as follows:\n\n"
+
+    # Add files and their respective functions
     for file_path, functions in processed_data.items():
         for func_info in functions:
             class_part = f"{func_info['class_name']}." if func_info['class_name'] else ""
             content += (
                 f"File:{{{file_path}}}\n"
-                f"Function:{{{class_part}{func_info['function_name']}}}\n"
+                f"Function:{{{func_info['function_name']}}}\n"
                 f"Code:{{\n{func_info['function_code']}\n}}\n"
             )
 
-    # Append the instruction part of the prompt
+    # Add detailed instructions for identifying Switch Statement Abusers
     content += """
-        Review all provided functions from each file and determine if they exhibit a Switch Statement Abuser code smell.
-        A **Switch Statement Abuser** is identified by:
-        - Overusing `if-elif` or `switch` constructs (or their functional equivalent in Python, such as chained conditionals).
+        Analyze the provided functions and determine if any exhibit the Switch Statement Abuser code smell.
+
+        A **Switch Statement Abuser** is characterized by:
+        - Overuse of `if-elif` constructs or Python's functional equivalent of a switch statement.
         - Handling too many distinct cases within a single function or method.
-        - Repeating similar patterns or logic across multiple cases, instead of delegating to smaller, more focused functions or using polymorphism.
+        - Repeated patterns or logic across cases that could be modularized using smaller functions or object-oriented principles like polymorphism.
 
-        Characteristics of a Switch Statement Abuser:
-        - The function relies heavily on conditional constructs to handle various cases.
-        - Each case performs different tasks but is not modularized or encapsulated.
-        - The overall function becomes hard to maintain, extend, or test due to tightly coupled logic.
+        Key indicators of a Switch Statement Abuser include:
+        - Heavy reliance on conditionals to differentiate between cases.
+        - Each case performing distinct but non-encapsulated tasks, leading to tightly coupled logic.
+        - Difficulties in extending, maintaining, or testing the function due to its size or complexity.
 
-        If you find any functions that qualify as a Switch Statement Abuser based on these criteria, respond with them in the following format:
-        Your Answer Should only contain the following File Name and Detected Function in the exact format (including the braces):
+        Follow these response rules exactly:
+        - If no Switch Statement Abusers are found, respond with 'None' only.
+        - If any are found, respond only in this format, no extra commentary:
         
         File:{file_name}.py
         Detected:{CLASSNAME.FUNCTIONNAME or FUNCTIONNAME}
-        If there are multiple functions in the same file that qualify, list them separately under the same file heading.
+        Issue:{brief description of why it is a Switch Statement Abuser (e.g., tightly coupled logic, excessive cases, lack of modularization)}
 
-        If no functions qualify as Switch Statement Abusers, respond with:
-        None
+        If multiple functions are found in the same file, list each under the same File heading with their Detected and Issue lines.
+
+        Do not mention correlation IDs or processed data lines.
+        Do not provide additional commentary beyond what is requested.
     """
 
-    # Add relevant documents to the prompt if available
+    # Include relevant reference documents if available
     if relevant_docs:
         content += (
-            "\nThe following documents are provided as references. These documents contain examples of "
-            "Switch Statement Abuser Code Smells. Use them as references when analyzing the above files and their functions:\n"
+            "\nThe following reference documents are provided for additional context on Switch Statement Abusers:\n"
         )
         for documents in relevant_docs:
             for index, (key, doc) in enumerate(documents.items(), start=1):
                 content += f"Reference {index}:\n{{\n{doc}\n}}\n"
 
-    # Return the complete prompt as a dictionary
+    # Return the prompt and processed data
     return {
         "role": "user",
         "content": content.strip()

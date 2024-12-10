@@ -2,3 +2,5 @@
 **/models
 **/.env
 llm-service/test/
+llm-service/logs/app.log
+llm-service/logs/app.log

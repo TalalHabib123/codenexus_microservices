@@ -555,3 +555,4 @@ Issue:Performs multiple unrelated tasks, including order validation, inventory m
 File:UserDataProcessing.py  
 Detected:process_user_data  
 Issue:Performs multiple unrelated tasks, including file reading, data validation, database operations, and email sending.
+2024-12-10 13:55:55,536 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue

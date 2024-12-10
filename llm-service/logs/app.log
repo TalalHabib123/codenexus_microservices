@@ -1060,3 +1060,126 @@ Issue: This class handles multiple tasks such as model initialization, image pro
 File:{6affa8.py}
 Detected:YOLOLoss
 Issue: This class handles the loss calculation for the YOLO object detection model. While loss calculation might seem like a singular task, the class has grown to handle multiple aspects of object detection such as boundary box adjustments, overlaps, and cross-entropy.
+2024-12-10 11:18:19,944 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-10 11:18:20,229 - __main__ - INFO - Queue does not exist: LLMTaskQueue
+2024-12-10 11:18:20,230 - __main__ - INFO - Creating queue: LLMTaskQueue
+2024-12-10 11:18:20,235 - __main__ - INFO - Queue created: LLMTaskQueue
+2024-12-10 11:18:20,238 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-10 11:18:20,291 - __main__ - INFO - Queue does not exist: LLMResponseQueue
+2024-12-10 11:18:20,292 - __main__ - INFO - Creating queue: LLMResponseQueue
+2024-12-10 11:18:20,341 - __main__ - INFO - Queue created: LLMResponseQueue
+2024-12-10 11:18:20,342 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-10 11:18:20,342 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-10 11:18:20,342 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-10 11:18:20,343 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-10 11:18:20,343 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-10 11:18:20,353 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-10 11:18:20,353 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-10 11:21:40,641 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-10 11:21:40,672 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-10 11:21:40,720 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-10 11:21:40,721 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-10 11:21:40,721 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-10 11:21:40,721 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-10 11:21:40,722 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-10 11:21:40,722 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-10 11:21:40,723 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-10 11:22:54,882 - __main__ - INFO - Received task message
+2024-12-10 11:22:54,883 - __main__ - INFO - Processing task message with correlation ID: 5c63dcdc-b521-40ea-86e1-7c7fb45b0389
+2024-12-10 11:22:54,883 - __main__ - INFO - Task type: detection
+2024-12-10 11:22:54,883 - __main__ - INFO - Task job: god_object
+2024-12-10 11:22:54,921 - __main__ - INFO - Generating response for task message with correlation ID: 5c63dcdc-b521-40ea-86e1-7c7fb45b0389
+2024-12-10 11:22:54,921 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-10 11:23:09,060 - llm_processor - INFO - Processed result: File:{d22b3c.py}
+Detected:GaTectorDataset
+Issue:The class takes on multiple unrelated responsibilities, including data loading, augmentation, transformation, and preparation, with 378 lines of code and 4 methods, violating the Single Responsibility Principle (SRP).
+
+File:{2dfdd7.py}
+Detected:YOLO
+Issue:The class takes on multiple unrelated responsibilities, including model initialization, image detection, FPS calculation, and MAP calculation, with 402 lines of code and 8 methods, violating the Single Responsibility Principle (SRP).
+
+File:{44dafd.py}
+Detected:GaTectorBody
+Issue:The class takes on multiple unrelated responsibilities, including feature extraction, object detection, and heatmap generation, with 317 lines of code and 2 methods, violating the Single Responsibility Principle (SRP).
+
+File:{44dafd.py}
+Detected:GaTectorBody
+Issue:The class contains a large number of convolutions, upsamples, and pixel shuffles, with a total of 317 lines of code and 2 methods, making it difficult to maintain or understand.
+2024-12-10 11:37:06,146 - __main__ - INFO - Received task message
+2024-12-10 11:37:06,147 - __main__ - INFO - Processing task message with correlation ID: 1581af00-bd5c-4738-9c87-1ae93f84f134
+2024-12-10 11:37:06,147 - __main__ - INFO - Task type: detection
+2024-12-10 11:37:06,147 - __main__ - INFO - Task job: god_object
+2024-12-10 11:37:06,183 - __main__ - INFO - Generating response for task message with correlation ID: 1581af00-bd5c-4738-9c87-1ae93f84f134
+2024-12-10 11:37:06,184 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-10 11:37:20,742 - llm_processor - INFO - Processed result: File:98b2ed.py
+Detected:DecodeBox
+Issue:The class has 5 methods and multiple unrelated responsibilities such as decoding, non-maximum suppression, and box correction.
+
+File:6affa8.py
+Detected:YOLOLoss
+Issue:The class has 11 methods and is overly complex, handling loss calculation, target assignment, and box calculation, which are unrelated responsibilities.
+
+File:44dafd.py
+Detected:GaTectorBody
+Issue:The class has multiple methods and is handling unrelated responsibilities like backbone feature extraction, spatial pyramid pooling, and attention mechanism, as well as encoding and decoding for the output, making it overly complex and potentially difficult to maintain.
+
+File:{d22b3c.py}
+Detected is not a god object
+ GaTectorDataset has less than 8 methods and is doing one task of initializing the object and handling a task.
+ same with YOLO object.
+ Rest of the classes  are utility and DNS of the objects and are doing single tasks and needed by the bigger classes.
+2024-12-10 14:12:17,573 - __main__ - INFO - Getting queue URL for queue: LLMTaskQueue
+2024-12-10 14:12:17,598 - __main__ - INFO - Getting queue URL for queue: LLMResponseQueue
+2024-12-10 14:12:17,645 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2024-12-10 14:12:17,645 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2024-12-10 14:12:17,646 - __main__ - INFO - Initializing knowledge base for detection
+2024-12-10 14:12:17,646 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2024-12-10 14:12:17,646 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2024-12-10 14:12:17,648 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2024-12-10 14:12:17,648 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2024-12-10 14:13:08,739 - __main__ - INFO - Received task message
+2024-12-10 14:13:08,740 - __main__ - INFO - Processing task message with correlation ID: 252e79c6-5945-4e45-9729-ea3a0ff72ed5
+2024-12-10 14:13:08,741 - __main__ - INFO - Task type: detection
+2024-12-10 14:13:08,741 - __main__ - INFO - Task job: god_object
+2024-12-10 14:13:08,786 - __main__ - INFO - Generating response for task message with correlation ID: 252e79c6-5945-4e45-9729-ea3a0ff72ed5
+2024-12-10 14:13:08,787 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-10 14:13:31,319 - llm_processor - INFO - Processed result: File:{44dafd.py}
+Detected:GaTectorBody
+Issue:The GaTectorBody class has excessive size, multiple unrelated responsibilities (backbone, SPP, convolutions, upsampling, downsampling, and GOO network) and a high number of methods and attributes, making it difficult to maintain or understand.
+
+File:{d22b3c.py}
+Detected:GaTectorDataset
+Issue:The GaTectorDataset class takes care of loading the dataset, data augmentation, and transformation of the data into the required format. While it is not excessive in size, it takes care of multiple unrelated responsibilities like data augmentation and transforming data into required format, which is violating the Single Responsibility Principle.
+
+File:{6affa8.py}
+Detected:YOLOLoss
+Issue:The YOLOLoss class is taking care of calculating different losses, IOU calculation, smooth labels, target generation and ignoring mask generation, which can be seen as multiple unrelated responsibilities. Although it is not excessive in size, it can be broken down into smaller cohesive classes, each focusing on a specific responsibility.
+
+File:{2dfdd7.py}
+Detected:YOLO
+Issue:The YOLO class takes care of everything like initialization, generating model, detecting images, getting FPS and mAP. It has excessive number of methods and attributes, multiple unrelated responsibilities and can be seen as a clear violation of Single Responsibility Principle.
+
+None of the other classes are considered as large classes since they are either small utility classes or take care of a single domain-specific responsibility.
+2024-12-10 14:16:17,045 - __main__ - INFO - Received task message
+2024-12-10 14:16:17,046 - __main__ - INFO - Processing task message with correlation ID: a1fe82c7-6631-468c-88d6-0e530d7aafeb
+2024-12-10 14:16:17,046 - __main__ - INFO - Task type: detection
+2024-12-10 14:16:17,047 - __main__ - INFO - Task job: god_object
+2024-12-10 14:16:17,082 - __main__ - INFO - Generating response for task message with correlation ID: a1fe82c7-6631-468c-88d6-0e530d7aafeb
+2024-12-10 14:16:17,082 - llm_processor - INFO - Processing task with LLM model pipeline
+2024-12-10 14:16:17,303 - llm_processor - INFO - Processed result: File:{44dafd.py}
+Detected:GaTectorBody
+Issue:The GaTectorBody class has excessive size, multiple unrelated responsibilities (backbone, SPP, convolutions, upsampling, downsampling, and GOO network) and a high number of methods and attributes, making it difficult to maintain or understand.
+
+File:{d22b3c.py}
+Detected:GaTectorDataset
+Issue:The GaTectorDataset class takes care of loading the dataset, data augmentation, and transformation of the data into the required format. While it is not excessive in size, it takes care of multiple unrelated responsibilities like data augmentation and transforming data into required format, which is violating the Single Responsibility Principle.
+
+File:{6affa8.py}
+Detected:YOLOLoss
+Issue:The YOLOLoss class is taking care of calculating different losses, IOU calculation, smooth labels, target generation and ignoring mask generation, which can be seen as multiple unrelated responsibilities. Although it is not excessive in size, it can be broken down into smaller cohesive classes, each focusing on a specific responsibility.
+
+File:{2dfdd7.py}
+Detected:YOLO
+Issue:The YOLO class takes care of everything like initialization, generating model, detecting images, getting FPS and mAP. It has excessive number of methods and attributes, multiple unrelated responsibilities and can be seen as a clear violation of Single Responsibility Principle.
+
+None of the other classes are considered as large classes since they are either small utility classes or take care of a single domain-specific responsibility.

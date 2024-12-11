@@ -55,7 +55,7 @@ async def unused_variables(request: UnusedVariablesRefactorRequest):
 
 @refactor_router.post("/naming-convention", response_model=RefactorResponse)
 async def naming_convention(request: InconsistentNamingRefactorRequest):
-    result = refactor_inconsistent_naming(request.code, request.target_convention)
+    result = refactor_inconsistent_naming(request.code, request.target_convention, request.dependencies)
     if result is None:
         raise HTTPException(status_code=400, detail="Invalid code")
     elif result.get('success') is False:

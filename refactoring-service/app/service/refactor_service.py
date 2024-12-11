@@ -5,10 +5,10 @@ from app.utils.Analysis.unused_variables_refactor import unused_variables_refact
 from app.utils.Analysis.dead_code_refactor import dead_code_refactor
 
 
-def refactor_inconsistent_naming(code, target_convention):
+def refactor_inconsistent_naming(code, target_convention, dependencies=None):
     try: 
         return {
-            "refactored_code": inconsistent_naming_refactor(code, target_convention),
+            "refactored_code": inconsistent_naming_refactor(code, target_convention, dependencies),
             "success": True
         }
     except Exception as e:

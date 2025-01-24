@@ -62,7 +62,7 @@ def process_with_llm(model_pipeline, prompt, use_inference_api=False, hf_model_i
         completion = model_pipeline.chat.completions.create(
             model=hf_model_id,
             messages=prompt,
-            max_tokens=1024,
+            max_tokens=2048,
         )
         processed_result = completion.choices[0].message.content
     else:

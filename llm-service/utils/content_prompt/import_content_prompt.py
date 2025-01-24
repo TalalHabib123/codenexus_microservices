@@ -1,17 +1,28 @@
-from utils.content_prompt.detection.long_function_content import create_long_function_prompt
-from utils.content_prompt.detection.god_object_content import create_god_object_prompt
-from utils.content_prompt.detection.feature_envy_content import create_feature_envy_prompt
-from utils.content_prompt.detection.inappropriate_intimacy_content import create_inappropriate_intimacy_prompt
-from utils.content_prompt.detection.middle_man_content import create_middle_man_prompt
-from utils.content_prompt.detection.switch_statement_content import create_switch_statement_abuser_prompt
-from utils.content_prompt.detection.excessive_flags_content import create_excessive_flags_prompt
+from utils.content_prompt.detection import (
+    long_function_content as long_function_detection,
+    god_object_content as god_object_detection,
+    feature_envy_content as feature_envy_detection,
+    inappropriate_intimacy_content as inappropriate_intimacy_detection,
+    middle_man_content as middle_man_detection,
+    switch_statement_content as switch_statement_detection,
+    excessive_flags_content as excessive_flags_detection
+)
+
+from utils.content_prompt.refactoring import (
+    god_object_content as god_object_refactoring,
+)
 
 content_detection_prompts = {
-    "long_function": create_long_function_prompt,
-    "god_object": create_god_object_prompt,
-    "feature_envy": create_feature_envy_prompt,
-    "inappropriate_intimacy": create_inappropriate_intimacy_prompt,
-    "middle_man": create_middle_man_prompt,
-    "switch_statement_abuser": create_switch_statement_abuser_prompt,
-    "excessive_flags": create_excessive_flags_prompt
+    "long_function": long_function_detection.create_long_function_prompt,
+    "god_object": god_object_detection.create_god_object_prompt,
+    "feature_envy": feature_envy_detection.create_feature_envy_prompt,
+    "inappropriate_intimacy": inappropriate_intimacy_detection.create_inappropriate_intimacy_prompt,
+    "middle_man": middle_man_detection.create_middle_man_prompt,
+    "switch_statement_abuser": switch_statement_detection.create_switch_statement_abuser_prompt,
+    "excessive_flags": excessive_flags_detection.create_excessive_flags_prompt
+}
+
+
+content_refactoring_prompts = {
+    "god_object": god_object_refactoring.create_god_object_content
 }

@@ -46,6 +46,8 @@ def create_switch_statement_abuser_prompt(task_data, knowledge_base_detection, n
         Do not mention correlation IDs or processed data lines.
         Do not provide additional commentary beyond what is requested.
     """
+    
+    additonal_content = content
 
     # Include relevant reference documents if available
     if relevant_docs:
@@ -60,4 +62,7 @@ def create_switch_statement_abuser_prompt(task_data, knowledge_base_detection, n
     return {
         "role": "user",
         "content": content.strip()
+    },{
+        "role": "user",
+        "content": additonal_content.strip()    
     }, processed_data

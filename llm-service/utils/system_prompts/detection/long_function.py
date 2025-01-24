@@ -1,4 +1,4 @@
-LONG_FUNCTION = {
+LONG_FUNCTION_DETECTION = {
     "role": "system",
     "content": """You are a code smell detector. Analyze the provided Python files and identify any Long Function code smells.
 

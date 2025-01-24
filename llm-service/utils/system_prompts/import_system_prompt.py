@@ -1,18 +1,27 @@
-from utils.system_prompts.detection.long_function import LONG_FUNCTION
-from utils.system_prompts.detection.god_object import GOD_OBJECT
-from utils.system_prompts.detection.feature_envy import FEATURE_ENVY  
-from utils.system_prompts.detection.inappropriate_intimacy import INAPPROPRIATE_INTIMACY
-from utils.system_prompts.detection.middle_man import MIDDLE_MAN
-from utils.system_prompts.detection.switch_statement import SWITCH_STATEMENT
-from utils.system_prompts.detection.excessive_flag import EXCESSIVE_FLAGS
+from utils.system_prompts.detection import (
+    long_function as long_function_detection,
+    god_object as god_object_detection,
+    feature_envy as feature_envy_detection,
+    inappropriate_intimacy as inappropriate_intimacy_detection,
+    middle_man as middle_man_detection,
+    switch_statement as switch_statement_detection,
+    excessive_flag as excessive_flag_detection
+)
 
+from utils.system_prompts.refactoring import (
+    god_object as god_object_refactoring,
+)
 
 system_detection_prompts = {
-    "long_function": LONG_FUNCTION,
-    "god_object": GOD_OBJECT,
-    "feature_envy": FEATURE_ENVY,
-    "inappropriate_intimacy": INAPPROPRIATE_INTIMACY,
-    "middle_man": MIDDLE_MAN,
-    "switch_statement_abuser": SWITCH_STATEMENT,
-    "excessive_flags": EXCESSIVE_FLAGS
+    "long_function": long_function_detection.LONG_FUNCTION_DETECTION,
+    "god_object": god_object_detection.GOD_OBJECT_DETECTION,
+    "feature_envy": feature_envy_detection.FEATURE_ENVY_DETECTION,
+    "inappropriate_intimacy": inappropriate_intimacy_detection.INAPPROPRIATE_INTIMACY_DETECTION,
+    "middle_man": middle_man_detection.MIDDLE_MAN_DETECTION,
+    "switch_statement_abuser": switch_statement_detection.SWITCH_STATEMENT_DETECTION,
+    "excessive_flags": excessive_flag_detection.EXCESSIVE_FLAGS_DETECTION
+}
+
+system_refactoring_prompts = {
+    "god_object": god_object_refactoring.GOD_OBJECT_REFACTORING,
 }

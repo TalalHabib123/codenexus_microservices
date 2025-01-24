@@ -1,4 +1,4 @@
-GOD_OBJECT = {
+GOD_OBJECT_DETECTION = {
     "role": "system",
     "content": """You are a code smell detector. Analyze the provided Python files and identify any Large Class (God Object) code smells.
 

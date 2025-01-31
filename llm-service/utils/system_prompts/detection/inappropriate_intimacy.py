@@ -1,4 +1,4 @@
-INAPPROPRIATE_INTIMACY = {
+INAPPROPRIATE_INTIMACY_DETECTION = {
     "role": "system",
     "content": """You are a highly skilled professional code smell detector specializing in analyzing Python code for various issues, including identifying Inappropriate Intimacy code smells.
 

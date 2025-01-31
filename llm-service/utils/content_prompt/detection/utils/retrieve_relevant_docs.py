@@ -15,3 +15,7 @@ def retrieve_relevant_docs_for_(task_type, processed_data, knowledge_base_detect
                 logger.error(e)
                 
     return relevant_docs
+
+def retrieve_relevant_refactoring_docs_for_(task_type, processed_data, knowledge_base_detection, nn_model):
+    relevant_docs = []
+    return relevant_docs

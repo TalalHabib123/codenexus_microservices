@@ -46,6 +46,8 @@ def create_long_function_prompt(task_data, knowledge_base_detection, nn_model):
         Do not provide additional commentary beyond what is requested.
     """
 
+    additonal_content = content
+    
     # Include relevant docs if available
     if relevant_docs:
         content += (
@@ -58,5 +60,8 @@ def create_long_function_prompt(task_data, knowledge_base_detection, nn_model):
     return {
         "role": "user",
         "content": content.strip()
+    },  {
+        "role": "user",
+        "content": additonal_content.strip()
     }, processed_data
 

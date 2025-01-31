@@ -41,6 +41,8 @@ def create_god_object_prompt(task_data, knowledge_base_detection, nn_model):
         None
     """
 
+    additonal_content = content
+    
     # Add relevant documents to the prompt if available
     if relevant_docs:
         content += (
@@ -55,5 +57,8 @@ def create_god_object_prompt(task_data, knowledge_base_detection, nn_model):
     return {
         "role": "user",
         "content": content.strip()
+    },{
+        "role": "user",
+        "content": additonal_content.strip()
     }, processed_data
 

@@ -1183,3 +1183,898 @@ Detected:YOLO
 Issue:The YOLO class takes care of everything like initialization, generating model, detecting images, getting FPS and mAP. It has excessive number of methods and attributes, multiple unrelated responsibilities and can be seen as a clear violation of Single Responsibility Principle.
 
 None of the other classes are considered as large classes since they are either small utility classes or take care of a single domain-specific responsibility.
+2025-01-24 14:42:21,925 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-01-24 14:42:22,215 - utils.retrieve_queue - INFO - Queue does not exist: LLMTaskQueue
+2025-01-24 14:42:22,216 - utils.retrieve_queue - INFO - Creating queue: LLMTaskQueue
+2025-01-24 14:42:22,222 - utils.retrieve_queue - INFO - Queue created: LLMTaskQueue
+2025-01-24 14:42:22,222 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-01-24 14:42:22,276 - utils.retrieve_queue - INFO - Queue does not exist: LLMResponseQueue
+2025-01-24 14:42:22,277 - utils.retrieve_queue - INFO - Creating queue: LLMResponseQueue
+2025-01-24 14:42:22,326 - utils.retrieve_queue - INFO - Queue created: LLMResponseQueue
+2025-01-24 14:42:22,327 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-01-24 14:42:22,327 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-01-24 14:42:22,327 - __main__ - INFO - Initializing knowledge base for detection
+2025-01-24 14:42:22,328 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-01-24 14:42:22,328 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-01-24 14:42:22,335 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-01-24 14:42:22,336 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-01-24 14:42:39,447 - __main__ - INFO - Received task message
+2025-01-24 14:42:39,447 - job.refactoring_job - INFO - Processing task message with correlation ID: 1234
+2025-01-24 14:42:39,448 - job.refactoring_job - INFO - Task type: refactoring
+2025-01-24 14:42:39,448 - job.refactoring_job - INFO - Task job: god_object
+2025-01-24 14:42:39,448 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-01-24 14:42:39,449 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 14:43:12,445 - llm_processor - INFO - Processed result: ```python
+# Unfortunately, no code snippet was provided, please replace the following code with the provided Python code snippet.
+
+# Please note that this is a placeholder for demonstration purposes.
+
+# Original class (placeholder)
+class LargeClass:
+    def __init__(self, data):
+        self.data = data
+
+    def process_data(self):
+        # Initial data processing
+        self.data = self._clean_data(self.data)
+        # Feature extraction
+        self.data = self._extract_features(self.data)
+        # Model training
+        self._train_model(self.data)
+
+    def _clean_data(self, data):
+        # Data cleaning logic
+        return data
+
+    def _extract_features(self, data):
+        # Feature extraction logic
+        return data
+
+    def _train_model(self, data):
+        # Model training logic
+        pass
+```
+
+Here's the refactored code by breaking it into smaller, cohesive classes while preserving its logic:
+
+```python
+# Refactored classes
+
+# DataCleaner class: Responsible for cleaning the data
+class DataCleaner:
+    def __init__(self, data):
+        self.data = data
+
+    def clean_data(self):
+        # Data cleaning logic
+        # Extracted data cleaning functionality into a separate class to ensure SRP
+        return self._remove_duplicates(self._handle_missing_values(self.data))
+
+    def _remove_duplicates(self, data):
+        # Duplicate removal logic
+        return data
+
+    def _handle_missing_values(self, data):
+        # Missing value handling logic
+        return data
+
+
+# FeatureExtractor class: Responsible for extracting features from the data
+class FeatureExtractor:
+    def __init__(self, data):
+        self.data = data
+
+    def extract_features(self):
+        # Feature extraction logic
+        # Extracted feature extraction functionality into a separate class to ensure SRP
+        return self._scale_data(self._transform_data(self.data))
+
+    def _scale_data(self, data):
+        # Data scaling logic
+        return data
+
+    def _transform_data(self, data):
+        # Data transformation logic
+        return data
+
+
+# ModelTrainer class: Responsible for training the model
+class ModelTrainer:
+    def __init__(self, data):
+        self.data = data
+
+    def train_model(self):
+        # Model training logic
+        # Extracted model training functionality into a separate class to ensure SRP
+        pass
+
+
+# DataProcessor class: Coordinates data processing, feature extraction, and model training
+class DataProcessor:
+    def __init__(self, data):
+        self.data = data
+
+    def process_data(self):
+        # Initial data processing
+        data_cleaner = DataCleaner(self.data)
+        cleaned_data = data_cleaner.clean_data()
+
+        # Feature extraction
+        feature_extractor = FeatureExtractor(cleaned_data)
+        extracted_data = feature_extractor.extract_features()
+
+        # Model training
+        model_trainer = ModelTrainer(extracted_data)
+        model_trainer.train_model()
+
+
+# Usage example
+if __name__ == "__main__":
+    data = [1, 2, 3, 4, 5]  # Placeholder data
+    data_processor = DataProcessor(data)
+    data_processor.process_data()
+```
+
+### Changes and Design Decisions:
+
+*   Extracted data cleaning, feature extraction, and model training functionality into separate classes (`DataCleaner`, `FeatureExtractor`, and `ModelTrainer`) to ensure the Single Responsibility Principle (SRP).
+*   Introduced the `DataProcessor` class to coordinate the data processing pipeline, making it easier to manage and extend the process in the future.
+*   Minimized coupling between the refactored classes by using composition and dependency injection.
+*   Preserved the original logic and functionality of the code, ensuring that the refactored design produces the same results as the original implementation.
+2025-01-24 14:43:12,446 - job.refactoring_job - ERROR - Error processing task message with correlation ID: 1234
+2025-01-24 14:43:12,447 - job.refactoring_job - ERROR - parse_code_output() takes 1 positional argument but 2 were given
+2025-01-24 14:45:29,581 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-01-24 14:45:29,607 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-01-24 14:45:29,651 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-01-24 14:45:29,652 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-01-24 14:45:29,652 - __main__ - INFO - Initializing knowledge base for detection
+2025-01-24 14:45:29,653 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-01-24 14:45:29,653 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-01-24 14:45:29,654 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-01-24 14:45:29,654 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-01-24 14:45:54,994 - __main__ - INFO - Received task message
+2025-01-24 14:45:54,994 - job.refactoring_job - INFO - Processing task message with correlation ID: 1234
+2025-01-24 14:45:54,994 - job.refactoring_job - INFO - Task type: refactoring
+2025-01-24 14:45:54,995 - job.refactoring_job - INFO - Task job: god_object
+2025-01-24 14:46:16,065 - job.refactoring_job - ERROR - Error processing task message with correlation ID: 1234
+2025-01-24 14:46:16,066 - job.refactoring_job - ERROR - 
+2025-01-24 14:46:42,114 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-01-24 14:46:42,122 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-01-24 14:46:42,173 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-01-24 14:46:42,174 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-01-24 14:46:42,175 - __main__ - INFO - Initializing knowledge base for detection
+2025-01-24 14:46:42,175 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-01-24 14:46:42,175 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-01-24 14:46:42,175 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-01-24 14:46:42,176 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-01-24 14:46:49,224 - __main__ - INFO - Received task message
+2025-01-24 14:46:49,224 - job.refactoring_job - INFO - Processing task message with correlation ID: 1234
+2025-01-24 14:46:49,225 - job.refactoring_job - INFO - Task type: refactoring
+2025-01-24 14:46:49,225 - job.refactoring_job - INFO - Task job: god_object
+2025-01-24 14:46:49,225 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-01-24 14:46:49,225 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 14:47:29,142 - llm_processor - INFO - Processed result: ```python
+# Refactored Car class
+
+# Extracted VehicleStatus class to encapsulate the status of the vehicle
+class VehicleStatus:
+    def __init__(self, is_running=False, is_parked=True):
+        self.is_running = is_running
+        self.is_parked = is_parked
+
+# Extracted Engine class to encapsulate engine functions
+class Engine:
+    def __init__(self):
+        pass
+
+    def repair(self):
+        print("The engine has been repaired.")
+
+    def replace_tires(self, new_tires):
+        print("New tires have been put on.")
+
+# Extracted Painter class to handle painting functionality
+class Painter:
+    def __init__(self, color):
+        pass
+
+    def paint(self, new_color):
+        print(f"The car has been painted {new_color}.")
+
+# Extracted VehicleGarage class to handle vehicle starting/stopping
+class VehicleGarage:
+    def __init__(self):
+        pass
+    def start(self):
+        print("The car has started.")
+    def stop(self):
+        print("The car as stopped.")
+
+# Refactored Car class broken into smaller classes, while preserving logic and functionality
+class Car:
+    def __init__(self, make, model, year, color):
+        
+        # Initialize attributes
+        self.make = make
+ self.model = model
+ self.year = year. self.color = color
+        # Create vehicle status object
+        self.status = VehicleStatus(is_running=False, is_parked=True)
+ 
+    def start_engine(self):
+  
+        # Call the garage start function from the VehicleGarage  class VehicleGarage
+ and hand over control to it
+    );
+        VehicleGarage(self).start(); self.status.is_running = True; self.status.is_parked = False
+        
+    def stop_engine(self): 
+        vehicle garage.stop function from VehicleGarage class 
+        and handle stopping by calling stop function from VehicleGarage class
+        self vod.status.is_running - False; self.status.is_parked = True
+
+    def accelerate(self, speed): 
+        VehicleGarage will accelerate Vehicle
+        and update the carstatus from VehicleGarage class VehicleStatus 
+        new_speed = speed; VehicleGarage.accelerate new_speed); self.status.is_parked = new_speed or self.speed.is_
+        # if the car is 
+        and VehicleStatus class Engine speeding up while accelerating VehicleStatus accelerating vehicle 
+        vod.status.is_running or VehicleGarage class or self.speed or_
+        # if VehicleGarage 
+);
+
+    VehicleStatusAccelerate speeding up while accelerating VehicleStatus accelerating vehicle 
+        vod.status.is_running - True; VehicleStatus.is_parked.new_speed
+
+    def brake(self):
+ vehicle garage.stop function from VehicleGarage, VehicleStatus accelerating vehicle 
+        # while stopping call VehicleStatus brake function from VehicleGarage class VehicleStatus get_parked or new_speed 
+        new_speed = VehicleGarage.brake speed); VehicleGarage.accelerate speed 
+        self.status.is_parked = False; VehicleGarage.accelerate speed 
+        self.status.is_running, self.status.is_parked, or self.speed.is_
+        
+    # Extracted function painter self vehicle garage.pare_t new_color ):
+        self.vehicle_garage = Painter(new_color); VehicleStatus new_color vehicle 
+        vod.status.is_parked vehicle painter(vehicle_stts_color vehicle.new_color); painter(self).vehicle_vehcicle_tune_up downloadable self.vehicle_garage = tune_up VehicleStyle(); vehicleSttsIDs = VehicleStatus 
+        new_speed = speed; VehicleStatus dateVehicleGarage.tune_up vehicle VehicleGarage VE. speed(true VehicleSt.width = tun );
+        VehicleGarageVehiclePainter().car_sts_t_list tune_up vehicle VehiclePainter().color = new_tires; VehicleStatus {}
+
+
+CarVehicleGarage().tune vehicle garage.pare_t new_color ):
+        self.vehicle_garage = Painter(new_tires
+    new_color vehicle.motor vod.status VehicleGarage rewair(vehicle_stts_color vehicle.new_color); painter(self).vehicle_vehcVehicleGarage = Painter(new_tires VehicleGarage replacing_tires vehiclestatus.new_tiresIDs = VehicleStatus 
+# new code not shownalnodo_bio dateVehicleGaragepolllexible
+
+
+class VehicleManager manage the actual Car instances VehicleSt.width help initialize Car object:
+
+    def __init__(self, vehicle_make, vehicle_model, year, color):
+        self.vehicle_make = vehicle_make
+        self.vehicle_model = vehicle_model,
+        VehicleStatus = VehicleStatus(is_running=False, VehicleStatus = VehicleStatus(is_parked=False
+        vehicle.motor vod.status VehicleGarage rewair(vehicle_stts_color vehicle.new_color); vehicle.engine = vehicle_vehcVehicle_tune_up downloadable self.vehicle_garage = vehicle.make VehicleStyle(); vehicleSttsIDs = VehicleStatus 
+# new code not shownalnodo_bio dateVehicleGaragepolllexible
+
+
+class VehicleManager manage the actual Car instances VehicleSt.width help initialize Car object:
+
+    def __init__(self, vehicle
+2025-01-24 14:47:29,143 - job.refactoring_job - ERROR - Error processing task message with correlation ID: 1234
+2025-01-24 14:47:29,144 - job.refactoring_job - ERROR - parse_code_output() takes 1 positional argument but 2 were given
+2025-01-24 14:50:23,112 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-01-24 14:50:23,134 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-01-24 14:50:23,182 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-01-24 14:50:23,183 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-01-24 14:50:23,183 - __main__ - INFO - Initializing knowledge base for detection
+2025-01-24 14:50:23,183 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-01-24 14:50:23,184 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-01-24 14:50:23,184 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-01-24 14:50:23,185 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-01-24 14:50:33,888 - __main__ - INFO - Received task message
+2025-01-24 14:50:33,888 - job.refactoring_job - INFO - Processing task message with correlation ID: 1234
+2025-01-24 14:50:33,889 - job.refactoring_job - INFO - Task type: refactoring
+2025-01-24 14:50:33,889 - job.refactoring_job - INFO - Task job: god_object
+2025-01-24 14:50:33,889 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-01-24 14:50:33,890 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 14:51:00,063 - llm_processor - INFO - Processed result: ```python
+# Extracted VehicleState class to handle the state-related attributes and methods
+class VehicleState:
+    def __init__(self):
+        self.is_running = False
+        self.is_parked = True
+
+    def start(self):
+        self.is_running = True
+        self.is_parked = False
+
+    def stop(self):
+        self.is_running = False
+        self.is_parked = True
+
+
+# Extracted VehicleActions class to handle the action-related methods
+class VehicleActions:
+    def __init__(self, vehicle_state):
+        self.vehicle_state = vehicle_state
+
+    def accelerate(self, speed):
+        if self.vehicle_state.is_running and not self.vehicle_state.is_parked:
+            print(f"The car is accelerating to {speed} mph.")
+        else:
+            print("You can't accelerate while the car is not running or parked.")
+
+    def brake(self):
+        if self.vehicle_state.is_running and not self.vehicle_state.is_parked:
+            print("The car is braking.")
+        else:
+            print("You can't brake while the car is not running or parked.")
+
+
+# Extracted VehicleMaintenance class to handle the maintenance-related methods
+class VehicleMaintenance:
+    def tune_up(self):
+        print("The car has had a tune-up.")
+
+    def repair_engine(self):
+        print("The engine has been repaired.")
+
+    def replace_tires(self):
+        print("The tires have been replaced.")
+
+
+# Extracted VehicleCustomization class to handle the customization-related methods
+class VehicleCustomization:
+    def __init__(self, color):
+        self.color = color
+
+    def paint(self, new_color):
+        self.color = new_color
+        print(f"The car has been painted {new_color}.")
+
+
+# The Car class now serves as the main class, delegating tasks to the extracted classes
+class Car:
+    def __init__(self, make, model, year, color):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.vehicle_state = VehicleState()
+        self.vehicle_actions = VehicleActions(self.vehicle_state)
+        self.vehicle_maintenance = VehicleMaintenance()
+        self.vehicle_customization = VehicleCustomization(color)
+
+    def start(self):
+        if self.vehicle_state.is_parked:
+            self.vehicle_state.start()
+            print("The car has started.")
+        else:
+            print("You can't start the car while it's already running or not parked.")
+
+    def stop(self):
+        if self.vehicle_state.is_running:
+            self.vehicle_state.stop()
+            print("The car has stopped.")
+        else:
+            print("You can't stop the car while it's not running or already parked.")
+
+    def accelerate(self, speed):
+        self.vehicle_actions.accelerate(speed)
+
+    def brake(self):
+        self.vehicle_actions.brake()
+
+    def paint(self, new_color):
+        self.vehicle_customization.paint(new_color)
+
+    def tune_up(self):
+        self.vehicle_maintenance.tune_up()
+
+    def repair_engine(self):
+        self.vehicle_maintenance.repair_engine()
+
+    def replace_tires(self):
+        self.vehicle_maintenance.replace_tires()
+```
+2025-01-24 14:51:00,064 - job.refactoring_job - ERROR - Error processing task message with correlation ID: 1234
+2025-01-24 14:51:00,065 - job.refactoring_job - ERROR - parse_code_output() takes 1 positional argument but 2 were given
+2025-01-24 15:09:04,400 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-01-24 15:09:04,424 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-01-24 15:09:04,476 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-01-24 15:09:04,477 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-01-24 15:09:04,477 - __main__ - INFO - Initializing knowledge base for detection
+2025-01-24 15:09:04,478 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-01-24 15:09:04,478 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-01-24 15:09:04,479 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-01-24 15:09:04,480 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-01-24 15:09:14,082 - __main__ - INFO - Received task message
+2025-01-24 15:09:14,082 - job.refactoring_job - INFO - Processing task message with correlation ID: 1234
+2025-01-24 15:09:14,083 - job.refactoring_job - INFO - Task type: refactoring
+2025-01-24 15:09:14,083 - job.refactoring_job - INFO - Task job: god_object
+2025-01-24 15:09:14,083 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-01-24 15:09:14,084 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 15:09:15,032 - llm_processor - INFO - Processed result: ```python
+# Extracted VehicleState class to handle the state-related attributes and methods
+class VehicleState:
+    def __init__(self):
+        self.is_running = False
+        self.is_parked = True
+
+    def start(self):
+        self.is_running = True
+        self.is_parked = False
+
+    def stop(self):
+        self.is_running = False
+        self.is_parked = True
+
+
+# Extracted VehicleActions class to handle the action-related methods
+class VehicleActions:
+    def __init__(self, vehicle_state):
+        self.vehicle_state = vehicle_state
+
+    def accelerate(self, speed):
+        if self.vehicle_state.is_running and not self.vehicle_state.is_parked:
+            print(f"The car is accelerating to {speed} mph.")
+        else:
+            print("You can't accelerate while the car is not running or parked.")
+
+    def brake(self):
+        if self.vehicle_state.is_running and not self.vehicle_state.is_parked:
+            print("The car is braking.")
+        else:
+            print("You can't brake while the car is not running or parked.")
+
+
+# Extracted VehicleMaintenance class to handle the maintenance-related methods
+class VehicleMaintenance:
+    def tune_up(self):
+        print("The car has had a tune-up.")
+
+    def repair_engine(self):
+        print("The engine has been repaired.")
+
+    def replace_tires(self):
+        print("The tires have been replaced.")
+
+
+# Extracted VehicleCustomization class to handle the customization-related methods
+class VehicleCustomization:
+    def __init__(self, color):
+        self.color = color
+
+    def paint(self, new_color):
+        self.color = new_color
+        print(f"The car has been painted {new_color}.")
+
+
+# The Car class now serves as the main class, delegating tasks to the extracted classes
+class Car:
+    def __init__(self, make, model, year, color):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.vehicle_state = VehicleState()
+        self.vehicle_actions = VehicleActions(self.vehicle_state)
+        self.vehicle_maintenance = VehicleMaintenance()
+        self.vehicle_customization = VehicleCustomization(color)
+
+    def start(self):
+        if self.vehicle_state.is_parked:
+            self.vehicle_state.start()
+            print("The car has started.")
+        else:
+            print("You can't start the car while it's already running or not parked.")
+
+    def stop(self):
+        if self.vehicle_state.is_running:
+            self.vehicle_state.stop()
+            print("The car has stopped.")
+        else:
+            print("You can't stop the car while it's not running or already parked.")
+
+    def accelerate(self, speed):
+        self.vehicle_actions.accelerate(speed)
+
+    def brake(self):
+        self.vehicle_actions.brake()
+
+    def paint(self, new_color):
+        self.vehicle_customization.paint(new_color)
+
+    def tune_up(self):
+        self.vehicle_maintenance.tune_up()
+
+    def repair_engine(self):
+        self.vehicle_maintenance.repair_engine()
+
+    def replace_tires(self):
+        self.vehicle_maintenance.replace_tires()
+```
+2025-01-24 15:09:15,033 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-01-24 15:09:15,034 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 15:09:15,531 - llm_processor - INFO - Processed result: None
+2025-01-24 21:39:30,000 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-01-24 21:39:30,020 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-01-24 21:39:30,074 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-01-24 21:39:30,074 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-01-24 21:39:30,074 - __main__ - INFO - Initializing knowledge base for detection
+2025-01-24 21:39:30,075 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-01-24 21:39:30,075 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-01-24 21:39:30,082 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-01-24 21:39:30,082 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-01-24 21:39:43,450 - __main__ - INFO - Received task message
+2025-01-24 21:39:43,451 - job.detection_job - INFO - Processing task message with correlation ID: 1234
+2025-01-24 21:39:43,451 - job.detection_job - INFO - Task type: detection
+2025-01-24 21:39:43,451 - job.detection_job - INFO - Task job: feature_envy
+2025-01-24 21:39:43,453 - job.detection_job - INFO - Generating response for task message with correlation ID: 1234
+2025-01-24 21:39:43,453 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 21:39:44,541 - job.detection_job - ERROR - Error generating response for task message with correlation ID: 1234
+2025-01-24 21:39:44,541 - job.detection_job - ERROR - 429 Client Error: Too Many Requests for url: https://api-inference.huggingface.co/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: uLFqFG)
+
+Model is overloaded
+2025-01-24 21:39:44,542 - job.detection_job - ERROR - Error processing task message with correlation ID: 1234
+2025-01-24 21:39:44,542 - job.detection_job - ERROR - 429 Client Error: Too Many Requests for url: https://api-inference.huggingface.co/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: uLFqFG)
+
+Model is overloaded
+2025-01-24 21:43:59,420 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-01-24 21:43:59,444 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-01-24 21:43:59,492 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-01-24 21:43:59,492 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-01-24 21:43:59,492 - __main__ - INFO - Initializing knowledge base for detection
+2025-01-24 21:43:59,492 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-01-24 21:43:59,493 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-01-24 21:43:59,494 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-01-24 21:43:59,494 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-01-24 21:44:18,608 - __main__ - INFO - Received task message
+2025-01-24 21:44:18,608 - job.detection_job - INFO - Processing task message with correlation ID: 1234
+2025-01-24 21:44:18,609 - job.detection_job - INFO - Task type: detection
+2025-01-24 21:44:18,609 - job.detection_job - INFO - Task job: feature_envy
+2025-01-24 21:44:18,611 - job.detection_job - INFO - Generating response for task message with correlation ID: 1234
+2025-01-24 21:44:18,611 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 21:45:10,829 - llm_processor - INFO - Processed result: File: order_processor.py
+Detected: OrderProcessor.process_order
+Issue: Relies heavily on methods from `payment_service` and `inventory`, indicating it might be more cohesive to delegate the charging and stock update responsibilities to these classes.
+
+File: user_manager.py
+Detected: UserManager.add_user
+Issue: The method's sole purpose is to interact with the `db` object, adding a user to the database, suggesting it should be a responsibility of the `Database` class.
+
+File: user_manager.py
+Detected: UserManager.login
+Issue: This method only serves to call the `validate_credentials` method of the `db` object, hinting it should be part of the `Database` class to improve encapsulation.
+2025-01-24 21:45:11,837 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 21:45:12,111 - llm_processor - INFO - Processed result: File: order_processor.py
+Detected: OrderProcessor.process_order
+Issue: Relies heavily on methods from `payment_service` and `inventory`, indicating it might be more cohesive to delegate the charging and stock update responsibilities to these classes.
+
+File: user_manager.py
+Detected: UserManager.add_user
+Issue: The method's sole purpose is to interact with the `db` object, adding a user to the database, suggesting it should be a responsibility of the `Database` class.
+
+File: user_manager.py
+Detected: UserManager.login
+Issue: This method only serves to call the `validate_credentials` method of the `db` object, hinting it should be part of the `Database` class to improve encapsulation.
+2025-01-24 21:45:12,112 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 21:46:05,779 - llm_processor - INFO - Processed result: File: order_processor.py  
+Detected: OrderProcessor.process_order  
+Issue: Relies heavily on methods from `payment_service` and `inventory`, indicating it might be more cohesive to delegate the charging and stock update responsibilities to these classes.
+
+File: user_manager.py  
+Detected: UserManager.add_user  
+Issue: The method's sole purpose is to interact with the `db` object, adding a user to the database, suggesting it should be a responsibility of the `Database` class.
+
+File: user_manager.py  
+Detected: UserManager.login  
+Issue: This method only serves to call the `validate_credentials` method of the `db` object, hinting it should be part of the `Database` class to improve encapsulation.
+2025-01-24 21:46:06,780 - job.detection_job - ERROR - Error processing task message with correlation ID: 1234
+2025-01-24 21:46:06,780 - job.detection_job - ERROR - 'file_name'
+2025-01-24 21:49:13,740 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-01-24 21:49:13,761 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-01-24 21:49:13,806 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-01-24 21:49:13,807 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-01-24 21:49:13,807 - __main__ - INFO - Initializing knowledge base for detection
+2025-01-24 21:49:13,807 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-01-24 21:49:13,807 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-01-24 21:49:13,808 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-01-24 21:49:13,808 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-01-24 21:49:51,730 - __main__ - INFO - Received task message
+2025-01-24 21:49:51,731 - job.detection_job - INFO - Processing task message with correlation ID: 1234
+2025-01-24 21:49:51,732 - job.detection_job - INFO - Task type: detection
+2025-01-24 21:49:51,733 - job.detection_job - INFO - Task job: feature_envy
+2025-01-24 21:49:51,735 - job.detection_job - INFO - Generating response for task message with correlation ID: 1234
+2025-01-24 21:49:51,735 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 21:49:52,892 - llm_processor - INFO - Processed result: File: order_processor.py
+Detected: OrderProcessor.process_order
+Issue: Relies heavily on methods from `payment_service` and `inventory`, indicating it might be more cohesive to delegate the charging and stock update responsibilities to these classes.
+
+File: user_manager.py
+Detected: UserManager.add_user
+Issue: The method's sole purpose is to interact with the `db` object, adding a user to the database, suggesting it should be a responsibility of the `Database` class.
+
+File: user_manager.py
+Detected: UserManager.login
+Issue: This method only serves to call the `validate_credentials` method of the `db` object, hinting it should be part of the `Database` class to improve encapsulation.
+2025-01-24 21:49:53,894 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 21:49:54,167 - llm_processor - INFO - Processed result: File: order_processor.py
+Detected: OrderProcessor.process_order
+Issue: Relies heavily on methods from `payment_service` and `inventory`, indicating it might be more cohesive to delegate the charging and stock update responsibilities to these classes.
+
+File: user_manager.py
+Detected: UserManager.add_user
+Issue: The method's sole purpose is to interact with the `db` object, adding a user to the database, suggesting it should be a responsibility of the `Database` class.
+
+File: user_manager.py
+Detected: UserManager.login
+Issue: This method only serves to call the `validate_credentials` method of the `db` object, hinting it should be part of the `Database` class to improve encapsulation.
+2025-01-24 21:49:54,167 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 21:49:54,463 - llm_processor - INFO - Processed result: File: order_processor.py  
+Detected: OrderProcessor.process_order  
+Issue: Relies heavily on methods from `payment_service` and `inventory`, indicating it might be more cohesive to delegate the charging and stock update responsibilities to these classes.
+
+File: user_manager.py  
+Detected: UserManager.add_user  
+Issue: The method's sole purpose is to interact with the `db` object, adding a user to the database, suggesting it should be a responsibility of the `Database` class.
+
+File: user_manager.py  
+Detected: UserManager.login  
+Issue: This method only serves to call the `validate_credentials` method of the `db` object, hinting it should be part of the `Database` class to improve encapsulation.
+2025-01-24 21:51:38,396 - job.detection_job - ERROR - Error processing task message with correlation ID: 1234
+2025-01-24 21:51:38,396 - job.detection_job - ERROR - 
+2025-01-24 21:54:03,149 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-01-24 21:54:03,169 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-01-24 21:54:03,214 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-01-24 21:54:03,214 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-01-24 21:54:03,215 - __main__ - INFO - Initializing knowledge base for detection
+2025-01-24 21:54:03,215 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-01-24 21:54:03,215 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-01-24 21:54:03,216 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-01-24 21:54:03,217 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-01-24 21:54:10,172 - __main__ - INFO - Received task message
+2025-01-24 21:54:10,173 - job.detection_job - INFO - Processing task message with correlation ID: 1234
+2025-01-24 21:54:10,173 - job.detection_job - INFO - Task type: detection
+2025-01-24 21:54:10,174 - job.detection_job - INFO - Task job: feature_envy
+2025-01-24 21:54:10,175 - job.detection_job - INFO - Generating response for task message with correlation ID: 1234
+2025-01-24 21:54:10,175 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 21:54:11,111 - llm_processor - INFO - Processed result: File: order_processor.py
+Detected: OrderProcessor.process_order
+Issue: Relies heavily on methods from `payment_service` and `inventory`, indicating it might be more cohesive to delegate the charging and stock update responsibilities to these classes.
+
+File: user_manager.py
+Detected: UserManager.add_user
+Issue: The method's sole purpose is to interact with the `db` object, adding a user to the database, suggesting it should be a responsibility of the `Database` class.
+
+File: user_manager.py
+Detected: UserManager.login
+Issue: This method only serves to call the `validate_credentials` method of the `db` object, hinting it should be part of the `Database` class to improve encapsulation.
+2025-01-24 21:54:12,112 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 21:54:12,387 - llm_processor - INFO - Processed result: File: order_processor.py
+Detected: OrderProcessor.process_order
+Issue: Relies heavily on methods from `payment_service` and `inventory`, indicating it might be more cohesive to delegate the charging and stock update responsibilities to these classes.
+
+File: user_manager.py
+Detected: UserManager.add_user
+Issue: The method's sole purpose is to interact with the `db` object, adding a user to the database, suggesting it should be a responsibility of the `Database` class.
+
+File: user_manager.py
+Detected: UserManager.login
+Issue: This method only serves to call the `validate_credentials` method of the `db` object, hinting it should be part of the `Database` class to improve encapsulation.
+2025-01-24 21:54:12,389 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 21:54:12,692 - llm_processor - INFO - Processed result: File: order_processor.py  
+Detected: OrderProcessor.process_order  
+Issue: Relies heavily on methods from `payment_service` and `inventory`, indicating it might be more cohesive to delegate the charging and stock update responsibilities to these classes.
+
+File: user_manager.py  
+Detected: UserManager.add_user  
+Issue: The method's sole purpose is to interact with the `db` object, adding a user to the database, suggesting it should be a responsibility of the `Database` class.
+
+File: user_manager.py  
+Detected: UserManager.login  
+Issue: This method only serves to call the `validate_credentials` method of the `db` object, hinting it should be part of the `Database` class to improve encapsulation.
+2025-01-24 21:54:16,013 - job.detection_job - ERROR - Error processing task message with correlation ID: 1234
+2025-01-24 21:54:16,013 - job.detection_job - ERROR - ' file_name '
+2025-01-24 21:55:18,588 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-01-24 21:55:18,596 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-01-24 21:55:18,643 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-01-24 21:55:18,644 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-01-24 21:55:18,644 - __main__ - INFO - Initializing knowledge base for detection
+2025-01-24 21:55:18,644 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-01-24 21:55:18,644 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-01-24 21:55:18,645 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-01-24 21:55:18,646 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-01-24 21:55:29,247 - __main__ - INFO - Received task message
+2025-01-24 21:55:29,247 - job.detection_job - INFO - Processing task message with correlation ID: 1234
+2025-01-24 21:55:29,247 - job.detection_job - INFO - Task type: detection
+2025-01-24 21:55:29,247 - job.detection_job - INFO - Task job: feature_envy
+2025-01-24 21:55:29,249 - job.detection_job - INFO - Generating response for task message with correlation ID: 1234
+2025-01-24 21:55:29,250 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 21:55:30,258 - llm_processor - INFO - Processed result: File: order_processor.py
+Detected: OrderProcessor.process_order
+Issue: Relies heavily on methods from `payment_service` and `inventory`, indicating it might be more cohesive to delegate the charging and stock update responsibilities to these classes.
+
+File: user_manager.py
+Detected: UserManager.add_user
+Issue: The method's sole purpose is to interact with the `db` object, adding a user to the database, suggesting it should be a responsibility of the `Database` class.
+
+File: user_manager.py
+Detected: UserManager.login
+Issue: This method only serves to call the `validate_credentials` method of the `db` object, hinting it should be part of the `Database` class to improve encapsulation.
+2025-01-24 21:55:31,259 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 21:55:31,510 - llm_processor - INFO - Processed result: File: order_processor.py
+Detected: OrderProcessor.process_order
+Issue: Relies heavily on methods from `payment_service` and `inventory`, indicating it might be more cohesive to delegate the charging and stock update responsibilities to these classes.
+
+File: user_manager.py
+Detected: UserManager.add_user
+Issue: The method's sole purpose is to interact with the `db` object, adding a user to the database, suggesting it should be a responsibility of the `Database` class.
+
+File: user_manager.py
+Detected: UserManager.login
+Issue: This method only serves to call the `validate_credentials` method of the `db` object, hinting it should be part of the `Database` class to improve encapsulation.
+2025-01-24 21:55:31,511 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 21:55:31,764 - llm_processor - INFO - Processed result: File: order_processor.py  
+Detected: OrderProcessor.process_order  
+Issue: Relies heavily on methods from `payment_service` and `inventory`, indicating it might be more cohesive to delegate the charging and stock update responsibilities to these classes.
+
+File: user_manager.py  
+Detected: UserManager.add_user  
+Issue: The method's sole purpose is to interact with the `db` object, adding a user to the database, suggesting it should be a responsibility of the `Database` class.
+
+File: user_manager.py  
+Detected: UserManager.login  
+Issue: This method only serves to call the `validate_credentials` method of the `db` object, hinting it should be part of the `Database` class to improve encapsulation.
+2025-01-24 21:56:45,392 - job.detection_job - ERROR - Error processing task message with correlation ID: 1234
+2025-01-24 21:56:45,393 - job.detection_job - ERROR - 
+2025-01-24 21:58:05,213 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-01-24 21:58:05,234 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-01-24 21:58:05,284 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-01-24 21:58:05,285 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-01-24 21:58:05,285 - __main__ - INFO - Initializing knowledge base for detection
+2025-01-24 21:58:05,285 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-01-24 21:58:05,286 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-01-24 21:58:05,287 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-01-24 21:58:05,287 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-01-24 21:58:13,580 - __main__ - INFO - Received task message
+2025-01-24 21:58:13,580 - job.detection_job - INFO - Processing task message with correlation ID: 1234
+2025-01-24 21:58:13,580 - job.detection_job - INFO - Task type: detection
+2025-01-24 21:58:13,580 - job.detection_job - INFO - Task job: feature_envy
+2025-01-24 21:58:13,581 - job.detection_job - INFO - Generating response for task message with correlation ID: 1234
+2025-01-24 21:58:13,582 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 21:58:14,621 - llm_processor - INFO - Processed result: File: order_processor.py
+Detected: OrderProcessor.process_order
+Issue: Relies heavily on methods from `payment_service` and `inventory`, indicating it might be more cohesive to delegate the charging and stock update responsibilities to these classes.
+
+File: user_manager.py
+Detected: UserManager.add_user
+Issue: The method's sole purpose is to interact with the `db` object, adding a user to the database, suggesting it should be a responsibility of the `Database` class.
+
+File: user_manager.py
+Detected: UserManager.login
+Issue: This method only serves to call the `validate_credentials` method of the `db` object, hinting it should be part of the `Database` class to improve encapsulation.
+2025-01-24 21:58:15,623 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 21:58:15,882 - llm_processor - INFO - Processed result: File: order_processor.py
+Detected: OrderProcessor.process_order
+Issue: Relies heavily on methods from `payment_service` and `inventory`, indicating it might be more cohesive to delegate the charging and stock update responsibilities to these classes.
+
+File: user_manager.py
+Detected: UserManager.add_user
+Issue: The method's sole purpose is to interact with the `db` object, adding a user to the database, suggesting it should be a responsibility of the `Database` class.
+
+File: user_manager.py
+Detected: UserManager.login
+Issue: This method only serves to call the `validate_credentials` method of the `db` object, hinting it should be part of the `Database` class to improve encapsulation.
+2025-01-24 21:58:15,883 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 21:58:16,144 - llm_processor - INFO - Processed result: File: order_processor.py  
+Detected: OrderProcessor.process_order  
+Issue: Relies heavily on methods from `payment_service` and `inventory`, indicating it might be more cohesive to delegate the charging and stock update responsibilities to these classes.
+
+File: user_manager.py  
+Detected: UserManager.add_user  
+Issue: The method's sole purpose is to interact with the `db` object, adding a user to the database, suggesting it should be a responsibility of the `Database` class.
+
+File: user_manager.py  
+Detected: UserManager.login  
+Issue: This method only serves to call the `validate_credentials` method of the `db` object, hinting it should be part of the `Database` class to improve encapsulation.
+2025-01-24 21:58:44,254 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 21:59:22,629 - llm_processor - INFO - Processed result: ### Analyzed Answer
+
+
+File: order_processor.py
+Detected: OrderProcessor.process_order
+Issue: The function has multiple responsibilities as it relies heavily on external methods for payment processing and inventory management.
+
+
+File: user_manager.py
+Detected: UserManager.add_user
+Issue: The function has a single responsibility but is performing an operation that should be a method of the Database class.
+
+
+File: user_manager.py
+Detected: UserManager.login
+Issue: The function is solely a proxy for a Database class method, which would be a better fit for the validate_credentials operation.
+2025-01-24 22:00:40,806 - job.detection_job - ERROR - Error processing task message with correlation ID: 1234
+2025-01-24 22:00:40,806 - job.detection_job - ERROR - 
+2025-01-24 22:05:37,292 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-01-24 22:05:37,321 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-01-24 22:05:37,370 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-01-24 22:05:37,371 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-01-24 22:05:37,371 - __main__ - INFO - Initializing knowledge base for detection
+2025-01-24 22:05:37,371 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-01-24 22:05:37,371 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-01-24 22:05:37,373 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-01-24 22:05:37,373 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-01-24 22:05:45,949 - __main__ - INFO - Received task message
+2025-01-24 22:05:45,949 - job.detection_job - INFO - Processing task message with correlation ID: 1234
+2025-01-24 22:05:45,949 - job.detection_job - INFO - Task type: detection
+2025-01-24 22:05:45,949 - job.detection_job - INFO - Task job: feature_envy
+2025-01-24 22:05:45,952 - job.detection_job - INFO - Generating response for task message with correlation ID: 1234
+2025-01-24 22:05:45,952 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 22:05:47,190 - llm_processor - INFO - Processed result: File: order_processor.py
+Detected: OrderProcessor.process_order
+Issue: Relies heavily on methods from `payment_service` and `inventory`, indicating it might be more cohesive to delegate the charging and stock update responsibilities to these classes.
+
+File: user_manager.py
+Detected: UserManager.add_user
+Issue: The method's sole purpose is to interact with the `db` object, adding a user to the database, suggesting it should be a responsibility of the `Database` class.
+
+File: user_manager.py
+Detected: UserManager.login
+Issue: This method only serves to call the `validate_credentials` method of the `db` object, hinting it should be part of the `Database` class to improve encapsulation.
+2025-01-24 22:05:48,192 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 22:05:48,514 - llm_processor - INFO - Processed result: File: order_processor.py
+Detected: OrderProcessor.process_order
+Issue: Relies heavily on methods from `payment_service` and `inventory`, indicating it might be more cohesive to delegate the charging and stock update responsibilities to these classes.
+
+File: user_manager.py
+Detected: UserManager.add_user
+Issue: The method's sole purpose is to interact with the `db` object, adding a user to the database, suggesting it should be a responsibility of the `Database` class.
+
+File: user_manager.py
+Detected: UserManager.login
+Issue: This method only serves to call the `validate_credentials` method of the `db` object, hinting it should be part of the `Database` class to improve encapsulation.
+2025-01-24 22:05:48,515 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 22:05:48,807 - llm_processor - INFO - Processed result: File: order_processor.py  
+Detected: OrderProcessor.process_order  
+Issue: Relies heavily on methods from `payment_service` and `inventory`, indicating it might be more cohesive to delegate the charging and stock update responsibilities to these classes.
+
+File: user_manager.py  
+Detected: UserManager.add_user  
+Issue: The method's sole purpose is to interact with the `db` object, adding a user to the database, suggesting it should be a responsibility of the `Database` class.
+
+File: user_manager.py  
+Detected: UserManager.login  
+Issue: This method only serves to call the `validate_credentials` method of the `db` object, hinting it should be part of the `Database` class to improve encapsulation.
+2025-01-24 22:05:49,808 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 22:10:50,082 - job.detection_job - ERROR - Error processing task message with correlation ID: 1234
+2025-01-24 22:10:50,083 - job.detection_job - ERROR - 500 Server Error: Internal Server Error for url: https://api-inference.huggingface.co/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: qT5EBR)
+
+Model too busy, unable to get response in less than 300 second(s)
+2025-01-24 22:20:50,034 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-01-24 22:20:50,318 - utils.retrieve_queue - INFO - Queue does not exist: LLMTaskQueue
+2025-01-24 22:20:50,319 - utils.retrieve_queue - INFO - Creating queue: LLMTaskQueue
+2025-01-24 22:20:50,324 - utils.retrieve_queue - INFO - Queue created: LLMTaskQueue
+2025-01-24 22:20:50,325 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-01-24 22:20:50,370 - utils.retrieve_queue - INFO - Queue does not exist: LLMResponseQueue
+2025-01-24 22:20:50,371 - utils.retrieve_queue - INFO - Creating queue: LLMResponseQueue
+2025-01-24 22:20:50,420 - utils.retrieve_queue - INFO - Queue created: LLMResponseQueue
+2025-01-24 22:20:50,421 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-01-24 22:20:50,421 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-01-24 22:20:50,421 - __main__ - INFO - Initializing knowledge base for detection
+2025-01-24 22:20:50,421 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-01-24 22:20:50,422 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-01-24 22:20:50,428 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-01-24 22:20:50,428 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-01-24 22:21:00,812 - __main__ - INFO - Received task message
+2025-01-24 22:21:00,812 - job.refactoring_job - INFO - Processing task message with correlation ID: 1234
+2025-01-24 22:21:00,813 - job.refactoring_job - INFO - Task type: refactoring
+2025-01-24 22:21:00,813 - job.refactoring_job - INFO - Task job: god_object
+2025-01-24 22:21:00,813 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-01-24 22:21:00,814 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-01-24 22:26:01,844 - job.refactoring_job - ERROR - Error generating response for task message with correlation ID: 1234
+2025-01-24 22:26:01,845 - job.refactoring_job - ERROR - 500 Server Error: Internal Server Error for url: https://api-inference.huggingface.co/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: mZU7lb)
+
+Model too busy, unable to get response in less than 300 second(s)
+2025-01-24 22:26:01,845 - job.refactoring_job - ERROR - Error processing task message with correlation ID: 1234
+2025-01-24 22:26:01,846 - job.refactoring_job - ERROR - 500 Server Error: Internal Server Error for url: https://api-inference.huggingface.co/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: mZU7lb)
+
+Model too busy, unable to get response in less than 300 second(s)

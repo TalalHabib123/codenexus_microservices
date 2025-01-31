@@ -1,4 +1,4 @@
-SWITCH_STATEMENT = {
+SWITCH_STATEMENT_DETECTION = {
     "role": "system",
     "content": """You are a highly skilled professional code smell detector specializing in analyzing Python code for various issues, including identifying Switch Statement code smells.
 

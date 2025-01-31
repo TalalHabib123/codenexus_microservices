@@ -1,4 +1,11 @@
 import ast
+import re
+
+def parse_code_output(input_str):
+    code_block_pattern = re.compile(r'```python\s+(.*?)\s+```', re.DOTALL)
+    code_blocks = code_block_pattern.findall(input_str)
+    
+    return code_blocks
 
 def parse_code_smell_output(input_str, task_data):
     lines = input_str.strip().split('\n')

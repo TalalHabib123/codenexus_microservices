@@ -10,6 +10,8 @@ from utils.content_prompt.detection import (
 
 from utils.content_prompt.refactoring import (
     god_object_content as god_object_refactoring,
+    large_fucntion_content as large_function_refactoring,
+    temporary_field_content as temporary_field_refactoring,
 )
 
 content_detection_prompts = {
@@ -24,5 +26,7 @@ content_detection_prompts = {
 
 
 content_refactoring_prompts = {
-    "god_object": god_object_refactoring.create_god_object_content
+    "god_object": god_object_refactoring.create_god_object_content,
+    "large_function": large_function_refactoring.create_long_function_content,
+    "temporary_field": temporary_field_refactoring.create_temporary_field_content
 }

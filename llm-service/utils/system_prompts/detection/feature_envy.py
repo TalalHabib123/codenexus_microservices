@@ -29,5 +29,5 @@ Detected: `update_inventory`
 Issue: Function directly modifies the attributes of `Warehouse` objects, bypassing encapsulation and violating separation of concerns.
 
 Ensure your responses are strictly in this format, without additional commentary or analysis outside the requested details.
-                """
+"""
 }

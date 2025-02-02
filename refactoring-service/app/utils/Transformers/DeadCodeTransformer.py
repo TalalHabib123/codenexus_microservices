@@ -7,7 +7,10 @@ class DeadObjectRemover(ast.NodeTransformer):
         
     def visit_FunctionDef(self, node):
         # Remove the function if its name matches the dead object
-        if self.entity_type == "function" and node.name == self.dead_object:
+        print(self.dead_object == node.name, self.dead_object, node.name, type(self.dead_object),type(node.name) )
+        print(self.entity_type == "function")
+        if self.entity_type.strip() == "function" and node.name.strip() == self.dead_object.strip():
+            print("Removing function")
             return None
         # Process the function body
         node.body = [stmt for stmt in node.body if not self.is_dead_object(stmt)]
@@ -16,7 +19,7 @@ class DeadObjectRemover(ast.NodeTransformer):
         return self.generic_visit(node)
     def visit_ClassDef(self, node):
         # Remove the class if its name matches the dead object
-        if self.entity_type == "class" and node.name == self.dead_object:
+        if self.entity_type.strip() == "class" and node.name.strip() == self.dead_object.strip():
             return None
         # Process the class body
         node.body = [stmt for stmt in node.body if not self.is_dead_object(stmt)]

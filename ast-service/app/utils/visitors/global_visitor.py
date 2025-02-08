@@ -199,7 +199,7 @@ class GlobalVisitor(ast.NodeVisitor):
             self.check_func_convention(node)
         elif isinstance(node, ast.ClassDef):
             self.check_class_convention(node)
-        elif isinstance(node, ast.Name):
+        elif isinstance(node, ast.Name) and isinstance(node.ctx, ast.Store):
             self.check_var_convention(node)
 
 

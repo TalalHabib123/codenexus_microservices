@@ -56,6 +56,7 @@ class DeadCodeRefactorRequest(BaseModel):
 
 class RefactorResponse(BaseModel):
     refactored_code: str
+    dependencies: Optional[List[Dependency]] = None
     success: bool = True
-    error: Optional[str] = None
+    error: Optional[str] = None 
     

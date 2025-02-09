@@ -59,3 +59,16 @@ class RefactorResponse(BaseModel):
     success: bool = True
     error: Optional[str] = None
     
+class PartialMappingRequest(BaseModel):
+    orginal_code: str
+    modified_code: str
+    name: str
+
+class CompleteMappingRequest(BaseModel):
+    orginal_code: str
+    modified_code: str
+    
+class MappingResponse(BaseModel):
+    refactored_code: str
+    success: bool = True
+    error: Optional[str] = None

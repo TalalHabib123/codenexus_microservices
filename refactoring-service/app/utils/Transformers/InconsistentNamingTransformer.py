@@ -11,6 +11,8 @@ class NamingRefactorer(ast.NodeTransformer):
         self.refactor_vars = refactor_vars
         self.imported_names = set()
         self.defined_classes = set()
+        self.defined_functions = set() 
+        self.defined_variables = set()
         self.instance_to_class = {}  # Track variable-to-class mapping
         self.name_mappings = {}  # Store the mappings of original names to refactored names
 
@@ -25,63 +27,39 @@ class NamingRefactorer(ast.NodeTransformer):
         return node
 
     def visit_FunctionDef(self, node):
-        if self.refactor_functions and node.name not in self.imported_names:
-            original_name = node.name
-            node.name = self.refactor_name(node.name, self.target_convention)
-            self.store_mapping(original_name, node.name)
-
-        for arg in node.args.args:
-            if arg.arg not in self.imported_names:
-                original_name = arg.arg
-                arg.arg = self.refactor_name(arg.arg, self.target_convention)
-                self.store_mapping(original_name, arg.arg)
-
-        # Handle type annotations
-        if node.args.args:
-            for arg in node.args.args:
-                if arg.annotation:
-                    self.generic_visit(arg.annotation)
-
-        # Refactor docstrings
-        if ast.get_docstring(node):
-            docstring_node = node.body[0]
-            if isinstance(docstring_node, ast.Expr) and isinstance(docstring_node.value, ast.Str):
-                original_docstring = docstring_node.value.s
-                docstring_node.value.s = self.refactor_docstring(docstring_node.value.s, self.target_convention)
-
+        self.defined_functions.add(node.name)
+        refactored_name = self.refactor_name(node.name, self.target_convention)
+        node.name = refactored_name
+        print(refactored_name)
+        self.name_mappings[node.name] = refactored_name
         self.generic_visit(node)
         return node
 
     def visit_ClassDef(self, node):
-        if node.name not in self.imported_names:
-            self.defined_classes.add(node.name)
-            if self.refactor_classes:
-                original_name = node.name
-                node.name = self.pascal_case(node.name)
-                self.store_mapping(original_name, node.name)
-
+        self.defined_classes.add(node.name)
+        refactored_name = self.pascal_case(node.name)
+        node.name = refactored_name
+        self.name_mappings[node.name] = refactored_name
         self.generic_visit(node)
         return node
 
     def visit_Assign(self, node):
-        if isinstance(node.value, ast.Call) and isinstance(node.value.func, ast.Name):
-            func_name = node.value.func.id
-            if func_name in self.defined_classes:
-                for target in node.targets:
-                    if isinstance(target, ast.Name):
-                        self.instance_to_class[target.id] = func_name
         self.generic_visit(node)
         return node
 
     def visit_Name(self, node):
-        if node.id in self.defined_classes:
-            original_name = node.id
-            node.id = self.pascal_case(node.id)
-            self.store_mapping(original_name, node.id)
-        elif self.refactor_vars and node.id not in self.imported_names:
-            original_name = node.id
-            node.id = self.refactor_name(node.id, self.target_convention)
-            self.store_mapping(original_name, node.id)
+        if isinstance (node.ctx, ast.Store):
+            self.defined_variables.add(node.id)
+            self.refactor_name(node.id, self.target_convention)
+        if isinstance (node.ctx, ast.Load):
+            if node.id in self.defined_classes:
+                original_name = node.id
+                node.id = self.pascal_case(node.id)
+                self.store_mapping(original_name, node.id)
+            elif node.id in self.defined_functions or node.id in self.defined_variables:
+                original_name = node.id
+                node.id = self.refactor_name(node.id, self.target_convention)
+                self.store_mapping(original_name, node.id)
         return node
 
     def visit_Attribute(self, node):

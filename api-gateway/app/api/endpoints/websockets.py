@@ -15,6 +15,8 @@ from app.service.endpoints_url import (
     REFACTOR_SERVICE_URL
 )
 
+from app.service.refactor_mapping_keys import MAPPING_KEYS
+
 websocket_gateway_router = APIRouter()
 
 # SQS client configuration (Using LocalStack)
@@ -47,6 +49,7 @@ response_queue_url = get_or_create_queue('LLMResponseQueue')
 
 # Store WebSocket connections mapped by correlation IDs
 ws_connections = {}
+refactoring_tasks = {}
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -113,6 +116,7 @@ async def send_task_to_llm(correlation_id: str, task_type: str, task_job: str, t
     if task_type == 'detection':
         return await forward_task_to_service(DETECTION_SERVICE_URL + "/forward-task", task_message)
     elif task_type == 'refactoring':
+        refactoring_tasks[correlation_id] = task_data
         return await forward_task_to_service(REFACTOR_SERVICE_URL + "/forward-task", task_message)
     else:
         return False
@@ -129,7 +133,66 @@ async def forward_task_to_service(service_url: str, task_message: dict) -> bool:
     except Exception as e:
         print(f"Exception during forwarding task: {e}")
         return False
+    
+async def process_detection_response(message_body: dict):
+    correlation_id = message_body['correlation_id']
+    processed_data = message_body['processed_data']
+    task_status = message_body['task_status']
+    task_type = message_body['task_type']
+    task_job = message_body['task_job']
+    
 
+    websocket = ws_connections.get(correlation_id)
+    if websocket:
+        await websocket.send_text(json.dumps({
+            "task_status": task_status,
+            "correlation_id": correlation_id,
+            "processed_data": processed_data,
+            "task_type": task_type,
+            "task_job": task_job
+        }))
+        del ws_connections[correlation_id]
+        await websocket.close(code=1000)
+        
+async def process_refactoring_response(message_body: dict):
+    correlation_id = message_body['correlation_id']
+    processed_data = message_body['processed_data']
+    task_status = message_body['task_status']
+    task_type = message_body['task_type']
+    task_job = message_body['task_job']
+    
+
+    websocket = ws_connections.get(correlation_id)
+    refactoring_job = refactoring_tasks.get(correlation_id)
+    task_message = MAPPING_KEYS[task_job](processed_data, refactoring_job)
+    if websocket:
+        final_data = {
+            "file_path": refactoring_job['file_path'],
+        }
+        try:
+            async with httpx.AsyncClient() as client:
+                response = await client.post(f"{REFACTOR_SERVICE_URL}/mapping/{task_job}", json=task_message)
+                if response.status_code == 200:
+                    final_data['code_snippet'] = response.json()['refactored_code']
+                    processed_data = final_data
+                else:
+                    final_data['code_snippet'] = refactoring_job['code_snippet']
+                    processed_data = final_data
+                    task_status = "failed"
+        except Exception as e:
+            final_data['code_snippet'] = refactoring_job['code_snippet']
+            processed_data = final_data
+            task_status = "failed"
+        
+        await websocket.send_text(json.dumps({
+            "task_status": task_status,
+            "correlation_id": correlation_id,
+            "processed_data": processed_data,
+            "task_type": task_type,
+            "task_job": task_job
+        }))
+        del ws_connections[correlation_id]
+        await websocket.close(code=1000)
 
 async def consume_response_queue():
     while True:
@@ -138,25 +201,11 @@ async def consume_response_queue():
         
         if messages:
             message_body = json.loads(messages[0]['Body'])
-            correlation_id = message_body['correlation_id']
-            processed_data = message_body['processed_data']
-            task_status = message_body['task_status']
-            task_type = message_body['task_type']
-            task_job = message_body['task_job']
+            if message_body['task_type'] == 'detection':
+                await process_detection_response(message_body)
             
-
-            websocket = ws_connections.get(correlation_id)
-            if websocket:
-                await websocket.send_text(json.dumps({
-                    "task_status": task_status,
-                    "correlation_id": correlation_id,
-                    "processed_data": processed_data,
-                    "task_type": task_type,
-                    "task_job": task_job
-                }))
-                del ws_connections[correlation_id]
-                await websocket.close(code=1000)
-            
+            elif message_body['task_type'] == 'refactoring':
+                await process_refactoring_response(message_body)
 
             sqs.delete_message(QueueUrl=response_queue_url, ReceiptHandle=messages[0]['ReceiptHandle'])
 

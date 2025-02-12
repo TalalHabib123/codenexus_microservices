@@ -7,6 +7,7 @@ from app.service.end_point_urls import (
 import boto3
 import json
 from botocore.exceptions import ClientError
+from app.utils.forwarding_keys import FORWARDING_KEYS
 
 sqs = boto3.client(
     'sqs', 
@@ -35,10 +36,14 @@ def get_or_create_queue(queue_name):
 task_queue_url = get_or_create_queue('LLMTaskQueue')
 
 async def send_task_to_llm(correlation_id: str, task_type: str, task_job: str, task_data: dict):
+    data = FORWARDING_KEYS[task_job](task_data)
+    if not data:
+        raise Exception("Data extraction failed")
+    
     task_message = {
         'correlation_id': correlation_id,
         'task_type': task_type,
-        'task_data': task_data, 
+        'task_data': data, 
         'task_job': task_job
     }
 

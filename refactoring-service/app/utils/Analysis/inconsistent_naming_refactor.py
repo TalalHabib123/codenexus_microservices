@@ -8,7 +8,7 @@ from app.utils.utils.Def_Collector import DefinitionCollector
 
 def inconsistent_naming_refactor( code, target_convention, dependencies=None):  
     tree = ast.parse(code)
-    def_tree = DefinitionCollector(tree)
+    def_tree = DefinitionCollector()
     def_tree.visit(tree)
     definitions = def_tree.get_definitions()
     refactorer = NamingRefactorer(target_convention)

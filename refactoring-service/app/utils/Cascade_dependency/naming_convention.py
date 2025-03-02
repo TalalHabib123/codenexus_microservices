@@ -10,6 +10,7 @@ def cascade_naming_refactor_values(dependency, mappings):
             if w.source == "Exporting":
                 dep_list.append(w.name)
         dep_ast = ast.parse(dep.fileContent)
+        
         dep_refactorer = NamingRefactorer(mappings, dep_list)
         refactored_dep_ast = dep_refactorer.visit(dep_ast)
         ast.fix_missing_locations(refactored_dep_ast)

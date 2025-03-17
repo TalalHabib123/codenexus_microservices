@@ -43,8 +43,6 @@ def get_or_create_queue(queue_name):
             exit(1)
     return queue_url
 
-
-# response_queue_url = sqs.create_queue(QueueName='LLMResponseQueue')['QueueUrl']
 response_queue_url = get_or_create_queue('LLMResponseQueue')
 
 # Store WebSocket connections mapped by correlation IDs
@@ -103,7 +101,6 @@ async def websocket_endpoint(websocket: WebSocket):
 
     except WebSocketDisconnect:
         print(f"Client disconnected: {websocket.client}")
-
 
 async def send_task_to_llm(correlation_id: str, task_type: str, task_job: str, task_data: dict) -> bool:
     task_message = {

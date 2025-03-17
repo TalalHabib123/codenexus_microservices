@@ -12,6 +12,9 @@ from utils.content_prompt.refactoring import (
     god_object_content as god_object_refactoring,
     large_fucntion_content as large_function_refactoring,
     temporary_field_content as temporary_field_refactoring,
+    duplicate_code_content as duplicate_code_refactoring,
+    complex_conditionals_content as complex_conditionals_refactoring,
+    global_variable_content as global_variable_refactoring,
 )
 
 content_detection_prompts = {
@@ -28,5 +31,8 @@ content_detection_prompts = {
 content_refactoring_prompts = {
     "god_object": god_object_refactoring.create_god_object_content,
     "large_function": large_function_refactoring.create_long_function_content,
-    "temporary_field": temporary_field_refactoring.create_temporary_field_content
+    "temporary_field": temporary_field_refactoring.create_temporary_field_content,
+    "duplicate_code": duplicate_code_refactoring.create_duplicate_code_content,
+    "conditionals": complex_conditionals_refactoring.create_overly_complex_conditionals_content,
+    "global_conflict": global_variable_refactoring.create_global_variable_conflict_content,
 }

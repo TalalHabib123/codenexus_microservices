@@ -30,7 +30,7 @@ content_detection_prompts = {
 
 content_refactoring_prompts = {
     "god_object": god_object_refactoring.create_god_object_content,
-    "large_function": large_function_refactoring.create_long_function_content,
+    "long_function": large_function_refactoring.create_long_function_content,
     "temporary_field": temporary_field_refactoring.create_temporary_field_content,
     "duplicate_code": duplicate_code_refactoring.create_duplicate_code_content,
     "conditionals": complex_conditionals_refactoring.create_overly_complex_conditionals_content,

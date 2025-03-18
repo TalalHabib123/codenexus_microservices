@@ -2,6 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
+// const GoogleController = require('./controller/google.controller');
+// const passport = require('passport');
+
 const authRoutes = require('./routes/auth.route');
 
 // Create Express app
@@ -9,6 +12,10 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+
+
+// GoogleController.configureGoogleStrategy();
+
 app.use(cors({
   origin: '*',  // adjust as needed
   credentials: true

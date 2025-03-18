@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const GithubAuthController = require('../controller/github.auth.controller');
 const AuthController = require('../controller/auth.controller');
+const GoogleController = require('../controller/google.controller');
 
 // GitHub OAuth routes
 router.get('/github/login', (req, res) => {
@@ -47,5 +48,12 @@ router.post('/login', async (req, res) => {
     res.status(400).json({ detail: error.message });
   }
 });
+
+
+// router.get("/google/login", GoogleController.initiateGoogleAuth);
+// router.get("/google/callback", GoogleController.handleCallBack);
+// router.get("/current_user", GoogleController.getCurrentUser);
+// router.get("/logout", GoogleController.logout);
+
 
 module.exports = router;

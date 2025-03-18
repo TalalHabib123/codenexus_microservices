@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const User = require('../models/User');
+const User = require('../mongo_models/User');
 
 const authController = {
   hashPassword: async (password) => {

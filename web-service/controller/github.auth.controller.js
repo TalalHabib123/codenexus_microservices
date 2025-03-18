@@ -1,7 +1,7 @@
 const axios = require('axios');
 const crypto = require('crypto');
 require('dotenv').config();
-const User = require('../models/User');
+const User = require('../mongo_models/User');
 
 // Set up encryption
 const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY;

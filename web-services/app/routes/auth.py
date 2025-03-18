@@ -4,11 +4,17 @@ import requests
 import os
 from dotenv import load_dotenv
 from fastapi.responses import JSONResponse, RedirectResponse
+from cryptography.fernet import Fernet
+from app.models.auth import User
+
 
 # Load environment variables
 load_dotenv()
 
 router = APIRouter(prefix="/auth", tags=["auth"])
+ENCRYPTION_KEY = os.getenv("ENCRYPTION_KEY", Fernet.generate_key().decode())  # Generate key if not set
+print(f"Using encryption key: {ENCRYPTION_KEY}")
+fernet = Fernet(ENCRYPTION_KEY.encode())
 
 # Define a model for the code exchange request
 class GitHubCodeExchange(BaseModel):
@@ -41,9 +47,9 @@ async def github_exchange_code(code_exchange: GitHubCodeExchange):
         )
         
         token_data = response.json()
-        print(code_exchange)
-        print(token_data)
-        access_token = token_data.get("access_token")
+        print(f"Token data received: {token_data}")
+        access_token = token_data.get("access_token") if "access_token" in token_data else None
+        print(f"Access token: {access_token}")
         
         if not access_token:
             return JSONResponse(
@@ -56,12 +62,39 @@ async def github_exchange_code(code_exchange: GitHubCodeExchange):
             "https://api.github.com/user",
             headers={"Authorization": f"Bearer {access_token}"}
         ).json()
+        print("User info received from GitHub:", user_info)
+        github_id = user_info.get("id")
+        username = user_info.get("login")
+        email = user_info.get("email") if "email" in user_info else None
+        split_name = user_info.get("name", "").split()
+        first_name = split_name[0] if len(split_name) > 0 else None
+        last_name = split_name[1] if len(split_name) > 1 else None
+        encrypted_access_token = fernet.encrypt(access_token.encode()).decode()
+        
+        existing_user = User.objects(github_id=github_id).first()
+        
+        if existing_user:
+            # Update existing user with new access token
+            existing_user.encrypted_access_token = encrypted_access_token
+            existing_user.save()
+        else:
+            # Create a new user
+            new_user = User(
+                username=username,
+                email=email,
+                github_id=github_id,
+                encrypted_access_token=encrypted_access_token,
+                first_name=first_name,
+                last_name=last_name
+            )
+            new_user.save()
         
         return {
             "msg": "GitHub OAuth success",
             "access_token": access_token,
-            "user": user_info
+            "user": user_info, 
         }
         
     except Exception as e:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
+    

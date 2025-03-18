@@ -2078,3 +2078,173 @@ Model too busy, unable to get response in less than 300 second(s)
 2025-01-24 22:26:01,846 - job.refactoring_job - ERROR - 500 Server Error: Internal Server Error for url: https://api-inference.huggingface.co/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: mZU7lb)
 
 Model too busy, unable to get response in less than 300 second(s)
+2025-03-18 20:08:55,425 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-03-18 20:08:55,897 - utils.retrieve_queue - INFO - Queue does not exist: LLMTaskQueue
+2025-03-18 20:08:55,898 - utils.retrieve_queue - INFO - Creating queue: LLMTaskQueue
+2025-03-18 20:08:55,906 - utils.retrieve_queue - INFO - Queue created: LLMTaskQueue
+2025-03-18 20:08:55,906 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-03-18 20:08:55,951 - utils.retrieve_queue - INFO - Queue does not exist: LLMResponseQueue
+2025-03-18 20:08:55,952 - utils.retrieve_queue - INFO - Creating queue: LLMResponseQueue
+2025-03-18 20:08:56,005 - utils.retrieve_queue - INFO - Queue created: LLMResponseQueue
+2025-03-18 20:08:56,006 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-03-18 20:08:56,006 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-03-18 20:08:56,007 - __main__ - INFO - Initializing knowledge base for detection
+2025-03-18 20:08:56,007 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-03-18 20:08:56,008 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-03-18 20:08:56,019 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-03-18 20:08:56,019 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-03-18 20:09:54,235 - __main__ - INFO - Received task message
+2025-03-18 20:09:54,235 - job.refactoring_job - INFO - Processing task message with correlation ID: 1234
+2025-03-18 20:09:54,236 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-18 20:09:54,236 - job.refactoring_job - INFO - Task job: long_function
+2025-03-18 20:09:54,236 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-18 20:09:54,237 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-18 20:09:55,162 - job.refactoring_job - ERROR - Error generating response for task message with correlation ID: 1234
+2025-03-18 20:09:55,162 - job.refactoring_job - ERROR - 422 Client Error: Unprocessable Entity for url: https://api-inference.huggingface.co/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67d98cc1-7d85e12411de1ba36832bc8b;21d146e5-44af-492c-8626-6f5bcf2860d2)
+
+Failed to deserialize the JSON body into the target type: messages[1]: invalid type: null, expected struct Message at line 1 column 2143
+2025-03-18 20:09:55,163 - job.refactoring_job - ERROR - Error processing task message with correlation ID: 1234
+2025-03-18 20:09:55,163 - job.refactoring_job - ERROR - 422 Client Error: Unprocessable Entity for url: https://api-inference.huggingface.co/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67d98cc1-7d85e12411de1ba36832bc8b;21d146e5-44af-492c-8626-6f5bcf2860d2)
+
+Failed to deserialize the JSON body into the target type: messages[1]: invalid type: null, expected struct Message at line 1 column 2143
+2025-03-18 20:10:51,042 - __main__ - INFO - Received task message
+2025-03-18 20:10:51,044 - job.refactoring_job - INFO - Processing task message with correlation ID: 1234
+2025-03-18 20:10:51,044 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-18 20:10:51,044 - job.refactoring_job - INFO - Task job: god_object
+2025-03-18 20:10:51,045 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-18 20:10:51,045 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-18 20:11:20,892 - llm_processor - INFO - Processed result: ```python
+# Extracted Engine class to handle car's engine-related operations
+class Engine:
+    def __init__(self):
+        self.is_running = False
+        self.is_parked = True
+
+    def start(self):
+        """
+        Starts the car's engine if it's parked.
+        """
+        if self.is_parked:
+            self.is_running = True
+            self.is_parked = False
+            print("The car has started.")
+        else:
+            print("You can't start the car while it's already running or not parked.")
+
+    def stop(self):
+        """
+        Stops the car's engine if it's running.
+        """
+        if self.is_running:
+            self.is_running = False
+            self.is_parked = True
+            print("The car has stopped.")
+        else:
+            print("You can't stop the car while it's not running or already parked.")
+
+
+# Extracted Transmission class to handle car's transmission-related operations
+class Transmission:
+    def __init__(self, engine):
+        self.engine = engine
+
+    def accelerate(self, speed):
+        """
+        Accelerates the car if the engine is running and not parked.
+        """
+        if self.engine.is_running and not self.engine.is_parked:
+            print(f"The car is accelerating to {speed} mph.")
+        else:
+            print("You can't accelerate while the car is not running or parked.")
+
+    def brake(self):
+        """
+        Brakes the car if the engine is running and not parked.
+        """
+        if self.engine.is_running and not self.engine.is_parked:
+            print("The car is braking.")
+        else:
+            print("You can't brake while the car is not running or parked.")
+
+
+# Extracted Maintenance class to handle car's maintenance-related operations
+class Maintenance:
+    def tune_up(self):
+        """
+        Performs a tune-up on the car.
+        """
+        print("The car has had a tune-up.")
+
+    def repair_engine(self):
+        """
+        Repairs the car's engine.
+        """
+        print("The engine has been repaired.")
+
+    def replace_tires(self):
+        """
+        Replaces the car's tires.
+        """
+        print("The tires have been replaced.")
+
+
+# Extracted Appearance class to handle car's appearance-related operations
+class Appearance:
+    def __init__(self, color):
+        self.color = color
+
+    def paint(self, new_color):
+        """
+        Changes the car's color.
+        """
+        self.color = new_color
+        print(f"The car has been painted {new_color}.")
+
+
+# Main Car class, now more cohesive and following SRP
+class Car:
+    def __init__(self, make, model, year, color):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.engine = Engine()
+        self.transmission = Transmission(self.engine)
+        self.maintenance = Maintenance()
+        self.appearance = Appearance(color)
+
+    def start(self):
+        self.engine.start()
+
+    def stop(self):
+        self.engine.stop()
+
+    def accelerate(self, speed):
+        self.transmission.accelerate(speed)
+
+    def brake(self):
+        self.transmission.brake()
+
+    def paint(self, new_color):
+        self.appearance.paint(new_color)
+
+    def tune_up(self):
+        self.maintenance.tune_up()
+
+    def repair_engine(self):
+        self.maintenance.repair_engine()
+
+    def replace_tires(self):
+        self.maintenance.replace_tires()
+```
+
+In this refactored version, the `Car` class is more cohesive and follows the Single Responsibility Principle (SRP). The original `Car` class has been broken down into several smaller classes, each with its own specific responsibilities:
+
+*   The `Engine` class handles the car's engine-related operations.
+*   The `Transmission` class handles the car's transmission-related operations.
+*   The `Maintenance` class handles the car's maintenance-related operations.
+*   The `Appearance` class handles the car's appearance-related operations.
+
+Each of these classes has a single responsibility and is easier to understand and maintain. The `Car` class now acts as a facade, delegating operations to the corresponding classes. This refactoring improves the overall structure and readability of the code.
+2025-03-18 20:11:20,893 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-18 20:11:20,894 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-18 20:11:21,468 - llm_processor - INFO - Processed result: None

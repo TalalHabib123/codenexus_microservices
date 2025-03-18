@@ -1,6 +1,0 @@
-fastapi[all]
-pydantic 
-requests
-python-dotenv
-authlib
-mongoengine

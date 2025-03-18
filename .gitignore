@@ -3,3 +3,5 @@
 **/.env
 llm-service/logs/app.log
 llm-service/logs/app.log
+web-service/node_modules
+web-service/package-lock.json

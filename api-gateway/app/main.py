@@ -11,7 +11,7 @@ import logging
 from app.api.endpoints.detection import detecton_gateway_router
 from app.api.endpoints.refactor import refactor_gateway_router
 from app.api.endpoints.websockets import websocket_gateway_router, lifespan   #Sockets Code For Iteration 2
-
+from app.api.endpoints.mongo import logging_gateway_router
 
 app = FastAPI(lifespan=lifespan) #  #Sockets Code For Iteration 2
 @app.exception_handler(RequestValidationError)
@@ -26,7 +26,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 app.include_router(detecton_gateway_router, prefix="/detection")
 app.include_router(refactor_gateway_router, prefix="/refactor")
 app.include_router(websocket_gateway_router, prefix="/websockets")    #Sockets Code For Iteration 2
-
+app.include_router(logging_gateway_router, prefix="/logs")
 @app.get("/")
 def health_check():
     return {"status": "ok"}

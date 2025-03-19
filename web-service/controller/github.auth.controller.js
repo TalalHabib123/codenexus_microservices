@@ -1,40 +1,7 @@
 const axios = require("axios");
-const crypto = require("crypto");
 require("dotenv").config();
 const User = require("../mongo_models/User");
-
-// Set up encryption
-const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY;
-if (!ENCRYPTION_KEY) {
-  throw new Error("Missing ENCRYPTION_KEY in environment variables");
-}
-
-// Create cipher for encryption
-const algorithm = "aes-256-cbc";
-const key = crypto.scryptSync(ENCRYPTION_KEY, "salt", 32);
-const iv = crypto.randomBytes(16);
-
-
-
-// Helper functions for token encryption/decryption
-const encryptToken = (token) => {
-    const iv = crypto.randomBytes(16);
-    const cipher = crypto.createCipheriv(algorithm, key, iv);
-    let encrypted = cipher.update(token, 'utf8', 'hex');
-    encrypted += cipher.final('hex');
-    return iv.toString('hex') + ':' + encrypted;
-  };
-  
-const decryptToken = (encryptedToken) => {
-    const [ivHex, encryptedHex] = encryptedToken.split(':');
-    const iv = Buffer.from(ivHex, 'hex');
-    const decipher = crypto.createDecipheriv(algorithm, key, iv);
-    let decrypted = decipher.update(encryptedHex, 'hex', 'utf8');
-    decrypted += decipher.final('utf8');
-    return decrypted;
-  };
-
-
+const authService = require('../services/auth.service');
 
 const GithubAuthController = {
   /**
@@ -58,9 +25,10 @@ const GithubAuthController = {
   /**
    * Exchanges GitHub code for an access token and manages user data
    * @param {string} code - The authorization code from GitHub
+   * @param {Object} res - Express response object for cookie setting
    * @returns {Promise<Object>} Response with token and user info
    */
-  exchangeGithubCode: async (code) => {
+  exchangeGithubCode: async (code, res) => {
     try {
       // Exchange code for access token
       const tokenResponse = await axios.post(
@@ -80,6 +48,7 @@ const GithubAuthController = {
       const accessToken = tokenData.access_token;
       const refreshToken = tokenData.refresh_token;
       const expiresIn = tokenData.expires_in;
+      
       if (!accessToken) {
         return {
           error: "Failed to obtain access token",
@@ -100,26 +69,33 @@ const GithubAuthController = {
       // Split name if available
       const splitName = userInfo.name ? userInfo.name.split(" ") : [];
       const firstName = splitName.length > 0 ? splitName[0] : null;
-      const lastName = splitName.length > 1 ? splitName[1] : null;
+      const lastName = splitName.length > 1 ? splitName.slice(1).join(" ") : null;
 
-      // Encrypt the access token
-      const cipher = crypto.createCipheriv(algorithm, key, iv);
-      const encryptedAccessToken = encryptToken(accessToken);
-      const encryptedRefreshToken = encryptToken(refreshToken);
+      // Encrypt the OAuth tokens
+      const encryptedAccessToken = authService.encryptToken(accessToken);
+      const encryptedRefreshToken = refreshToken ? authService.encryptToken(refreshToken) : null;
+      
+      // Set token expiry date
       const expiryDate = new Date();
-      expiryDate.setSeconds(expiryDate.getSeconds() + expiresIn);
+      expiryDate.setSeconds(expiryDate.getSeconds() + (expiresIn || 28800)); // Default to 8 hours
 
       // Check if user exists
-      let existingUser = await User.findOne({ github_id: githubId });
-      let newUser = null;
+      let user = await User.findOne({ github_id: githubId });
 
-      if (existingUser) {
-        existingUser.encrypted_access_token = encryptedAccessToken;
-        existingUser.encrypted_refresh_token = encryptedRefreshToken;
-        existingUser.token_expiry = expiryDate;
-        await existingUser.save();
+      if (user) {
+        // Update existing user
+        user.encrypted_access_token = encryptedAccessToken;
+        user.encrypted_refresh_token = encryptedRefreshToken;
+        user.token_expiry = expiryDate;
+        // Update other fields that might have changed
+        if (email) user.email = email;
+        if (firstName) user.first_name = firstName;
+        if (lastName) user.last_name = lastName;
+        
+        await user.save();
       } else {
-        newUser = new User({
+        // Create new user
+        user = new User({
           username: username,
           email: email,
           github_id: githubId,
@@ -129,14 +105,23 @@ const GithubAuthController = {
           first_name: firstName,
           last_name: lastName,
         });
-        await newUser.save();
+        
+        await user.save();
+      }
+
+      // Generate JWT for our application
+      const jwtToken = authService.generateToken(user);
+      
+      // Set authentication cookies if response object is provided
+      if (res) {
+        authService.setAuthCookies(res, jwtToken);
       }
 
       return {
-        msg: "GitHub OAuth success",
-        access_token: accessToken,
-        user: userInfo,
-        new_user: newUser ? newUser.toDict() : existingUser.toDict(),
+        message: "GitHub authentication successful",
+        success: true,
+        user: user.toDict(),
+        token: jwtToken
       };
     } catch (error) {
       console.error(
@@ -147,19 +132,6 @@ const GithubAuthController = {
     }
   },
 
-  /**
-   * Decrypt an access token
-   * @param {string} encryptedToken - The encrypted token
-   * @returns {string} Decrypted access token
-   */
-  decryptAccessToken: (encryptedToken) => {
-    try {
-     return decryptToken(encryptedToken);
-    } catch (error) {
-      console.error("Decryption error:", error);
-      throw new Error("Failed to decrypt token");
-    }
-  },
   /**
    * Refreshes an access token using the refresh token
    * @param {string} userId - User ID to refresh token for
@@ -173,9 +145,7 @@ const GithubAuthController = {
       }
 
       // Decrypt refresh token
-      const refreshToken = GithubAuthController.decryptAccessToken(
-        user.encrypted_refresh_token
-      );
+      const refreshToken = authService.decryptToken(user.encrypted_refresh_token);
 
       // Request new access token
       const response = await axios.post(
@@ -197,8 +167,8 @@ const GithubAuthController = {
       const expiresIn = tokenData.expires_in || 28800;
 
       // Encrypt and store new tokens
-      const encryptedAccessToken = encryptToken(newAccessToken);
-      const encryptedRefreshToken = encryptToken(newRefreshToken);
+      const encryptedAccessToken = authService.encryptToken(newAccessToken);
+      const encryptedRefreshToken = authService.encryptToken(newRefreshToken);
 
       // Update expiration
       const expiryDate = new Date();
@@ -223,6 +193,11 @@ const GithubAuthController = {
     }
   },
 
+  /**
+   * Get a valid GitHub access token for a user
+   * @param {string} userId - User ID to get token for
+   * @returns {Promise<string>} Valid access token
+   */
   getValidAccessToken: async (userId) => {
     try {
       const user = await User.findById(userId);
@@ -241,15 +216,13 @@ const GithubAuthController = {
         return result.access_token;
       } else {
         // Token is still valid
-        return GithubAuthController.decryptAccessToken(user.encrypted_access_token);
+        return authService.decryptToken(user.encrypted_access_token);
       }
     } catch (error) {
       console.error("Error getting valid token:", error);
       throw new Error("Failed to get valid access token");
     }
-  },
-
-
+  }
 };
 
 module.exports = GithubAuthController;

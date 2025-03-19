@@ -6,7 +6,7 @@
     "token_uri": "https://oauth2.googleapis.com/token",
     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
     "client_secret": "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",
-    "redirect_uris": [""],
-    "javascript_origins": ["http://localhost:5173"]
+    "redirect_uris": ["http://localhost:5173/auth/google/callback"],
+    "javascript_origins": ["http://localhost:8000", "http://localhost:8004", "http://localhost:5173"]
   }
 }

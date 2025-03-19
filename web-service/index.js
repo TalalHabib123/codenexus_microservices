@@ -6,7 +6,8 @@ require('dotenv').config();
 // const passport = require('passport');
 
 const authRoutes = require('./routes/auth.route');
-
+const projectRoutes = require('./routes/project.route');
+const scanRoutes = require('./routes/scan.route');
 // Create Express app
 const app = express();
 
@@ -23,7 +24,8 @@ app.use(cors({
 
 // Routes
 app.use('/auth', authRoutes);
-
+app.use('/project', projectRoutes);
+app.use('/scan', scanRoutes);
 app.get('/', (req, res) => {
   res.json({ message: 'Hello from Express' });
 });

@@ -11,6 +11,8 @@ const UserSchema = new Schema({
   github_id: Number,
   google_id: String,
   encrypted_access_token: String,
+  encrypted_refresh_token: String,
+  token_expiry: Date,
   first_name: String,
   last_name: String,
   register_date: {

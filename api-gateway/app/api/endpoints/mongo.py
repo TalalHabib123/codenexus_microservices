@@ -3,7 +3,7 @@ import json
 from fastapi import APIRouter, HTTPException
 from app.mongo_models.Project import InitProjectRequest, express_respone
 from app.mongo_models.Detection import DetectionData
-
+from app.mongo_models.Refactor import RefactorData
 from app.service.endpoints_url import EXPRESS_URL
 
 logging_gateway_router = APIRouter()
@@ -30,10 +30,10 @@ async def gateway_detection(request: DetectionData):
 
 
 @logging_gateway_router.post("/refactor", response_model=express_respone)
-async def gateway_detection(request: DetectionData):
+async def gateway_detection(request: RefactorData):
     print("again")
-    async with httpx.AsyncClient(timeout=30.0) as client:
-        response = await client.post(f"{EXPRESS_URL}/scan/addRefactor", json=request.model_dump())
+    async with httpx.AsyncClient(timeout=120.0) as client:
+        response = await client.post(f"{EXPRESS_URL}/scan/addRefactor", json=request.model_dump(mode='json'))
     if response.status_code != 200:
         raise HTTPException(status_code=response.status_code, detail=response.text)
     return response.json()

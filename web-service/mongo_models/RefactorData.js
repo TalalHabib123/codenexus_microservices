@@ -62,12 +62,21 @@ const MagicNumbersDetailsSchema = new Schema({
     success: { type: Boolean, required: true },
     error: { type: String }
   });
+
+  const RefactorSchema = new Schema({
+    filePath: { type: String, required: true },
+    refactorData: { 
+      type: mongoose.Types.ObjectId,
+      ref: 'RefactoringData',
+      required: true
+    }
+  })
   
   // Create main models
   const RefactorRequest = mongoose.model('RefactorRequest', RefactorRequestSchema);
   const RefactorResponse = mongoose.model('RefactorResponse', RefactorResponseSchema);
   const RefactoringData = mongoose.model('RefactoringData', RefactoringDataSchema);
-  
+  const Refactor = mongoose.model('Refactor', RefactorSchema);
   // Create specific refactor request type models using discriminators
   const UnusedVariablesRefactorRequest = RefactorRequest.discriminator(
     'UnusedVariablesRefactorRequest',
@@ -118,5 +127,6 @@ const MagicNumbersDetailsSchema = new Schema({
     UnreachableCodeRequest,
     DeadCodeRefactorRequest,
     RefactorResponse,
-    RefactoringData
+    RefactoringData,
+    Refactor
   };

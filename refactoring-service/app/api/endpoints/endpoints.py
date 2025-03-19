@@ -33,6 +33,7 @@ async def unreachable_code(request: UnreachableCodeRequest):
 
 @refactor_router.post("/magic-numbers", response_model=RefactorResponse)
 async def magic_numbers(request: MagicNumberRefactorRequest):
+    
     result = refactor_magic_numbers(request.code, request.magic_numbers)
     if result is None:
         raise HTTPException(status_code=400, detail="Invalid code")

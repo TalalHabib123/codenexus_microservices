@@ -26,14 +26,14 @@ const ScanSchema = new mongoose.Schema({
     },
     detect_id: [
         {
-            type: mongoose.Schema.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'DetectionResponse'
         }
     ],
     refactor_id: [
         {
-            type: mongoose.Schema.ObjectId,
-            ref: 'RefactoringData'
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Refactor'
         }
     ]
 });

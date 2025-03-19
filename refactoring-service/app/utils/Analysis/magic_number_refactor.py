@@ -12,5 +12,7 @@ def magic_numbers_refactor (magic_numbers_to_refactor, source_code):
     inserter = AssignmentInserter(transformer.assignments)
     final_tree = inserter.visit(transformed_tree)
     ast.fix_missing_locations(final_tree)
-
+    print("MAGIC NUMBER REQ",   magic_numbers_to_refactor)
+    print(ast)
+    
     return astor.to_source(final_tree)

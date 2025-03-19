@@ -36,7 +36,6 @@ const scanController = {
 
     addRefactor: async (req, res) => {
         try {
-            console.log("ehehruerhu")
             const { filePath, refactorData, title} = req.body;
             const refData = await RefactoringData.create(refactorData)
             await refData.save()
@@ -44,33 +43,15 @@ const scanController = {
                 filePath,
                 refactorData: refData._id
             });
-            console.log("here now")
             await refactor.save();
             const project = await Project.findOne({title});
             
-            const scanId = project.scans[project.scans.length - 1]; // Get the last scan ID without removing it
-            // console.log(scanId);
-            // const scan = await Scan.findOne({_id: scanId});
-            // console.log(scan);
-            // if (!scan) {
-            //     return res.status(404).json({ message: "Scan not found" });
-            // }
-            // console.log(scan.refactor_id);
-            // if (!scan.refactor_id) scan.refactor_id = [];
-            // // Now you can safely modify the scan
-            // scan.refactor_id.push(refactor._id);
-            // await scan.save();
+            const scanId = project.scans[project.scans.length - 1]; 
 
             await Scan.updateOne(
                 { _id: scanId },
                 { $push: { refactor_id: refactor._id } }
             );
-            
-            // await project.save();
-
-            console.log("refactor data added successfully")
-            console.log(await project.populate('scans'))
-            console.log("again")
             res.status(200).json({message: "refactor data added successfully"})
         }
         catch(Err){

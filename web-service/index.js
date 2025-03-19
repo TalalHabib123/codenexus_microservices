@@ -2,12 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
-// const GoogleController = require('./controller/google.controller');
-// const passport = require('passport');
+
 
 const authRoutes = require('./routes/auth.route');
 const projectRoutes = require('./routes/project.route');
 const scanRoutes = require('./routes/scan.route');
+const graphRoutes = require('./routes/graph.route'); // Uncomment if you have graph routes
 // Create Express app
 const app = express();
 
@@ -15,7 +15,6 @@ const app = express();
 app.use(express.json({ limit: '500mb' }));
 
 
-// GoogleController.configureGoogleStrategy();
 
 app.use(cors({
   origin: '*',  // adjust as needed
@@ -26,6 +25,7 @@ app.use(cors({
 app.use('/auth', authRoutes);
 app.use('/project', projectRoutes);
 app.use('/scan', scanRoutes);
+app.use('/graph', graphRoutes);
 app.get('/', (req, res) => {
   res.json({ message: 'Hello from Express' });
 });

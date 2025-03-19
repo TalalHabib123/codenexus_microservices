@@ -4,6 +4,7 @@ from fastapi import APIRouter, HTTPException
 from app.mongo_models.Project import InitProjectRequest, express_respone
 from app.mongo_models.Detection import DetectionData
 from app.mongo_models.Refactor import RefactorData
+from app.mongo_models.DependencyGraph import GraphIn
 from app.service.endpoints_url import EXPRESS_URL
 
 logging_gateway_router = APIRouter()
@@ -40,3 +41,28 @@ async def gateway_detection(request: RefactorData):
 
 
 
+@logging_gateway_router.post("/graph/add-or-update", response_model=express_respone)
+async def create_or_update_graph(graph_in: GraphIn):
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        response = await client.post(
+            f"{EXPRESS_URL}/graph/add-or-update", json=graph_in.model_dump()
+        )
+    if response.status_code not in (200, 201):
+        raise HTTPException(status_code=response.status_code, detail=response.text)
+    return response.json()
+
+@logging_gateway_router.get("/graph/get/{projectTitle}", response_model=express_respone)
+async def get_graph(projectTitle: str):
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        response = await client.get(f"{EXPRESS_URL}/graph/get/{projectTitle}")
+    if response.status_code != 200:
+        raise HTTPException(status_code=response.status_code, detail=response.text)
+    return response.json()
+
+@logging_gateway_router.delete("/graph/delete/{projectTitle}")
+async def delete_graph(projectTitle: str):
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        response = await client.delete(f"{EXPRESS_URL}/graph/delete/{projectTitle}")
+    if response.status_code != 200:
+        raise HTTPException(status_code=response.status_code, detail=response.text)
+    return response.json()

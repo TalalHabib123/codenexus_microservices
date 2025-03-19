@@ -25,8 +25,8 @@ Refactor this function by breaking it into smaller, more cohesive helper functio
             for key, value in doc.items(): 
                 content += ( f"Reference {index} - {key}:\n\n" f"\n{value}\n\n\n" )
                 
-        return {
-            "role": "user",
-            "content": content.strip()
-        }
+    return {
+        "role": "user",
+        "content": content.strip()
+    }
 

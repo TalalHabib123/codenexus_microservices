@@ -2078,3 +2078,1092 @@ Model too busy, unable to get response in less than 300 second(s)
 2025-01-24 22:26:01,846 - job.refactoring_job - ERROR - 500 Server Error: Internal Server Error for url: https://api-inference.huggingface.co/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: mZU7lb)
 
 Model too busy, unable to get response in less than 300 second(s)
+2025-03-18 20:08:55,425 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-03-18 20:08:55,897 - utils.retrieve_queue - INFO - Queue does not exist: LLMTaskQueue
+2025-03-18 20:08:55,898 - utils.retrieve_queue - INFO - Creating queue: LLMTaskQueue
+2025-03-18 20:08:55,906 - utils.retrieve_queue - INFO - Queue created: LLMTaskQueue
+2025-03-18 20:08:55,906 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-03-18 20:08:55,951 - utils.retrieve_queue - INFO - Queue does not exist: LLMResponseQueue
+2025-03-18 20:08:55,952 - utils.retrieve_queue - INFO - Creating queue: LLMResponseQueue
+2025-03-18 20:08:56,005 - utils.retrieve_queue - INFO - Queue created: LLMResponseQueue
+2025-03-18 20:08:56,006 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-03-18 20:08:56,006 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-03-18 20:08:56,007 - __main__ - INFO - Initializing knowledge base for detection
+2025-03-18 20:08:56,007 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-03-18 20:08:56,008 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-03-18 20:08:56,019 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-03-18 20:08:56,019 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-03-18 20:09:54,235 - __main__ - INFO - Received task message
+2025-03-18 20:09:54,235 - job.refactoring_job - INFO - Processing task message with correlation ID: 1234
+2025-03-18 20:09:54,236 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-18 20:09:54,236 - job.refactoring_job - INFO - Task job: long_function
+2025-03-18 20:09:54,236 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-18 20:09:54,237 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-18 20:09:55,162 - job.refactoring_job - ERROR - Error generating response for task message with correlation ID: 1234
+2025-03-18 20:09:55,162 - job.refactoring_job - ERROR - 422 Client Error: Unprocessable Entity for url: https://api-inference.huggingface.co/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67d98cc1-7d85e12411de1ba36832bc8b;21d146e5-44af-492c-8626-6f5bcf2860d2)
+
+Failed to deserialize the JSON body into the target type: messages[1]: invalid type: null, expected struct Message at line 1 column 2143
+2025-03-18 20:09:55,163 - job.refactoring_job - ERROR - Error processing task message with correlation ID: 1234
+2025-03-18 20:09:55,163 - job.refactoring_job - ERROR - 422 Client Error: Unprocessable Entity for url: https://api-inference.huggingface.co/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67d98cc1-7d85e12411de1ba36832bc8b;21d146e5-44af-492c-8626-6f5bcf2860d2)
+
+Failed to deserialize the JSON body into the target type: messages[1]: invalid type: null, expected struct Message at line 1 column 2143
+2025-03-18 20:10:51,042 - __main__ - INFO - Received task message
+2025-03-18 20:10:51,044 - job.refactoring_job - INFO - Processing task message with correlation ID: 1234
+2025-03-18 20:10:51,044 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-18 20:10:51,044 - job.refactoring_job - INFO - Task job: god_object
+2025-03-18 20:10:51,045 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-18 20:10:51,045 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-18 20:11:20,892 - llm_processor - INFO - Processed result: ```python
+# Extracted Engine class to handle car's engine-related operations
+class Engine:
+    def __init__(self):
+        self.is_running = False
+        self.is_parked = True
+
+    def start(self):
+        """
+        Starts the car's engine if it's parked.
+        """
+        if self.is_parked:
+            self.is_running = True
+            self.is_parked = False
+            print("The car has started.")
+        else:
+            print("You can't start the car while it's already running or not parked.")
+
+    def stop(self):
+        """
+        Stops the car's engine if it's running.
+        """
+        if self.is_running:
+            self.is_running = False
+            self.is_parked = True
+            print("The car has stopped.")
+        else:
+            print("You can't stop the car while it's not running or already parked.")
+
+
+# Extracted Transmission class to handle car's transmission-related operations
+class Transmission:
+    def __init__(self, engine):
+        self.engine = engine
+
+    def accelerate(self, speed):
+        """
+        Accelerates the car if the engine is running and not parked.
+        """
+        if self.engine.is_running and not self.engine.is_parked:
+            print(f"The car is accelerating to {speed} mph.")
+        else:
+            print("You can't accelerate while the car is not running or parked.")
+
+    def brake(self):
+        """
+        Brakes the car if the engine is running and not parked.
+        """
+        if self.engine.is_running and not self.engine.is_parked:
+            print("The car is braking.")
+        else:
+            print("You can't brake while the car is not running or parked.")
+
+
+# Extracted Maintenance class to handle car's maintenance-related operations
+class Maintenance:
+    def tune_up(self):
+        """
+        Performs a tune-up on the car.
+        """
+        print("The car has had a tune-up.")
+
+    def repair_engine(self):
+        """
+        Repairs the car's engine.
+        """
+        print("The engine has been repaired.")
+
+    def replace_tires(self):
+        """
+        Replaces the car's tires.
+        """
+        print("The tires have been replaced.")
+
+
+# Extracted Appearance class to handle car's appearance-related operations
+class Appearance:
+    def __init__(self, color):
+        self.color = color
+
+    def paint(self, new_color):
+        """
+        Changes the car's color.
+        """
+        self.color = new_color
+        print(f"The car has been painted {new_color}.")
+
+
+# Main Car class, now more cohesive and following SRP
+class Car:
+    def __init__(self, make, model, year, color):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.engine = Engine()
+        self.transmission = Transmission(self.engine)
+        self.maintenance = Maintenance()
+        self.appearance = Appearance(color)
+
+    def start(self):
+        self.engine.start()
+
+    def stop(self):
+        self.engine.stop()
+
+    def accelerate(self, speed):
+        self.transmission.accelerate(speed)
+
+    def brake(self):
+        self.transmission.brake()
+
+    def paint(self, new_color):
+        self.appearance.paint(new_color)
+
+    def tune_up(self):
+        self.maintenance.tune_up()
+
+    def repair_engine(self):
+        self.maintenance.repair_engine()
+
+    def replace_tires(self):
+        self.maintenance.replace_tires()
+```
+
+In this refactored version, the `Car` class is more cohesive and follows the Single Responsibility Principle (SRP). The original `Car` class has been broken down into several smaller classes, each with its own specific responsibilities:
+
+*   The `Engine` class handles the car's engine-related operations.
+*   The `Transmission` class handles the car's transmission-related operations.
+*   The `Maintenance` class handles the car's maintenance-related operations.
+*   The `Appearance` class handles the car's appearance-related operations.
+
+Each of these classes has a single responsibility and is easier to understand and maintain. The `Car` class now acts as a facade, delegating operations to the corresponding classes. This refactoring improves the overall structure and readability of the code.
+2025-03-18 20:11:20,893 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-18 20:11:20,894 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-18 20:11:21,468 - llm_processor - INFO - Processed result: None
+2025-03-18 20:35:57,044 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-03-18 20:35:57,070 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-03-18 20:35:57,122 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-03-18 20:35:57,123 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-03-18 20:35:57,123 - __main__ - INFO - Initializing knowledge base for detection
+2025-03-18 20:35:57,124 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-03-18 20:35:57,124 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-03-18 20:35:57,125 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-03-18 20:35:57,125 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-03-18 20:36:16,156 - __main__ - INFO - Received task message
+2025-03-18 20:36:16,156 - job.refactoring_job - INFO - Processing task message with correlation ID: 1234
+2025-03-18 20:36:16,156 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-18 20:36:16,157 - job.refactoring_job - INFO - Task job: god_object
+2025-03-18 20:36:16,157 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-18 20:36:16,157 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-18 20:36:16,676 - llm_processor - INFO - Processed result: ```python
+# Extracted Engine class to handle car's engine-related operations
+class Engine:
+    def __init__(self):
+        self.is_running = False
+        self.is_parked = True
+
+    def start(self):
+        """
+        Starts the car's engine if it's parked.
+        """
+        if self.is_parked:
+            self.is_running = True
+            self.is_parked = False
+            print("The car has started.")
+        else:
+            print("You can't start the car while it's already running or not parked.")
+
+    def stop(self):
+        """
+        Stops the car's engine if it's running.
+        """
+        if self.is_running:
+            self.is_running = False
+            self.is_parked = True
+            print("The car has stopped.")
+        else:
+            print("You can't stop the car while it's not running or already parked.")
+
+
+# Extracted Transmission class to handle car's transmission-related operations
+class Transmission:
+    def __init__(self, engine):
+        self.engine = engine
+
+    def accelerate(self, speed):
+        """
+        Accelerates the car if the engine is running and not parked.
+        """
+        if self.engine.is_running and not self.engine.is_parked:
+            print(f"The car is accelerating to {speed} mph.")
+        else:
+            print("You can't accelerate while the car is not running or parked.")
+
+    def brake(self):
+        """
+        Brakes the car if the engine is running and not parked.
+        """
+        if self.engine.is_running and not self.engine.is_parked:
+            print("The car is braking.")
+        else:
+            print("You can't brake while the car is not running or parked.")
+
+
+# Extracted Maintenance class to handle car's maintenance-related operations
+class Maintenance:
+    def tune_up(self):
+        """
+        Performs a tune-up on the car.
+        """
+        print("The car has had a tune-up.")
+
+    def repair_engine(self):
+        """
+        Repairs the car's engine.
+        """
+        print("The engine has been repaired.")
+
+    def replace_tires(self):
+        """
+        Replaces the car's tires.
+        """
+        print("The tires have been replaced.")
+
+
+# Extracted Appearance class to handle car's appearance-related operations
+class Appearance:
+    def __init__(self, color):
+        self.color = color
+
+    def paint(self, new_color):
+        """
+        Changes the car's color.
+        """
+        self.color = new_color
+        print(f"The car has been painted {new_color}.")
+
+
+# Main Car class, now more cohesive and following SRP
+class Car:
+    def __init__(self, make, model, year, color):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.engine = Engine()
+        self.transmission = Transmission(self.engine)
+        self.maintenance = Maintenance()
+        self.appearance = Appearance(color)
+
+    def start(self):
+        self.engine.start()
+
+    def stop(self):
+        self.engine.stop()
+
+    def accelerate(self, speed):
+        self.transmission.accelerate(speed)
+
+    def brake(self):
+        self.transmission.brake()
+
+    def paint(self, new_color):
+        self.appearance.paint(new_color)
+
+    def tune_up(self):
+        self.maintenance.tune_up()
+
+    def repair_engine(self):
+        self.maintenance.repair_engine()
+
+    def replace_tires(self):
+        self.maintenance.replace_tires()
+```
+
+In this refactored version, the `Car` class is more cohesive and follows the Single Responsibility Principle (SRP). The original `Car` class has been broken down into several smaller classes, each with its own specific responsibilities:
+
+*   The `Engine` class handles the car's engine-related operations.
+*   The `Transmission` class handles the car's transmission-related operations.
+*   The `Maintenance` class handles the car's maintenance-related operations.
+*   The `Appearance` class handles the car's appearance-related operations.
+
+Each of these classes has a single responsibility and is easier to understand and maintain. The `Car` class now acts as a facade, delegating operations to the corresponding classes. This refactoring improves the overall structure and readability of the code.
+2025-03-18 20:36:16,681 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-18 20:36:16,682 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-18 20:36:16,970 - llm_processor - INFO - Processed result: None
+2025-03-18 20:36:36,995 - __main__ - INFO - Received task message
+2025-03-18 20:36:36,995 - job.refactoring_job - INFO - Processing task message with correlation ID: 1234
+2025-03-18 20:36:36,996 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-18 20:36:36,996 - job.refactoring_job - INFO - Task job: long_function
+2025-03-18 20:36:36,996 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-18 20:36:36,996 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-18 20:37:30,241 - llm_processor - INFO - Processed result: **Refactored Code**
+
+```python
+def simulate_long_function_code_smell(data):
+    """
+    Simulate a long function code smell by performing various calculations on the input data.
+
+    Args:
+        data (list): A list of numbers.
+
+    Returns:
+        dict: A dictionary containing the results of various calculations.
+    """
+
+    # Initialize result dictionary
+    result = {}
+
+    # Calculate basic statistics
+    result["total"], result["count"], result["average"], result["data_range"] = calculate_basic_statistics(data)
+
+    # Calculate sums of even and odd numbers
+    result["even_sum"], result["odd_sum"] = calculate_even_odd_sums(data)
+
+    # Calculate squares and cubes
+    result["squares"], result["cubes"] = calculate_squares_cubes(data)
+
+    # Calculate factorials
+    result["factorials"] = calculate_factorials(data)
+
+    # Create a processed version of the data
+    result["processed_list"] = process_data(data)
+
+    # Perform extra calculation
+    result["extra_calculation"] = perform_extra_calculation()
+
+    # Calculate sum of squares and cubes
+    result["sum_of_squares"], result["sum_of_cubes"] = calculate_sum_of_squares_cubes(result["squares"], result["cubes"])
+
+    # Generate debug messages
+    result["debug_messages"] = generate_debug_messages(data)
+
+    # Perform additional calculations
+    result["nested_results"] = perform_nested_calculations()
+    result["fibonacci_sequence"] = generate_fibonacci_sequence(result["data_range"][1])
+    result["product"] = calculate_product(data)
+    result["dummy_list"] = generate_dummy_list()
+    result["recursion_result"] = perform_recursive_calculation()
+    result["sum_even_indices"], result["sum_odd_indices"] = calculate_sum_even_odd_indices(data)
+    result["multiplied_list"] = multiply_processed_list(result["processed_list"])
+    result["combined"] = combine_data(data)
+    result["temp_sum"], result["temp_avg"] = perform_temporary_calculations(data)
+
+    return result
+
+
+# Extracted helper functions
+
+def calculate_basic_statistics(data):
+    """Calculate basic statistics (total, count, average, data range)."""
+    total = sum(data)
+    count = len(data)
+    average = total / count if count else 0
+    data_range = (min(data) if data else None, max(data) if data else None)
+    return total, count, average, data_range
+
+
+def calculate_even_odd_sums(data):
+    """Calculate sums of even and odd numbers."""
+    even_sum = sum(num for num in data if num % 2 == 0)
+    odd_sum = sum(num for num in data if num % 2!= 0)
+    return even_sum, odd_sum
+
+
+def calculate_squares_cubes(data):
+    """Calculate squares and cubes."""
+    squares = [num ** 2 for num in data]
+    cubes = [num ** 3 for num in data]
+    return squares, cubes
+
+
+def calculate_factorials(data):
+    """Calculate factorials."""
+    factorials = {}
+    for num in data:
+        fact = 1
+        for i in range(1, num + 1):
+            fact *= i
+        factorials[num] = fact
+    return factorials
+
+
+def process_data(data):
+    """Create a processed version of the data."""
+    processed_list = [num * 2 if num % 2 == 0 else num * 3 for num in data]
+    return processed_list
+
+
+def perform_extra_calculation():
+    """Perform extra calculation."""
+    extra_calculation = 0
+    for i in range(10):
+        for j in range(10):
+            extra_calculation += i * j
+    return extra_calculation
+
+
+def calculate_sum_of_squares_cubes(squares, cubes):
+    """Calculate sum of squares and cubes."""
+    sum_of_squares = sum(squares)
+    sum_of_cubes = sum(cubes)
+    return sum_of_squares, sum_of_cubes
+
+
+def generate_debug_messages(data):
+    """Generate debug messages."""
+    debug_messages = [f"Index {idx}: Value {val}" for idx, val in enumerate(data)]
+    return debug_messages
+
+
+def perform_nested_calculations():
+    """Perform nested calculations."""
+    nested_results = []
+    for a in range(3):
+        for b in range(3):
+            for c in range(3):
+                nested_results.append(a + b + c)
+    return nested_results
+
+
+def generate_fibonacci_sequence(max_value):
+    """Generate Fibonacci sequence."""
+    fibonacci_sequence = [0, 1]
+    while fibonacci_sequence[-1] < max_value:
+        fibonacci_sequence.append(fibonacci_sequence[-1] + fibonacci_sequence[-2])
+    return fibonacci_sequence
+
+
+def calculate_product(data):
+    """Calculate product."""
+    product = 1
+    for num in data:
+        product *= (num if num!= 0 else 1)
+    return product
+
+
+def generate_dummy_list():
+    """Generate dummy list."""
+    dummy_list = [i * 2 for i in range(20)]
+    return dummy_list
+
+
+def perform_recursive_calculation():
+    """Perform recursive calculation."""
+    def recursive_sum(n):
+        if n <= 0:
+            return 0
+        else:
+            return n + recursive_sum(n - 1)
+    recursion_result = recursive_sum(10)
+    return recursion_result
+
+
+def calculate_sum_even_odd_indices(data):
+    """Calculate sum of values at even and odd indices."""
+    sum_even_indices = sum(data[idx] for idx in range(0, len(data), 2))
+    sum_odd_indices = sum(data[idx] for idx in range(1, len(data), 2))
+    return sum_even_indices, sum_odd_indices
+
+
+def multiply_processed_list(processed_list):
+    """Multiply processed list."""
+    multiplied_list = [num * 5 for num in processed_list]
+    return multiplied_list
+
+
+def combine_data(data):
+    """Combine pairs of data items."""
+    combined = [data[i] + data[j] for i in range(len(data)) for j in range(i, len(data))]
+    return combined
+
+
+def perform_temporary_calculations(data):
+    """Perform temporary calculations."""
+    temp_sum = sum(data) if data else 0
+    temp_avg = temp_sum / len(data) if data else 0
+    return temp_sum, temp_avg
+```
+The original function has been refactored into smaller, more cohesive helper functions, each with a single responsibility. This improves the readability and maintainability of the code. The main function now only orchestrates the calls to these helper functions and combines their results into a single dictionary.
+
+Note that the original function's logic and functionality have been preserved, and no new functionality has been introduced. The refactored code adheres to Pythonic best practices and follows the guidelines provided.
+2025-03-18 20:37:30,242 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-18 20:37:30,242 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-18 20:37:30,978 - llm_processor - INFO - Processed result: None
+2025-03-18 20:38:20,266 - __main__ - INFO - Received task message
+2025-03-18 20:38:20,267 - job.refactoring_job - INFO - Processing task message with correlation ID: 1234
+2025-03-18 20:38:20,268 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-18 20:38:20,268 - job.refactoring_job - INFO - Task job: conditionals
+2025-03-18 20:38:20,268 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-18 20:38:20,269 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-18 20:39:21,629 - llm_processor - INFO - Processed result: ```python
+import datetime
+import random
+
+# Refactored discount calculation using a dictionary-based dispatch approach
+def calculate_discount(price, customer_type, day_of_week, is_member, coupon_code):
+    """
+    Calculate discount based on customer type, membership status, day of the week, and coupon code.
+    
+    :param price: Order price
+    :param customer_type: Type of customer (regular, premium, other)
+    :param day_of_week: Day of the week (Monday to Sunday)
+    :param is_member: Whether the customer is a member
+    :param coupon_code: Coupon code applied to the order
+    :return: Calculated discount
+    """
+
+    # Define discount rules as a dictionary for easier maintenance and readability
+    discount_rules = {
+        "regular": {
+            "member": {
+                "weekend": lambda price, coupon_code: price * 0.25 if coupon_code and coupon_code.startswith("VIP") else price * 0.20,
+                "weekday": lambda price, coupon_code: price * 0.15 if coupon_code and len(coupon_code) > 3 else price * 0.12,
+            },
+            "non_member": {
+                "friday": lambda price, coupon_code: price * 0.10 if coupon_code and coupon_code == "FRIDAYSALE" else price * 0.05,
+                "other_days": lambda price, coupon_code: price * 0.07 if coupon_code and coupon_code == "SPECIAL" else price * 0.03,
+            }
+        },
+        "premium": {
+            "member": {
+                "monday_tuesday": lambda price, coupon_code: price * 0.30,
+                "other_days": lambda price, coupon_code: price * 0.28 if coupon_code and coupon_code.endswith("EXTRA") else price * 0.25,
+            },
+            "non_member": lambda price, coupon_code: price * 0.18 if coupon_code and coupon_code == "PREMIUM" else price * 0.15,
+        },
+        "other": lambda price, coupon_code: price * 0.05 if coupon_code and coupon_code.startswith("NEW") else price * 0.02,
+    }
+
+    # Determine the applicable discount rule based on customer type and membership status
+    if customer_type == "regular":
+        if is_member:
+            # Apply weekend or weekday discount rule based on day of the week
+            if day_of_week in ["Saturday", "Sunday"]:
+                return discount_rules[customer_type]["member"]["weekend"](price, coupon_code)
+            else:
+                return discount_rules[customer_type]["member"]["weekday"](price, coupon_code)
+        else:
+            # Apply Friday or other days discount rule based on day of the week
+            if day_of_week == "Friday":
+                return discount_rules[customer_type]["non_member"]["friday"](price, coupon_code)
+            else:
+                return discount_rules[customer_type]["non_member"]["other_days"](price, coupon_code)
+    elif customer_type == "premium":
+        if is_member:
+            # Apply Monday-Tuesday or other days discount rule based on day of the week
+            if day_of_week in ["Monday", "Tuesday"]:
+                return discount_rules[customer_type]["member"]["monday_tuesday"](price, coupon_code)
+            else:
+                return discount_rules[customer_type]["member"]["other_days"](price, coupon_code)
+        else:
+            # Apply a fixed discount rule for non-members
+            return discount_rules[customer_type]["non_member"](price, coupon_code)
+    else:
+        # Apply a fixed discount rule for other customer types
+        return discount_rules[customer_type](price, coupon_code)
+
+
+def process_order(order):
+    """
+    Process an order by calculating the discount, applying it to the original price, and simulating payment.
+    
+    :param order: Order details
+    :return: Order summary
+    """
+
+    # Extract order details
+    price = order.get("price", 0)
+    customer_type = order.get("customer_type", "regular")
+    order_date = order.get("date", datetime.datetime.now())
+    is_member = order.get("is_member", False)
+    coupon_code = order.get("coupon_code", "")
+
+    day_of_week = order_date.strftime("%A")
+
+    # Calculate discount using the refactored discount calculation function
+    discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)
+
+    # Apply discount to get the final price
+    final_price = price - discount
+
+    # Additional well-structured code: simulate processing payment
+    def process_payment(amount):
+        print(f"Processing payment for amount: ${amount:.2f}")
+        # Simulate payment success or failure
+        if random.choice([True, False]):
+            print("Payment processed successfully.")
+            return True
+        else:
+            print("Payment failed.")
+            return False
+
+    payment_success = process_payment(final_price)
+
+    # Log order details in a structured summary
+    order_summary = {
+        "original_price": price,
+        "discount": discount,
+        "final_price": final_price,
+        "payment_success": payment_success,
+        "processed_date": datetime.datetime.now().isoformat()
+    }
+    print("Order processed:", order_summary)
+    return order_summary
+
+
+def generate_sample_orders():
+    return [
+        {"price": 100, "customer_type": "regular", "date": datetime.datetime(2025, 3, 17), "is_member": True, "coupon_code": "VIP123"},
+        {"price": 200, "customer_type": "premium", "date": datetime.datetime(2025, 3, 16), "is_member": True, "coupon_code": "DISCOUNTEXTRA"},
+        {"price": 50, "customer_type": "regular", "date": datetime.datetime(2025, 3, 13), "is_member": False, "coupon_code": "FRIDAYSALE"},
+        {"price": 75, "customer_type": "other", "date": datetime.datetime(2025, 3, 14), "is_member": False, "coupon_code": "NEWUSER"},
+    ]
+
+
+def main():
+    orders = generate_sample_orders()
+    for order in orders:
+        print("# Processing new order:")
+        process_order(order)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+**Refactoring Explanation:**
+
+To simplify the complex conditionals in the original `calculate_discount` function, I employed a dictionary-based dispatch approach. This involved defining discount rules as a nested dictionary (`discount_rules`) where each key corresponds to a specific customer type, membership status, day of the week, and coupon code.
+
+The refactored `calculate_discount` function now uses this dictionary to determine the applicable discount rule based on the input parameters. By leveraging lambda functions, the discount calculations are concise and readable.
+
+Additionally, I maintained the original logic and functionality, ensuring that the refactored code produces the same results as the original code. The other functions (`process_order`, `generate_sample_orders`, and `main`) remain unchanged, as they did not contain overly complex conditionals.
+2025-03-18 20:39:21,631 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-18 20:39:21,631 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-18 20:40:10,936 - llm_processor - INFO - Processed result: ```python
+import datetime
+import random
+
+# Refactored discount calculation using a dictionary-based dispatch approach
+def calculate_discount(price, customer_type, day_of_week, is_member, coupon_code):
+    """
+    Calculate discount based on customer type, membership status, day of the week, and coupon code.
+    
+    :param price: Order price
+    :param customer_type: Type of customer (regular, premium, other)
+    :param day_of_week: Day of the week (Monday to Sunday)
+    :param is_member: Whether the customer is a member
+    :param coupon_code: Coupon code applied to the order
+    :return: Calculated discount
+    """
+
+    # Define discount rules as a dictionary for easier maintenance and readability
+    discount_rules = {
+        "regular": {
+            "member": {
+                "weekend": lambda price, coupon_code: price * 0.25 if coupon_code and coupon_code.startswith("VIP") else price * 0.20,
+                "weekday": lambda price, coupon_code: price * 0.15 if coupon_code and len(coupon_code) > 3 else price * 0.12,
+            },
+            "non_member": {
+                "friday": lambda price, coupon_code: price * 0.10 if coupon_code and coupon_code == "FRIDAYSALE" else price * 0.05,
+                "other_days": lambda price, coupon_code: price * 0.07 if coupon_code and coupon_code == "SPECIAL" else price * 0.03,
+            }
+        },
+        "premium": {
+            "member": {
+                "monday_tuesday": lambda price, coupon_code: price * 0.30,
+                "other_days": lambda price, coupon_code: price * 0.28 if coupon_code and coupon_code.endswith("EXTRA") else price * 0.25,
+            },
+            "non_member": lambda price, coupon_code: price * 0.18 if coupon_code and coupon_code == "PREMIUM" else price * 0.15,
+        },
+        "other": lambda price, coupon_code: price * 0.05 if coupon_code and coupon_code.startswith("NEW") else price * 0.02,
+    }
+
+    # Determine the applicable discount rule based on customer type and membership status
+    if customer_type == "regular":
+        if is_member:
+            # Apply weekend or weekday discount rule based on day of the week
+            if day_of_week in ["Saturday", "Sunday"]:
+                return discount_rules[customer_type]["member"]["weekend"](price, coupon_code)
+            else:
+                return discount_rules[customer_type]["member"]["weekday"](price, coupon_code)
+        else:
+            # Apply Friday or other days discount rule based on day of the week
+            if day_of_week == "Friday":
+                return discount_rules[customer_type]["non_member"]["friday"](price, coupon_code)
+            else:
+                return discount_rules[customer_type]["non_member"]["other_days"](price, coupon_code)
+    elif customer_type == "premium":
+        if is_member:
+            # Apply Monday-Tuesday or other days discount rule based on day of the week
+            if day_of_week in ["Monday", "Tuesday"]:
+                return discount_rules[customer_type]["member"]["monday_tuesday"](price, coupon_code)
+            else:
+                return discount_rules[customer_type]["member"]["other_days"](price, coupon_code)
+        else:
+            # Apply a fixed discount rule for non-members
+            return discount_rules[customer_type]["non_member"](price, coupon_code)
+    else:
+        # Apply a fixed discount rule for other customer types
+        return discount_rules[customer_type](price, coupon_code)
+
+
+def process_order(order):
+    """
+    Process an order by calculating the discount, applying it to the original price, and simulating payment.
+    
+    :param order: Order details
+    :return: Order summary
+    """
+
+    # Extract order details
+    price = order.get("price", 0)
+    customer_type = order.get("customer_type", "regular")
+    order_date = order.get("date", datetime.datetime.now())
+    is_member = order.get("is_member", False)
+    coupon_code = order.get("coupon_code", "")
+
+    day_of_week = order_date.strftime("%A")
+
+    # Calculate discount using the refactored discount calculation function
+    discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)
+
+    # Apply discount to get the final price
+    final_price = price - discount
+
+    # Additional well-structured code: simulate processing payment
+    def process_payment(amount):
+        print(f"Processing payment for amount: ${amount:.2f}")
+        # Simulate payment success or failure
+        if random.choice([True, False]):
+            print("Payment processed successfully.")
+            return True
+        else:
+            print("Payment failed.")
+            return False
+
+    payment_success = process_payment(final_price)
+
+    # Log order details in a structured summary
+    order_summary = {
+        "original_price": price,
+        "discount": discount,
+        "final_price": final_price,
+        "payment_success": payment_success,
+        "processed_date": datetime.datetime.now().isoformat()
+    }
+    print("Order processed:", order_summary)
+    return order_summary
+
+
+def generate_sample_orders():
+    return [
+        {"price": 100, "customer_type": "regular", "date": datetime.datetime(2025, 3, 17), "is_member": True, "coupon_code": "VIP123"},
+        {"price": 200, "customer_type": "premium", "date": datetime.datetime(2025, 3, 16), "is_member": True, "coupon_code": "DISCOUNTEXTRA"},
+        {"price": 50, "customer_type": "regular", "date": datetime.datetime(2025, 3, 13), "is_member": False, "coupon_code": "FRIDAYSALE"},
+        {"price": 75, "customer_type": "other", "date": datetime.datetime(2025, 3, 14), "is_member": False, "coupon_code": "NEWUSER"},
+    ]
+
+
+def main():
+    orders = generate_sample_orders()
+    for order in orders:
+        print("# Processing new order:")
+        process_order(order)
+
+
+if __name__ == "__main__":
+    main()
+```
+2025-03-18 20:42:14,419 - __main__ - INFO - Received task message
+2025-03-18 20:42:14,420 - job.refactoring_job - INFO - Processing task message with correlation ID: 1234
+2025-03-18 20:42:14,421 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-18 20:42:14,421 - job.refactoring_job - INFO - Task job: duplicate_code
+2025-03-18 20:42:14,422 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-18 20:42:14,422 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-18 20:43:41,538 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-18 20:43:41,538 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-18 20:44:26,905 - llm_processor - INFO - Processed result: The issue with the refactored code is not apparent in the provided code snippets as the original code is missing. However, I can point out some potential issues in the provided refactored code:
+
+1. The `calculate_order_details` function does not handle potential errors, such as missing keys or invalid data types.
+
+2. The `create_order_summary` function uses the `get` method to retrieve values from the `order` dictionary. However, it does not handle cases where the values are not found.
+
+3. The `process_order` function checks if the `order` dictionary has an "items" key and if the value is not empty. However, it does not check for other potential errors.
+
+Here is the corrected refactoring code:
+```python
+import datetime
+
+def calculate_order_details(order):
+    """
+    Calculates total, discount, and tax for an order.
+    """
+    if "items" not in order:
+        raise ValueError("Order must have an 'items' key")
+
+    total = 0
+    discount = 0
+    for item in order["items"]:
+        if not isinstance(item, dict):
+            raise ValueError("Each item must be a dictionary")
+
+        price = item.get("price", 0)
+        quantity = item.get("quantity", 1)
+
+        if not isinstance(price, (int, float)) or not isinstance(quantity, int):
+            raise ValueError("Price and quantity must be numbers")
+
+        total += price * quantity
+
+        # Discount logic
+        if item.get("on_sale", False):
+            discount += price * quantity * 0.1
+
+    tax = total * 0.08  # 8% tax
+    final_total = total - discount + tax
+    return total, discount, tax, final_total
+
+def create_order_summary(order, order_type):
+    """
+    Creates an order summary dictionary.
+    """
+    total, discount, tax, final_total = calculate_order_details(order)
+
+    if "order_id" not in order:
+        raise ValueError("Order must have an 'order_id' key")
+
+    return {
+        "order_id": order["order_id"],
+        "order_date": order.get("order_date", datetime.datetime.now().isoformat()),
+        "total": total,
+        "discount": discount,
+        "tax": tax,
+        "final_total": final_total,
+        "items_count": len(order["items"]),
+        "order_type": order_type
+    }
+
+def process_order(order, order_type):
+    """
+    Processes an order and returns a summary.
+    """
+    print(f"Processing {order_type.lower()} order...")
+
+    try:
+        order_summary = create_order_summary(order, order_type)
+        print(f"{order_type} Order Summary:", order_summary)
+        return order_summary
+    except ValueError as e:
+        print(f"Invalid order: {e}")
+        return None
+
+def send_receipt(order_summary):
+    """
+    Sends a receipt for an order.
+    """
+    print("Sending receipt...")
+    print("Receipt Details:")
+    for key, value in order_summary.items():
+        print(f"{key}: {value}")
+
+def main():
+    # Sample order for online purchase
+    online_order = {
+        "order_id": "ON12345",
+        "order_date": "2025-03-18T10:00:00",
+        "items": [
+            {"name": "Laptop", "price": 1000, "quantity": 1, "on_sale": True},
+            {"name": "Mouse", "price": 50, "quantity": 2, "on_sale": False}
+        ]
+    }
+
+    # Sample order for in-store purchase
+    instore_order = {
+        "order_id": "IS54321",
+        "order_date": "2025-03-18T11:30:00",
+        "items": [
+            {"name": "Smartphone", "price": 800, "quantity": 1, "on_sale": True},
+            {"name": "Charger", "price": 25, "quantity": 3, "on_sale": False}
+        ]
+    }
+
+    online_summary = process_order(online_order, "Online")
+    instore_summary = process_order(instore_order, "In-Store")
+
+    if online_summary:
+        send_receipt(online_summary)
+    if instore_summary:
+        send_receipt(instore_summary)
+
+if __name__ == "__main__":
+    main()
+```
+
+In the corrected code:
+
+*   I added checks in the `calculate_order_details` function to ensure that the order dictionary has the "items" key and that each item is a dictionary.
+*   I also added checks to ensure that the price and quantity of each item are numbers.
+*   In the `create_order_summary` function, I added a check to ensure that the order dictionary has the "order_id" key.
+*   In the `process_order` function, I added a try-except block to catch any `ValueError` exceptions that may be raised during the creation of the order summary.
+2025-03-18 20:56:28,924 - __main__ - INFO - Received task message
+2025-03-18 20:56:28,926 - job.refactoring_job - INFO - Processing task message with correlation ID: 1234
+2025-03-18 20:56:28,928 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-18 20:56:28,929 - job.refactoring_job - INFO - Task job: global_conflict
+2025-03-18 20:56:28,931 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-18 20:56:28,932 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-18 20:56:54,022 - llm_processor - INFO - Processed result: ```python
+# Configuration container class to encapsulate global configuration
+class AppConfig:
+    def __init__(self, mode, version):
+        self.mode = mode
+        self.version = version
+
+# Configuration dictionary with defaults
+default_config = {
+    "mode": "production",
+    "debug": True,
+}
+
+# Refactored configuration and counter management class
+class AppState:
+    def __init__(self, app_config, config):
+        self.app_config = app_config
+        self.config = config
+        self.counter = 0
+        self.processed_data = None  # Initialize as an instance attribute
+
+    # Method to update the configuration
+    def update_config(self, mode, debug_flag):
+        self.app_config.mode = mode
+        self.config["debug"] = debug_flag
+        print("Updated app_config:", self.app_config.__dict__)
+        print("Updated config:", self.config)
+
+    # Method to increment the counter
+    def increment_counter(self):
+        self.counter += 1
+        print("Counter incremented to:", self.counter)
+
+    # Method to process data, using instance attribute for processed data
+    def process_data(self, data):
+        self.processed_data = [item * 2 for item in data]
+        print("Processed data:", self.processed_data)
+
+    # Method with potential conflicts, now resolved through instance attributes
+    def conflicting_function(self):
+        # Use a local config copy to avoid reassigning the instance attribute unexpectedly
+        local_config = self.config.copy()
+        local_config["mode"] = "testing"
+        local_config["debug"] = False
+        # Use the local config value to adjust the counter
+        if local_config["debug"]:
+            self.counter += 10
+        else:
+            self.counter -= 5
+        print("After conflicting_function, counter:", self.counter)
+        print("After conflicting_function, config (local):", local_config)
+
+def main():
+    # Initialize the app configuration and state
+    app_config = AppConfig("development", 1.0)
+    app_state = AppState(app_config, default_config.copy())  # Create a copy to avoid external modifications
+    
+    print("Initial app_config:", app_config.__dict__)
+    print("Initial config:", app_state.config)
+    
+    app_state.update_config("staging", False)
+    app_state.increment_counter()
+    app_state.process_data([1, 2, 3, 4])
+    app_state.conflicting_function()
+    app_state.increment_counter()
+    
+    print("\nFinal state of the app:")
+    print("app_config:", app_config.__dict__)
+    print("config:", app_state.config)
+    print("counter:", app_state.counter)
+    print("processed_data:", app_state.processed_data)
+
+if __name__ == "__main__":
+    main()
+```
+
+**Changes:**
+
+*   Introduced an `AppConfig` class to encapsulate the global application configuration, making it more manageable and reducing the risk of conflicts.
+*   Replaced the global `config` dictionary with a local copy within the `AppState` class. This ensures that each instance of `AppState` has its own configuration, avoiding unexpected modifications.
+*   Created an `AppState` class to manage the global state, including the counter and processed data. This encapsulation helps prevent naming conflicts and unintended side effects.
+*   Modified the `conflicting_function` to use a local copy of the configuration, avoiding reassignment of the instance attribute.
+*   Removed the global `processed_data` variable and replaced it with an instance attribute within the `AppState` class.
+2025-03-18 20:56:54,024 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-18 20:56:54,025 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-18 20:56:54,964 - llm_processor - INFO - Processed result: None
+2025-03-18 20:58:07,086 - __main__ - INFO - Received task message
+2025-03-18 20:58:07,086 - job.refactoring_job - INFO - Processing task message with correlation ID: 1234
+2025-03-18 20:58:07,087 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-18 20:58:07,087 - job.refactoring_job - INFO - Task job: temporary_field
+2025-03-18 20:58:07,088 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-18 20:58:07,088 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-18 20:58:24,201 - llm_processor - INFO - Processed result: ```python
+class Order:
+    def __init__(self, order_id, items, customer):
+        # Removed temporary field 'temp_discount_value' since it was only used in 'apply_discount' method
+        self.order_id = order_id
+        self.items = items
+        self.customer = customer
+        self.total = sum(item.get('price', 0) for item in items)
+
+    def apply_discount(self, discount_code):
+        # Introduced local variable 'discount_value' to store the discount value within 'apply_discount' method
+        discount_value = 0
+        if discount_code == "SAVE10":
+            discount_value = self.total * 0.10
+        elif discount_code == "SAVE20":
+            discount_value = self.total * 0.20
+
+        # Apply the discount to the total
+        self.total -= discount_value
+
+        # Return the discount value directly without assigning to a temporary field
+        return discount_value
+
+    def add_item(self, item):
+        self.items.append(item)
+        self.total += item.get('price', 0)
+
+    def get_order_summary(self):
+        return {
+            "order_id": self.order_id,
+            "customer": self.customer,
+            "total": self.total,
+            "items_count": len(self.items)
+        }
+
+def process_orders(orders, discount_code):
+    for order in orders:
+        discount = order.apply_discount(discount_code)
+        print(f"Order ID {order.order_id}: Applied discount of ${discount:.2f}")
+        print("Order summary:", order.get_order_summary())
+
+if __name__ == "__main__":
+    # Create sample orders
+    order1 = Order(order_id=101, items=[{"price": 120}, {"price": 80}], customer="Alice")
+    order2 = Order(order_id=102, items=[{"price": 200}, {"price": 150}], customer="Bob")
+
+    orders = [order1, order2]
+    process_orders(orders, discount_code="SAVE10")
+    
+```
+
+In this refactored code, I've removed the temporary field `temp_discount_value` as it was only used in the `apply_discount` method. I've instead introduced a local variable `discount_value` within the `apply_discount` method to store the discount value, eliminating the Temporary Field code smell. The functionality remains unchanged, and the refactored code is more modular and readable.
+2025-03-18 20:58:24,202 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-18 20:58:24,203 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-18 20:58:24,667 - llm_processor - INFO - Processed result: None

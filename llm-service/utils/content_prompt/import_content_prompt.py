@@ -17,7 +17,10 @@ from utils.content_prompt.refactoring import (
     global_variable_content as global_variable_refactoring,
     excessive_flags_content as excessive_flags_refactoring,
     swtich_statement_content as swtich_statement_refactoring,
-    long_parameter_content as long_parameter_refactoring
+    long_parameter_content as long_parameter_refactoring,
+    middle_man_content as middle_man_refactoring,
+    feature_eny_content as feature_envy_refactoring,
+    inappropriate_intimacy_content as inappropriate_intimacy_refactoring
 )
 
 content_detection_prompts = {
@@ -40,5 +43,8 @@ content_refactoring_prompts = {
     "global_conflict": global_variable_refactoring.create_global_variable_conflict_content,
     "excessive_flags": excessive_flags_refactoring.create_excessive_flags_content,
     "switch_statement_abuser": swtich_statement_refactoring.create_switch_statement_abuser_content,
-    "long_parameter_list": long_parameter_refactoring.create_long_parameter_list_content
+    "long_parameter_list": long_parameter_refactoring.create_long_parameter_list_content,
+    "feature_envy": feature_envy_refactoring.create_feature_envy_content,
+    "inappropriate_intimacy": inappropriate_intimacy_refactoring.create_inappropriate_intimacy_content,
+    "middle_man": middle_man_refactoring.create_middle_man_content,
 }

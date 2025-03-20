@@ -1,7 +1,7 @@
 import ast
 
 
-class NamingRefactorer(ast.NodeTransformer):
+class CascadeNamingRefactorer(ast.NodeTransformer):
     """Second pass: Perform the actual refactoring with import aliasing"""
     def __init__(self, mappings, dep_list, definitions):
         self.mappings = mappings

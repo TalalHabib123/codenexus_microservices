@@ -6,7 +6,7 @@ class InitProjectRequest(BaseModel):
     description: str
 
 class express_respone(BaseModel):
-    status: str
+    status: Optional[str]
     message: str
     data: Optional[Dict[str, Any]] = None
     error: Optional[Dict[str, Any]] = None

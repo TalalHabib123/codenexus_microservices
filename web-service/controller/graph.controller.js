@@ -22,10 +22,10 @@ const graphController = {
         // Update the existing graph
         existingGraph.graphData = graphData;
         await existingGraph.save();
-        return res.status(200).json({ message: 'Graph updated successfully', graphData: existingGraph });
+        return res.status(200).json({ message: 'Graph updated successfully'});
       } else {
         // Create a new graph document
-        const newGraph = await Graph.create({ graphData: graphData, projectId: project._id });
+        await Graph.create({ graphData: graphData, projectId: project._id });
         return res.status(201).json({ message: 'Graph created successfully'});
       }
     } catch (error) {
@@ -37,17 +37,17 @@ const graphController = {
   // Fetch the dependency graphData for a project using the project title as a parameter
   getGraph: async (req, res) => {
     try {
-      const { projectTitle } = req.params;
-      if (!projectTitle) {
+      const { projectId } = req.params;
+      if (!projectId) {
         return res.status(400).json({ message: 'Project title is required' });
       }
 
-      const project = await Project.findOne({ title: projectTitle });
-      if (!project) {
-        return res.status(404).json({ message: 'Project not found' });
-      }
+      // const project = await Project.findOne({projectId });
+      // if (!project) {
+      //   return res.status(404).json({ message: 'Project not found' });
+      // }
 
-      const graphData = await Graph.findOne({ projectId: project._id });
+      const graphData = await Graph.findOne({ projectId});
       if (!graphData) {
         return res.status(404).json({ message: 'Graph not found for the project' });
       }
@@ -61,17 +61,17 @@ const graphController = {
   // Delete the dependency graph for a project using the project title as a parameter
   deleteGraph: async (req, res) => {
     try {
-      const { projectTitle } = req.params;
-      if (!projectTitle) {
+      const { projectId } = req.params;
+      if (!projectId) {
         return res.status(400).json({ message: 'Project title is required' });
       }
 
-      const project = await Project.findOne({ title: projectTitle });
-      if (!project) {
-        return res.status(404).json({ message: 'Project not found' });
-      }
+      // const project = await Project.findOne({ title: projectId });
+      // if (!project) {
+      //   return res.status(404).json({ message: 'Project not found' });
+      // }
 
-      const graph = await Graph.findOneAndDelete({ projectId: project._id });
+      const graph = await Graph.findOneAndDelete({ projectId});
       if (!graph) {
         return res.status(404).json({ message: 'Graph not found for the project' });
       }

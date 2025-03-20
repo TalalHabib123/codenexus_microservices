@@ -22,7 +22,10 @@ def load_model_pipeline(use_inference_api=False, hf_model_id="meta-llama/Llama-3
             # the model is on the hub and you have an HF token. You may need `revision` if model is gated.
             # Note: If you want to specifically use the hosted Inference API endpoint, you can configure `pipeline`
             # with `model=hf_model_id` and `use_auth_token=hf_token`. The pipeline should handle this.
-            model_pipeline = InferenceClient(api_key="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")
+            model_pipeline = InferenceClient(
+                provider="hf-inference",
+                api_key="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"
+            )
             logger.info("Model Client loaded from Hugging Face Inference API")
             return model_pipeline
         except Exception as e:

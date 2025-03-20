@@ -3595,3 +3595,187 @@ Some examples for refactored calls are unfortunately not provided for this code;
 2025-03-19 17:26:48,741 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
 2025-03-19 17:26:48,741 - llm_processor - INFO - Processing task with LLM model pipeline
 2025-03-19 17:26:49,186 - llm_processor - INFO - Processed result: None
+2025-03-19 23:21:37,658 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-03-19 23:21:37,693 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-03-19 23:21:37,746 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-03-19 23:21:37,746 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-03-19 23:21:37,747 - __main__ - INFO - Initializing knowledge base for detection
+2025-03-19 23:21:37,747 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-03-19 23:21:37,747 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-03-19 23:21:37,754 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-03-19 23:21:37,754 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-03-19 23:22:06,069 - __main__ - INFO - Received task message
+2025-03-19 23:22:06,070 - job.detection_job - INFO - Processing task message with correlation ID: 1234
+2025-03-19 23:22:06,070 - job.detection_job - INFO - Task type: detection
+2025-03-19 23:22:06,071 - job.detection_job - INFO - Task job: long_function
+2025-03-19 23:22:06,073 - job.detection_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-19 23:22:06,073 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-19 23:22:10,402 - llm_processor - INFO - Processed result: File:928d61.py
+Detected:OrderProcessor.process_order
+Issue:Performs multiple unrelated tasks such as validating order items, deducting stock, processing payment, sending confirmation notifications, and logging success, while also having excessive nested logic for handling errors.
+
+
+File:b701f4.py
+Detected:process_user_data
+Issue:Performs multiple unrelated tasks like reading data from a file, validating data, storing it in a database, and sending confirmation emails, making the function too long and complex for easy maintenance.
+2025-03-19 23:22:11,404 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-19 23:22:11,697 - llm_processor - INFO - Processed result: File:928d61.py
+Detected:OrderProcessor.process_order
+Issue:Performs multiple unrelated tasks such as validating order items, deducting stock, processing payment, sending confirmation notifications, and logging success, while also having excessive nested logic for handling errors.
+
+
+File:b701f4.py
+Detected:process_user_data
+Issue:Performs multiple unrelated tasks like reading data from a file, validating data, storing it in a database, and sending confirmation emails, making the function too long and complex for easy maintenance.
+2025-03-19 23:22:11,698 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-19 23:22:16,296 - llm_processor - INFO - Processed result: File:928d61.py
+Detected:OrderProcessor.process_order
+Issue:Performs multiple unrelated tasks such as validating order items, deducting stock, processing payment, sending confirmation notifications, and logging success, while also having excessive nested logic for handling errors.
+
+File:b701f4.py
+Detected:process_user_data
+Issue:Performs multiple unrelated tasks like reading data from a file, validating data, storing it in a database, and sending confirmation emails, making the function too long and complex for easy maintenance.
+2025-03-19 23:22:17,297 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-19 23:22:22,938 - llm_processor - INFO - Processed result: After analyzing the provided answers, I found them to be in the correct format and providing relevant information regarding the detected long functions. Here is the reformatted and cleaned version of the answers, ensuring they adhere strictly to the specified format:
+
+### Answer 1
+File: 928d61.py
+Detected: OrderProcessor.process_order
+Issue: Multiple unrelated tasks such as validating order items, deducting stock, processing payment, sending confirmation notifications, and logging success, with excessive nested logic for error handling.
+
+### Answer 2
+File: b701f4.py
+Detected: process_user_data
+Issue: Multiple unrelated tasks like reading data from a file, validating data, storing it in a database, and sending confirmation emails, making the function too long and complex for easy maintenance.
+2025-03-19 23:23:14,462 - __main__ - INFO - Received task message
+2025-03-19 23:23:14,462 - job.detection_job - INFO - Processing task message with correlation ID: 1234
+2025-03-19 23:23:14,463 - job.detection_job - INFO - Task type: detection
+2025-03-19 23:23:14,463 - job.detection_job - INFO - Task job: god_object
+2025-03-19 23:23:14,474 - job.detection_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-19 23:23:14,474 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-19 23:23:21,198 - llm_processor - INFO - Processed result: File:{3fd860.py}
+Detected:GodClass
+Issue:This class has multiple unrelated responsibilities including configuration, database connection, logging, user interaction, data processing, and more, violating the Single Responsibility Principle and making it difficult to maintain and understand.
+
+File:{a276f9.py}
+Detected:GaTectorDataset
+Issue:While this class may be cohesive in handling dataset-related tasks, it has an excessive number of lines of code and a large number of complex methods that might be overwhelming and should potentially be refactored into smaller, more manageable classes or responsibilities.
+
+None of the other classes in the provided files are considered large classes, as they are either utility classes with a single purpose (e.g., StringUtils) or domain-specific classes that handle a clear domain concern (e.g., OrderProcessor).
+2025-03-19 23:23:22,200 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-19 23:23:22,505 - llm_processor - INFO - Processed result: File:{3fd860.py}
+Detected:GodClass
+Issue:This class has multiple unrelated responsibilities including configuration, database connection, logging, user interaction, data processing, and more, violating the Single Responsibility Principle and making it difficult to maintain and understand.
+
+File:{a276f9.py}
+Detected:GaTectorDataset
+Issue:While this class may be cohesive in handling dataset-related tasks, it has an excessive number of lines of code and a large number of complex methods that might be overwhelming and should potentially be refactored into smaller, more manageable classes or responsibilities.
+
+None of the other classes in the provided files are considered large classes, as they are either utility classes with a single purpose (e.g., StringUtils) or domain-specific classes that handle a clear domain concern (e.g., OrderProcessor).
+2025-03-19 23:23:22,505 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-19 23:23:26,488 - llm_processor - INFO - Processed result: File:{3fd860.py}
+Detected:GodClass
+Issue:This class has multiple unrelated responsibilities including configuration, database connection, logging, user interaction, data processing, and more, violating the Single Responsibility Principle and making it difficult to maintain and understand.
+2025-03-19 23:23:27,489 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-19 23:23:30,732 - llm_processor - INFO - Processed result: The provided answer appears to be consistent with the "god_object" code smell. After analyzing and cleaning the answer to make it more readable and ensure it follows the specified format, here is the result:
+
+File: 3fd860.py
+Detected: GodClass
+Issue: This class has multiple unrelated responsibilities, including configuration, database connection, logging, user interaction, data processing, and more, violating the Single Responsibility Principle.
+2025-03-19 23:25:24,876 - __main__ - INFO - Received task message
+2025-03-19 23:25:24,877 - job.detection_job - INFO - Processing task message with correlation ID: 1234
+2025-03-19 23:25:24,878 - job.detection_job - INFO - Task type: detection
+2025-03-19 23:25:24,878 - job.detection_job - INFO - Task job: excessive_flags
+2025-03-19 23:25:24,880 - job.detection_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-19 23:25:24,880 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-19 23:25:33,795 - llm_processor - INFO - Processed result: File:5c12de.py
+Detected:OrderProcessor.process_order
+Issue:The function takes multiple flags (`is_priority`, `is_gift`, `requires_signature`) that control different behaviors, leading to poor cohesion and increased complexity.
+
+File:5c12de.py
+Detected:process_refund
+Issue:The function uses flags (`is_partial`, `is_expedited`) to handle distinct refund scenarios, resulting in branching logic that makes the function harder to understand and maintain.
+
+File:dbaa0b.py
+Detected:PaymentHandler.handle_payment
+Issue:The method accepts multiple flags (`is_recurring`, `apply_discount`, `is_refund`) that significantly alter its behavior, embedding unrelated tasks and making the method more prone to errors.
+
+File:caf746.py
+Detected:send_notification
+Issue:The function relies on multiple flags (`is_email`, `is_sms`, `is_push`) to determine the notification method, leading to a rigid and hard-to-extend implementation.
+
+File:caf746.py
+Detected:handle_shipping
+Issue:The function uses flags (`is_expedited`, `is_international`) to handle different shipping scenarios, resulting in complex conditional logic that hinders maintainability.
+2025-03-19 23:25:34,797 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-19 23:25:35,398 - llm_processor - INFO - Processed result: File:5c12de.py
+Detected:OrderProcessor.process_order
+Issue:The function takes multiple flags (`is_priority`, `is_gift`, `requires_signature`) that control different behaviors, leading to poor cohesion and increased complexity.
+
+File:5c12de.py
+Detected:process_refund
+Issue:The function uses flags (`is_partial`, `is_expedited`) to handle distinct refund scenarios, resulting in branching logic that makes the function harder to understand and maintain.
+
+File:dbaa0b.py
+Detected:PaymentHandler.handle_payment
+Issue:The method accepts multiple flags (`is_recurring`, `apply_discount`, `is_refund`) that significantly alter its behavior, embedding unrelated tasks and making the method more prone to errors.
+
+File:caf746.py
+Detected:send_notification
+Issue:The function relies on multiple flags (`is_email`, `is_sms`, `is_push`) to determine the notification method, leading to a rigid and hard-to-extend implementation.
+
+File:caf746.py
+Detected:handle_shipping
+Issue:The function uses flags (`is_expedited`, `is_international`) to handle different shipping scenarios, resulting in complex conditional logic that hinders maintainability.
+2025-03-19 23:25:35,399 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-19 23:25:45,535 - llm_processor - INFO - Processed result: Since both answers are identical and correct, I will only provide the valid detections as per the guidelines.
+
+
+File:5c12de.py
+Detected:OrderProcessor.process_order
+Issue:The function takes multiple flags (`is_priority`, `is_gift`, `requires_signature`) that control different behaviors, leading to poor cohesion and increased complexity.
+
+File:5c12de.py
+Detected:process_refund
+Issue:The function uses flags (`is_partial`, `is_expedited`) to handle distinct refund scenarios, resulting in branching logic that makes the function harder to understand and maintain.
+
+File:dbaa0b.py
+Detected:PaymentHandler.handle_payment
+Issue:The method accepts multiple flags (`is_recurring`, `apply_discount`, `is_refund`) that significantly alter its behavior, embedding unrelated tasks and making the method more prone to errors.
+
+File:caf746.py
+Detected:send_notification
+Issue:The function relies on multiple flags (`is_email`, `is_sms`, `is_push`) to determine the notification method, leading to a rigid and hard-to-extend implementation.
+
+File:caf746.py
+Detected:handle_shipping
+Issue:The function uses flags (`is_expedited`, `is_international`) to handle different shipping scenarios, resulting in complex conditional logic that hinders maintainability.
+2025-03-19 23:25:46,536 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-19 23:25:55,657 - llm_processor - INFO - Processed result: Based on the provided answer, I will analyze and clean it to make it more readable and ensure it follows the specified format.
+
+
+File: caf746.py
+Detected: send_notification
+Issue: The function relies on multiple flags that determine the notification method, leading to a rigid and hard-to-extend implementation.
+
+
+File: caf746.py
+Detected: handle_shipping
+Issue: The function uses flags to handle different shipping scenarios, resulting in complex conditional logic that hinders maintainability.
+
+
+File: dbaa0b.py
+Detected: PaymentHandler.handle_payment
+Issue: The method accepts multiple flags that significantly alter its behavior, embedding unrelated tasks and making the method more prone to errors.
+
+
+File: 5c12de.py
+Detected: process_refund
+Issue: The function uses flags to handle distinct refund scenarios, resulting in branching logic that makes the function harder to understand and maintain.
+
+
+File: 5c12de.py
+Detected: OrderProcessor.process_order
+Issue: The function takes multiple flags that control different behaviors, leading to poor cohesion and increased complexity.
+
+Note: The analysis above is correct, so I will leave it as is. The cleaned version is formatted to be more readable, with each answer separated for clarity.

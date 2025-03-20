@@ -3779,3 +3779,388 @@ Detected: OrderProcessor.process_order
 Issue: The function takes multiple flags that control different behaviors, leading to poor cohesion and increased complexity.
 
 Note: The analysis above is correct, so I will leave it as is. The cleaned version is formatted to be more readable, with each answer separated for clarity.
+2025-03-20 17:23:24,986 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-03-20 17:23:25,010 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-03-20 17:23:25,058 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-03-20 17:23:25,059 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-03-20 17:23:25,059 - __main__ - INFO - Initializing knowledge base for detection
+2025-03-20 17:23:25,060 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-03-20 17:23:25,060 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-03-20 17:23:25,067 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-03-20 17:23:25,068 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-03-20 17:23:37,838 - __main__ - INFO - Received task message
+2025-03-20 17:23:37,839 - job.detection_job - INFO - Processing task message with correlation ID: 1234
+2025-03-20 17:23:37,839 - job.detection_job - INFO - Task type: detection
+2025-03-20 17:23:37,839 - job.detection_job - INFO - Task job: god_object
+2025-03-20 17:23:37,851 - job.detection_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-20 17:23:37,851 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-20 17:23:39,595 - job.detection_job - ERROR - Error generating response for task message with correlation ID: 1234
+2025-03-20 17:23:39,596 - job.detection_job - ERROR - 404 Client Error: Not Found for url: https://router.huggingface.co/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67dc08cc-668a0a142a39f8063cbe6cb9;c86b2aad-baf4-4fa2-a310-1104f1541199)
+2025-03-20 17:23:39,597 - job.detection_job - ERROR - Error processing task message with correlation ID: 1234
+2025-03-20 17:23:39,597 - job.detection_job - ERROR - 404 Client Error: Not Found for url: https://router.huggingface.co/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67dc08cc-668a0a142a39f8063cbe6cb9;c86b2aad-baf4-4fa2-a310-1104f1541199)
+2025-03-20 17:30:29,690 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-03-20 17:30:29,719 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-03-20 17:30:29,767 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-03-20 17:30:29,767 - llm_processor - ERROR - Error loading model pipeline from Inference API: meta-llama/Llama-3.1-70B-Instruct
+2025-03-20 17:30:29,767 - llm_processor - ERROR - InferenceClient.__init__() got an unexpected keyword argument 'provider'
+2025-03-20 17:31:28,114 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-03-20 17:31:28,137 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-03-20 17:31:28,187 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-03-20 17:31:28,187 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-03-20 17:31:28,188 - __main__ - INFO - Initializing knowledge base for detection
+2025-03-20 17:31:28,188 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-03-20 17:31:28,188 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-03-20 17:31:28,189 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-03-20 17:31:28,190 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-03-20 17:32:07,923 - __main__ - INFO - Received task message
+2025-03-20 17:32:07,924 - job.refactoring_job - INFO - Processing task message with correlation ID: 1234
+2025-03-20 17:32:07,924 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-20 17:32:07,925 - job.refactoring_job - INFO - Task job: god_object
+2025-03-20 17:32:07,925 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-20 17:32:07,925 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-20 17:32:08,941 - job.refactoring_job - ERROR - Error generating response for task message with correlation ID: 1234
+2025-03-20 17:32:08,941 - job.refactoring_job - ERROR - 404 Client Error: Not Found for url: https://router.huggingface.co/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67dc0ac9-0f79b6b92a0645df51466daa;2156de8e-88ce-4c48-8e92-26c7487f4dd2)
+2025-03-20 17:32:08,942 - job.refactoring_job - ERROR - Error processing task message with correlation ID: 1234
+2025-03-20 17:32:08,943 - job.refactoring_job - ERROR - 404 Client Error: Not Found for url: https://router.huggingface.co/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67dc0ac9-0f79b6b92a0645df51466daa;2156de8e-88ce-4c48-8e92-26c7487f4dd2)
+2025-03-20 21:40:37,707 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-03-20 21:40:37,726 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-03-20 21:40:37,779 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-03-20 21:40:37,780 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-03-20 21:40:37,780 - __main__ - INFO - Initializing knowledge base for detection
+2025-03-20 21:40:37,781 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-03-20 21:40:37,781 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-03-20 21:40:37,789 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-03-20 21:40:37,790 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-03-20 21:40:49,985 - __main__ - INFO - Received task message
+2025-03-20 21:40:49,986 - job.refactoring_job - INFO - Processing task message with correlation ID: 1234
+2025-03-20 21:40:49,986 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-20 21:40:49,986 - job.refactoring_job - INFO - Task job: god_object
+2025-03-20 21:40:49,987 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-20 21:40:49,987 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-20 21:40:50,898 - job.refactoring_job - ERROR - Error generating response for task message with correlation ID: 1234
+2025-03-20 21:40:50,900 - job.refactoring_job - ERROR - 401 Client Error: Unauthorized for url: https://router.huggingface.co/hf-inference/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67dc4513-5538e4b92b306aeb2b37e8af;5d651b94-6987-4786-b8c7-70b55dbd29f0)
+
+Invalid username or password.
+2025-03-20 21:40:50,902 - job.refactoring_job - ERROR - Error processing task message with correlation ID: 1234
+2025-03-20 21:40:50,903 - job.refactoring_job - ERROR - 401 Client Error: Unauthorized for url: https://router.huggingface.co/hf-inference/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67dc4513-5538e4b92b306aeb2b37e8af;5d651b94-6987-4786-b8c7-70b55dbd29f0)
+
+Invalid username or password.
+2025-03-20 21:47:35,514 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-03-20 21:47:35,540 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-03-20 21:47:35,585 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-03-20 21:47:35,585 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-03-20 21:47:35,586 - __main__ - INFO - Initializing knowledge base for detection
+2025-03-20 21:47:35,586 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-03-20 21:47:35,587 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-03-20 21:47:35,588 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-03-20 21:47:35,588 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-03-20 21:48:06,420 - __main__ - INFO - Received task message
+2025-03-20 21:48:06,421 - job.detection_job - INFO - Processing task message with correlation ID: 1234
+2025-03-20 21:48:06,421 - job.detection_job - INFO - Task type: detection
+2025-03-20 21:48:06,421 - job.detection_job - INFO - Task job: god_object
+2025-03-20 21:48:06,433 - job.detection_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-20 21:48:06,433 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-20 21:48:07,460 - job.detection_job - ERROR - Error generating response for task message with correlation ID: 1234
+2025-03-20 21:48:07,460 - job.detection_job - ERROR - 401 Client Error: Unauthorized for url: https://router.huggingface.co/hf-inference/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67dc46c7-408e12067c5a0e2271a038c5;a7fcfc2b-44ac-4c22-bcef-2046c8a008c3)
+
+Invalid username or password.
+2025-03-20 21:48:07,461 - job.detection_job - ERROR - Error processing task message with correlation ID: 1234
+2025-03-20 21:48:07,461 - job.detection_job - ERROR - 401 Client Error: Unauthorized for url: https://router.huggingface.co/hf-inference/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67dc46c7-408e12067c5a0e2271a038c5;a7fcfc2b-44ac-4c22-bcef-2046c8a008c3)
+
+Invalid username or password.
+2025-03-20 21:54:54,061 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-03-20 21:55:20,360 - utils.retrieve_queue - INFO - Queue does not exist: LLMTaskQueue
+2025-03-20 21:55:20,360 - utils.retrieve_queue - INFO - Creating queue: LLMTaskQueue
+2025-03-20 21:55:20,365 - utils.retrieve_queue - INFO - Queue created: LLMTaskQueue
+2025-03-20 21:55:20,366 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-03-20 21:55:20,413 - utils.retrieve_queue - INFO - Queue does not exist: LLMResponseQueue
+2025-03-20 21:55:20,413 - utils.retrieve_queue - INFO - Creating queue: LLMResponseQueue
+2025-03-20 21:55:20,462 - utils.retrieve_queue - INFO - Queue created: LLMResponseQueue
+2025-03-20 21:55:20,462 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-03-20 21:55:20,463 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-03-20 21:55:20,463 - __main__ - INFO - Initializing knowledge base for detection
+2025-03-20 21:55:20,463 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-03-20 21:55:20,463 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-03-20 21:55:20,470 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-03-20 21:55:20,470 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-03-20 21:55:50,970 - __main__ - INFO - Received task message
+2025-03-20 21:55:50,971 - job.detection_job - INFO - Processing task message with correlation ID: 1234
+2025-03-20 21:55:50,971 - job.detection_job - INFO - Task type: detection
+2025-03-20 21:55:50,972 - job.detection_job - INFO - Task job: long_function
+2025-03-20 21:55:50,977 - job.detection_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-20 21:55:50,978 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-20 21:55:51,880 - job.detection_job - ERROR - Error generating response for task message with correlation ID: 1234
+2025-03-20 21:55:51,881 - job.detection_job - ERROR - 401 Client Error: Unauthorized for url: https://router.huggingface.co/hf-inference/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67dc4898-73c7b01d117e1ec302fd75d2;2b8d4a36-ee91-4c90-9041-3ca79b787b50)
+
+Invalid username or password.
+2025-03-20 21:55:51,881 - job.detection_job - ERROR - Error processing task message with correlation ID: 1234
+2025-03-20 21:55:51,882 - job.detection_job - ERROR - 401 Client Error: Unauthorized for url: https://router.huggingface.co/hf-inference/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67dc4898-73c7b01d117e1ec302fd75d2;2b8d4a36-ee91-4c90-9041-3ca79b787b50)
+
+Invalid username or password.
+2025-03-20 21:57:10,011 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-03-20 21:57:10,028 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-03-20 21:57:10,080 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-03-20 21:57:10,081 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-03-20 21:57:10,081 - __main__ - INFO - Initializing knowledge base for detection
+2025-03-20 21:57:10,082 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-03-20 21:57:10,082 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-03-20 21:57:10,083 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-03-20 21:57:10,083 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-03-20 21:58:06,467 - __main__ - INFO - Received task message
+2025-03-20 21:58:06,467 - job.detection_job - INFO - Processing task message with correlation ID: 1234
+2025-03-20 21:58:06,468 - job.detection_job - INFO - Task type: detection
+2025-03-20 21:58:06,468 - job.detection_job - INFO - Task job: long_function
+2025-03-20 21:58:06,470 - job.detection_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-20 21:58:06,470 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-20 21:58:07,821 - job.detection_job - ERROR - Error generating response for task message with correlation ID: 1234
+2025-03-20 21:58:07,821 - job.detection_job - ERROR - 401 Client Error: Unauthorized for url: https://router.huggingface.co/hf-inference/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67dc491f-78ed0d1708b6614937f865c3;a20d1e32-255a-4b29-980d-3f8fde289f0c)
+
+Invalid username or password.
+2025-03-20 21:58:07,822 - job.detection_job - ERROR - Error processing task message with correlation ID: 1234
+2025-03-20 21:58:07,822 - job.detection_job - ERROR - 401 Client Error: Unauthorized for url: https://router.huggingface.co/hf-inference/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67dc491f-78ed0d1708b6614937f865c3;a20d1e32-255a-4b29-980d-3f8fde289f0c)
+
+Invalid username or password.
+2025-03-20 22:10:51,311 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-03-20 22:10:51,337 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-03-20 22:10:51,387 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-03-20 22:10:51,387 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-03-20 22:10:51,388 - __main__ - INFO - Initializing knowledge base for detection
+2025-03-20 22:10:51,388 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-03-20 22:10:51,388 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-03-20 22:10:51,390 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-03-20 22:10:51,390 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-03-20 22:11:03,578 - __main__ - INFO - Received task message
+2025-03-20 22:11:03,578 - job.detection_job - INFO - Processing task message with correlation ID: 1234
+2025-03-20 22:11:03,579 - job.detection_job - INFO - Task type: detection
+2025-03-20 22:11:03,579 - job.detection_job - INFO - Task job: long_function
+2025-03-20 22:11:03,581 - job.detection_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-20 22:11:03,581 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-20 22:11:04,538 - job.detection_job - ERROR - Error generating response for task message with correlation ID: 1234
+2025-03-20 22:11:04,538 - job.detection_job - ERROR - 401 Client Error: Unauthorized for url: https://router.huggingface.co/hf-inference/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67dc4c28-66e0b94339770df5500cd2bc;6df692be-ee8a-4e1b-a1c2-0e04e1fb9018)
+
+Invalid username or password.
+2025-03-20 22:11:04,539 - job.detection_job - ERROR - Error processing task message with correlation ID: 1234
+2025-03-20 22:11:04,539 - job.detection_job - ERROR - 401 Client Error: Unauthorized for url: https://router.huggingface.co/hf-inference/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67dc4c28-66e0b94339770df5500cd2bc;6df692be-ee8a-4e1b-a1c2-0e04e1fb9018)
+
+Invalid username or password.
+2025-03-20 22:18:48,631 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-03-20 22:18:48,647 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-03-20 22:18:48,693 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-03-20 22:18:48,695 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-03-20 22:18:48,696 - __main__ - INFO - Initializing knowledge base for detection
+2025-03-20 22:18:48,696 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-03-20 22:18:48,696 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-03-20 22:18:48,697 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-03-20 22:18:48,697 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-03-20 22:19:10,948 - __main__ - INFO - Received task message
+2025-03-20 22:19:10,949 - job.detection_job - INFO - Processing task message with correlation ID: 1234
+2025-03-20 22:19:10,949 - job.detection_job - INFO - Task type: detection
+2025-03-20 22:19:10,949 - job.detection_job - INFO - Task job: excessive_flags
+2025-03-20 22:19:10,951 - job.detection_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-20 22:19:10,951 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-20 22:19:12,287 - job.detection_job - ERROR - Error generating response for task message with correlation ID: 1234
+2025-03-20 22:19:12,287 - job.detection_job - ERROR - 401 Client Error: Unauthorized for url: https://router.huggingface.co/hf-inference/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67dc4e10-60a82bac2e73445156203384;9cbb4237-b4b0-470e-9b70-4fd658aad8fa)
+
+Invalid username or password.
+2025-03-20 22:19:12,287 - job.detection_job - ERROR - Error processing task message with correlation ID: 1234
+2025-03-20 22:19:12,288 - job.detection_job - ERROR - 401 Client Error: Unauthorized for url: https://router.huggingface.co/hf-inference/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions (Request ID: Root=1-67dc4e10-60a82bac2e73445156203384;9cbb4237-b4b0-470e-9b70-4fd658aad8fa)
+
+Invalid username or password.
+2025-03-20 22:34:21,820 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-03-20 22:34:21,839 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-03-20 22:34:21,893 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-03-20 22:34:21,893 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-03-20 22:34:21,894 - __main__ - INFO - Initializing knowledge base for detection
+2025-03-20 22:34:21,894 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-03-20 22:34:21,895 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-03-20 22:34:21,896 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-03-20 22:34:21,896 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-03-20 22:34:41,996 - __main__ - INFO - Received task message
+2025-03-20 22:34:41,997 - job.detection_job - INFO - Processing task message with correlation ID: 1234
+2025-03-20 22:34:41,997 - job.detection_job - INFO - Task type: detection
+2025-03-20 22:34:41,997 - job.detection_job - INFO - Task job: excessive_flags
+2025-03-20 22:34:42,000 - job.detection_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-20 22:34:42,000 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-20 22:34:54,322 - llm_processor - INFO - Processed result: File: 5c12de.py  
+Detected: OrderProcessor.process_order  
+Issue: The function takes multiple flags (`is_priority`, `is_gift`, `requires_signature`) that control the order processing behavior, leading to multiple execution paths and poor cohesion.
+
+Detected: process_refund  
+Issue: The function uses flags (`is_partial`, `is_expedited`) to handle different refund scenarios, resulting in a single function handling distinct tasks and reduced maintainability.
+
+File: dbaa0b.py  
+Detected: PaymentHandler.handle_payment  
+Issue: The method relies on multiple flags (`is_recurring`, `apply_discount`, `is_refund`) to alter the payment processing behavior, causing complex conditional logic and reduced cohesion.
+
+File: caf746.py  
+Detected: send_notification  
+Issue: The function accepts multiple flags (`is_email`, `is_sms`, `is_push`) to determine the notification method, leading to a single function handling multiple distinct tasks and reduced maintainability.
+
+Detected: handle_shipping  
+Issue: The function uses flags (`is_expedited`, `is_international`) to handle different shipping scenarios, resulting in complex conditional logic and poor cohesion.
+2025-03-20 22:34:55,324 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-20 22:35:08,373 - llm_processor - INFO - Processed result: File: 5c12de.py
+Detected: OrderProcessor.process_order
+Issue: The method takes multiple flags (`is_priority`, `is_gift`, `requires_signature`) that control different behaviors, making it harder to understand and maintain.
+
+File: 5c12de.py
+Detected: process_refund
+Issue: The function uses flags (`is_partial`, `is_expedited`) to differentiate between partial and full refunds, as well as expedited refunds, leading to multiple execution paths and poor cohesion.
+
+File: dbaa0b.py
+Detected: PaymentHandler.handle_payment
+Issue: The method accepts multiple flags (`is_recurring`, `apply_discount`, `is_refund`) that significantly alter its behavior, handling different payment scenarios, and making the code harder to read and maintain.
+
+File: caf746.py
+Detected: send_notification
+Issue: The function relies on multiple flags (`is_email`, `is_sms`, `is_push`) to determine which notification methods to use, resulting in a long chain of conditionals and poor cohesion.
+
+File: caf746.py
+Detected: handle_shipping
+Issue: The function uses flags (`is_expedited`, `is_international`) to differentiate between shipping scenarios, leading to branching logic and making the code less maintainable.
+2025-03-20 22:35:08,374 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-20 22:35:18,641 - llm_processor - INFO - Processed result: File: 5c12de.py  
+Detected: OrderProcessor.process_order  
+Issue: The function takes multiple flags (`is_priority`, `is_gift`, `requires_signature`) that control the order processing behavior, leading to multiple execution paths and poor cohesion.
+
+Detected: process_refund  
+Issue: The function uses flags (`is_partial`, `is_expedited`) to handle different refund scenarios, resulting in a single function handling distinct tasks and reduced maintainability.
+
+File: dbaa0b.py  
+Detected: PaymentHandler.handle_payment  
+Issue: The method relies on multiple flags (`is_recurring`, `apply_discount`, `is_refund`) to alter the payment processing behavior, causing complex conditional logic and reduced cohesion.
+
+File: caf746.py  
+Detected: send_notification  
+Issue: The function accepts multiple flags (`is_email`, `is_sms`, `is_push`) to determine the notification method, leading to a single function handling multiple distinct tasks and reduced maintainability.
+
+Detected: handle_shipping  
+Issue: The function uses flags (`is_expedited`, `is_international`) to handle different shipping scenarios, resulting in complex conditional logic and poor cohesion.
+2025-03-20 22:35:19,643 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-20 22:35:27,273 - llm_processor - INFO - Processed result: Based on the provided answer and the excessive_flags code smell, the analysis seems correct. 
+
+Here is the cleaned answer in the required format:
+
+File: 5c12de.py
+Detected: OrderProcessor.process_order
+Issue: excessive_flags controlling order processing behavior, poor cohesion.
+
+File: 5c12de.py
+Detected: process_refund
+Issue: excessive_flags handling distinct refund tasks, reducing maintainability.
+
+File: dbaa0b.py
+Detected: PaymentHandler.handle_payment
+Issue: excessive_flags altering payment processing behavior, causing complex conditional logic.
+
+File: caf746.py
+Detected: send_notification
+Issue: excessive_flags handling multiple notification methods, reducing maintainability.
+
+File: caf746.py
+Detected: handle_shipping
+Issue: excessive_flags handling different shipping scenarios, causing complex conditional logic.
+2025-03-20 22:36:18,233 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-03-20 22:36:18,262 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-03-20 22:36:18,312 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-03-20 22:36:18,313 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-03-20 22:36:18,313 - __main__ - INFO - Initializing knowledge base for detection
+2025-03-20 22:36:18,313 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-03-20 22:36:18,313 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-03-20 22:36:18,314 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-03-20 22:36:18,315 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-03-20 22:36:26,647 - __main__ - INFO - Received task message
+2025-03-20 22:36:26,648 - job.detection_job - INFO - Processing task message with correlation ID: 1234
+2025-03-20 22:36:26,649 - job.detection_job - INFO - Task type: detection
+2025-03-20 22:36:26,649 - job.detection_job - INFO - Task job: excessive_flags
+2025-03-20 22:36:26,651 - job.detection_job - INFO - Generating response for task message with correlation ID: 1234
+2025-03-20 22:36:26,651 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-20 22:36:36,150 - llm_processor - INFO - Processed result: File: 5c12de.py
+Detected: OrderProcessor.process_order
+Issue: The function takes multiple flags (is_priority, is_gift, requires_signature) that control its behavior, leading to multiple execution paths and poor cohesion.
+
+File: 5c12de.py
+Detected: process_refund
+Issue: The function uses flags (is_partial, is_expedited) to handle different refund scenarios, resulting in a single function with multiple responsibilities.
+
+File: dbaa0b.py
+Detected: PaymentHandler.handle_payment
+Issue: The method relies on multiple flags (is_recurring, apply_discount, is_refund) to alter its behavior, leading to a complex and hard-to-maintain function.
+
+File: caf746.py
+Detected: send_notification
+Issue: The function accepts multiple flags (is_email, is_sms, is_push) and uses them to conditionally send different types of notifications, resulting in a single function with multiple distinct tasks.
+
+File: caf746.py
+Detected: handle_shipping
+Issue: The function uses flags (is_expedited, is_international) to handle different shipping scenarios, leading to a function with poor cohesion and multiple execution paths.
+2025-03-20 22:36:37,152 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-20 22:36:37,457 - llm_processor - INFO - Processed result: File: 5c12de.py
+Detected: OrderProcessor.process_order
+Issue: The function takes multiple flags (is_priority, is_gift, requires_signature) that control its behavior, leading to multiple execution paths and poor cohesion.
+
+File: 5c12de.py
+Detected: process_refund
+Issue: The function uses flags (is_partial, is_expedited) to handle different refund scenarios, resulting in a single function with multiple responsibilities.
+
+File: dbaa0b.py
+Detected: PaymentHandler.handle_payment
+Issue: The method relies on multiple flags (is_recurring, apply_discount, is_refund) to alter its behavior, leading to a complex and hard-to-maintain function.
+
+File: caf746.py
+Detected: send_notification
+Issue: The function accepts multiple flags (is_email, is_sms, is_push) and uses them to conditionally send different types of notifications, resulting in a single function with multiple distinct tasks.
+
+File: caf746.py
+Detected: handle_shipping
+Issue: The function uses flags (is_expedited, is_international) to handle different shipping scenarios, leading to a function with poor cohesion and multiple execution paths.
+2025-03-20 22:36:37,458 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-20 22:36:51,037 - llm_processor - INFO - Processed result: We've been provided two sets of prompts and their corresponding answers for the Excessive Use of Flags code smell detection task.
+
+### Task Description Overview:
+Analyze the provided Python code snippets, identify functions or methods that contain one or more flag parameters (e.g., boolean arguments) which significantly alter their behavior, and list those functions or methods according to the specified format.
+
+### Overall Assessment:
+After a thorough analysis of the provided code snippets from the two inputs, the following conclusions were drawn.
+
+File: 5c12de.py  
+Detected: OrderProcessor.process_order  
+Issue: The function takes multiple flags (is_priority, is_gift, requires_signature) that control its behavior, leading to multiple execution paths and poor cohesion.
+
+File: 5c12de.py  
+Detected: process_refund  
+Issue: The function uses flags (is_partial, is_expedited) to handle different refund scenarios, resulting in a single function with multiple responsibilities.
+
+File: dbaa0b.py  
+Detected: PaymentHandler.handle_payment  
+Issue: The method relies on multiple flags (is_recurring, apply_discount, is_refund) to alter its behavior, leading to a complex and hard-to-maintain function.
+
+File: caf746.py  
+Detected: send_notification  
+Issue: The function accepts multiple flags (is_email, is_sms, is_push) and uses them to conditionally send different types of notifications, resulting in a single function with multiple distinct tasks.
+
+File: caf746.py  
+Detected: handle_shipping  
+Issue: The function uses flags (is_expedited, is_international) to handle different shipping scenarios, leading to a function with poor cohesion and multiple execution paths.
+2025-03-20 22:36:52,039 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-20 22:37:02,587 - llm_processor - INFO - Processed result: The provided answer is correct and follows the specified format. Therefore, there is no need to clean or reformat it. The answer consistently analyzes the provided code snippets and identifies the excessive use of flags in various functions and methods. Here is the answer without any modifications:
+
+File: 5c12de.py
+Detected: OrderProcessor.process_order
+Issue: The function takes multiple flags (is_priority, is_gift, requires_signature) that control its behavior, leading to multiple execution paths and poor cohesion.
+
+File: 5c12de.py
+Detected: process_refund
+Issue: The function uses flags (is_partial, is_expedited) to handle different refund scenarios, resulting in a single function with multiple responsibilities.
+
+File: dbaa0b.py
+Detected: PaymentHandler.handle_payment
+Issue: The method relies on multiple flags (is_recurring, apply_discount, is_refund) to alter its behavior, leading to a complex and hard-to-maintain function.
+
+File: caf746.py
+Detected: send_notification
+Issue: The function accepts multiple flags (is_email, is_sms, is_push) and uses them to conditionally send different types of notifications, resulting in a single function with multiple distinct tasks.
+
+File: caf746.py
+Detected: handle_shipping
+Issue: The function uses flags (is_expedited, is_international) to handle different shipping scenarios, leading to a function with poor cohesion and multiple execution paths.

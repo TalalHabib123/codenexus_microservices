@@ -10,6 +10,10 @@ from utils.retrieve_queue import get_or_create_queue
 from job.detection_job import process_detection_job
 from job.refactoring_job import process_refactoring_job
 
+from huggingface_hub import login
+
+login("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", True)
+
 INFERENCING_API = True
 
 load_dotenv()

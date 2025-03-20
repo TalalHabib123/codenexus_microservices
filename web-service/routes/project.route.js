@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post('/create', projectController.create);
 router.get('/getAll', projectController.getAll);
+router.get('/getAllProjectInfos', projectController.getAllProjectInfos);
 router.get('/getProjectById/:projectId', projectController.getProjectById);
 
 // router.get('/getAllScans/:projectId', projectController.getAllScans);

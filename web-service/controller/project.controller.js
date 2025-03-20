@@ -1,8 +1,8 @@
 const Scan = require('../mongo_models/Scan');
 const Project = require('../mongo_models/Project');
 const User = require('../mongo_models/User');
+const { processProjectsWithCodeSmells } = require('../utils/scanUtils.jsx');
 const { get } = require('mongoose');
-
 
 const projectController = {
     create: async (req, res) => {
@@ -27,8 +27,12 @@ const projectController = {
                     { path: 'detect_id' },
                     { path: 'refactor_id' }
                 ]
-              })
-            res.status(200).json(projects);
+            });
+            
+            // Process projects to calculate and update code smell counts
+            const processedProjects = await processProjectsWithCodeSmells(projects);
+            
+            res.status(200).json(processedProjects);
         } catch (error) {
             console.error(error);
             res.status(500).json({message: "Internal server error", error});
@@ -78,6 +82,3 @@ const projectController = {
 }
 
 module.exports = projectController;
-
-
-

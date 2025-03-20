@@ -10,7 +10,7 @@ const GithubAuthController = {
    */
   getGithubOauthUrl: () => {
     const clientId = process.env.CLIENT_ID;
-    const redirectUri = process.env.REDIRECT_URI;
+    const redirectUri = process.env.REDIRECT_URI || "http://localhost:5173/auth/github/callback";
     const scope = "user:email,repo, offline_access";
 
     if (!clientId || !redirectUri) {

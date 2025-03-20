@@ -22,10 +22,10 @@ const graphController = {
         // Update the existing graph
         existingGraph.graphData = graphData;
         await existingGraph.save();
-        return res.status(200).json({ message: 'Graph updated successfully', graphData: existingGraph });
+        return res.status(200).json({ message: 'Graph updated successfully'});
       } else {
         // Create a new graph document
-        const newGraph = await Graph.create({ graphData: graphData, projectId: project._id });
+        await Graph.create({ graphData: graphData, projectId: project._id });
         return res.status(201).json({ message: 'Graph created successfully'});
       }
     } catch (error) {

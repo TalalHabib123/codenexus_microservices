@@ -5,7 +5,7 @@ from app.utils.Analysis.unused_variables_refactor import unused_variables_refact
 from app.utils.Analysis.dead_code_refactor import dead_code_refactor
 
 
-def refactor_inconsistent_naming(code, target_convention, dependencies=None):
+def refactor_inconsistent_naming(code, target_convention="", dependencies=None):
     try: 
         code,dependencies = inconsistent_naming_refactor(code, target_convention, dependencies)
         return {

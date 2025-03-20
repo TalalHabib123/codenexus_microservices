@@ -5,6 +5,7 @@ from app.mongo_models.Project import InitProjectRequest, express_respone
 from app.mongo_models.Detection import DetectionData
 from app.mongo_models.Refactor import RefactorData
 from app.mongo_models.DependencyGraph import GraphIn
+from app.mongo_models.Rulesets import InitRulesetRequest
 from app.service.endpoints_url import EXPRESS_URL
 
 logging_gateway_router = APIRouter()
@@ -64,5 +65,16 @@ async def delete_graph(projectTitle: str):
     async with httpx.AsyncClient(timeout=30.0) as client:
         response = await client.delete(f"{EXPRESS_URL}/graph/delete/{projectTitle}")
     if response.status_code != 200:
+        raise HTTPException(status_code=response.status_code, detail=response.text)
+    return response.json()
+
+
+@logging_gateway_router.post("/ruleset/add-or-update", response_model=express_respone)
+async def create_or_update_ruleset(ruleset: dict):
+    async with httpx.AsyncClient(timeout=30.0) as client:
+        response = await client.post(
+            f"{EXPRESS_URL}/ruleset/add-or-update", json=ruleset
+        )
+    if response.status_code not in (200, 201):
         raise HTTPException(status_code=response.status_code, detail=response.text)
     return response.json()

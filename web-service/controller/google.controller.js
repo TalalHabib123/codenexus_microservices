@@ -126,6 +126,16 @@ const GoogleController = {
                 // Set auth cookies
                 authService.setAuthCookies(res, token);
                 
+                if (req.session.googleCallback) {
+                  const { callback, state } = req.session.googleCallback;
+                  
+                  // Clear the session data
+                  delete req.session.googleCallback;
+                  
+                  // Redirect to the VS Code callback with token
+                  return res.redirect(`${callback}?token=${encodeURIComponent(token)}&state=${encodeURIComponent(state)}`);
+                }
+                
                 // Redirect to frontend with success
                 return res.redirect(`${process.env.FRONTEND_URL}/auth/callback?success=true`);
             } catch (error) {

@@ -187,6 +187,7 @@ const processProjectsWithCodeSmells = async (projects) => {
   if (!projects || !Array.isArray(projects)) return [];
   
   const processedProjects = [];
+  let totalLatestScanIssues = 0;
   
   for (const project of projects) {
     try {
@@ -194,16 +195,38 @@ const processProjectsWithCodeSmells = async (projects) => {
         // Calculate and update code smells for each scan
         const updatedScans = await calculateCodeSmells(project.scans);
         
-        // Create a new project object with updated scans
+        // Find the latest scan for this project
+        let latestScan = null;
+        if (updatedScans.length > 0) {
+          // Sort scans by date, newest first
+          const sortedScans = [...updatedScans].sort((a, b) => {
+            const dateA = a.started_at || a.createdAt || new Date(0);
+            const dateB = b.started_at || b.createdAt || new Date(0);
+            return new Date(dateB) - new Date(dateA);
+          });
+          
+          // Get the latest scan
+          latestScan = sortedScans[0];
+          
+          // Add the latest scan's issues to the total
+          if (latestScan) {
+            totalLatestScanIssues += (latestScan.total_issues_detected || 0);
+          }
+        }
+        
+        // Create a new project object with updated scans and project-specific count
         const updatedProject = {
           ...project.toObject(),
           scans: updatedScans,
-          totalCodeSmells: updatedScans.reduce((sum, scan) => sum + (scan.total_issues_detected || 0), 0)
+          projectLatestScanIssues: latestScan ? (latestScan.total_issues_detected || 0) : 0
         };
         
         processedProjects.push(updatedProject);
       } else {
-        processedProjects.push(project);
+        processedProjects.push({
+          ...project.toObject(),
+          projectLatestScanIssues: 0
+        });
       }
     } catch (error) {
       console.error(`Error processing project ${project._id}:`, error);
@@ -211,7 +234,13 @@ const processProjectsWithCodeSmells = async (projects) => {
     }
   }
   
-  return processedProjects;
+  // Add the total count of latest scan issues to each project
+  const finalProjects = processedProjects.map(project => ({
+    ...project,
+    totalCodeSmells: totalLatestScanIssues
+  }));
+  
+  return finalProjects;
 };
 
 module.exports = {

@@ -9,7 +9,8 @@ require('dotenv').config();
 const authRoutes = require('./routes/auth.route');
 const projectRoutes = require('./routes/project.route');
 const scanRoutes = require('./routes/scan.route');
-const graphRoutes = require('./routes/graph.route'); // Uncomment if you have graph routes
+const graphRoutes = require('./routes/graph.route'); 
+const logRoutes = require('./routes/log.route');
 // Create Express app
 const app = express();
 
@@ -40,6 +41,7 @@ app.use('/auth', authRoutes);
 app.use('/project', projectRoutes);
 app.use('/scan', scanRoutes);
 app.use('/graph', graphRoutes);
+app.use('/log', logRoutes);
 app.get('/', (req, res) => {
   res.json({ message: 'Hello from Express' });
 });

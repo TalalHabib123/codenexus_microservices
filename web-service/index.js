@@ -12,6 +12,7 @@ const scanRoutes = require('./routes/scan.route');
 const graphRoutes = require('./routes/graph.route'); 
 const logRoutes = require('./routes/log.route');
 const rulesetRoutes = require('./routes/ruleset.route');
+const vscodeRoutes = require('./routes/vscode.auth.route');
 // Create Express app
 const app = express();
 
@@ -45,6 +46,7 @@ app.use('/graph', graphRoutes);
 // app.use('/vscode', vscodeAuthRoutes);
 app.use('/logs', logRoutes);
 app.use('/ruleset', rulesetRoutes);
+app.use('/vscode', vscodeRoutes);
 app.get('/', (req, res) => {
   res.json({ message: 'Hello from Express' });
 });

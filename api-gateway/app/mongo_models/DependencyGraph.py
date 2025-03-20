@@ -29,4 +29,4 @@ class DependencyGraph(BaseModel):
 # Input model for API calls, using projectTitle to find or create the project.
 class GraphIn(BaseModel):
     projectTitle: str
-    graphData: DependencyGraph
+    graphData: Dict[str, FileNode] = Field(default_factory=dict)

@@ -15,19 +15,25 @@ const DependentNodeSchema = new mongoose.Schema({
     weight: { type: [UtilizedEntitySchema], default: [] }
 });
 
-const FileNodeSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    dependencies: { type: [DependentNodeSchema], default: [] }
-});
+// const FileNodeSchema = new mongoose.Schema({
+//     name: { type: String, required: true },
+//     dependencies: { type: [DependentNodeSchema], default: [] }
+// });
 
 const DependencyGraphSchema = new mongoose.Schema({
-    files: { type: Map, of: FileNodeSchema, default: {} }
+    files: String
 });
 
 
+const FileNodeSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    dependencies: { type: [DependentNodeSchema], default: [] } // Array instead of Set
+});
+
+// Update the graphSchema to match TypeScript's { [key: string]: Map<string, FileNode> }
 const graphSchema = new mongoose.Schema({
-    graphData: DependencyGraphSchema,
-    projectId: { type: mongoose.Schema.Types.ObjectId, ref: 'Project' }
+    graphData: { type: Object, default: {} }, // Change to Object instead of Map
+    projectId: { type: mongoose.Schema.Types.ObjectId, ref: 'Project', required: true }
 }, { timestamps: true });
 
 

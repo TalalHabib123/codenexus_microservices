@@ -9,6 +9,7 @@ const GithubAuthController = {
    * @returns {string} GitHub OAuth authorization URL
    */
   getGithubOauthUrl: () => {
+    try{
     const clientId = process.env.CLIENT_ID;
     const redirectUri = process.env.REDIRECT_URI || "http://localhost:5173/auth/github/callback";
     const scope = "user:email,repo, offline_access";
@@ -18,8 +19,12 @@ const GithubAuthController = {
         "CLIENT_ID or REDIRECT_URI missing from environment variables"
       );
     }
-
     return `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}`;
+  }
+  catch (error) {
+    console.error("Error generating GitHub OAuth URL:", error.message);
+    throw new Error("Failed to generate GitHub OAuth URL");
+  }
   },
 
   /**

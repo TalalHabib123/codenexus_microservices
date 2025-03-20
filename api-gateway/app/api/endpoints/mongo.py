@@ -45,6 +45,7 @@ async def gateway_detection(request: RefactorData):
 @logging_gateway_router.post("/graph/add-or-update", response_model=express_respone)
 async def create_or_update_graph(graph_in: GraphIn):
     async with httpx.AsyncClient(timeout=30.0) as client:
+        print("jfksdfdfh")
         response = await client.post(
             f"{EXPRESS_URL}/graph/add-or-update", json=graph_in.model_dump()
         )

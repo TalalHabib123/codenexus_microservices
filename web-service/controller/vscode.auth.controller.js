@@ -1,5 +1,5 @@
 
-const User = require('../mongo_models/user.model');
+const User = require('../mongo_models/User');
 const GoogleController = require('./google.controller');
 const authController = require('./auth.controller');
 const GithubAuthController = require('./github.auth.controller');

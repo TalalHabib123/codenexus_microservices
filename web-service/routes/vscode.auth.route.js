@@ -14,3 +14,6 @@ router.post('/process-login-redirect', vscode_authController.processLoginRedirec
   router.get('/github/callback', vscode_authController.processGithubCallback);
   
 router.get("/google/login", vscode_authController.initiateGoogleAuth);
+
+
+module.exports = router;

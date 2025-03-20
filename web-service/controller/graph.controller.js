@@ -5,9 +5,11 @@ const graphController = {
   // Create or update the dependency graph for a project
   createOrUpdateGraph: async (req, res) => {
     try {
+      console.log("jfksdfdfh")
       const { projectTitle, graphData } = req.body;
+
       if (!projectTitle || !graphData) {
-        return res.status(400).json({ message: 'Project title and graph data are required' });
+        res.status(400).json({ status: "error", message: 'Project title and graph data are required' });
       }
 
       // Look for the project by title; if it doesn't exist, create it.
@@ -15,22 +17,25 @@ const graphController = {
       if (!project) {
         project = await Project.create({ title: projectTitle });
       }
-
+      console.log('Project found or created:', project._id);
       // Check if a graph already exists for this project.
       let existingGraph = await Graph.findOne({ projectId: project._id });
       if (existingGraph) {
         // Update the existing graph
+        console.log(graphData)
         existingGraph.graphData = graphData;
         await existingGraph.save();
-        return res.status(200).json({ message: 'Graph updated successfully'});
+        console.log('Graph updated successfully');
+        res.status(201).json({ status: "success", message: 'Graph updated successfully'});
       } else {
         // Create a new graph document
         await Graph.create({ graphData: graphData, projectId: project._id });
-        return res.status(201).json({ message: 'Graph created successfully'});
+        console.log('Graph created successfully');
+        res.status(201).json({ status: "success", message: 'Graph created successfully'});
       }
     } catch (error) {
       console.log(error);
-      return res.status(500).json({ message: 'Internal server error', error: error.message });
+      return res.status(500).json({ status: "error", message: 'Internal server error', error: error.message });
     }
   },
 
@@ -39,22 +44,17 @@ const graphController = {
     try {
       const { projectId } = req.params;
       if (!projectId) {
-        return res.status(400).json({ message: 'Project title is required' });
+        res.status(400).json({ status: "error", message: 'Project title is required' });
       }
-
-      // const project = await Project.findOne({projectId });
-      // if (!project) {
-      //   return res.status(404).json({ message: 'Project not found' });
-      // }
 
       const graphData = await Graph.findOne({ projectId});
       if (!graphData) {
-        return res.status(404).json({ message: 'Graph not found for the project' });
+        res.status(404).json({ status: "error", message: 'Graph not found for the project' });
       }
 
-      return res.status(200).json({ message: 'Graph fetched successfully', graphData });
+      res.status(200).json({ status: "success", message: 'Graph fetched successfully', graphData });
     } catch (error) {
-      return res.status(500).json({ message: 'Internal server error', error: error.message });
+      res.status(500).json({ status: "error", message: 'Internal server error', error: error.message });
     }
   },
 
@@ -63,22 +63,17 @@ const graphController = {
     try {
       const { projectId } = req.params;
       if (!projectId) {
-        return res.status(400).json({ message: 'Project title is required' });
+        res.status(400).json({ status: "error", message: 'Project title is required' });
       }
-
-      // const project = await Project.findOne({ title: projectId });
-      // if (!project) {
-      //   return res.status(404).json({ message: 'Project not found' });
-      // }
 
       const graph = await Graph.findOneAndDelete({ projectId});
       if (!graph) {
-        return res.status(404).json({ message: 'Graph not found for the project' });
+        res.status(404).json({ status: "error", message: 'Graph not found for the project' });
       }
 
-      return res.status(200).json({ message: 'Graph deleted successfully' });
+      res.status(200).json({ status: "success", message: 'Graph deleted successfully' });
     } catch (error) {
-      return res.status(500).json({ message: 'Internal server error', error: error.message });
+      res.status(500).json({ status: "error", message: 'Internal server error', error: error.message });
     }
   }
 };

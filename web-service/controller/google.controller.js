@@ -137,7 +137,7 @@ const GoogleController = {
                 }
                 
                 // Redirect to frontend with success
-                return res.redirect(`${process.env.FRONTEND_URL}/auth/callback?success=true`);
+                return res.redirect(`${process.env.FRONTEND_URL}/auth/callback?success=true&token=${encodeURIComponent(token)}`);
             } catch (error) {
                 console.error('Error during Google auth callback:', error);
                 return res.redirect(`${process.env.FRONTEND_URL}/login?error=server_error`);

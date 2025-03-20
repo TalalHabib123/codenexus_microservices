@@ -7,7 +7,7 @@ router.post('/create', projectController.create);
 router.get('/getAll', projectController.getAll);
 router.get('/getAllProjectInfos', projectController.getAllProjectInfos);
 router.get('/getProjectById/:projectId', projectController.getProjectById);
-
+// router.get('/getAllMembers/:projectId', projectController.getAllMembers);
 // router.get('/getAllScans/:projectId', projectController.getAllScans);
 // router.get('/getScanById/:scanId', projectController.getScanById);
 // router.put('/update/:projectId', projectController.updateProject);

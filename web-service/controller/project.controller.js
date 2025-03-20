@@ -134,7 +134,28 @@ getAllProjectInfos: async (req, res) => {
             console.error(error);
             res.status(500).json({message: "error occurred"});
         }
+    },
 
+    getDailyScanByProjectId: async (req, res) => {
+        // endpoint to return the last scan of each day. 
+        // this is used to show the daily scan in the dashboard
+        try {
+            const projectId = req.params.projectId;
+            const scans = await Scan.find({project_id: projectId}).populate('project_id');
+            const dailyScans = {};
+
+            scans.forEach(scan => {
+                const date = new Date(scan.started_at).toISOString().split('T')[0]; // Get the date part
+                if (!dailyScans[date] || new Date(scan.started_at) > new Date(dailyScans[date].started_at)) {
+                    dailyScans[date] = scan;
+                }
+            });
+
+            res.status(200).json(Object.values(dailyScans));
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({message: "Internal server error", error});
+        }
     }
 }
 

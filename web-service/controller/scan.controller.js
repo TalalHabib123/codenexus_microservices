@@ -72,7 +72,68 @@ const scanController = {
       console.error(err);
       res.status(500).json({ message: "Internal server error", error: err });
     }
-  }
+  },
+
+  getDailyScans: async (req, res) => {
+    try {
+      // endpoint to return the last scan of each day. 
+        // this is used to show the daily scan in the website dashboard
+      const scans = await Scan.find({}).populate('detect_id').populate('refactor_id');
+      const dailyScans = {};
+      scans.forEach(scan => {
+        const date = new Date(scan.started_at).toDateString();
+        if (!dailyScans[date]) {
+          dailyScans[date] = scan;
+        } else if (scan.started_at > dailyScans[date].started_at) {
+          dailyScans[date] = scan;
+        }
+      });
+      res.status(200).json(Object.values(dailyScans));
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal server error", error });
+    }
+  },
+  getMonthlyScans: async (req, res) => {
+    try {
+      // endpoint to return the last scan of each month. 
+        // this is used to show the monthly scan in the website dashboard
+      const scans = await Scan.find({}).populate('detect_id').populate('refactor_id');
+      const monthlyScans = {};
+      scans.forEach(scan => {
+        const month = new Date(scan.started_at).toISOString().slice(0, 7); // YYYY-MM format
+        if (!monthlyScans[month]) {
+          monthlyScans[month] = scan;
+        } else if (scan.started_at > monthlyScans[month].started_at) {
+          monthlyScans[month] = scan;
+        }
+      });
+      res.status(200).json(Object.values(monthlyScans));
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal server error", error });
+    }
+  },
+  getWeeklyScans: async (req, res) => {
+    try {
+      // endpoint to return the last scan of each week. 
+        // this is used to show the weekly scan in the website dashboard
+      const scans = await Scan.find({}).populate('detect_id').populate('refactor_id');
+      const weeklyScans = {};
+      scans.forEach(scan => {
+        const week = new Date(scan.started_at).toISOString().slice(0, 10); // YYYY-MM-DD format
+        if (!weeklyScans[week]) {
+          weeklyScans[week] = scan;
+        } else if (scan.started_at > weeklyScans[week].started_at) {
+          weeklyScans[week] = scan;
+        }
+      });
+      res.status(200).json(Object.values(weeklyScans));
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal server error", error });
+    }
+  },
 };
 
 module.exports = scanController;

@@ -41,7 +41,7 @@ app.use('/auth', authRoutes);
 app.use('/project', projectRoutes);
 app.use('/scan', scanRoutes);
 app.use('/graph', graphRoutes);
-app.use('/log', logRoutes);
+app.use('/logs', logRoutes);
 app.get('/', (req, res) => {
   res.json({ message: 'Hello from Express' });
 });

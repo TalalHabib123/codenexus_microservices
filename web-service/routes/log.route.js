@@ -7,7 +7,10 @@ const router = express.Router();
 router.post('/:projectId/logs', logController.createLog);
 
 // Get all logs for a project
-router.get('/:projectId/logs', logController.getLogs);
+router.get('/:projectId/logs', logController.getLogsforProj);
+
+// Get all logs for all projects
+router.get('/', logController.getAllLogs);
 
 // Delete a log by ID
 router.delete('/logs/:logId', logController.deleteLog);

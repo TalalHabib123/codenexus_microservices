@@ -1,4 +1,4 @@
-const Log = require('../mongo_models/Log');
+const Log = require('../mongo_models/logs');
 const Project = require('../mongo_models/Project');
 
 const logController = {
@@ -25,7 +25,7 @@ const logController = {
   },
 
   // Get all logs for a project
-  getLogs: async (req, res) => {
+  getLogsforProj: async (req, res) => {
     try {
       const { projectId } = req.params;
 
@@ -38,6 +38,22 @@ const logController = {
       res.status(200).json(logs);
     } catch (error) {
       console.error('Error fetching logs for project:', error);
+      res.status(500).json({ message: 'Internal server error', error });
+    }
+  },
+
+  // Get all logs for all projects
+  getAllLogs: async (req, res) => {
+    try {
+      // Find all logs
+      const logs = await Log.find();
+      if (!logs) {
+        return res.status(404).json({ message: 'Logs not found' });
+      }
+
+      res.status(200).json(logs);
+    } catch (error) {
+      console.error('Error fetching all logs:', error);
       res.status(500).json({ message: 'Internal server error', error });
     }
   },

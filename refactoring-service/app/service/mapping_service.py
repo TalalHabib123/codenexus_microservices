@@ -36,11 +36,11 @@ def map_function(orginal_code, function_name, refactor_snippet):
         } 
         
 def map_orginal_code(orginal_code):
-    if not is_valid_python_code(orginal_code):
-        return {
-            "success": False,
-            "error": "Invalid Python code"
-        }
+    # if not is_valid_python_code(orginal_code):
+    #     return {
+    #         "success": False,
+    #         "error": "Invalid Python code"
+    #     }
     return {
         "refactored_code": orginal_code,
         "success": True

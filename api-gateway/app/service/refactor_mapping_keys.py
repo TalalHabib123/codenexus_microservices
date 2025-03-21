@@ -1,7 +1,5 @@
 def message_with_name(refactoring_job, processed_data):
-    if not (refactoring_job or processed_data or processed_data['refactored_code']):
-        return {}
-
+    print("Refactoring Job IN FUCNTION: ", refactoring_job)
     return {
         "original_code": refactoring_job['code_snippet'],
         "refactored_code": processed_data['refactored_code'],
@@ -9,9 +7,7 @@ def message_with_name(refactoring_job, processed_data):
     }
     
 def message_without_name(refactoring_job, processed_data):
-    if not (refactoring_job or processed_data or processed_data['refactored_code']):
-        return {}
-
+    print("Refactoring Job IN FUNCTION @: ", refactoring_job)
     return {
         "original_code": refactoring_job['code_snippet'],
         "refactored_code": processed_data['refactored_code']

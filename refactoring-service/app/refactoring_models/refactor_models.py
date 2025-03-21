@@ -146,14 +146,14 @@ class RefactorResponse(BaseModel):
 
 
 class PartialMappingRequest(BaseModel):
-    orginal_code: str  # Note: typo in "original"
-    modified_code: str
+    original_code: str  # Note: typo in "original"
+    refactored_code: str
     name: str
 
 
 class CompleteMappingRequest(BaseModel):
-    orginal_code: str  # Note: typo in "original"
-    modified_code: str
+    original_code: str  # Note: typo in "original"
+    refactored_code: str
 
 
 class MappingResponse(BaseModel):

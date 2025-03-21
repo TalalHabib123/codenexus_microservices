@@ -138,9 +138,11 @@ async def process_detection_response(message_body: dict):
     task_type = message_body['task_type']
     task_job = message_body['task_job']
     
-
+    print("Processing detection response")
     websocket = ws_connections.get(correlation_id)
+    print(f"Websocket: {websocket}")
     if websocket:
+        print("Sending response to client")
         await websocket.send_text(json.dumps({
             "task_status": task_status,
             "correlation_id": correlation_id,
@@ -160,12 +162,19 @@ async def process_refactoring_response(message_body: dict):
     
 
     websocket = ws_connections.get(correlation_id)
+    print(f"Websocket: {websocket}")
     refactoring_job = refactoring_tasks.get(correlation_id)
-    task_message = MAPPING_KEYS[task_job](processed_data, refactoring_job)
+    print(f"Refactoring Job: {refactoring_job}")
+    print(f"task_job: {task_job}")  
+    task_message = MAPPING_KEYS[task_job](refactoring_job, processed_data)
+    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    print(f"Task Message: {task_message}")
     if websocket:
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         final_data = {
-            "file_path": refactoring_job['file_path'],
+            "file_path": processed_data['file_path'],
         }
+        print("Processing refactoring response")
         try:
             async with httpx.AsyncClient() as client:
                 response = await client.post(f"{REFACTOR_SERVICE_URL}/mapping/{task_job}", json=task_message)
@@ -180,7 +189,7 @@ async def process_refactoring_response(message_body: dict):
             final_data['code_snippet'] = refactoring_job['code_snippet']
             processed_data = final_data
             task_status = "failed"
-        
+        print("Sending Task Response for Response")
         await websocket.send_text(json.dumps({
             "task_status": task_status,
             "correlation_id": correlation_id,
@@ -198,6 +207,7 @@ async def consume_response_queue():
         
         if messages:
             message_body = json.loads(messages[0]['Body'])
+            print(f"Received message: {message_body}")
             if message_body['task_type'] == 'detection':
                 await process_detection_response(message_body)
             

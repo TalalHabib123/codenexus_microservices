@@ -1,6 +1,6 @@
 import httpx
 import json
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from app.mongo_models.Project import InitProjectRequest, express_respone
 from app.mongo_models.Detection import DetectionData
 from app.mongo_models.Refactor import RefactorData
@@ -12,9 +12,12 @@ logging_gateway_router = APIRouter()
 
 
 @logging_gateway_router.post("/init_project", response_model=express_respone)
-async def gateway_init_project(request: InitProjectRequest):
+async def gateway_init_project(request: InitProjectRequest, req: Request):
+    headers = {}
+    if "Authorization" in req.headers:
+        headers["Authorization"] = req.headers["Authorization"]
     async with httpx.AsyncClient(timeout=30.0) as client:
-        response = await client.post(f"{EXPRESS_URL}/project/create", json=request.model_dump())
+        response = await client.post(f"{EXPRESS_URL}/project/create", json=request.model_dump(), headers=headers)
     if response.status_code != 200:
         raise HTTPException(status_code=response.status_code, detail=response.text)
     return response.json()
@@ -22,20 +25,24 @@ async def gateway_init_project(request: InitProjectRequest):
 
 
 @logging_gateway_router.post("/detection", response_model=express_respone)
-async def gateway_detection(request: DetectionData):
-    print("again")
+async def gateway_detection(request: DetectionData, req: Request):
+    headers = {}
+    if "Authorization" in req.headers:
+        headers["Authorization"] = req.headers["Authorization"]
     async with httpx.AsyncClient(timeout=30.0) as client:
-        response = await client.post(f"{EXPRESS_URL}/scan/addDetection", json=request.model_dump())
+        response = await client.post(f"{EXPRESS_URL}/scan/addDetection", json=request.model_dump(), headers=headers)
     if response.status_code != 200:
         raise HTTPException(status_code=response.status_code, detail=response.text)
     return response.json()
 
 
 @logging_gateway_router.post("/refactor", response_model=express_respone)
-async def gateway_detection(request: RefactorData):
-    print("again")
+async def gateway_detection(request: RefactorData, req: Request):
+    headers = {}
+    if "Authorization" in req.headers:
+        headers["Authorization"] = req.headers["Authorization"]
     async with httpx.AsyncClient(timeout=120.0) as client:
-        response = await client.post(f"{EXPRESS_URL}/scan/addRefactor", json=request.model_dump(mode='json'))
+        response = await client.post(f"{EXPRESS_URL}/scan/addRefactor", json=request.model_dump(mode='json'), headers=headers)
     if response.status_code != 200:
         raise HTTPException(status_code=response.status_code, detail=response.text)
     return response.json()
@@ -43,7 +50,10 @@ async def gateway_detection(request: RefactorData):
 
 
 @logging_gateway_router.post("/graph/add-or-update", response_model=express_respone)
-async def create_or_update_graph(graph_in: GraphIn):
+async def create_or_update_graph(graph_in: GraphIn, req: Request):
+    headers = {}
+    if "Authorization" in req.headers:
+        headers["Authorization"] = req.headers["Authorization"]
     async with httpx.AsyncClient(timeout=30.0) as client:
         print("jfksdfdfh")
         response = await client.post(
@@ -62,19 +72,25 @@ async def get_graph(projectTitle: str):
     return response.json()
 
 @logging_gateway_router.delete("/graph/delete/{projectTitle}")
-async def delete_graph(projectTitle: str):
+async def delete_graph(projectTitle: str, req: Request):
+    headers = {}
+    if "Authorization" in req.headers:
+        headers["Authorization"] = req.headers["Authorization"]
     async with httpx.AsyncClient(timeout=30.0) as client:
-        response = await client.delete(f"{EXPRESS_URL}/graph/delete/{projectTitle}")
+        response = await client.delete(f"{EXPRESS_URL}/graph/delete/{projectTitle}", headers=headers)
     if response.status_code != 200:
         raise HTTPException(status_code=response.status_code, detail=response.text)
     return response.json()
 
 
 @logging_gateway_router.post("/ruleset/add-or-update", response_model=express_respone)
-async def create_or_update_ruleset(ruleset: dict):
+async def create_or_update_ruleset(ruleset: dict, req: Request):
+    headers = {}
+    if "Authorization" in req.headers:
+        headers["Authorization"] = req.headers["Authorization"]
     async with httpx.AsyncClient(timeout=30.0) as client:
         response = await client.post(
-            f"{EXPRESS_URL}/ruleset/add-or-update", json=ruleset
+            f"{EXPRESS_URL}/ruleset/add-or-update", json=ruleset , headers=headers
         )
     if response.status_code not in (200, 201):
         raise HTTPException(status_code=response.status_code, detail=response.text)

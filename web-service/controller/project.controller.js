@@ -11,8 +11,11 @@ const projectController = {
             const project = new Project({
                 title,
                 description,
+                Owner: req.user._id,
+                members: [req.user._id]
             });
             await project.save();
+            console.log("Project created successfully", project);
             res.status(201).json({message: "Project created successfully", project});
         } catch (error) {
             console.error(error);

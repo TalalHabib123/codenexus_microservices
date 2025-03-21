@@ -1,6 +1,6 @@
 const express = require('express');
 const scanController = require('../controller/scan.controller');
-
+const {vscodeAuth} = require('../middleware/auth.middleware')
 const router = express.Router();
 
 

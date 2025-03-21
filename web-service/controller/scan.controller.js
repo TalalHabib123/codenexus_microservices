@@ -1,29 +1,44 @@
 const Scan = require("../mongo_models/Scan");
 const Project = require('../mongo_models/Project');
 const { DetectionResponse } = require('../mongo_models/DetectionData');
-const { RefactoringData, Refactor } = require('../mongo_models/RefactorData');
+const { RefactoringData } = require('../mongo_models/RefactorData');
 const Log = require('../mongo_models/logs');
 
 const scanController = {
+  // Add a new detection scan
   addDetection: async (req, res) => {
     try {
       const { detectionData, title, scan_type, scan_name } = req.body;
-      const detectionResponse = await DetectionResponse.create(detectionData);
-      const scan = new Scan({
-        scan_type,
-        scan_name,
-        detect_id: detectionResponse._id
-      });
-
-      await scan.save();
+      
+      // Find the project
       const project = await Project.findOne({ title });
       if (!project) {
         return res.status(404).json({ message: "Project not found" });
       }
+
+      // Create detection response
+      const detectionResponse = await DetectionResponse.create(detectionData);
+      
+      // Create scan
+      const scan = new Scan({
+        project_id: project._id,
+        scan_type: scan_type || 'automatic',
+        scan_name: scan_name || 'General Detection',
+        detect_id: [detectionResponse._id]
+      });
+
+      // Calculate total issues detected
+      const totalIssuesDetected = calculateTotalIssuesDetected(detectionData);
+      scan.total_issues_detected = totalIssuesDetected;
+
+      // Save scan
+      await scan.save();
+
+      // Update project's scans
       project.scans.push(scan._id);
       await project.save();
 
-      // Create a log entry
+      // Create log entry
       const log = new Log({
         message: `Detection scan added to project ${title}`,
         type: 'detected',
@@ -32,108 +47,343 @@ const scanController = {
       });
       await log.save();
 
-      res.status(201).json({ message: "Detection data added successfully", scan });
+      res.status(201).json({ 
+        message: "Detection data added successfully", 
+        scan,
+        totalIssuesDetected
+      });
     } catch (err) {
       console.error(err);
-      res.status(500).json({ message: "Internal server error", error: err });
+      res.status(500).json({ message: "Internal server error", error: err.message });
     }
   },
 
+  // Add a new refactoring scan
   addRefactor: async (req, res) => {
     try {
       const { filePath, refactorData, title } = req.body;
-      const refData = await RefactoringData.create(refactorData);
-      await refData.save();
-      const refactor = new Refactor({
-        filePath,
-        refactorData: refData._id
-      });
-      await refactor.save();
+      
+      // Find the project
       const project = await Project.findOne({ title });
+      if (!project) {
+        return res.status(404).json({ message: "Project not found" });
+      }
 
-      const scanId = project.scans[project.scans.length - 1];
+      // Create refactoring data
+      const refData = await RefactoringData.create(refactorData);
+      
+      // Find the latest scan for this project
+      const latestScan = await Scan.findOne({ project_id: project._id })
+        .sort({ started_at: -1 });
 
-      await Scan.updateOne(
-        { _id: scanId },
-        { $push: { refactor_id: refactor._id } }
-      );
+      if (!latestScan) {
+        return res.status(404).json({ message: "No previous scan found for this project" });
+      }
 
-      // Create a log entry
+      // Update the latest scan with refactoring data
+      latestScan.refactor_id.push(refData._id);
+      await latestScan.save();
+
+      // Create log entry
       const log = new Log({
         message: `Refactor added to project ${title}`,
         type: 'refactored',
-        objectId: refactor._id,
+        objectId: refData._id,
         projectId: project._id
       });
       await log.save();
 
-      res.status(200).json({ message: "Refactor data added successfully" });
+      res.status(200).json({ 
+        message: "Refactor data added successfully",
+        refactorData: refData 
+      });
     } catch (err) {
       console.error(err);
-      res.status(500).json({ message: "Internal server error", error: err });
+      res.status(500).json({ message: "Internal server error", error: err.message });
     }
   },
 
+  // Get daily scans for all projects
   getDailyScans: async (req, res) => {
     try {
-      // endpoint to return the last scan of each day. 
-        // this is used to show the daily scan in the website dashboard
-      const scans = await Scan.find({}).populate('detect_id').populate('refactor_id');
-      const dailyScans = {};
-      scans.forEach(scan => {
-        const date = new Date(scan.started_at).toDateString();
-        if (!dailyScans[date]) {
-          dailyScans[date] = scan;
-        } else if (scan.started_at > dailyScans[date].started_at) {
-          dailyScans[date] = scan;
+      // Get all unique projects
+      const projects = await Project.find({});
+      
+      // Collect last scan for each project per day
+      const dailyScans = [];
+      
+      for (const project of projects) {
+        // Find the latest scan for this project today
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        const latestScan = await Scan.findOne({ 
+          project_id: project._id,
+          started_at: { $gte: today }
+        })
+        .populate('detect_id')
+        .sort({ started_at: -1 })
+        .limit(1);
+        
+        if (latestScan) {
+          dailyScans.push(latestScan);
         }
-      });
-      res.status(200).json(Object.values(dailyScans));
+      }
+      
+      res.status(200).json(dailyScans);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "Internal server error", error });
+      res.status(500).json({ message: "Internal server error", error: error.message });
     }
   },
-  getMonthlyScans: async (req, res) => {
+
+  // Get weekly scans for all projects
+  getWeeklyScan: async (req, res) => {
     try {
-      // endpoint to return the last scan of each month. 
-        // this is used to show the monthly scan in the website dashboard
-      const scans = await Scan.find({}).populate('detect_id').populate('refactor_id');
-      const monthlyScans = {};
-      scans.forEach(scan => {
-        const month = new Date(scan.started_at).toISOString().slice(0, 7); // YYYY-MM format
-        if (!monthlyScans[month]) {
-          monthlyScans[month] = scan;
-        } else if (scan.started_at > monthlyScans[month].started_at) {
-          monthlyScans[month] = scan;
+      const projects = await Project.find({});
+      const weeklyScan = [];
+      
+      for (const project of projects) {
+        // Get scans from the last 7 days
+        const oneWeekAgo = new Date();
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+        
+        const latestScan = await Scan.findOne({
+          project_id: project._id,
+          started_at: { $gte: oneWeekAgo }
+        })
+        .populate('detect_id')
+        .sort({ started_at: -1 })
+        .limit(1);
+        
+        if (latestScan) {
+          weeklyScan.push(latestScan);
         }
-      });
-      res.status(200).json(Object.values(monthlyScans));
+      }
+      
+      res.status(200).json(weeklyScan);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "Internal server error", error });
+      res.status(500).json({ message: "Internal server error", error: error.message });
     }
   },
-  getWeeklyScans: async (req, res) => {
+
+  // Get monthly scans for all projects
+  getMonthlyScan: async (req, res) => {
     try {
-      // endpoint to return the last scan of each week. 
-        // this is used to show the weekly scan in the website dashboard
-      const scans = await Scan.find({}).populate('detect_id').populate('refactor_id');
-      const weeklyScans = {};
-      scans.forEach(scan => {
-        const week = new Date(scan.started_at).toISOString().slice(0, 10); // YYYY-MM-DD format
-        if (!weeklyScans[week]) {
-          weeklyScans[week] = scan;
-        } else if (scan.started_at > weeklyScans[week].started_at) {
-          weeklyScans[week] = scan;
+      const projects = await Project.find({});
+      const monthlyScan = [];
+      
+      for (const project of projects) {
+        // Get scans from the last 30 days
+        const oneMonthAgo = new Date();
+        oneMonthAgo.setDate(oneMonthAgo.getDate() - 30);
+        
+        const latestScan = await Scan.findOne({
+          project_id: project._id,
+          started_at: { $gte: oneMonthAgo }
+        })
+        .populate('detect_id')
+        .sort({ started_at: -1 })
+        .limit(1);
+        
+        if (latestScan) {
+          monthlyScan.push(latestScan);
         }
-      });
-      res.status(200).json(Object.values(weeklyScans));
+      }
+      
+      res.status(200).json(monthlyScan);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "Internal server error", error });
+      res.status(500).json({ message: "Internal server error", error: error.message });
     }
   },
+
+  // Get code smell type count for a specific project
+  getCodeSmellTypeCount: async (req, res) => {
+    try {
+      const { projectId } = req.params;
+      
+      // Find the latest scan for the project
+      const latestScan = await Scan.findOne({ project_id: projectId })
+        .populate('detect_id')
+        .sort({ started_at: -1 });
+      
+      if (!latestScan || !latestScan.detect_id || latestScan.detect_id.length === 0) {
+        return res.status(200).json({
+          magic_numbers: 0,
+          duplicated_code: 0,
+          unused_variables: 0,
+          naming_convention: 0,
+          dead_code: 0,
+          unreachable_code: 0
+        });
+      }
+      
+      // Assuming detect_id is an array of detection responses
+      const codeSmellTypes = {
+        magic_numbers: 0,
+        duplicated_code: 0,
+        unused_variables: 0,
+        naming_convention: 0,
+        dead_code: 0,
+        unreachable_code: 0
+      };
+
+      // Iterate through each detection response
+      latestScan.detect_id.forEach(detection => {
+        // Magic Numbers
+        if (detection.magic_numbers?.data?.magic_numbers) {
+          codeSmellTypes.magic_numbers += detection.magic_numbers.data.magic_numbers.length;
+        }
+
+        // Duplicated Code
+        if (detection.duplicated_code?.data?.duplicate_code) {
+          codeSmellTypes.duplicated_code += detection.duplicated_code.data.duplicate_code.length;
+        }
+
+        // Unused Variables
+        if (detection.unused_variables?.data?.unused_variables) {
+          codeSmellTypes.unused_variables += detection.unused_variables.data.unused_variables.length;
+        }
+
+        // Naming Convention
+        if (detection.naming_convention?.data?.inconsistent_naming) {
+          detection.naming_convention.data.inconsistent_naming.forEach(namingType => {
+            codeSmellTypes.naming_convention += namingType.vars ? namingType.vars.length : 0;
+          });
+        }
+
+        // Dead Code
+        if (detection.dead_code?.data?.dead_code) {
+          codeSmellTypes.dead_code += detection.dead_code.data.dead_code.length;
+        }
+
+        // Unreachable Code
+        if (detection.unreachable_code?.data?.unreachable_code) {
+          codeSmellTypes.unreachable_code += detection.unreachable_code.data.unreachable_code.length;
+        }
+      });
+      
+      res.status(200).json(codeSmellTypes);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal server error", error: error.message });
+    }
+  },
+
+  // Get code smell distribution across all projects
+  getProjectsCodeSmellDistribution: async (req, res) => {
+    try {
+      // Get all projects
+      const projects = await Project.find({});
+      
+      // Will store code smell distribution for all projects
+      const projectsCodeSmellDistribution = [];
+      
+      // Iterate through each project
+      for (const project of projects) {
+        // Find the latest scan for this project
+        const latestScan = await Scan.findOne({ project_id: project._id })
+          .populate('detect_id')
+          .sort({ started_at: -1 });
+        
+        // Initialize code smell types
+        const codeSmellTypes = {
+          magic_numbers: 0,
+          duplicated_code: 0,
+          unused_variables: 0,
+          naming_convention: 0,
+          dead_code: 0,
+          unreachable_code: 0
+        };
+
+        // If latest scan exists and has detection data
+        if (latestScan && latestScan.detect_id && latestScan.detect_id.length > 0) {
+          // Iterate through each detection response
+          latestScan.detect_id.forEach(detection => {
+            // Magic Numbers
+            if (detection.magic_numbers?.data?.magic_numbers) {
+              codeSmellTypes.magic_numbers += detection.magic_numbers.data.magic_numbers.length;
+            }
+
+            // Duplicated Code
+            if (detection.duplicated_code?.data?.duplicate_code) {
+              codeSmellTypes.duplicated_code += detection.duplicated_code.data.duplicate_code.length;
+            }
+
+            // Unused Variables
+            if (detection.unused_variables?.data?.unused_variables) {
+              codeSmellTypes.unused_variables += detection.unused_variables.data.unused_variables.length;
+            }
+
+            // Naming Convention
+            if (detection.naming_convention?.data?.inconsistent_naming) {
+              detection.naming_convention.data.inconsistent_naming.forEach(namingType => {
+                codeSmellTypes.naming_convention += namingType.vars ? namingType.vars.length : 0;
+              });
+            }
+
+            // Dead Code
+            if (detection.dead_code?.data?.dead_code) {
+              codeSmellTypes.dead_code += detection.dead_code.data.dead_code.length;
+            }
+
+            // Unreachable Code
+            if (detection.unreachable_code?.data?.unreachable_code) {
+              codeSmellTypes.unreachable_code += detection.unreachable_code.data.unreachable_code.length;
+            }
+          });
+        }
+
+        // Add project's code smell distribution
+        projectsCodeSmellDistribution.push({
+          projectName: project.title,
+          ...codeSmellTypes
+        });
+      }
+      
+      res.status(200).json(projectsCodeSmellDistribution);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal server error", error: error.message });
+    }
+  }
 };
+
+// Helper function to calculate total issues detected
+function calculateTotalIssuesDetected(detectionData) {
+  let totalIssues = 0;
+
+  // Helper function to count issues in a specific detection type
+  const countIssues = (dataPath) => {
+    const pathParts = dataPath.split('.');
+    let current = detectionData;
+    
+    for (const part of pathParts) {
+      if (!current || !current[part]) return 0;
+      current = current[part];
+    }
+
+    return Array.isArray(current) ? current.length : 0;
+  };
+
+  // Define paths to different types of code smells
+  const issueTypes = [
+    'magic_numbers.data.magic_numbers',
+    'duplicated_code.data.duplicate_code',
+    'unused_variables.data.unused_variables',
+    'naming_convention.data.inconsistent_naming',
+    'dead_code.data.dead_code',
+    'unreachable_code.data.unreachable_code'
+  ];
+
+  // Sum up issues from all types
+  issueTypes.forEach(type => {
+    totalIssues += countIssues(type);
+  });
+
+  return totalIssues;
+}
 
 module.exports = scanController;

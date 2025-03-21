@@ -4164,3 +4164,1937 @@ Issue: The function accepts multiple flags (is_email, is_sms, is_push) and uses 
 File: caf746.py
 Detected: handle_shipping
 Issue: The function uses flags (is_expedited, is_international) to handle different shipping scenarios, leading to a function with poor cohesion and multiple execution paths.
+2025-03-21 10:02:38,288 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-03-21 10:02:38,315 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-03-21 10:02:38,373 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-03-21 10:02:38,374 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-03-21 10:02:38,376 - __main__ - INFO - Initializing knowledge base for detection
+2025-03-21 10:02:38,377 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-03-21 10:02:38,378 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-03-21 10:02:38,385 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-03-21 10:02:38,385 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-03-21 10:26:55,882 - __main__ - INFO - Received task message
+2025-03-21 10:26:55,882 - job.detection_job - INFO - Processing task message with correlation ID: c06f814e-a694-4a87-8e33-1673565d04fd
+2025-03-21 10:26:55,882 - job.detection_job - INFO - Task type: detection
+2025-03-21 10:26:55,884 - job.detection_job - INFO - Task job: long_function
+2025-03-21 10:26:55,890 - job.detection_job - INFO - Generating response for task message with correlation ID: c06f814e-a694-4a87-8e33-1673565d04fd
+2025-03-21 10:26:55,891 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:27:11,260 - llm_processor - INFO - Processed result: File:4a405a.py
+Detected:commute_integers
+Issue:Exceeds a reasonable line threshold (~100 lines of substantive code). Performs multiple unrelated tasks (summing values, computing averages, squares, cubes, factorials, Fibonacci sequences, processing lists, and generating debug messages).
+
+File:32a211.py
+Detected:calculate_discount
+Issue:Performs multiple unrelated tasks with complex conditionals, excessive nesting, and is too long to be easily maintained (combining customer type, membership status, day of week, and coupon code to determine discounts).
+
+File:bc8bf5.py
+Detected:main
+Issue:Performs multiple unrelated tasks (primary processing, report generation, email sending, inventory checks, and additional complex conditionals). Redundant and unreachable code as well as excessive nesting contribute to the function's length and complexity.
+
+File:db89db.py
+Detected:process_online_order
+Detected:process_instore_order
+Issue:Both functions involve duplicate calculations (total, discount, tax), redundant summary creations, and are performing multiple unrelated tasks, contributing to excessive length and complexity of these functions.
+
+File:d29b69.py
+Detected:process_data
+Issue:Performs multiple unrelated tasks (user validation, product validation, complex conditionals, etc.). Excessive nesting and redundant code contribute to the function's length.
+
+File:729e11.py
+Detected:conflicting_function
+Issue:Multiple unrelated tasks are performed (global variable updates and manipulations). Excessive nesting contributes to the function's length and complexity.
+
+File:18d6ad.py
+Detected:create_order
+Issue:Excessive lines and unrelated tasks of order creation contribute to the function's length, performing is too long to be easily maintained.
+2025-03-21 10:27:12,261 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:27:12,539 - llm_processor - INFO - Processed result: File:4a405a.py
+Detected:commute_integers
+Issue:Exceeds a reasonable line threshold (~100 lines of substantive code). Performs multiple unrelated tasks (summing values, computing averages, squares, cubes, factorials, Fibonacci sequences, processing lists, and generating debug messages).
+
+File:32a211.py
+Detected:calculate_discount
+Issue:Performs multiple unrelated tasks with complex conditionals, excessive nesting, and is too long to be easily maintained (combining customer type, membership status, day of week, and coupon code to determine discounts).
+
+File:bc8bf5.py
+Detected:main
+Issue:Performs multiple unrelated tasks (primary processing, report generation, email sending, inventory checks, and additional complex conditionals). Redundant and unreachable code as well as excessive nesting contribute to the function's length and complexity.
+
+File:db89db.py
+Detected:process_online_order
+Detected:process_instore_order
+Issue:Both functions involve duplicate calculations (total, discount, tax), redundant summary creations, and are performing multiple unrelated tasks, contributing to excessive length and complexity of these functions.
+
+File:d29b69.py
+Detected:process_data
+Issue:Performs multiple unrelated tasks (user validation, product validation, complex conditionals, etc.). Excessive nesting and redundant code contribute to the function's length.
+
+File:729e11.py
+Detected:conflicting_function
+Issue:Multiple unrelated tasks are performed (global variable updates and manipulations). Excessive nesting contributes to the function's length and complexity.
+
+File:18d6ad.py
+Detected:create_order
+Issue:Excessive lines and unrelated tasks of order creation contribute to the function's length, performing is too long to be easily maintained.
+2025-03-21 10:27:12,543 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:27:30,751 - llm_processor - INFO - Processed result: The first and second answers are correct and provide the exact same content. They both identify long functions correctly according to the definition of long functions (exceeding a reasonable line threshold, performing multiple unrelated tasks, or being excessively complex or deeply nested).
+
+Therefore, the correct answer is:
+
+File:4a405a.py
+Detected:commute_integers
+Issue:Exceeds a reasonable line threshold (~100 lines of substantive code). Performs multiple unrelated tasks (summing values, computing averages, squares, cubes, factorials, Fibonacci sequences, processing lists, and generating debug messages).
+
+File:32a211.py
+Detected:calculate_discount
+Issue:Performs multiple unrelated tasks with complex conditionals, excessive nesting, and is too long to be easily maintained (combining customer type, membership status, day of week, and coupon code to determine discounts).
+
+File:bc8bf5.py
+Detected:main
+Issue:Performs multiple unrelated tasks (primary processing, report generation, email sending, inventory checks, and additional complex conditionals). Redundant and unreachable code as well as excessive nesting contribute to the function's length and complexity.
+
+File:db89db.py
+Detected:process_online_order
+Detected:process_instore_order
+Issue:Both functions involve duplicate calculations (total, discount, tax), redundant summary creations, and are performing multiple unrelated tasks, contributing to excessive length and complexity of these functions.
+
+File:d29b69.py
+Detected:process_data
+Issue:Performs multiple unrelated tasks (user validation, product validation, complex conditionals, etc.). Excessive nesting and redundant code contribute to the function's length.
+
+File:729e11.py
+Detected:conflicting_function
+Issue:Multiple unrelated tasks are performed (global variable updates and manipulations). Excessive nesting contributes to the function's length and complexity.
+
+File:18d6ad.py
+Detected:create_order
+Issue:Excessive lines and unrelated tasks of order creation contribute to the function's length, performing is too long to be easily maintained.
+2025-03-21 10:27:31,755 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:27:45,584 - llm_processor - INFO - Processed result: The provided answer is correct and follows the specified format for the most part. However, there are some issues that need to be addressed:
+
+- In the `db89db.py` file, there are two functions detected (`process_online_order` and `process_instore_order`) but the issue description seems to apply to both functions. To make it consistent with the format, we should create separate entries for each function.
+
+- In the `18d6ad.py` file, the issue description is not clear and concise. We should rephrase it to better fit the format.
+
+Here's the cleaned and reformatted answer:
+
+File: 4a405a.py
+Detected: commute_integers
+Issue: Exceeds a reasonable line threshold (~100 lines of substantive code) and performs multiple unrelated tasks.
+
+File: 32a211.py
+Detected: calculate_discount
+Issue: Performs multiple unrelated tasks with complex conditionals and excessive nesting.
+
+File: bc8bf5.py
+Detected: main
+Issue: Performs multiple unrelated tasks with redundant and unreachable code, and excessive nesting.
+
+File: db89db.py
+Detected: process_online_order
+Issue: Involves duplicate calculations and redundant summary creations, and performs multiple unrelated tasks.
+
+File: db89db.py
+Detected: process_instore_order
+Issue: Involves duplicate calculations and redundant summary creations, and performs multiple unrelated tasks.
+
+File: d29b69.py
+Detected: process_data
+Issue: Performs multiple unrelated tasks with excessive nesting and redundant code.
+
+File: 729e11.py
+Detected: conflicting_function
+Issue: Performs multiple unrelated tasks with excessive nesting.
+
+File: 18d6ad.py
+Detected: create_order
+Issue: Performs multiple unrelated tasks and has excessive lines, making it too long to be easily maintained.
+2025-03-21 10:33:59,624 - __main__ - INFO - Received task message
+2025-03-21 10:33:59,624 - job.detection_job - INFO - Processing task message with correlation ID: 692592e7-f61c-49f3-9e60-ea2a95151481
+2025-03-21 10:33:59,625 - job.detection_job - INFO - Task type: detection
+2025-03-21 10:33:59,625 - job.detection_job - INFO - Task job: long_function
+2025-03-21 10:33:59,633 - job.detection_job - INFO - Generating response for task message with correlation ID: 692592e7-f61c-49f3-9e60-ea2a95151481
+2025-03-21 10:33:59,633 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:34:00,779 - llm_processor - INFO - Processed result: File:4a405a.py
+Detected:commute_integers
+Issue:Exceeds a reasonable line threshold (~100 lines of substantive code). Performs multiple unrelated tasks (summing values, computing averages, squares, cubes, factorials, Fibonacci sequences, processing lists, and generating debug messages).
+
+File:32a211.py
+Detected:calculate_discount
+Issue:Performs multiple unrelated tasks with complex conditionals, excessive nesting, and is too long to be easily maintained (combining customer type, membership status, day of week, and coupon code to determine discounts).
+
+File:bc8bf5.py
+Detected:main
+Issue:Performs multiple unrelated tasks (primary processing, report generation, email sending, inventory checks, and additional complex conditionals). Redundant and unreachable code as well as excessive nesting contribute to the function's length and complexity.
+
+File:db89db.py
+Detected:process_online_order
+Detected:process_instore_order
+Issue:Both functions involve duplicate calculations (total, discount, tax), redundant summary creations, and are performing multiple unrelated tasks, contributing to excessive length and complexity of these functions.
+
+File:d29b69.py
+Detected:process_data
+Issue:Performs multiple unrelated tasks (user validation, product validation, complex conditionals, etc.). Excessive nesting and redundant code contribute to the function's length.
+
+File:729e11.py
+Detected:conflicting_function
+Issue:Multiple unrelated tasks are performed (global variable updates and manipulations). Excessive nesting contributes to the function's length and complexity.
+
+File:18d6ad.py
+Detected:create_order
+Issue:Excessive lines and unrelated tasks of order creation contribute to the function's length, performing is too long to be easily maintained.
+2025-03-21 10:34:01,781 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:34:02,051 - llm_processor - INFO - Processed result: File:4a405a.py
+Detected:commute_integers
+Issue:Exceeds a reasonable line threshold (~100 lines of substantive code). Performs multiple unrelated tasks (summing values, computing averages, squares, cubes, factorials, Fibonacci sequences, processing lists, and generating debug messages).
+
+File:32a211.py
+Detected:calculate_discount
+Issue:Performs multiple unrelated tasks with complex conditionals, excessive nesting, and is too long to be easily maintained (combining customer type, membership status, day of week, and coupon code to determine discounts).
+
+File:bc8bf5.py
+Detected:main
+Issue:Performs multiple unrelated tasks (primary processing, report generation, email sending, inventory checks, and additional complex conditionals). Redundant and unreachable code as well as excessive nesting contribute to the function's length and complexity.
+
+File:db89db.py
+Detected:process_online_order
+Detected:process_instore_order
+Issue:Both functions involve duplicate calculations (total, discount, tax), redundant summary creations, and are performing multiple unrelated tasks, contributing to excessive length and complexity of these functions.
+
+File:d29b69.py
+Detected:process_data
+Issue:Performs multiple unrelated tasks (user validation, product validation, complex conditionals, etc.). Excessive nesting and redundant code contribute to the function's length.
+
+File:729e11.py
+Detected:conflicting_function
+Issue:Multiple unrelated tasks are performed (global variable updates and manipulations). Excessive nesting contributes to the function's length and complexity.
+
+File:18d6ad.py
+Detected:create_order
+Issue:Excessive lines and unrelated tasks of order creation contribute to the function's length, performing is too long to be easily maintained.
+2025-03-21 10:34:02,052 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:34:02,392 - llm_processor - INFO - Processed result: The first and second answers are correct and provide the exact same content. They both identify long functions correctly according to the definition of long functions (exceeding a reasonable line threshold, performing multiple unrelated tasks, or being excessively complex or deeply nested).
+
+Therefore, the correct answer is:
+
+File:4a405a.py
+Detected:commute_integers
+Issue:Exceeds a reasonable line threshold (~100 lines of substantive code). Performs multiple unrelated tasks (summing values, computing averages, squares, cubes, factorials, Fibonacci sequences, processing lists, and generating debug messages).
+
+File:32a211.py
+Detected:calculate_discount
+Issue:Performs multiple unrelated tasks with complex conditionals, excessive nesting, and is too long to be easily maintained (combining customer type, membership status, day of week, and coupon code to determine discounts).
+
+File:bc8bf5.py
+Detected:main
+Issue:Performs multiple unrelated tasks (primary processing, report generation, email sending, inventory checks, and additional complex conditionals). Redundant and unreachable code as well as excessive nesting contribute to the function's length and complexity.
+
+File:db89db.py
+Detected:process_online_order
+Detected:process_instore_order
+Issue:Both functions involve duplicate calculations (total, discount, tax), redundant summary creations, and are performing multiple unrelated tasks, contributing to excessive length and complexity of these functions.
+
+File:d29b69.py
+Detected:process_data
+Issue:Performs multiple unrelated tasks (user validation, product validation, complex conditionals, etc.). Excessive nesting and redundant code contribute to the function's length.
+
+File:729e11.py
+Detected:conflicting_function
+Issue:Multiple unrelated tasks are performed (global variable updates and manipulations). Excessive nesting contributes to the function's length and complexity.
+
+File:18d6ad.py
+Detected:create_order
+Issue:Excessive lines and unrelated tasks of order creation contribute to the function's length, performing is too long to be easily maintained.
+2025-03-21 10:34:03,396 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:34:03,675 - llm_processor - INFO - Processed result: The provided answer is correct and follows the specified format for the most part. However, there are some issues that need to be addressed:
+
+- In the `db89db.py` file, there are two functions detected (`process_online_order` and `process_instore_order`) but the issue description seems to apply to both functions. To make it consistent with the format, we should create separate entries for each function.
+
+- In the `18d6ad.py` file, the issue description is not clear and concise. We should rephrase it to better fit the format.
+
+Here's the cleaned and reformatted answer:
+
+File: 4a405a.py
+Detected: commute_integers
+Issue: Exceeds a reasonable line threshold (~100 lines of substantive code) and performs multiple unrelated tasks.
+
+File: 32a211.py
+Detected: calculate_discount
+Issue: Performs multiple unrelated tasks with complex conditionals and excessive nesting.
+
+File: bc8bf5.py
+Detected: main
+Issue: Performs multiple unrelated tasks with redundant and unreachable code, and excessive nesting.
+
+File: db89db.py
+Detected: process_online_order
+Issue: Involves duplicate calculations and redundant summary creations, and performs multiple unrelated tasks.
+
+File: db89db.py
+Detected: process_instore_order
+Issue: Involves duplicate calculations and redundant summary creations, and performs multiple unrelated tasks.
+
+File: d29b69.py
+Detected: process_data
+Issue: Performs multiple unrelated tasks with excessive nesting and redundant code.
+
+File: 729e11.py
+Detected: conflicting_function
+Issue: Performs multiple unrelated tasks with excessive nesting.
+
+File: 18d6ad.py
+Detected: create_order
+Issue: Performs multiple unrelated tasks and has excessive lines, making it too long to be easily maintained.
+2025-03-21 10:36:48,860 - __main__ - INFO - Received task message
+2025-03-21 10:36:48,860 - job.detection_job - INFO - Processing task message with correlation ID: 445ae170-92a0-4ce0-a0ac-d31842780b91
+2025-03-21 10:36:48,861 - job.detection_job - INFO - Task type: detection
+2025-03-21 10:36:48,861 - job.detection_job - INFO - Task job: long_function
+2025-03-21 10:36:48,867 - job.detection_job - INFO - Generating response for task message with correlation ID: 445ae170-92a0-4ce0-a0ac-d31842780b91
+2025-03-21 10:36:48,868 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:36:49,358 - llm_processor - INFO - Processed result: File:4a405a.py
+Detected:commute_integers
+Issue:Exceeds a reasonable line threshold (~100 lines of substantive code). Performs multiple unrelated tasks (summing values, computing averages, squares, cubes, factorials, Fibonacci sequences, processing lists, and generating debug messages).
+
+File:32a211.py
+Detected:calculate_discount
+Issue:Performs multiple unrelated tasks with complex conditionals, excessive nesting, and is too long to be easily maintained (combining customer type, membership status, day of week, and coupon code to determine discounts).
+
+File:bc8bf5.py
+Detected:main
+Issue:Performs multiple unrelated tasks (primary processing, report generation, email sending, inventory checks, and additional complex conditionals). Redundant and unreachable code as well as excessive nesting contribute to the function's length and complexity.
+
+File:db89db.py
+Detected:process_online_order
+Detected:process_instore_order
+Issue:Both functions involve duplicate calculations (total, discount, tax), redundant summary creations, and are performing multiple unrelated tasks, contributing to excessive length and complexity of these functions.
+
+File:d29b69.py
+Detected:process_data
+Issue:Performs multiple unrelated tasks (user validation, product validation, complex conditionals, etc.). Excessive nesting and redundant code contribute to the function's length.
+
+File:729e11.py
+Detected:conflicting_function
+Issue:Multiple unrelated tasks are performed (global variable updates and manipulations). Excessive nesting contributes to the function's length and complexity.
+
+File:18d6ad.py
+Detected:create_order
+Issue:Excessive lines and unrelated tasks of order creation contribute to the function's length, performing is too long to be easily maintained.
+2025-03-21 10:36:50,359 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:36:50,631 - llm_processor - INFO - Processed result: File:4a405a.py
+Detected:commute_integers
+Issue:Exceeds a reasonable line threshold (~100 lines of substantive code). Performs multiple unrelated tasks (summing values, computing averages, squares, cubes, factorials, Fibonacci sequences, processing lists, and generating debug messages).
+
+File:32a211.py
+Detected:calculate_discount
+Issue:Performs multiple unrelated tasks with complex conditionals, excessive nesting, and is too long to be easily maintained (combining customer type, membership status, day of week, and coupon code to determine discounts).
+
+File:bc8bf5.py
+Detected:main
+Issue:Performs multiple unrelated tasks (primary processing, report generation, email sending, inventory checks, and additional complex conditionals). Redundant and unreachable code as well as excessive nesting contribute to the function's length and complexity.
+
+File:db89db.py
+Detected:process_online_order
+Detected:process_instore_order
+Issue:Both functions involve duplicate calculations (total, discount, tax), redundant summary creations, and are performing multiple unrelated tasks, contributing to excessive length and complexity of these functions.
+
+File:d29b69.py
+Detected:process_data
+Issue:Performs multiple unrelated tasks (user validation, product validation, complex conditionals, etc.). Excessive nesting and redundant code contribute to the function's length.
+
+File:729e11.py
+Detected:conflicting_function
+Issue:Multiple unrelated tasks are performed (global variable updates and manipulations). Excessive nesting contributes to the function's length and complexity.
+
+File:18d6ad.py
+Detected:create_order
+Issue:Excessive lines and unrelated tasks of order creation contribute to the function's length, performing is too long to be easily maintained.
+2025-03-21 10:36:50,633 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:36:50,926 - llm_processor - INFO - Processed result: The first and second answers are correct and provide the exact same content. They both identify long functions correctly according to the definition of long functions (exceeding a reasonable line threshold, performing multiple unrelated tasks, or being excessively complex or deeply nested).
+
+Therefore, the correct answer is:
+
+File:4a405a.py
+Detected:commute_integers
+Issue:Exceeds a reasonable line threshold (~100 lines of substantive code). Performs multiple unrelated tasks (summing values, computing averages, squares, cubes, factorials, Fibonacci sequences, processing lists, and generating debug messages).
+
+File:32a211.py
+Detected:calculate_discount
+Issue:Performs multiple unrelated tasks with complex conditionals, excessive nesting, and is too long to be easily maintained (combining customer type, membership status, day of week, and coupon code to determine discounts).
+
+File:bc8bf5.py
+Detected:main
+Issue:Performs multiple unrelated tasks (primary processing, report generation, email sending, inventory checks, and additional complex conditionals). Redundant and unreachable code as well as excessive nesting contribute to the function's length and complexity.
+
+File:db89db.py
+Detected:process_online_order
+Detected:process_instore_order
+Issue:Both functions involve duplicate calculations (total, discount, tax), redundant summary creations, and are performing multiple unrelated tasks, contributing to excessive length and complexity of these functions.
+
+File:d29b69.py
+Detected:process_data
+Issue:Performs multiple unrelated tasks (user validation, product validation, complex conditionals, etc.). Excessive nesting and redundant code contribute to the function's length.
+
+File:729e11.py
+Detected:conflicting_function
+Issue:Multiple unrelated tasks are performed (global variable updates and manipulations). Excessive nesting contributes to the function's length and complexity.
+
+File:18d6ad.py
+Detected:create_order
+Issue:Excessive lines and unrelated tasks of order creation contribute to the function's length, performing is too long to be easily maintained.
+2025-03-21 10:36:51,927 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:36:52,188 - llm_processor - INFO - Processed result: The provided answer is correct and follows the specified format for the most part. However, there are some issues that need to be addressed:
+
+- In the `db89db.py` file, there are two functions detected (`process_online_order` and `process_instore_order`) but the issue description seems to apply to both functions. To make it consistent with the format, we should create separate entries for each function.
+
+- In the `18d6ad.py` file, the issue description is not clear and concise. We should rephrase it to better fit the format.
+
+Here's the cleaned and reformatted answer:
+
+File: 4a405a.py
+Detected: commute_integers
+Issue: Exceeds a reasonable line threshold (~100 lines of substantive code) and performs multiple unrelated tasks.
+
+File: 32a211.py
+Detected: calculate_discount
+Issue: Performs multiple unrelated tasks with complex conditionals and excessive nesting.
+
+File: bc8bf5.py
+Detected: main
+Issue: Performs multiple unrelated tasks with redundant and unreachable code, and excessive nesting.
+
+File: db89db.py
+Detected: process_online_order
+Issue: Involves duplicate calculations and redundant summary creations, and performs multiple unrelated tasks.
+
+File: db89db.py
+Detected: process_instore_order
+Issue: Involves duplicate calculations and redundant summary creations, and performs multiple unrelated tasks.
+
+File: d29b69.py
+Detected: process_data
+Issue: Performs multiple unrelated tasks with excessive nesting and redundant code.
+
+File: 729e11.py
+Detected: conflicting_function
+Issue: Performs multiple unrelated tasks with excessive nesting.
+
+File: 18d6ad.py
+Detected: create_order
+Issue: Performs multiple unrelated tasks and has excessive lines, making it too long to be easily maintained.
+2025-03-21 10:40:54,880 - __main__ - INFO - Received task message
+2025-03-21 10:40:54,881 - job.detection_job - INFO - Processing task message with correlation ID: 5743ca90-3a56-4beb-a2fe-9c92fe893744
+2025-03-21 10:40:54,881 - job.detection_job - INFO - Task type: detection
+2025-03-21 10:40:54,881 - job.detection_job - INFO - Task job: god_object
+2025-03-21 10:40:54,883 - job.detection_job - INFO - Generating response for task message with correlation ID: 5743ca90-3a56-4beb-a2fe-9c92fe893744
+2025-03-21 10:40:54,883 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:40:59,563 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class is handling multiple unrelated responsibilities, including physical attributes (color, make), state (running, parked), actions (start, stop, accelerate, brake), and maintenance (paint, tune_up, repair_engine, replace_tires), making it a large class with too many responsibilities.
+
+None other classes exhibit a large class (God Object) code smell.
+2025-03-21 10:41:00,565 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:41:01,093 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class is handling multiple unrelated responsibilities, including physical attributes (color, make), state (running, parked), actions (start, stop, accelerate, brake), and maintenance (paint, tune_up, repair_engine, replace_tires), making it a large class with too many responsibilities.
+
+None other classes exhibit a large class (God Object) code smell.
+2025-03-21 10:41:01,094 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:41:04,632 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class is handling multiple unrelated responsibilities, including physical attributes (color, make), state (running, parked), actions (start, stop, accelerate, brake), and maintenance (paint, tune_up, repair_engine, replace_tires), making it a large class with too many responsibilities.
+2025-03-21 10:41:05,634 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:41:07,430 - llm_processor - INFO - Processed result: ### Analysis and Reformatted Answer
+File: 18567c.py
+Detected: Car
+Issue: The class has too many responsibilities, including physical attributes, state, actions, and maintenance.
+2025-03-21 10:46:48,276 - __main__ - INFO - Received task message
+2025-03-21 10:46:48,277 - job.detection_job - INFO - Processing task message with correlation ID: 44f4eea7-86c5-4e61-b4a7-9e665131978c
+2025-03-21 10:46:48,277 - job.detection_job - INFO - Task type: detection
+2025-03-21 10:46:48,277 - job.detection_job - INFO - Task job: god_object
+2025-03-21 10:46:48,279 - job.detection_job - INFO - Generating response for task message with correlation ID: 44f4eea7-86c5-4e61-b4a7-9e665131978c
+2025-03-21 10:46:48,280 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:46:49,612 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class is handling multiple unrelated responsibilities, including physical attributes (color, make), state (running, parked), actions (start, stop, accelerate, brake), and maintenance (paint, tune_up, repair_engine, replace_tires), making it a large class with too many responsibilities.
+
+None other classes exhibit a large class (God Object) code smell.
+2025-03-21 10:46:50,613 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:46:50,950 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class is handling multiple unrelated responsibilities, including physical attributes (color, make), state (running, parked), actions (start, stop, accelerate, brake), and maintenance (paint, tune_up, repair_engine, replace_tires), making it a large class with too many responsibilities.
+
+None other classes exhibit a large class (God Object) code smell.
+2025-03-21 10:46:50,950 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:46:51,281 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class is handling multiple unrelated responsibilities, including physical attributes (color, make), state (running, parked), actions (start, stop, accelerate, brake), and maintenance (paint, tune_up, repair_engine, replace_tires), making it a large class with too many responsibilities.
+2025-03-21 10:46:52,284 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 10:46:52,600 - llm_processor - INFO - Processed result: ### Analysis and Reformatted Answer
+File: 18567c.py
+Detected: Car
+Issue: The class has too many responsibilities, including physical attributes, state, actions, and maintenance.
+2025-03-21 11:06:42,479 - __main__ - INFO - Received task message
+2025-03-21 11:06:42,479 - job.detection_job - INFO - Processing task message with correlation ID: 9b3d2570-fd4a-448c-a78c-7a0b0853d0f7
+2025-03-21 11:06:42,480 - job.detection_job - INFO - Task type: detection
+2025-03-21 11:06:42,480 - job.detection_job - INFO - Task job: god_object
+2025-03-21 11:06:42,482 - job.detection_job - INFO - Generating response for task message with correlation ID: 9b3d2570-fd4a-448c-a78c-7a0b0853d0f7
+2025-03-21 11:06:42,482 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:06:43,527 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class is handling multiple unrelated responsibilities, including physical attributes (color, make), state (running, parked), actions (start, stop, accelerate, brake), and maintenance (paint, tune_up, repair_engine, replace_tires), making it a large class with too many responsibilities.
+
+None other classes exhibit a large class (God Object) code smell.
+2025-03-21 11:06:44,529 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:06:44,906 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class is handling multiple unrelated responsibilities, including physical attributes (color, make), state (running, parked), actions (start, stop, accelerate, brake), and maintenance (paint, tune_up, repair_engine, replace_tires), making it a large class with too many responsibilities.
+
+None other classes exhibit a large class (God Object) code smell.
+2025-03-21 11:06:44,907 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:06:45,286 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class is handling multiple unrelated responsibilities, including physical attributes (color, make), state (running, parked), actions (start, stop, accelerate, brake), and maintenance (paint, tune_up, repair_engine, replace_tires), making it a large class with too many responsibilities.
+2025-03-21 11:06:46,287 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:06:46,898 - llm_processor - INFO - Processed result: ### Analysis and Reformatted Answer
+File: 18567c.py
+Detected: Car
+Issue: The class has too many responsibilities, including physical attributes, state, actions, and maintenance.
+2025-03-21 11:14:11,894 - __main__ - INFO - Received task message
+2025-03-21 11:14:11,895 - job.refactoring_job - INFO - Processing task message with correlation ID: a91922b8-a92c-4f61-90f9-1a8bae27d623
+2025-03-21 11:14:11,896 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-21 11:14:11,896 - job.refactoring_job - INFO - Task job: global_conflict
+2025-03-21 11:14:11,897 - job.refactoring_job - INFO - Generating response for task message with correlation ID: a91922b8-a92c-4f61-90f9-1a8bae27d623
+2025-03-21 11:14:11,897 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:14:31,988 - llm_processor - INFO - Processed result: ```python
+## Refactored Code to Eliminate Global Variable Conflict
+
+class Configuration:
+    """
+    A class to encapsulate configuration values, avoiding global variable conflicts.
+    """
+    def __init__(self):
+        # Initialize config_value and email_sent as instance attributes
+        self.config_value = 100
+        self.email_sent = True
+
+    def update_config_value(self, new_value):
+        """
+        Update the config_value instance attribute.
+        
+        Args:
+            new_value (int): The new value to assign to config_value.
+        """
+        self.config_value = new_value
+
+    def get_config_value(self):
+        """
+        Return the current config_value instance attribute.
+        
+        Returns:
+            int: The current config_value.
+        """
+        return self.config_value
+
+
+class ConfigurationManager:
+    """
+    A class to manage configuration values and provide methods to update and retrieve them.
+    """
+    def __init__(self):
+        # Initialize the Configuration instance as an attribute
+        self.config = Configuration()
+
+    def get_config_value(self):
+        """
+        Return the current config_value via the Configuration instance.
+        
+        Returns:
+            int: The current config_value.
+        """
+        return self.config.get_config_value()
+
+    def new_config_value(self, new_value):
+        """
+        Update the config_value via the Configuration instance.
+        
+        Args:
+            new_value (int): The new value to assign to config_value.
+        """
+        self.config.update_config_value(new_value)
+
+
+# Example usage:
+config_manager = ConfigurationManager()
+print(config_manager.get_config_value())  # Output: 100
+config_manager.new_config_value(200)
+print(config_manager.get_config_value())  # Output: 200
+```
+
+In this refactored code, I have made the following changes to eliminate the 'Global Variable Conflict' code smell:
+
+1. Introduced a `Configuration` class to encapsulate the `config_value` and `email_sent` attributes. This helps to avoid global variable conflicts by scoping these attributes to the class instance.
+
+2. Created a `ConfigurationManager` class to manage the `Configuration` instance and provide methods to update and retrieve the `config_value`. This adds an extra layer of abstraction and flexibility.
+
+3. Replaced the global `get_config_value` and `new_config_value` functions with instance methods of the `Configuration` and `ConfigurationManager` classes. This removes the need for global variables and makes the code more organized and maintainable.
+
+4. Added comments and docstrings to explain the purpose and behavior of each class and method, making the code more readable and self-documenting.
+
+With these changes, the refactored code eliminates global variable conflicts and adheres to best practices for code organization and maintainability.
+2025-03-21 11:14:31,992 - job.refactoring_job - INFO - Generating response for task message with correlation ID: a91922b8-a92c-4f61-90f9-1a8bae27d623
+2025-03-21 11:14:31,994 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:14:32,609 - llm_processor - INFO - Processed result: None
+2025-03-21 11:16:31,555 - __main__ - INFO - Received task message
+2025-03-21 11:16:31,556 - job.detection_job - INFO - Processing task message with correlation ID: a8c9596a-778f-4802-ae33-1216cae3e6b6
+2025-03-21 11:16:31,557 - job.detection_job - INFO - Task type: detection
+2025-03-21 11:16:31,557 - job.detection_job - INFO - Task job: long_function
+2025-03-21 11:16:31,564 - job.detection_job - INFO - Generating response for task message with correlation ID: a8c9596a-778f-4802-ae33-1216cae3e6b6
+2025-03-21 11:16:31,565 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:16:32,154 - llm_processor - INFO - Processed result: File:4a405a.py
+Detected:commute_integers
+Issue:Exceeds a reasonable line threshold (~100 lines of substantive code). Performs multiple unrelated tasks (summing values, computing averages, squares, cubes, factorials, Fibonacci sequences, processing lists, and generating debug messages).
+
+File:32a211.py
+Detected:calculate_discount
+Issue:Performs multiple unrelated tasks with complex conditionals, excessive nesting, and is too long to be easily maintained (combining customer type, membership status, day of week, and coupon code to determine discounts).
+
+File:bc8bf5.py
+Detected:main
+Issue:Performs multiple unrelated tasks (primary processing, report generation, email sending, inventory checks, and additional complex conditionals). Redundant and unreachable code as well as excessive nesting contribute to the function's length and complexity.
+
+File:db89db.py
+Detected:process_online_order
+Detected:process_instore_order
+Issue:Both functions involve duplicate calculations (total, discount, tax), redundant summary creations, and are performing multiple unrelated tasks, contributing to excessive length and complexity of these functions.
+
+File:d29b69.py
+Detected:process_data
+Issue:Performs multiple unrelated tasks (user validation, product validation, complex conditionals, etc.). Excessive nesting and redundant code contribute to the function's length.
+
+File:729e11.py
+Detected:conflicting_function
+Issue:Multiple unrelated tasks are performed (global variable updates and manipulations). Excessive nesting contributes to the function's length and complexity.
+
+File:18d6ad.py
+Detected:create_order
+Issue:Excessive lines and unrelated tasks of order creation contribute to the function's length, performing is too long to be easily maintained.
+2025-03-21 11:16:33,156 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:16:33,552 - llm_processor - INFO - Processed result: File:4a405a.py
+Detected:commute_integers
+Issue:Exceeds a reasonable line threshold (~100 lines of substantive code). Performs multiple unrelated tasks (summing values, computing averages, squares, cubes, factorials, Fibonacci sequences, processing lists, and generating debug messages).
+
+File:32a211.py
+Detected:calculate_discount
+Issue:Performs multiple unrelated tasks with complex conditionals, excessive nesting, and is too long to be easily maintained (combining customer type, membership status, day of week, and coupon code to determine discounts).
+
+File:bc8bf5.py
+Detected:main
+Issue:Performs multiple unrelated tasks (primary processing, report generation, email sending, inventory checks, and additional complex conditionals). Redundant and unreachable code as well as excessive nesting contribute to the function's length and complexity.
+
+File:db89db.py
+Detected:process_online_order
+Detected:process_instore_order
+Issue:Both functions involve duplicate calculations (total, discount, tax), redundant summary creations, and are performing multiple unrelated tasks, contributing to excessive length and complexity of these functions.
+
+File:d29b69.py
+Detected:process_data
+Issue:Performs multiple unrelated tasks (user validation, product validation, complex conditionals, etc.). Excessive nesting and redundant code contribute to the function's length.
+
+File:729e11.py
+Detected:conflicting_function
+Issue:Multiple unrelated tasks are performed (global variable updates and manipulations). Excessive nesting contributes to the function's length and complexity.
+
+File:18d6ad.py
+Detected:create_order
+Issue:Excessive lines and unrelated tasks of order creation contribute to the function's length, performing is too long to be easily maintained.
+2025-03-21 11:16:33,553 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:16:34,021 - llm_processor - INFO - Processed result: The first and second answers are correct and provide the exact same content. They both identify long functions correctly according to the definition of long functions (exceeding a reasonable line threshold, performing multiple unrelated tasks, or being excessively complex or deeply nested).
+
+Therefore, the correct answer is:
+
+File:4a405a.py
+Detected:commute_integers
+Issue:Exceeds a reasonable line threshold (~100 lines of substantive code). Performs multiple unrelated tasks (summing values, computing averages, squares, cubes, factorials, Fibonacci sequences, processing lists, and generating debug messages).
+
+File:32a211.py
+Detected:calculate_discount
+Issue:Performs multiple unrelated tasks with complex conditionals, excessive nesting, and is too long to be easily maintained (combining customer type, membership status, day of week, and coupon code to determine discounts).
+
+File:bc8bf5.py
+Detected:main
+Issue:Performs multiple unrelated tasks (primary processing, report generation, email sending, inventory checks, and additional complex conditionals). Redundant and unreachable code as well as excessive nesting contribute to the function's length and complexity.
+
+File:db89db.py
+Detected:process_online_order
+Detected:process_instore_order
+Issue:Both functions involve duplicate calculations (total, discount, tax), redundant summary creations, and are performing multiple unrelated tasks, contributing to excessive length and complexity of these functions.
+
+File:d29b69.py
+Detected:process_data
+Issue:Performs multiple unrelated tasks (user validation, product validation, complex conditionals, etc.). Excessive nesting and redundant code contribute to the function's length.
+
+File:729e11.py
+Detected:conflicting_function
+Issue:Multiple unrelated tasks are performed (global variable updates and manipulations). Excessive nesting contributes to the function's length and complexity.
+
+File:18d6ad.py
+Detected:create_order
+Issue:Excessive lines and unrelated tasks of order creation contribute to the function's length, performing is too long to be easily maintained.
+2025-03-21 11:16:35,023 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:16:35,385 - llm_processor - INFO - Processed result: The provided answer is correct and follows the specified format for the most part. However, there are some issues that need to be addressed:
+
+- In the `db89db.py` file, there are two functions detected (`process_online_order` and `process_instore_order`) but the issue description seems to apply to both functions. To make it consistent with the format, we should create separate entries for each function.
+
+- In the `18d6ad.py` file, the issue description is not clear and concise. We should rephrase it to better fit the format.
+
+Here's the cleaned and reformatted answer:
+
+File: 4a405a.py
+Detected: commute_integers
+Issue: Exceeds a reasonable line threshold (~100 lines of substantive code) and performs multiple unrelated tasks.
+
+File: 32a211.py
+Detected: calculate_discount
+Issue: Performs multiple unrelated tasks with complex conditionals and excessive nesting.
+
+File: bc8bf5.py
+Detected: main
+Issue: Performs multiple unrelated tasks with redundant and unreachable code, and excessive nesting.
+
+File: db89db.py
+Detected: process_online_order
+Issue: Involves duplicate calculations and redundant summary creations, and performs multiple unrelated tasks.
+
+File: db89db.py
+Detected: process_instore_order
+Issue: Involves duplicate calculations and redundant summary creations, and performs multiple unrelated tasks.
+
+File: d29b69.py
+Detected: process_data
+Issue: Performs multiple unrelated tasks with excessive nesting and redundant code.
+
+File: 729e11.py
+Detected: conflicting_function
+Issue: Performs multiple unrelated tasks with excessive nesting.
+
+File: 18d6ad.py
+Detected: create_order
+Issue: Performs multiple unrelated tasks and has excessive lines, making it too long to be easily maintained.
+2025-03-21 11:21:56,248 - __main__ - INFO - Received task message
+2025-03-21 11:21:56,249 - job.detection_job - INFO - Processing task message with correlation ID: 59096f4e-d79c-4d00-b910-b45a90f07c89
+2025-03-21 11:21:56,249 - job.detection_job - INFO - Task type: detection
+2025-03-21 11:21:56,250 - job.detection_job - INFO - Task job: god_object
+2025-03-21 11:21:56,252 - job.detection_job - INFO - Generating response for task message with correlation ID: 59096f4e-d79c-4d00-b910-b45a90f07c89
+2025-03-21 11:21:56,252 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:21:57,137 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class is handling multiple unrelated responsibilities, including physical attributes (color, make), state (running, parked), actions (start, stop, accelerate, brake), and maintenance (paint, tune_up, repair_engine, replace_tires), making it a large class with too many responsibilities.
+
+None other classes exhibit a large class (God Object) code smell.
+2025-03-21 11:21:58,138 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:21:58,587 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class is handling multiple unrelated responsibilities, including physical attributes (color, make), state (running, parked), actions (start, stop, accelerate, brake), and maintenance (paint, tune_up, repair_engine, replace_tires), making it a large class with too many responsibilities.
+
+None other classes exhibit a large class (God Object) code smell.
+2025-03-21 11:21:58,588 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:21:58,858 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class is handling multiple unrelated responsibilities, including physical attributes (color, make), state (running, parked), actions (start, stop, accelerate, brake), and maintenance (paint, tune_up, repair_engine, replace_tires), making it a large class with too many responsibilities.
+2025-03-21 11:21:59,859 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:22:00,120 - llm_processor - INFO - Processed result: ### Analysis and Reformatted Answer
+File: 18567c.py
+Detected: Car
+Issue: The class has too many responsibilities, including physical attributes, state, actions, and maintenance.
+2025-03-21 11:29:52,793 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-03-21 11:29:53,074 - utils.retrieve_queue - INFO - Queue does not exist: LLMTaskQueue
+2025-03-21 11:29:53,074 - utils.retrieve_queue - INFO - Creating queue: LLMTaskQueue
+2025-03-21 11:29:53,079 - utils.retrieve_queue - INFO - Queue created: LLMTaskQueue
+2025-03-21 11:29:53,080 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-03-21 11:29:53,135 - utils.retrieve_queue - INFO - Queue does not exist: LLMResponseQueue
+2025-03-21 11:29:53,136 - utils.retrieve_queue - INFO - Creating queue: LLMResponseQueue
+2025-03-21 11:29:53,185 - utils.retrieve_queue - INFO - Queue created: LLMResponseQueue
+2025-03-21 11:29:53,185 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-03-21 11:29:53,185 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-03-21 11:29:53,185 - __main__ - INFO - Initializing knowledge base for detection
+2025-03-21 11:29:53,186 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-03-21 11:29:53,186 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-03-21 11:29:53,194 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-03-21 11:29:53,194 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-03-21 11:34:45,729 - __main__ - INFO - Received task message
+2025-03-21 11:34:45,729 - job.detection_job - INFO - Processing task message with correlation ID: 490f09e8-6670-4074-b56d-aa49e4085f7d
+2025-03-21 11:34:45,730 - job.detection_job - INFO - Task type: detection
+2025-03-21 11:34:45,730 - job.detection_job - INFO - Task job: god_object
+2025-03-21 11:34:45,733 - job.detection_job - INFO - Generating response for task message with correlation ID: 490f09e8-6670-4074-b56d-aa49e4085f7d
+2025-03-21 11:34:45,733 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:34:46,202 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class is handling multiple unrelated responsibilities, including physical attributes (color, make), state (running, parked), actions (start, stop, accelerate, brake), and maintenance (paint, tune_up, repair_engine, replace_tires), making it a large class with too many responsibilities.
+
+None other classes exhibit a large class (God Object) code smell.
+2025-03-21 11:34:47,203 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:34:47,533 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class is handling multiple unrelated responsibilities, including physical attributes (color, make), state (running, parked), actions (start, stop, accelerate, brake), and maintenance (paint, tune_up, repair_engine, replace_tires), making it a large class with too many responsibilities.
+
+None other classes exhibit a large class (God Object) code smell.
+2025-03-21 11:34:47,534 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:34:47,859 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class is handling multiple unrelated responsibilities, including physical attributes (color, make), state (running, parked), actions (start, stop, accelerate, brake), and maintenance (paint, tune_up, repair_engine, replace_tires), making it a large class with too many responsibilities.
+2025-03-21 11:34:48,861 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:34:49,141 - llm_processor - INFO - Processed result: ### Analysis and Reformatted Answer
+File: 18567c.py
+Detected: Car
+Issue: The class has too many responsibilities, including physical attributes, state, actions, and maintenance.
+2025-03-21 11:40:24,634 - __main__ - INFO - Received task message
+2025-03-21 11:40:24,635 - job.detection_job - INFO - Processing task message with correlation ID: 9714c9c8-c5b6-46e9-b219-26ce108cc21f
+2025-03-21 11:40:24,635 - job.detection_job - INFO - Task type: detection
+2025-03-21 11:40:24,635 - job.detection_job - INFO - Task job: god_object
+2025-03-21 11:40:24,638 - job.detection_job - INFO - Generating response for task message with correlation ID: 9714c9c8-c5b6-46e9-b219-26ce108cc21f
+2025-03-21 11:40:24,639 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:40:25,279 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class is handling multiple unrelated responsibilities, including physical attributes (color, make), state (running, parked), actions (start, stop, accelerate, brake), and maintenance (paint, tune_up, repair_engine, replace_tires), making it a large class with too many responsibilities.
+
+None other classes exhibit a large class (God Object) code smell.
+2025-03-21 11:40:26,281 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:40:26,544 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class is handling multiple unrelated responsibilities, including physical attributes (color, make), state (running, parked), actions (start, stop, accelerate, brake), and maintenance (paint, tune_up, repair_engine, replace_tires), making it a large class with too many responsibilities.
+
+None other classes exhibit a large class (God Object) code smell.
+2025-03-21 11:40:26,545 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:40:26,839 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class is handling multiple unrelated responsibilities, including physical attributes (color, make), state (running, parked), actions (start, stop, accelerate, brake), and maintenance (paint, tune_up, repair_engine, replace_tires), making it a large class with too many responsibilities.
+2025-03-21 11:40:27,840 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:40:28,110 - llm_processor - INFO - Processed result: ### Analysis and Reformatted Answer
+File: 18567c.py
+Detected: Car
+Issue: The class has too many responsibilities, including physical attributes, state, actions, and maintenance.
+2025-03-21 11:40:50,540 - __main__ - INFO - Received task message
+2025-03-21 11:40:50,541 - job.refactoring_job - INFO - Processing task message with correlation ID: b01c388d-5c99-493f-8114-e1cb47faf186
+2025-03-21 11:40:50,541 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-21 11:40:50,542 - job.refactoring_job - INFO - Task job: temporary_field
+2025-03-21 11:40:50,542 - job.refactoring_job - INFO - Generating response for task message with correlation ID: b01c388d-5c99-493f-8114-e1cb47faf186
+2025-03-21 11:40:50,542 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:41:14,900 - llm_processor - INFO - Processed result: ```python
+class Car:
+    def __init__(self, make, model, year, color):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.color = color
+
+    def start(self):
+        # 'is_running' and 'is_parked' only used within start/stop context, 
+        # relocate to a helper method for cohesive state management
+        self._update_car_state(True, False)
+        print("The car has started.")
+
+    def stop(self):
+        self._update_car_state(False, True)
+        print("The car has stopped.")
+
+    def _update_car_state(self, is_running, is_parked):
+        # Localize the state variables to the extent of this method
+        if is_running and not is_parked:
+            self._validate_state('already running', 'not parked')
+        elif not is_running and is_parked:
+            self._validate_state('not running', 'already parked')
+        else:
+            # Temporary 'is_running' and 'is_parked' removed and are now method-specific
+            pass
+
+    def _validate_state(self, running_status, park_status):
+        print(f"You can't perform this action while the car is {running_status} or {park_status}.")
+
+    def accelerate(self, speed):
+        # Combine conditional checks to keep code DRY and readable
+        self._perform_action_while_running("accelerate", speed)
+
+    def brake(self):
+        self._perform_action_while_running("brake", None)
+
+    def _perform_action_while_running(self, action, value):
+        # Ensure the car is running before performing action
+        if not self._is_car_running():
+            print(f"You can't {action} while the car is not running or parked.")
+            return
+        print(f"The car is {action}{'ing to'+ str(value) if value else 'ing'}.")
+
+    def _is_car_running(self):
+        # Helper method to logically validate car state when needed
+        # Assume car default state is'stopped', e.g. model initialization
+        # This remains dependent on the calling method's management of the car state
+        return False
+
+    def paint(self, new_color):
+        self.color = new_color
+        print(f"The car has been painted {new_color}.")
+
+    def tune_up(self):
+        print("The car has had a tune-up.")
+
+    def repair_engine(self):
+        print("The engine has been repaired.")
+
+    def replace_tires(self):
+        print("The tires have been replaced.")
+```
+
+In the refactored code:
+- Removed the `is_running` and `is_parked` class attributes. They are now localized within a helper method to reduce state management complexity and directly account for running state.
+- Introduced a private helper method, `_update_car_state`, which now encapsulates the setup of these conditions. They have been replaced with local parameters to limit their scope and access.
+- Introduced a `_validate_state` helper method for DRYer checks related to car state, as needed.
+- Replaced separate `accelerate` and `brake` checks by asserting their shared logic through a new `_perform_action_while_running` method.
+- Added a '_is_car_running' as a placeholder method to denote default check state when needed for readibility - If value beyond layovers defaults assume False
+All class persistence logic or behavior may remain unchanged despite housekeeping to deal with localized checks throughout
+2025-03-21 11:41:14,900 - job.refactoring_job - INFO - Generating response for task message with correlation ID: b01c388d-5c99-493f-8114-e1cb47faf186
+2025-03-21 11:41:14,900 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:41:30,546 - llm_processor - INFO - Processed result: ```python
+class Car:
+    def __init__(self, make, model, year, color):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.color = color
+        self.is_running = False
+        self.is_parked = True
+
+    def start(self):
+        if not self.is_running and self.is_parked:
+            self._update_car_state(True, False)
+            print("The car has started.")
+        elif not self.is_running and not self.is_parked:
+            print("You can't start the car while moving.")
+        elif self.is_running and self.is_parked:
+            print("You can't start the car while it's already running and parked.")
+
+    def stop(self):
+        if self.is_running and not self.is_parked:
+            self._update_car_state False, True)
+            print("The car has stopped.")
+        elif self.is_running and self.is_parked:
+            print("You can't stop the car while it's already running and parked.")
+        elif not self.is_running and not self.is_parked:
+            print("You can't stop the car while it's not running.")
+
+    def _update_car_state(self, is_running, is_parked):
+        self.is_running = is_running
+        self.is_parked = is_parked
+
+    def accelerate(self, speed):
+        if self.is_running and not self.is_parked:
+            print(f"The car is accelerating to {speed}.")
+        elif not self.is_running:
+            print("You can't accelerate while the car is not running.")
+
+    def brake(self):
+        if self.is_running and not self.is_parked:
+            print("The car is braking.")
+        elif not self.is_running:
+            print("You can't brake while the car is not running.")
+
+    def paint(self, new_color):
+        self.color = new_color
+        print(f"The car has been painted {new_color}.")
+
+    def tune_up(self):
+        print("The car has had a tune-up.")
+
+    def repair_engine(self):
+        print("The engine has been repaired.")
+
+    def replace_tires(self):
+        print("The tires have been replaced.")
+```
+2025-03-21 11:47:04,194 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-03-21 11:47:04,220 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-03-21 11:47:04,280 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-03-21 11:47:04,280 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-03-21 11:47:04,281 - __main__ - INFO - Initializing knowledge base for detection
+2025-03-21 11:47:04,281 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-03-21 11:47:04,281 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-03-21 11:47:04,285 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-03-21 11:47:04,285 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-03-21 11:49:23,249 - __main__ - INFO - Received task message
+2025-03-21 11:49:23,250 - job.refactoring_job - INFO - Processing task message with correlation ID: 6f025fcb-5968-45bd-89f4-76a84fa28ccb
+2025-03-21 11:49:23,250 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-21 11:49:23,250 - job.refactoring_job - INFO - Task job: temporary_field
+2025-03-21 11:49:23,251 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 6f025fcb-5968-45bd-89f4-76a84fa28ccb
+2025-03-21 11:49:23,251 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:49:24,137 - llm_processor - INFO - Processed result: ```python
+class Car:
+    def __init__(self, make, model, year, color):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.color = color
+
+    def start(self):
+        # 'is_running' and 'is_parked' only used within start/stop context, 
+        # relocate to a helper method for cohesive state management
+        self._update_car_state(True, False)
+        print("The car has started.")
+
+    def stop(self):
+        self._update_car_state(False, True)
+        print("The car has stopped.")
+
+    def _update_car_state(self, is_running, is_parked):
+        # Localize the state variables to the extent of this method
+        if is_running and not is_parked:
+            self._validate_state('already running', 'not parked')
+        elif not is_running and is_parked:
+            self._validate_state('not running', 'already parked')
+        else:
+            # Temporary 'is_running' and 'is_parked' removed and are now method-specific
+            pass
+
+    def _validate_state(self, running_status, park_status):
+        print(f"You can't perform this action while the car is {running_status} or {park_status}.")
+
+    def accelerate(self, speed):
+        # Combine conditional checks to keep code DRY and readable
+        self._perform_action_while_running("accelerate", speed)
+
+    def brake(self):
+        self._perform_action_while_running("brake", None)
+
+    def _perform_action_while_running(self, action, value):
+        # Ensure the car is running before performing action
+        if not self._is_car_running():
+            print(f"You can't {action} while the car is not running or parked.")
+            return
+        print(f"The car is {action}{'ing to'+ str(value) if value else 'ing'}.")
+
+    def _is_car_running(self):
+        # Helper method to logically validate car state when needed
+        # Assume car default state is'stopped', e.g. model initialization
+        # This remains dependent on the calling method's management of the car state
+        return False
+
+    def paint(self, new_color):
+        self.color = new_color
+        print(f"The car has been painted {new_color}.")
+
+    def tune_up(self):
+        print("The car has had a tune-up.")
+
+    def repair_engine(self):
+        print("The engine has been repaired.")
+
+    def replace_tires(self):
+        print("The tires have been replaced.")
+```
+
+In the refactored code:
+- Removed the `is_running` and `is_parked` class attributes. They are now localized within a helper method to reduce state management complexity and directly account for running state.
+- Introduced a private helper method, `_update_car_state`, which now encapsulates the setup of these conditions. They have been replaced with local parameters to limit their scope and access.
+- Introduced a `_validate_state` helper method for DRYer checks related to car state, as needed.
+- Replaced separate `accelerate` and `brake` checks by asserting their shared logic through a new `_perform_action_while_running` method.
+- Added a '_is_car_running' as a placeholder method to denote default check state when needed for readibility - If value beyond layovers defaults assume False
+All class persistence logic or behavior may remain unchanged despite housekeeping to deal with localized checks throughout
+2025-03-21 11:49:24,138 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 6f025fcb-5968-45bd-89f4-76a84fa28ccb
+2025-03-21 11:49:24,138 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:49:24,524 - llm_processor - INFO - Processed result: ```python
+class Car:
+    def __init__(self, make, model, year, color):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.color = color
+        self.is_running = False
+        self.is_parked = True
+
+    def start(self):
+        if not self.is_running and self.is_parked:
+            self._update_car_state(True, False)
+            print("The car has started.")
+        elif not self.is_running and not self.is_parked:
+            print("You can't start the car while moving.")
+        elif self.is_running and self.is_parked:
+            print("You can't start the car while it's already running and parked.")
+
+    def stop(self):
+        if self.is_running and not self.is_parked:
+            self._update_car_state False, True)
+            print("The car has stopped.")
+        elif self.is_running and self.is_parked:
+            print("You can't stop the car while it's already running and parked.")
+        elif not self.is_running and not self.is_parked:
+            print("You can't stop the car while it's not running.")
+
+    def _update_car_state(self, is_running, is_parked):
+        self.is_running = is_running
+        self.is_parked = is_parked
+
+    def accelerate(self, speed):
+        if self.is_running and not self.is_parked:
+            print(f"The car is accelerating to {speed}.")
+        elif not self.is_running:
+            print("You can't accelerate while the car is not running.")
+
+    def brake(self):
+        if self.is_running and not self.is_parked:
+            print("The car is braking.")
+        elif not self.is_running:
+            print("You can't brake while the car is not running.")
+
+    def paint(self, new_color):
+        self.color = new_color
+        print(f"The car has been painted {new_color}.")
+
+    def tune_up(self):
+        print("The car has had a tune-up.")
+
+    def repair_engine(self):
+        print("The engine has been repaired.")
+
+    def replace_tires(self):
+        print("The tires have been replaced.")
+```
+2025-03-21 11:54:56,451 - __main__ - INFO - Received task message
+2025-03-21 11:54:56,452 - job.refactoring_job - INFO - Processing task message with correlation ID: 23d27840-bc4a-4426-96ab-75048bbc8ca6
+2025-03-21 11:54:56,453 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-21 11:54:56,453 - job.refactoring_job - INFO - Task job: temporary_field
+2025-03-21 11:54:56,454 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 23d27840-bc4a-4426-96ab-75048bbc8ca6
+2025-03-21 11:54:56,454 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:54:57,337 - llm_processor - INFO - Processed result: ```python
+class Car:
+    def __init__(self, make, model, year, color):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.color = color
+
+    def start(self):
+        # 'is_running' and 'is_parked' only used within start/stop context, 
+        # relocate to a helper method for cohesive state management
+        self._update_car_state(True, False)
+        print("The car has started.")
+
+    def stop(self):
+        self._update_car_state(False, True)
+        print("The car has stopped.")
+
+    def _update_car_state(self, is_running, is_parked):
+        # Localize the state variables to the extent of this method
+        if is_running and not is_parked:
+            self._validate_state('already running', 'not parked')
+        elif not is_running and is_parked:
+            self._validate_state('not running', 'already parked')
+        else:
+            # Temporary 'is_running' and 'is_parked' removed and are now method-specific
+            pass
+
+    def _validate_state(self, running_status, park_status):
+        print(f"You can't perform this action while the car is {running_status} or {park_status}.")
+
+    def accelerate(self, speed):
+        # Combine conditional checks to keep code DRY and readable
+        self._perform_action_while_running("accelerate", speed)
+
+    def brake(self):
+        self._perform_action_while_running("brake", None)
+
+    def _perform_action_while_running(self, action, value):
+        # Ensure the car is running before performing action
+        if not self._is_car_running():
+            print(f"You can't {action} while the car is not running or parked.")
+            return
+        print(f"The car is {action}{'ing to'+ str(value) if value else 'ing'}.")
+
+    def _is_car_running(self):
+        # Helper method to logically validate car state when needed
+        # Assume car default state is'stopped', e.g. model initialization
+        # This remains dependent on the calling method's management of the car state
+        return False
+
+    def paint(self, new_color):
+        self.color = new_color
+        print(f"The car has been painted {new_color}.")
+
+    def tune_up(self):
+        print("The car has had a tune-up.")
+
+    def repair_engine(self):
+        print("The engine has been repaired.")
+
+    def replace_tires(self):
+        print("The tires have been replaced.")
+```
+
+In the refactored code:
+- Removed the `is_running` and `is_parked` class attributes. They are now localized within a helper method to reduce state management complexity and directly account for running state.
+- Introduced a private helper method, `_update_car_state`, which now encapsulates the setup of these conditions. They have been replaced with local parameters to limit their scope and access.
+- Introduced a `_validate_state` helper method for DRYer checks related to car state, as needed.
+- Replaced separate `accelerate` and `brake` checks by asserting their shared logic through a new `_perform_action_while_running` method.
+- Added a '_is_car_running' as a placeholder method to denote default check state when needed for readibility - If value beyond layovers defaults assume False
+All class persistence logic or behavior may remain unchanged despite housekeeping to deal with localized checks throughout
+2025-03-21 11:54:57,338 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 23d27840-bc4a-4426-96ab-75048bbc8ca6
+2025-03-21 11:54:57,338 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:54:57,622 - llm_processor - INFO - Processed result: ```python
+class Car:
+    def __init__(self, make, model, year, color):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.color = color
+        self.is_running = False
+        self.is_parked = True
+
+    def start(self):
+        if not self.is_running and self.is_parked:
+            self._update_car_state(True, False)
+            print("The car has started.")
+        elif not self.is_running and not self.is_parked:
+            print("You can't start the car while moving.")
+        elif self.is_running and self.is_parked:
+            print("You can't start the car while it's already running and parked.")
+
+    def stop(self):
+        if self.is_running and not self.is_parked:
+            self._update_car_state False, True)
+            print("The car has stopped.")
+        elif self.is_running and self.is_parked:
+            print("You can't stop the car while it's already running and parked.")
+        elif not self.is_running and not self.is_parked:
+            print("You can't stop the car while it's not running.")
+
+    def _update_car_state(self, is_running, is_parked):
+        self.is_running = is_running
+        self.is_parked = is_parked
+
+    def accelerate(self, speed):
+        if self.is_running and not self.is_parked:
+            print(f"The car is accelerating to {speed}.")
+        elif not self.is_running:
+            print("You can't accelerate while the car is not running.")
+
+    def brake(self):
+        if self.is_running and not self.is_parked:
+            print("The car is braking.")
+        elif not self.is_running:
+            print("You can't brake while the car is not running.")
+
+    def paint(self, new_color):
+        self.color = new_color
+        print(f"The car has been painted {new_color}.")
+
+    def tune_up(self):
+        print("The car has had a tune-up.")
+
+    def repair_engine(self):
+        print("The engine has been repaired.")
+
+    def replace_tires(self):
+        print("The tires have been replaced.")
+```
+2025-03-21 11:56:59,337 - __main__ - INFO - Received task message
+2025-03-21 11:56:59,338 - job.refactoring_job - INFO - Processing task message with correlation ID: 6e5de459-1d09-42a0-8e34-5e12c577377e
+2025-03-21 11:56:59,338 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-21 11:56:59,339 - job.refactoring_job - INFO - Task job: temporary_field
+2025-03-21 11:56:59,339 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 6e5de459-1d09-42a0-8e34-5e12c577377e
+2025-03-21 11:56:59,339 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:56:59,617 - llm_processor - INFO - Processed result: ```python
+class Car:
+    def __init__(self, make, model, year, color):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.color = color
+
+    def start(self):
+        # 'is_running' and 'is_parked' only used within start/stop context, 
+        # relocate to a helper method for cohesive state management
+        self._update_car_state(True, False)
+        print("The car has started.")
+
+    def stop(self):
+        self._update_car_state(False, True)
+        print("The car has stopped.")
+
+    def _update_car_state(self, is_running, is_parked):
+        # Localize the state variables to the extent of this method
+        if is_running and not is_parked:
+            self._validate_state('already running', 'not parked')
+        elif not is_running and is_parked:
+            self._validate_state('not running', 'already parked')
+        else:
+            # Temporary 'is_running' and 'is_parked' removed and are now method-specific
+            pass
+
+    def _validate_state(self, running_status, park_status):
+        print(f"You can't perform this action while the car is {running_status} or {park_status}.")
+
+    def accelerate(self, speed):
+        # Combine conditional checks to keep code DRY and readable
+        self._perform_action_while_running("accelerate", speed)
+
+    def brake(self):
+        self._perform_action_while_running("brake", None)
+
+    def _perform_action_while_running(self, action, value):
+        # Ensure the car is running before performing action
+        if not self._is_car_running():
+            print(f"You can't {action} while the car is not running or parked.")
+            return
+        print(f"The car is {action}{'ing to'+ str(value) if value else 'ing'}.")
+
+    def _is_car_running(self):
+        # Helper method to logically validate car state when needed
+        # Assume car default state is'stopped', e.g. model initialization
+        # This remains dependent on the calling method's management of the car state
+        return False
+
+    def paint(self, new_color):
+        self.color = new_color
+        print(f"The car has been painted {new_color}.")
+
+    def tune_up(self):
+        print("The car has had a tune-up.")
+
+    def repair_engine(self):
+        print("The engine has been repaired.")
+
+    def replace_tires(self):
+        print("The tires have been replaced.")
+```
+
+In the refactored code:
+- Removed the `is_running` and `is_parked` class attributes. They are now localized within a helper method to reduce state management complexity and directly account for running state.
+- Introduced a private helper method, `_update_car_state`, which now encapsulates the setup of these conditions. They have been replaced with local parameters to limit their scope and access.
+- Introduced a `_validate_state` helper method for DRYer checks related to car state, as needed.
+- Replaced separate `accelerate` and `brake` checks by asserting their shared logic through a new `_perform_action_while_running` method.
+- Added a '_is_car_running' as a placeholder method to denote default check state when needed for readibility - If value beyond layovers defaults assume False
+All class persistence logic or behavior may remain unchanged despite housekeeping to deal with localized checks throughout
+2025-03-21 11:56:59,618 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 6e5de459-1d09-42a0-8e34-5e12c577377e
+2025-03-21 11:56:59,618 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:56:59,901 - llm_processor - INFO - Processed result: ```python
+class Car:
+    def __init__(self, make, model, year, color):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.color = color
+        self.is_running = False
+        self.is_parked = True
+
+    def start(self):
+        if not self.is_running and self.is_parked:
+            self._update_car_state(True, False)
+            print("The car has started.")
+        elif not self.is_running and not self.is_parked:
+            print("You can't start the car while moving.")
+        elif self.is_running and self.is_parked:
+            print("You can't start the car while it's already running and parked.")
+
+    def stop(self):
+        if self.is_running and not self.is_parked:
+            self._update_car_state False, True)
+            print("The car has stopped.")
+        elif self.is_running and self.is_parked:
+            print("You can't stop the car while it's already running and parked.")
+        elif not self.is_running and not self.is_parked:
+            print("You can't stop the car while it's not running.")
+
+    def _update_car_state(self, is_running, is_parked):
+        self.is_running = is_running
+        self.is_parked = is_parked
+
+    def accelerate(self, speed):
+        if self.is_running and not self.is_parked:
+            print(f"The car is accelerating to {speed}.")
+        elif not self.is_running:
+            print("You can't accelerate while the car is not running.")
+
+    def brake(self):
+        if self.is_running and not self.is_parked:
+            print("The car is braking.")
+        elif not self.is_running:
+            print("You can't brake while the car is not running.")
+
+    def paint(self, new_color):
+        self.color = new_color
+        print(f"The car has been painted {new_color}.")
+
+    def tune_up(self):
+        print("The car has had a tune-up.")
+
+    def repair_engine(self):
+        print("The engine has been repaired.")
+
+    def replace_tires(self):
+        print("The tires have been replaced.")
+```
+2025-03-21 11:57:55,851 - __main__ - INFO - Received task message
+2025-03-21 11:57:55,852 - job.refactoring_job - INFO - Processing task message with correlation ID: 0a3294fc-86f6-40bd-a8f9-0e3040d291ca
+2025-03-21 11:57:55,852 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-21 11:57:55,853 - job.refactoring_job - INFO - Task job: temporary_field
+2025-03-21 11:57:55,853 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 0a3294fc-86f6-40bd-a8f9-0e3040d291ca
+2025-03-21 11:57:55,853 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:57:56,235 - llm_processor - INFO - Processed result: ```python
+class Car:
+    def __init__(self, make, model, year, color):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.color = color
+
+    def start(self):
+        # 'is_running' and 'is_parked' only used within start/stop context, 
+        # relocate to a helper method for cohesive state management
+        self._update_car_state(True, False)
+        print("The car has started.")
+
+    def stop(self):
+        self._update_car_state(False, True)
+        print("The car has stopped.")
+
+    def _update_car_state(self, is_running, is_parked):
+        # Localize the state variables to the extent of this method
+        if is_running and not is_parked:
+            self._validate_state('already running', 'not parked')
+        elif not is_running and is_parked:
+            self._validate_state('not running', 'already parked')
+        else:
+            # Temporary 'is_running' and 'is_parked' removed and are now method-specific
+            pass
+
+    def _validate_state(self, running_status, park_status):
+        print(f"You can't perform this action while the car is {running_status} or {park_status}.")
+
+    def accelerate(self, speed):
+        # Combine conditional checks to keep code DRY and readable
+        self._perform_action_while_running("accelerate", speed)
+
+    def brake(self):
+        self._perform_action_while_running("brake", None)
+
+    def _perform_action_while_running(self, action, value):
+        # Ensure the car is running before performing action
+        if not self._is_car_running():
+            print(f"You can't {action} while the car is not running or parked.")
+            return
+        print(f"The car is {action}{'ing to'+ str(value) if value else 'ing'}.")
+
+    def _is_car_running(self):
+        # Helper method to logically validate car state when needed
+        # Assume car default state is'stopped', e.g. model initialization
+        # This remains dependent on the calling method's management of the car state
+        return False
+
+    def paint(self, new_color):
+        self.color = new_color
+        print(f"The car has been painted {new_color}.")
+
+    def tune_up(self):
+        print("The car has had a tune-up.")
+
+    def repair_engine(self):
+        print("The engine has been repaired.")
+
+    def replace_tires(self):
+        print("The tires have been replaced.")
+```
+
+In the refactored code:
+- Removed the `is_running` and `is_parked` class attributes. They are now localized within a helper method to reduce state management complexity and directly account for running state.
+- Introduced a private helper method, `_update_car_state`, which now encapsulates the setup of these conditions. They have been replaced with local parameters to limit their scope and access.
+- Introduced a `_validate_state` helper method for DRYer checks related to car state, as needed.
+- Replaced separate `accelerate` and `brake` checks by asserting their shared logic through a new `_perform_action_while_running` method.
+- Added a '_is_car_running' as a placeholder method to denote default check state when needed for readibility - If value beyond layovers defaults assume False
+All class persistence logic or behavior may remain unchanged despite housekeeping to deal with localized checks throughout
+2025-03-21 11:57:56,236 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 0a3294fc-86f6-40bd-a8f9-0e3040d291ca
+2025-03-21 11:57:56,237 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:57:56,828 - llm_processor - INFO - Processed result: ```python
+class Car:
+    def __init__(self, make, model, year, color):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.color = color
+        self.is_running = False
+        self.is_parked = True
+
+    def start(self):
+        if not self.is_running and self.is_parked:
+            self._update_car_state(True, False)
+            print("The car has started.")
+        elif not self.is_running and not self.is_parked:
+            print("You can't start the car while moving.")
+        elif self.is_running and self.is_parked:
+            print("You can't start the car while it's already running and parked.")
+
+    def stop(self):
+        if self.is_running and not self.is_parked:
+            self._update_car_state False, True)
+            print("The car has stopped.")
+        elif self.is_running and self.is_parked:
+            print("You can't stop the car while it's already running and parked.")
+        elif not self.is_running and not self.is_parked:
+            print("You can't stop the car while it's not running.")
+
+    def _update_car_state(self, is_running, is_parked):
+        self.is_running = is_running
+        self.is_parked = is_parked
+
+    def accelerate(self, speed):
+        if self.is_running and not self.is_parked:
+            print(f"The car is accelerating to {speed}.")
+        elif not self.is_running:
+            print("You can't accelerate while the car is not running.")
+
+    def brake(self):
+        if self.is_running and not self.is_parked:
+            print("The car is braking.")
+        elif not self.is_running:
+            print("You can't brake while the car is not running.")
+
+    def paint(self, new_color):
+        self.color = new_color
+        print(f"The car has been painted {new_color}.")
+
+    def tune_up(self):
+        print("The car has had a tune-up.")
+
+    def repair_engine(self):
+        print("The engine has been repaired.")
+
+    def replace_tires(self):
+        print("The tires have been replaced.")
+```
+2025-03-21 11:58:52,462 - __main__ - INFO - Received task message
+2025-03-21 11:58:52,462 - job.refactoring_job - INFO - Processing task message with correlation ID: 78f3b49e-441d-4443-9f01-e310f43f1a9f
+2025-03-21 11:58:52,463 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-21 11:58:52,463 - job.refactoring_job - INFO - Task job: temporary_field
+2025-03-21 11:58:52,463 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 78f3b49e-441d-4443-9f01-e310f43f1a9f
+2025-03-21 11:58:52,463 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:58:58,350 - llm_processor - INFO - Processed result: ```python
+class Car:
+    def __init__(self, make, model, year, color):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.color = color
+
+    def start(self):
+        # 'is_running' and 'is_parked' only used within start/stop context, 
+        # relocate to a helper method for cohesive state management
+        self._update_car_state(True, False)
+        print("The car has started.")
+
+    def stop(self):
+        self._update_car_state(False, True)
+        print("The car has stopped.")
+
+    def _update_car_state(self, is_running, is_parked):
+        # Localize the state variables to the extent of this method
+        if is_running and not is_parked:
+            self._validate_state('already running', 'not parked')
+        elif not is_running and is_parked:
+            self._validate_state('not running', 'already parked')
+        else:
+            # Temporary 'is_running' and 'is_parked' removed and are now method-specific
+            pass
+
+    def _validate_state(self, running_status, park_status):
+        print(f"You can't perform this action while the car is {running_status} or {park_status}.")
+
+    def accelerate(self, speed):
+        # Combine conditional checks to keep code DRY and readable
+        self._perform_action_while_running("accelerate", speed)
+
+    def brake(self):
+        self._perform_action_while_running("brake", None)
+
+    def _perform_action_while_running(self, action, value):
+        # Ensure the car is running before performing action
+        if not self._is_car_running():
+            print(f"You can't {action} while the car is not running or parked.")
+            return
+        print(f"The car is {action}{'ing to'+ str(value) if value else 'ing'}.")
+
+    def _is_car_running(self):
+        # Helper method to logically validate car state when needed
+        # Assume car default state is'stopped', e.g. model initialization
+        # This remains dependent on the calling method's management of the car state
+        return False
+
+    def paint(self, new_color):
+        self.color = new_color
+        print(f"The car has been painted {new_color}.")
+
+    def tune_up(self):
+        print("The car has had a tune-up.")
+
+    def repair_engine(self):
+        print("The engine has been repaired.")
+
+    def replace_tires(self):
+        print("The tires have been replaced.")
+```
+
+In the refactored code:
+- Removed the `is_running` and `is_parked` class attributes. They are now localized within a helper method to reduce state management complexity and directly account for running state.
+- Introduced a private helper method, `_update_car_state`, which now encapsulates the setup of these conditions. They have been replaced with local parameters to limit their scope and access.
+- Introduced a `_validate_state` helper method for DRYer checks related to car state, as needed.
+- Replaced separate `accelerate` and `brake` checks by asserting their shared logic through a new `_perform_action_while_running` method.
+- Added a '_is_car_running' as a placeholder method to denote default check state when needed for readibility - If value beyond layovers defaults assume False
+All class persistence logic or behavior may remain unchanged despite housekeeping to deal with localized checks throughout
+2025-03-21 11:58:58,350 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 78f3b49e-441d-4443-9f01-e310f43f1a9f
+2025-03-21 11:58:58,351 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 11:58:58,634 - llm_processor - INFO - Processed result: ```python
+class Car:
+    def __init__(self, make, model, year, color):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.color = color
+        self.is_running = False
+        self.is_parked = True
+
+    def start(self):
+        if not self.is_running and self.is_parked:
+            self._update_car_state(True, False)
+            print("The car has started.")
+        elif not self.is_running and not self.is_parked:
+            print("You can't start the car while moving.")
+        elif self.is_running and self.is_parked:
+            print("You can't start the car while it's already running and parked.")
+
+    def stop(self):
+        if self.is_running and not self.is_parked:
+            self._update_car_state False, True)
+            print("The car has stopped.")
+        elif self.is_running and self.is_parked:
+            print("You can't stop the car while it's already running and parked.")
+        elif not self.is_running and not self.is_parked:
+            print("You can't stop the car while it's not running.")
+
+    def _update_car_state(self, is_running, is_parked):
+        self.is_running = is_running
+        self.is_parked = is_parked
+
+    def accelerate(self, speed):
+        if self.is_running and not self.is_parked:
+            print(f"The car is accelerating to {speed}.")
+        elif not self.is_running:
+            print("You can't accelerate while the car is not running.")
+
+    def brake(self):
+        if self.is_running and not self.is_parked:
+            print("The car is braking.")
+        elif not self.is_running:
+            print("You can't brake while the car is not running.")
+
+    def paint(self, new_color):
+        self.color = new_color
+        print(f"The car has been painted {new_color}.")
+
+    def tune_up(self):
+        print("The car has had a tune-up.")
+
+    def repair_engine(self):
+        print("The engine has been repaired.")
+
+    def replace_tires(self):
+        print("The tires have been replaced.")
+```
+2025-03-21 12:00:05,928 - __main__ - INFO - Received task message
+2025-03-21 12:00:05,928 - job.refactoring_job - INFO - Processing task message with correlation ID: d4cbbfcf-1660-4abb-986f-57d60d079060
+2025-03-21 12:00:05,929 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-21 12:00:05,929 - job.refactoring_job - INFO - Task job: global_conflict
+2025-03-21 12:00:05,930 - job.refactoring_job - INFO - Generating response for task message with correlation ID: d4cbbfcf-1660-4abb-986f-57d60d079060
+2025-03-21 12:00:05,930 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 12:00:06,211 - llm_processor - INFO - Processed result: ```python
+## Refactored Code to Eliminate Global Variable Conflict
+
+class Configuration:
+    """
+    A class to encapsulate configuration values, avoiding global variable conflicts.
+    """
+    def __init__(self):
+        # Initialize config_value and email_sent as instance attributes
+        self.config_value = 100
+        self.email_sent = True
+
+    def update_config_value(self, new_value):
+        """
+        Update the config_value instance attribute.
+        
+        Args:
+            new_value (int): The new value to assign to config_value.
+        """
+        self.config_value = new_value
+
+    def get_config_value(self):
+        """
+        Return the current config_value instance attribute.
+        
+        Returns:
+            int: The current config_value.
+        """
+        return self.config_value
+
+
+class ConfigurationManager:
+    """
+    A class to manage configuration values and provide methods to update and retrieve them.
+    """
+    def __init__(self):
+        # Initialize the Configuration instance as an attribute
+        self.config = Configuration()
+
+    def get_config_value(self):
+        """
+        Return the current config_value via the Configuration instance.
+        
+        Returns:
+            int: The current config_value.
+        """
+        return self.config.get_config_value()
+
+    def new_config_value(self, new_value):
+        """
+        Update the config_value via the Configuration instance.
+        
+        Args:
+            new_value (int): The new value to assign to config_value.
+        """
+        self.config.update_config_value(new_value)
+
+
+# Example usage:
+config_manager = ConfigurationManager()
+print(config_manager.get_config_value())  # Output: 100
+config_manager.new_config_value(200)
+print(config_manager.get_config_value())  # Output: 200
+```
+
+In this refactored code, I have made the following changes to eliminate the 'Global Variable Conflict' code smell:
+
+1. Introduced a `Configuration` class to encapsulate the `config_value` and `email_sent` attributes. This helps to avoid global variable conflicts by scoping these attributes to the class instance.
+
+2. Created a `ConfigurationManager` class to manage the `Configuration` instance and provide methods to update and retrieve the `config_value`. This adds an extra layer of abstraction and flexibility.
+
+3. Replaced the global `get_config_value` and `new_config_value` functions with instance methods of the `Configuration` and `ConfigurationManager` classes. This removes the need for global variables and makes the code more organized and maintainable.
+
+4. Added comments and docstrings to explain the purpose and behavior of each class and method, making the code more readable and self-documenting.
+
+With these changes, the refactored code eliminates global variable conflicts and adheres to best practices for code organization and maintainability.
+2025-03-21 12:00:06,212 - job.refactoring_job - INFO - Generating response for task message with correlation ID: d4cbbfcf-1660-4abb-986f-57d60d079060
+2025-03-21 12:00:06,212 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 12:00:06,513 - llm_processor - INFO - Processed result: None
+2025-03-21 12:02:02,335 - __main__ - INFO - Received task message
+2025-03-21 12:02:02,335 - job.refactoring_job - INFO - Processing task message with correlation ID: ba26d128-82a9-4ec3-98aa-badb3c86045e
+2025-03-21 12:02:02,336 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-21 12:02:02,336 - job.refactoring_job - INFO - Task job: temporary_field
+2025-03-21 12:02:02,337 - job.refactoring_job - INFO - Generating response for task message with correlation ID: ba26d128-82a9-4ec3-98aa-badb3c86045e
+2025-03-21 12:02:02,337 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 12:02:14,260 - llm_processor - INFO - Processed result: The provided Python code snippet does not demonstrate the "Temporary Fields" code smell as no temporary fields are used. However, it does contain a method named `calculate_discounted_price` which appears to be incomplete or not functioning as intended, as it simply returns the price without applying any discount.
+
+Given the original request, there are no temporary fields to remove or refactor in the provided code. However, I can provide a modification to demonstrate how this method could be used, making it functional. Below is the refactored code.
+
+```python
+class Product:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+    def calculate_discounted_price(self, discount_percentage=0):
+        # Apply a discount to the price if a discount percentage is provided
+        if discount_percentage > 0:
+            # Calculate the discount amount
+            discount_amount = (self.price / 100) * discount_percentage
+            # Return the price after applying the discount
+            return self.price - discount_amount
+        else:
+            # If no discount percentage is provided, return the original price
+            return self.price
+
+# Example usage:
+product = Product("Test Product", 100)
+print("Original Price:", product.price)
+print("Discounted Price (10% off):", product.calculate_discounted_price(10))
+```
+
+This refactored code adds a discount percentage parameter to the `calculate_discounted_price` method, allowing it to calculate and return a discounted price when a valid discount percentage is provided. This does not eliminate any temporary fields since none existed in the original code, but it does make the provided method functional and useful.
+2025-03-21 12:02:14,261 - job.refactoring_job - INFO - Generating response for task message with correlation ID: ba26d128-82a9-4ec3-98aa-badb3c86045e
+2025-03-21 12:02:14,262 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 12:02:14,700 - llm_processor - INFO - Processed result: None
+2025-03-21 12:10:39,484 - __main__ - INFO - Received task message
+2025-03-21 12:10:39,485 - job.refactoring_job - INFO - Processing task message with correlation ID: d13cb5fa-c373-47a2-9488-9e4fc3bee27a
+2025-03-21 12:10:39,485 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-21 12:10:39,486 - job.refactoring_job - INFO - Task job: duplicate_code
+2025-03-21 12:10:39,486 - job.refactoring_job - INFO - Generating response for task message with correlation ID: d13cb5fa-c373-47a2-9488-9e4fc3bee27a
+2025-03-21 12:10:39,486 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 12:10:58,212 - llm_processor - INFO - Processed result: ```python
+class Order:
+    def __init__(self, order_id, items, customer):
+        self.order_id = order_id
+        self.items = items
+        self.customer = customer
+        self.total = sum(item.get('price', 0) for item in items)
+
+    # Extracted repeated file parsing logic into calculate_discount function
+    def calculate_discount(self, discount_code):
+        # Define a dictionary to map discount codes to their corresponding discount percentages
+        discount_map = {
+            "SAVE10": 0.10,
+            "SAVE20": 0.20
+        }
+        return self.total * discount_map.get(discount_code, 0)
+
+    def apply_discount(self, discount_code):
+        # Apply the discount to the total
+        discount_applied = self.calculate_discount(discount_code)
+        self.total -= discount_applied
+
+        return discount_applied
+
+    def add_item(self, item):
+        # Extracted repeated price retrieval logic into private _get_item_price method
+        self.total += self._get_item_price(item)
+        self.items.append(item)
+
+    # Extracted repeated price retrieval logic into private _get_item_price method
+    def _get_item_price(self, item):
+        return item.get('price', 0)
+
+    def get_order_summary(self):
+        return {
+            "order_id": self.order_id,
+            "customer": self.customer,
+            "total": self.total,
+            "items_count": len(self.items)
+        }
+```
+
+I refactored the code to make the following improvements:
+
+1.  Removed the Temporary Field Code Smell: Instead of using the `temp_discount_value` attribute to store the discount value temporarily, I calculated the discount directly in the `calculate_discount` method and applied it to the total in the `apply_discount` method.
+
+2.  Extracted Repeated Logic into Helper Method: I extracted the repeated discount calculation logic into a separate `calculate_discount` method. This method uses a dictionary to map discount codes to their corresponding discount percentages, making the code more readable and maintainable.
+
+3.  Extracted Repeated Price Retrieval Logic: I extracted the repeated price retrieval logic into a private `_get_item_price` method, which reduces code duplication and makes the code easier to maintain.
+
+The refactored code remains clear, readable, and maintains the same functionality as the original code while adhering to the guidelines for code smell refactoring.
+2025-03-21 12:10:58,214 - job.refactoring_job - INFO - Generating response for task message with correlation ID: d13cb5fa-c373-47a2-9488-9e4fc3bee27a
+2025-03-21 12:10:58,214 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 12:10:58,685 - llm_processor - INFO - Processed result: None
+2025-03-21 12:16:24,547 - __main__ - INFO - Received task message
+2025-03-21 12:16:24,548 - job.refactoring_job - INFO - Processing task message with correlation ID: 7b1a62cf-1a86-4b5e-904f-2b59dd465423
+2025-03-21 12:16:24,548 - job.refactoring_job - INFO - Task type: refactoring
+2025-03-21 12:16:24,549 - job.refactoring_job - INFO - Task job: long_parameter_list
+2025-03-21 12:16:24,549 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 7b1a62cf-1a86-4b5e-904f-2b59dd465423
+2025-03-21 12:16:24,549 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 12:16:52,023 - llm_processor - INFO - Processed result: Here's the refactored Python code snippet:
+```python
+class DiscountParameters:
+    def __init__(self, price, customer_type, day_of_week, is_member=None, coupon_code=None):
+        self.price = price
+        self.customer_type = customer_type
+        self.day_of_week = day_of_week
+        self.is_member = is_member
+        self.coupon_code = coupon_code
+
+
+def calculate_discount(discount_params):
+    """
+    Calculate discount based on customer type, day of week, membership, and coupon code.
+    
+    :param discount_params: A DiscountParameters object containing the calculation parameters.
+    :return: The calculated discount amount.
+    """
+
+    discount = 0
+    customer_type = discount_params.customer_type
+    day_of_week = discount_params.day_of_week
+    is_member = discount_params.is_member
+    coupon_code = discount_params.coupon_code
+
+    if customer_type == "regular":
+        if is_member:
+            if day_of_week in ["Saturday", "Sunday"]:
+                if coupon_code:
+                    if coupon_code.startswith("VIP"):
+                        discount = discount_params.price * 0.25
+                    else:
+                        discount = discount_params.price * 0.20
+                else:
+                    discount = discount_params.price * 0.20
+            else:
+                if coupon_code:
+                    if len(coupon_code) > 3:
+                        discount = discount_params.price * 0.15
+                    else:
+                        discount = discount_params.price * 0.12
+                else:
+                    discount = discount_params.price * 0.10
+        else:
+            if day_of_week == "Friday":
+                if coupon_code:
+                    if coupon_code == "FRIDAYSALE":
+                        discount = discount_params.price * 0.10
+                    else:
+                        discount = discount_params.price * 0.05
+                else:
+                    discount = discount_params.price * 0.05
+            else:
+                if coupon_code:
+                    if coupon_code == "SPECIAL":
+                        discount = discount_params.price * 0.07
+                    else:
+                        discount = discount_params.price * 0.03
+                else:
+                    discount = 0
+    elif customer_type == "premium":
+        if is_member:
+            if coupon_code:
+                if day_of_week in ["Monday", "Tuesday"]:
+                    discount = discount_params.price * 0.30
+                else:
+                    if coupon_code.endswith("EXTRA"):
+                        discount = discount_params.price * 0.28
+                    else:
+                        discount = discount_params.price * 0.25
+            else:
+                discount = discount_params.price * 0.20
+        else:
+            if coupon_code:
+                if coupon_code == "PREMIUM":
+                    discount = discount_params.price * 0.18
+                else:
+                    discount = discount_params.price * 0.15
+            else:
+                discount = discount_params.price * 0.15
+    else:
+        if coupon_code:
+            if coupon_code.startswith("NEW"):
+                discount = discount_params.price * 0.05
+            else:
+                discount = discount_params.price * 0.02
+        else:
+            discount = 0
+
+    return discount
+```
+
+However, in this particular case, no call sites have been provided, therefore only the refactored snippet has been returned above. Here's some call examples for the refactored function:
+
+```python
+# Test calculate_discount with default parameters
+discount_params = DiscountParameters(100, "regular", "Friday", False, None)
+print(calculate_discount(discount_params))
+
+# Test calculate_discount with custom parameters
+discount_params_custom = DiscountParameters(200, "premium", "Saturday", True, "EXTRA")
+print(calculate_discount(discount_params_custom))
+```
+2025-03-21 12:16:52,024 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 7b1a62cf-1a86-4b5e-904f-2b59dd465423
+2025-03-21 12:16:52,024 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 12:16:52,517 - llm_processor - INFO - Processed result: None

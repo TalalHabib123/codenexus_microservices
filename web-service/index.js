@@ -13,6 +13,7 @@ const graphRoutes = require('./routes/graph.route');
 const logRoutes = require('./routes/log.route');
 const rulesetRoutes = require('./routes/ruleset.route');
 const vscodeRoutes = require('./routes/vscode.auth.route');
+const profileRoutes = require('./routes/profile.route');
 // Create Express app
 const app = express();
 
@@ -47,6 +48,8 @@ app.use('/graph', graphRoutes);
 app.use('/logs', logRoutes);
 app.use('/ruleset', rulesetRoutes);
 app.use('/vscode', vscodeRoutes);
+app.use('/profile', profileRoutes);
+
 app.get('/', (req, res) => {
   res.json({ message: 'Hello from Express' });
 });

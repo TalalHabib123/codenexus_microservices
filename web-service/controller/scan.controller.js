@@ -104,7 +104,7 @@ const scanController = {
   },
 
   // Get daily scans for all projects
-  getDailyScans: async (req, res) => {
+  daily: async (req, res) => {
     try {
       // Get all unique projects
       const projects = await Project.find({});
@@ -138,7 +138,7 @@ const scanController = {
   },
 
   // Get weekly scans for all projects
-  getWeeklyScan: async (req, res) => {
+ Weekly: async (req, res) => {
     try {
       const projects = await Project.find({});
       const weeklyScan = [];
@@ -169,7 +169,7 @@ const scanController = {
   },
 
   // Get monthly scans for all projects
-  getMonthlyScan: async (req, res) => {
+  Monthly: async (req, res) => {
     try {
       const projects = await Project.find({});
       const monthlyScan = [];

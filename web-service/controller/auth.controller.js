@@ -32,7 +32,7 @@ const authController = {
       
       // Generate JWT token
       const token = authService.generateToken(user);
-      
+      console.log("hdfssdfs")
       // Set auth cookies
       authService.setAuthCookies(res, token);
       

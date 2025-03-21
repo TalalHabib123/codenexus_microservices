@@ -7,10 +7,10 @@ const router = express.Router();
 router.post('/addDetection', scanController.addDetection);
 router.post('/addRefactor', scanController.addRefactor);
 
-// Time-based scan routes
-router.get('/daily', scanController.getDailyScans);
-router.get('/weekly', scanController.getWeeklyScan);
-router.get('/monthly', scanController.getMonthlyScan);
+
+router.get('/daily', scanController.daily);
+router.get('/weekly', scanController.Weekly);
+router.get('/monthly', scanController.Monthly);
 
 // Code smell type count routes
 router.get('/codeSmellTypes/:projectId', scanController.getCodeSmellTypeCount);

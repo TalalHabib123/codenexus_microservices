@@ -6098,3 +6098,338 @@ print(calculate_discount(discount_params_custom))
 2025-03-21 12:16:52,024 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 7b1a62cf-1a86-4b5e-904f-2b59dd465423
 2025-03-21 12:16:52,024 - llm_processor - INFO - Processing task with LLM model pipeline
 2025-03-21 12:16:52,517 - llm_processor - INFO - Processed result: None
+2025-03-21 12:51:08,440 - __main__ - INFO - Received task message
+2025-03-21 12:51:08,441 - job.detection_job - INFO - Processing task message with correlation ID: 6d2c307b-c2ef-4f71-bf36-89afa152c609
+2025-03-21 12:51:08,442 - job.detection_job - INFO - Task type: detection
+2025-03-21 12:51:08,442 - job.detection_job - INFO - Task job: long_function
+2025-03-21 12:51:08,476 - job.detection_job - INFO - Generating response for task message with correlation ID: 6d2c307b-c2ef-4f71-bf36-89afa152c609
+2025-03-21 12:51:08,477 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 12:51:21,043 - llm_processor - INFO - Processed result: File:{4a405a.py}
+Detected:commute_integers
+Issue:Exceeds a reasonable line threshold, performs multiple unrelated tasks, and is excessively complex with deep nesting.
+
+File:{d29b69.py}
+Detected:main
+Issue:Performs multiple unrelated tasks, is excessively complex, and deeply nested due to cross-module interaction.
+
+File:{32a211.py}
+Detected:calculate_discount
+Issue:Exceeds a reasonable line threshold and performs multiple unrelated tasks.
+
+File:{4a405a.py}
+Detected:recursive_sum
+Issue:Not a long function by itself but is detected as such because it is used in another long function (commute_integers), adding to the outer long function's overall size and complexity.
+
+File:{db89db.py}
+Detected:process_online_order's and process_instore_order's functions are split between (26d83d.py and ee0a45.py and they have a long code smell so list them as well.)
+
+File:{26d83d.py}
+Detected:process_online_order
+Issue:Duplicate calculation and summary creation blocks adding to a total of being excessively long.
+
+File:{ee0a45.py}
+Detected:process_instore_order
+Issue:Duplicate calculation and summary creation blocks adding to a total of being excessively long.
+
+File:{4a405a.py}
+Detected:commute_integers
+Issue:Main concern is excessive line count due to multiple loops and repetitive variable usage
+2025-03-21 12:51:22,045 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 12:51:22,306 - llm_processor - INFO - Processed result: File:{4a405a.py}
+Detected:commute_integers
+Issue:Exceeds a reasonable line threshold, performs multiple unrelated tasks, and is excessively complex with deep nesting.
+
+File:{d29b69.py}
+Detected:main
+Issue:Performs multiple unrelated tasks, is excessively complex, and deeply nested due to cross-module interaction.
+
+File:{32a211.py}
+Detected:calculate_discount
+Issue:Exceeds a reasonable line threshold and performs multiple unrelated tasks.
+
+File:{4a405a.py}
+Detected:recursive_sum
+Issue:Not a long function by itself but is detected as such because it is used in another long function (commute_integers), adding to the outer long function's overall size and complexity.
+
+File:{db89db.py}
+Detected:process_online_order's and process_instore_order's functions are split between (26d83d.py and ee0a45.py and they have a long code smell so list them as well.)
+
+File:{26d83d.py}
+Detected:process_online_order
+Issue:Duplicate calculation and summary creation blocks adding to a total of being excessively long.
+
+File:{ee0a45.py}
+Detected:process_instore_order
+Issue:Duplicate calculation and summary creation blocks adding to a total of being excessively long.
+
+File:{4a405a.py}
+Detected:commute_integers
+Issue:Main concern is excessive line count due to multiple loops and repetitive variable usage
+2025-03-21 12:51:22,308 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 12:51:33,518 - llm_processor - INFO - Processed result: File:{4a405a.py}
+Detected:commute_integers
+Issue:Exceeds a reasonable line threshold, performs multiple unrelated tasks and is excessively complex with deep nesting, and main concern is excessive line count due to multiple loops and repetitive variable usage.
+
+File:{d29b69.py}
+Detected:main
+Issue:Performs multiple unrelated tasks, is excessively complex and deeply nested due to cross-module interaction.
+
+File:{4a405a.py}
+Detected:recursive_sum
+Issue:Not a long function by itself but is detected as such because it is used in another long function (commute_integers), adding to the outer long function's overall size and complexity.
+
+File:{32a211.py}
+Detected:calculate_discount
+Issue:Exceeds a reasonable line threshold and performs multiple unrelated tasks.
+
+File:{26d83d.py}
+Detected:process_online_order
+Issue:Duplicate calculation and summary creation blocks adding to a total of being excessively long.
+
+File:{ee0a45.py}
+Detected:process_instore_order
+Issue:Duplicate calculation and summary creation blocks adding to a total of being excessively long.
+2025-03-21 12:51:34,520 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 12:51:42,986 - llm_processor - INFO - Processed result: ### Analysis and Reformatted Answer
+
+The provided answer generally follows the required format and is consistent with the code smell "long_function." However, some descriptions in the "Issue" section can be improved for clarity and conciseness. Here is the cleaned and reformatted answer:
+
+File: 4a405a.py
+Detected: commutative_integers
+Issue: Exceeds reasonable line threshold, has multiple responsibilities and excessive nesting.
+
+File: d29b69.py
+Detected: main
+Issue: Performs multiple tasks and has deep nesting due to cross-module interaction.
+
+File: 4a405a.py
+Detected: recursive_sum
+Issue: Adds complexity to the outer function through repeated calls.
+
+File: 32a211.py
+Detected: calculate_discount
+Issue: Exceeds reasonable line threshold and performs multiple unrelated tasks.
+
+File: 26d83d.py
+Detected: process_online_order
+Issue: Duplicate blocks increase overall function length.
+
+File: ee0a45.py
+Detected: process_instore_order
+Issue: Duplicate blocks increase overall function length.
+2025-03-21 12:52:50,261 - __main__ - INFO - Received task message
+2025-03-21 12:52:50,262 - job.detection_job - INFO - Processing task message with correlation ID: 06ce516d-fccc-4047-9ca0-4d8f85adda3d
+2025-03-21 12:52:50,262 - job.detection_job - INFO - Task type: detection
+2025-03-21 12:52:50,263 - job.detection_job - INFO - Task job: long_function
+2025-03-21 12:52:50,269 - job.detection_job - INFO - Generating response for task message with correlation ID: 06ce516d-fccc-4047-9ca0-4d8f85adda3d
+2025-03-21 12:52:50,269 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 12:52:50,552 - llm_processor - INFO - Processed result: File:{4a405a.py}
+Detected:commute_integers
+Issue:Exceeds a reasonable line threshold, performs multiple unrelated tasks, and is excessively complex with deep nesting.
+
+File:{d29b69.py}
+Detected:main
+Issue:Performs multiple unrelated tasks, is excessively complex, and deeply nested due to cross-module interaction.
+
+File:{32a211.py}
+Detected:calculate_discount
+Issue:Exceeds a reasonable line threshold and performs multiple unrelated tasks.
+
+File:{4a405a.py}
+Detected:recursive_sum
+Issue:Not a long function by itself but is detected as such because it is used in another long function (commute_integers), adding to the outer long function's overall size and complexity.
+
+File:{db89db.py}
+Detected:process_online_order's and process_instore_order's functions are split between (26d83d.py and ee0a45.py and they have a long code smell so list them as well.)
+
+File:{26d83d.py}
+Detected:process_online_order
+Issue:Duplicate calculation and summary creation blocks adding to a total of being excessively long.
+
+File:{ee0a45.py}
+Detected:process_instore_order
+Issue:Duplicate calculation and summary creation blocks adding to a total of being excessively long.
+
+File:{4a405a.py}
+Detected:commute_integers
+Issue:Main concern is excessive line count due to multiple loops and repetitive variable usage
+2025-03-21 12:52:51,553 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 12:52:51,827 - llm_processor - INFO - Processed result: File:{4a405a.py}
+Detected:commute_integers
+Issue:Exceeds a reasonable line threshold, performs multiple unrelated tasks, and is excessively complex with deep nesting.
+
+File:{d29b69.py}
+Detected:main
+Issue:Performs multiple unrelated tasks, is excessively complex, and deeply nested due to cross-module interaction.
+
+File:{32a211.py}
+Detected:calculate_discount
+Issue:Exceeds a reasonable line threshold and performs multiple unrelated tasks.
+
+File:{4a405a.py}
+Detected:recursive_sum
+Issue:Not a long function by itself but is detected as such because it is used in another long function (commute_integers), adding to the outer long function's overall size and complexity.
+
+File:{db89db.py}
+Detected:process_online_order's and process_instore_order's functions are split between (26d83d.py and ee0a45.py and they have a long code smell so list them as well.)
+
+File:{26d83d.py}
+Detected:process_online_order
+Issue:Duplicate calculation and summary creation blocks adding to a total of being excessively long.
+
+File:{ee0a45.py}
+Detected:process_instore_order
+Issue:Duplicate calculation and summary creation blocks adding to a total of being excessively long.
+
+File:{4a405a.py}
+Detected:commute_integers
+Issue:Main concern is excessive line count due to multiple loops and repetitive variable usage
+2025-03-21 12:52:51,828 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 12:52:52,112 - llm_processor - INFO - Processed result: File:{4a405a.py}
+Detected:commute_integers
+Issue:Exceeds a reasonable line threshold, performs multiple unrelated tasks and is excessively complex with deep nesting, and main concern is excessive line count due to multiple loops and repetitive variable usage.
+
+File:{d29b69.py}
+Detected:main
+Issue:Performs multiple unrelated tasks, is excessively complex and deeply nested due to cross-module interaction.
+
+File:{4a405a.py}
+Detected:recursive_sum
+Issue:Not a long function by itself but is detected as such because it is used in another long function (commute_integers), adding to the outer long function's overall size and complexity.
+
+File:{32a211.py}
+Detected:calculate_discount
+Issue:Exceeds a reasonable line threshold and performs multiple unrelated tasks.
+
+File:{26d83d.py}
+Detected:process_online_order
+Issue:Duplicate calculation and summary creation blocks adding to a total of being excessively long.
+
+File:{ee0a45.py}
+Detected:process_instore_order
+Issue:Duplicate calculation and summary creation blocks adding to a total of being excessively long.
+2025-03-21 12:52:53,114 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 12:52:53,430 - llm_processor - INFO - Processed result: ### Analysis and Reformatted Answer
+
+The provided answer generally follows the required format and is consistent with the code smell "long_function." However, some descriptions in the "Issue" section can be improved for clarity and conciseness. Here is the cleaned and reformatted answer:
+
+File: 4a405a.py
+Detected: commutative_integers
+Issue: Exceeds reasonable line threshold, has multiple responsibilities and excessive nesting.
+
+File: d29b69.py
+Detected: main
+Issue: Performs multiple tasks and has deep nesting due to cross-module interaction.
+
+File: 4a405a.py
+Detected: recursive_sum
+Issue: Adds complexity to the outer function through repeated calls.
+
+File: 32a211.py
+Detected: calculate_discount
+Issue: Exceeds reasonable line threshold and performs multiple unrelated tasks.
+
+File: 26d83d.py
+Detected: process_online_order
+Issue: Duplicate blocks increase overall function length.
+
+File: ee0a45.py
+Detected: process_instore_order
+Issue: Duplicate blocks increase overall function length.
+2025-03-21 13:06:05,717 - __main__ - INFO - Received task message
+2025-03-21 13:06:05,718 - job.detection_job - INFO - Processing task message with correlation ID: c7c49880-47da-4a63-b025-46ca4e4600cf
+2025-03-21 13:06:05,718 - job.detection_job - INFO - Task type: detection
+2025-03-21 13:06:05,718 - job.detection_job - INFO - Task job: god_object
+2025-03-21 13:06:05,721 - job.detection_job - INFO - Generating response for task message with correlation ID: c7c49880-47da-4a63-b025-46ca4e4600cf
+2025-03-21 13:06:05,721 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 13:06:10,400 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class takes on multiple unrelated responsibilities such as managing the car's state (running or parked), acceleration, braking, painting, maintenance tasks, and repairs, which violate the Single Responsibility Principle. 
+
+File:{db89db.py}
+Detected:Order
+Issue:The class handles both the order management (add item, get summary) and discount application logic, although the latter could be a separate responsibility or even a part of a separate class that handles discounts or promotions.
+2025-03-21 13:06:11,401 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 13:06:11,818 - llm_processor - INFO - Processed result: File:{18567c.py}
+Detected:Car
+Issue:The class takes on multiple unrelated responsibilities such as managing the car's state (running or parked), acceleration, braking, painting, maintenance tasks, and repairs, which violate the Single Responsibility Principle. 
+
+File:{db89db.py}
+Detected:Order
+Issue:The class handles both the order management (add item, get summary) and discount application logic, although the latter could be a separate responsibility or even a part of a separate class that handles discounts or promotions.
+2025-03-21 13:06:11,819 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 13:06:16,770 - llm_processor - INFO - Processed result: Here is the final response based on the detection task:
+
+
+File:{18567c.py}
+Detected:Car
+Issue:The class takes on multiple unrelated responsibilities such as managing the car's state (running or parked), acceleration, braking, painting, maintenance tasks, and repairs, which violate the Single Responsibility Principle. 
+
+File:{db89db.py}
+Detected:Order
+Issue:The class handles both the order management (add item, get summary) and discount application logic, although the latter could be a separate responsibility or even a part of a separate class that handles discounts or promotions.
+2025-03-21 13:06:17,771 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-03-21 13:06:25,572 - llm_processor - INFO - Processed result: ### Analysis of the provided answer
+
+The provided answer is consistent with the Code Smell 'god_object'. A god object is a class that knows too much or does too much, often mixing multiple unrelated responsibilities. 
+
+The provided answer correctly identifies the classes (`Car` and `Order`) that exhibit this behavior, listing the specific responsibilities that make them 'god objects'.
+
+However, the answer doesn't exactly follow the specified format, as the files detected are enclosed in curly brackets. Here is the reformatted answer:
+
+### Reformatted answer
+
+File: 18567c.py
+Detected: Car
+Issue: The class takes on multiple unrelated responsibilities such as managing the car's state (running or parked), acceleration, braking, painting, maintenance tasks, and repairs, which violate the Single Responsibility Principle.
+
+File: db89db.py
+Detected: Order
+Issue: The class handles both the order management (add item, get summary) and discount application logic, although the latter could be a separate responsibility or even a part of a separate class that handles discounts or promotions.
+2025-04-15 22:01:29,998 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-04-15 22:01:30,005 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-04-15 22:01:30,052 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-04-15 22:01:30,052 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-04-15 22:01:30,053 - __main__ - INFO - Initializing knowledge base for detection
+2025-04-15 22:01:30,053 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-04-15 22:01:30,053 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-04-15 22:01:30,060 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-04-15 22:01:30,061 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-04-15 22:44:47,290 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-04-15 22:44:47,313 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-04-15 22:44:47,364 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-04-15 22:44:47,366 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-04-15 22:44:47,368 - __main__ - INFO - Initializing knowledge base for detection
+2025-04-15 22:44:47,369 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-04-15 22:44:47,372 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-04-15 22:44:47,374 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-04-15 22:44:47,375 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-04-15 22:49:33,642 - __main__ - INFO - Received task message
+2025-04-15 22:49:33,643 - job.detection_job - INFO - Processing task message with correlation ID: 6daf2346-5773-4a5e-95a7-09b91d74b06e
+2025-04-15 22:49:33,643 - job.detection_job - INFO - Task type: detection
+2025-04-15 22:49:33,643 - job.detection_job - INFO - Task job: god_object
+2025-04-15 22:49:33,645 - job.detection_job - INFO - Generating response for task message with correlation ID: 6daf2346-5773-4a5e-95a7-09b91d74b06e
+2025-04-15 22:49:33,645 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-04-15 22:49:35,611 - job.detection_job - ERROR - Error generating response for task message with correlation ID: 6daf2346-5773-4a5e-95a7-09b91d74b06e
+2025-04-15 22:49:35,612 - job.detection_job - ERROR - (Request ID: Root=1-67fe9c2e-159bf6c8360f4df25f680b3d;0b44838a-f0a5-440e-a11b-b1e7615e09e3)
+
+403 Forbidden: None.
+Cannot access content at: https://router.huggingface.co/hf-inference/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions.
+Make sure your token has the correct permissions.
+The model meta-llama/Llama-3.1-70B-Instruct is too large to be loaded automatically (141GB > 10GB).
+2025-04-15 22:49:35,612 - job.detection_job - ERROR - Error processing task message with correlation ID: 6daf2346-5773-4a5e-95a7-09b91d74b06e
+2025-04-15 22:49:35,613 - job.detection_job - ERROR - (Request ID: Root=1-67fe9c2e-159bf6c8360f4df25f680b3d;0b44838a-f0a5-440e-a11b-b1e7615e09e3)
+
+403 Forbidden: None.
+Cannot access content at: https://router.huggingface.co/hf-inference/models/meta-llama/Llama-3.1-70B-Instruct/v1/chat/completions.
+Make sure your token has the correct permissions.
+The model meta-llama/Llama-3.1-70B-Instruct is too large to be loaded automatically (141GB > 10GB).
+2025-04-15 23:03:59,103 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-04-15 23:03:59,128 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-04-15 23:03:59,179 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-04-15 23:03:59,180 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-04-15 23:03:59,180 - __main__ - INFO - Initializing knowledge base for detection
+2025-04-15 23:03:59,180 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-04-15 23:03:59,180 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-04-15 23:03:59,181 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-04-15 23:03:59,181 - utils.rag.retrieval - INFO - Loading embeddings and model from file

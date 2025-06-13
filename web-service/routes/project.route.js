@@ -7,6 +7,10 @@ router.post('/create', vscodeAuth, projectController.create);
 router.get('/getAll', projectController.getAll);
 router.get('/getAllProjectInfos', projectController.getAllProjectInfos);
 router.get('/getProjectById/:projectId', projectController.getProjectById);
+
+
+// Get only the latest scan for a project/ for showing breakdown of code smell in the most updated project scan
+router.get('/latest-scan/:projectId', projectController.getLatestScan);
 // router.get('/getAllMembers/:projectId', projectController.getAllMembers);
 // router.get('/getAllScans/:projectId', projectController.getAllScans);
 // router.get('/getScanById/:scanId', projectController.getScanById);

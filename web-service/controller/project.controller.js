@@ -139,27 +139,57 @@ getAllProjectInfos: async (req, res) => {
         }
     },
 
-    getDailyScanByProjectId: async (req, res) => {
-        // endpoint to return the last scan of each day. 
-        // this is used to show the daily scan in the dashboard
+    // getDailyScanByProjectId: async (req, res) => {
+    //     // endpoint to return the last scan of each day. 
+    //     // this is used to show the daily scan in the dashboard
+    //     try {
+    //         const projectId = req.params.projectId;
+    //         const scans = await Scan.find({project_id: projectId}).populate('project_id');
+    //         const dailyScans = {};
+
+    //         scans.forEach(scan => {
+    //             const date = new Date(scan.started_at).toISOString().split('T')[0]; // Get the date part
+    //             if (!dailyScans[date] || new Date(scan.started_at) > new Date(dailyScans[date].started_at)) {
+    //                 dailyScans[date] = scan;
+    //             }
+    //         });
+
+    //         res.status(200).json(Object.values(dailyScans));
+    //     } catch (error) {
+    //         console.error(error);
+    //         res.status(500).json({message: "Internal server error", error});
+    //     }
+    // },
+    ///latest scan of a project
+     getLatestScan: async (req, res) => {
         try {
-            const projectId = req.params.projectId;
-            const scans = await Scan.find({project_id: projectId}).populate('project_id');
-            const dailyScans = {};
+               const { projectId } = req.params;
 
-            scans.forEach(scan => {
-                const date = new Date(scan.started_at).toISOString().split('T')[0]; // Get the date part
-                if (!dailyScans[date] || new Date(scan.started_at) > new Date(dailyScans[date].started_at)) {
-                    dailyScans[date] = scan;
-                }
-            });
+      // 1) Load the project and populate only the most recent scan
+      const project = await Project.findById(projectId).populate({
+        path: 'scans',
+        options: { sort: { started_at: -1 }, limit: 1 },
+        populate: [
+          { path: 'detect_id' },
+        ]
+      });
 
-            res.status(200).json(Object.values(dailyScans));
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({message: "Internal server error", error});
-        }
+      if (!project) {
+        return res.status(404).json({ message: 'Project not found' });
+      }
+      if (!project.scans.length) {
+        return res.status(404).json({ message: 'No scans for this project' });
+      }
+
+      // 2) The first (and only) element is the latest
+      const latestScan = project.scans[0];
+      res.status(200).json(latestScan);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error', error });
     }
+  }
+   
 }
 
 module.exports = projectController;

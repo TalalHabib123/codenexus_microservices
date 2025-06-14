@@ -128,7 +128,18 @@ getAllProjectInfos: async (req, res) => {
         try {
             const projectId = req.params.projectId;
             const project = await Project
-            .findById(projectId).populate('Owner').populate('members').populate('scans');
+            .findById(projectId).populate('Owner').populate('members')
+                .populate({
+                path: 'scans',
+                populate: [
+                    {
+                        path: 'detect_id'
+                    },
+                    {
+                        path: 'refactor_id'
+                    }
+                ]
+            });
             if (!project) {
                 return res.status(404).json({message: "Project not found"});
             }
@@ -188,7 +199,46 @@ getAllProjectInfos: async (req, res) => {
       console.error(error);
       res.status(500).json({ message: 'Internal server error', error });
     }
-  }
+  },
+
+  getCompleteProjectInfo: async (req, res) => {
+        try {
+        const projectId = req.params.projectId;
+        
+        // Validate projectId
+        if (!projectId) {
+            return res.status(400).json({
+                success: false,
+                message: 'Project ID is required'
+            });
+        }
+
+        const project = await Project.findById(projectId)
+            .populate('Owner') // Populate owner with specific fields
+            .populate('members') // Populate members with specific fields
+        
+
+        if (!project) {
+            return res.status(404).json({
+                success: false,
+                message: 'Project not found'
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            data: project
+        });
+
+    } catch (error) {
+        console.error('Error fetching complete project info:', error);
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error',
+            error: process.env.NODE_ENV === 'development' ? error.message : undefined
+        });
+    }
+    }
    
 }
 

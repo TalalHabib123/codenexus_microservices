@@ -182,6 +182,66 @@ getAllProjectInfos: async (req, res) => {
     }
   },
 
+  addMember: async (req, res) => {
+    try {
+        const projectId = req.params.projectId;
+        const userEmail = req.body.email;
+
+        //create user with given email if it doesn't exist 
+        let user = await User.findOne({ email:
+            userEmail
+        });
+        if (!user) {
+            user = new User({ email: userEmail });
+            await user.save();
+        }
+        const userId = user._id;
+
+        // Check if the user is already a member
+        const project = await Project.findById(projectId);
+        if (!project) {
+            return res.status(404).json({message: "Project not found"});
+        }
+        if (project.members.includes(userId)) {
+            return res.status(400).json({message: "User is already a member of this project"});
+        }
+
+        // Add the user to the project's members
+        project.members.push(userId);
+        await project.save();
+
+        res.status(200).json({message: "Member added successfully", project});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({message: "Internal server error", error});
+    }
+  },
+  removeMember: async (req, res) => {
+    try {
+        const projectId = req.params.projectId;
+        const userId = req.body;
+
+        // Check if the project exists
+        const project = await Project.findById(projectId);
+        if (!project) {
+            return res.status(404).json({message: "Project not found"});
+        }
+
+        // Check if the user is a member
+        if (!project.members.includes(userId)) {
+            return res.status(400).json({message: "User is not a member of this project"});
+        }
+
+        // Remove the user from the project's members
+        project.members = project.members.filter(member => member.toString() !== userId.toString());
+        await project.save();
+
+        res.status(200).json({message: "Member removed successfully", project});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({message: "Internal server error", error});
+    }
+  },
   
 }
 

@@ -351,36 +351,36 @@ const scanController = {
   }
 };
 
-// Helper function to calculate total issues detected
 function calculateTotalIssuesDetected(detectionData) {
   let totalIssues = 0;
 
-  // Helper function to count issues in a specific detection type
+  // Walk a dotted path into detectionData and return length if it's an array
   const countIssues = (dataPath) => {
-    const pathParts = dataPath.split('.');
+    const parts = dataPath.split('.');
     let current = detectionData;
-    
-    for (const part of pathParts) {
-      if (!current || !current[part]) return 0;
-      current = current[part];
+    for (const p of parts) {
+      if (!current || current[p] == null) return 0;
+      current = current[p];
     }
-
     return Array.isArray(current) ? current.length : 0;
   };
 
-  // Define paths to different types of code smells
+  // All code‐smell paths to count
   const issueTypes = [
     'magic_numbers.data.magic_numbers',
     'duplicated_code.data.duplicate_code',
     'unused_variables.data.unused_variables',
     'naming_convention.data.inconsistent_naming',
     'dead_code.data.dead_code',
-    'unreachable_code.data.unreachable_code'
+    'unreachable_code.data.unreachable_code',
+    'overly_complex_condition.data.overly_complex_condition',
+    'global_conflict.data.global_conflict',
+    'long_parameter_list.data.long_parameter_list',
+    'temporary_field.data.temporary_field',
+    'user_triggered_detection.data.user_triggered_detection'
   ];
 
-  // Sum up issues from all types
-  issueTypes.forEach(type => {
-    totalIssues += countIssues(type);
+  issueTypes.forEach(path => {   totalIssues += countIssues(path);
   });
 
   return totalIssues;

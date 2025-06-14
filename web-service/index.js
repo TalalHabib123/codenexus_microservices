@@ -14,6 +14,7 @@ const logRoutes = require('./routes/log.route');
 const rulesetRoutes = require('./routes/ruleset.route');
 const vscodeRoutes = require('./routes/vscode.auth.route');
 const profileRoutes = require('./routes/profile.route');
+const projectfilesroutes = require('./routes/projectFiles.route');
 // Create Express app
 const app = express();
 
@@ -49,6 +50,7 @@ app.use('/logs', logRoutes);
 app.use('/ruleset', rulesetRoutes);
 app.use('/vscode', vscodeRoutes);
 app.use('/profile', profileRoutes);
+app.use('/project/files', projectfilesroutes)
 
 app.get('/', (req, res) => {
   res.json({ message: 'Hello from Express' });

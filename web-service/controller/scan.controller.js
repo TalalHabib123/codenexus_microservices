@@ -2,6 +2,7 @@ const Scan = require("../mongo_models/Scan");
 const Project = require('../mongo_models/Project');
 const { DetectionResponse } = require('../mongo_models/DetectionData');
 const { RefactoringData } = require('../mongo_models/RefactorData');
+
 const Log = require('../mongo_models/logs');
 
 const scanController = {
@@ -199,35 +200,55 @@ const scanController = {
     }
   },
 
+
+
   // Get code smell type count for a specific project
   getCodeSmellTypeCount: async (req, res) => {
     try {
       const { projectId } = req.params;
-      
+      console.log('projectId', projectId);
+      console.log("project", Project)
       // Find the latest scan for the project
-      const latestScan = await Scan.findOne({ project_id: projectId })
-        .populate('detect_id')
-        .sort({ started_at: -1 });
-      
+       // 1) Load the project and populate exactly one scan (the latest)
+      const project = await Project.findById(projectId).populate({
+        path: 'scans',
+        options: { sort: { started_at: -1 }, limit: 1 },
+        populate: { path: 'detect_id', model: 'DetectionResponse' }
+      });
+           if (!project) {
+        return res.status(404).json({ message: 'Project not found' });
+      }
+      const latestScan = project.scans[0];
       if (!latestScan || !latestScan.detect_id || latestScan.detect_id.length === 0) {
+        console.log('No detections found for this project');
         return res.status(200).json({
           magic_numbers: 0,
           duplicated_code: 0,
           unused_variables: 0,
           naming_convention: 0,
           dead_code: 0,
-          unreachable_code: 0
+          unreachable_code: 0,
+          overly_complex_condition: 0,
+          global_conflict: 0,
+          long_parameter_list: 0,
+          temporary_field: 0,
+ 
         });
       }
       
-      // Assuming detect_id is an array of detection responses
+      // Initialize all code smell types
       const codeSmellTypes = {
         magic_numbers: 0,
         duplicated_code: 0,
         unused_variables: 0,
         naming_convention: 0,
         dead_code: 0,
-        unreachable_code: 0
+        unreachable_code: 0,
+        overly_complex_condition: 0,
+        global_conflict: 0,
+        long_parameter_list: 0,
+        temporary_field: 0,
+       
       };
 
       // Iterate through each detection response
@@ -263,6 +284,27 @@ const scanController = {
         if (detection.unreachable_code?.data?.unreachable_code) {
           codeSmellTypes.unreachable_code += detection.unreachable_code.data.unreachable_code.length;
         }
+
+        // Overly Complex Condition
+        if (detection.overly_complex_condition?.data?.overly_complex_condition) {
+          codeSmellTypes.overly_complex_condition += detection.overly_complex_condition.data.overly_complex_condition.length;
+        }
+
+        // Global Conflict
+        if (detection.global_conflict?.data?.global_conflict) {
+          codeSmellTypes.global_conflict += detection.global_conflict.data.global_conflict.length;
+        }
+
+        // Long Parameter List
+        if (detection.long_parameter_list?.data?.long_parameter_list) {
+          codeSmellTypes.long_parameter_list += detection.long_parameter_list.data.long_parameter_list.length;
+        }
+
+        // Temporary Field
+        if (detection.temporary_field?.data?.temporary_field) {
+          codeSmellTypes.temporary_field += detection.temporary_field.data.temporary_field.length;
+        }
+
       });
       
       res.status(200).json(codeSmellTypes);
@@ -288,14 +330,19 @@ const scanController = {
           .populate('detect_id')
           .sort({ started_at: -1 });
         
-        // Initialize code smell types
+        // Initialize all code smell types
         const codeSmellTypes = {
           magic_numbers: 0,
           duplicated_code: 0,
           unused_variables: 0,
           naming_convention: 0,
           dead_code: 0,
-          unreachable_code: 0
+          unreachable_code: 0,
+          overly_complex_condition: 0,
+          global_conflict: 0,
+          long_parameter_list: 0,
+          temporary_field: 0,
+       
         };
 
         // If latest scan exists and has detection data
@@ -333,6 +380,28 @@ const scanController = {
             if (detection.unreachable_code?.data?.unreachable_code) {
               codeSmellTypes.unreachable_code += detection.unreachable_code.data.unreachable_code.length;
             }
+
+            // Overly Complex Condition
+            if (detection.overly_complex_condition?.data?.overly_complex_condition) {
+              codeSmellTypes.overly_complex_condition += detection.overly_complex_condition.data.overly_complex_condition.length;
+            }
+
+            // Global Conflict
+            if (detection.global_conflict?.data?.global_conflict) {
+              codeSmellTypes.global_conflict += detection.global_conflict.data.global_conflict.length;
+            }
+
+            // Long Parameter List
+            if (detection.long_parameter_list?.data?.long_parameter_list) {
+              codeSmellTypes.long_parameter_list += detection.long_parameter_list.data.long_parameter_list.length;
+            }
+
+            // Temporary Field
+            if (detection.temporary_field?.data?.temporary_field) {
+              codeSmellTypes.temporary_field += detection.temporary_field.data.temporary_field.length;
+            }
+
+          
           });
         }
 
@@ -377,10 +446,11 @@ function calculateTotalIssuesDetected(detectionData) {
     'global_conflict.data.global_conflict',
     'long_parameter_list.data.long_parameter_list',
     'temporary_field.data.temporary_field',
-    'user_triggered_detection.data.user_triggered_detection'
+  
   ];
 
-  issueTypes.forEach(path => {   totalIssues += countIssues(path);
+  issueTypes.forEach(path => {
+    totalIssues += countIssues(path);
   });
 
   return totalIssues;

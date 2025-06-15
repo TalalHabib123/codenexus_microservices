@@ -43,6 +43,7 @@ app.use(session({
 
 // Routes
 app.use('/auth', authRoutes);
+app.use('/project/files', projectfilesroutes)
 app.use('/project', projectRoutes);
 app.use('/scan', scanRoutes);
 app.use('/graph', graphRoutes);
@@ -50,7 +51,6 @@ app.use('/logs', logRoutes);
 app.use('/ruleset', rulesetRoutes);
 app.use('/vscode', vscodeRoutes);
 app.use('/profile', profileRoutes);
-app.use('/project/files', projectfilesroutes)
 app.use('/file-data', fileDataRouter);
 app.get('/', (req, res) => {
   res.json({ message: 'Hello from Express' });

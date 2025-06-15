@@ -15,6 +15,7 @@ const rulesetRoutes = require('./routes/ruleset.route');
 const vscodeRoutes = require('./routes/vscode.auth.route');
 const profileRoutes = require('./routes/profile.route');
 const projectfilesroutes = require('./routes/projectFiles.route');
+const fileDataRouter = require('./routes/fileData.route');
 // Create Express app
 const app = express();
 
@@ -45,13 +46,12 @@ app.use('/auth', authRoutes);
 app.use('/project', projectRoutes);
 app.use('/scan', scanRoutes);
 app.use('/graph', graphRoutes);
-// app.use('/vscode', vscodeAuthRoutes);
 app.use('/logs', logRoutes);
 app.use('/ruleset', rulesetRoutes);
 app.use('/vscode', vscodeRoutes);
 app.use('/profile', profileRoutes);
 app.use('/project/files', projectfilesroutes)
-
+app.use('/file-data', fileDataRouter);
 app.get('/', (req, res) => {
   res.json({ message: 'Hello from Express' });
 });

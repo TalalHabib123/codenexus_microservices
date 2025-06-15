@@ -24,7 +24,32 @@ const fileDataController = {
             console.log(project, fileData );
 
             const document = await ProjectFileData.updateFileData(project._id, fileData);
+           
+               
+            // Extract file names from fileData object
+            const fileNames = Object.keys(fileData);
+            console.log('Files to add to project:', fileNames);
             
+            // Update the Project's files array
+            if (fileNames.length > 0) {
+                // Get current files array (or initialize as empty array if it doesn't exist)
+                const currentFiles = project.files || [];
+                
+                // Create a Set of current files for efficient lookup
+                const currentFilesSet = new Set(currentFiles);
+                
+                // Add only new files (avoid duplicates)
+                const newFiles = fileNames.filter(fileName => !currentFilesSet.has(fileName));
+                
+                if (newFiles.length > 0) {
+                    // Add new files to the project's files array
+                    project.files = [...currentFiles, ...newFiles];
+                    await project.save();
+                    console.log('Added new files to project:', newFiles);
+                } else {
+                    console.log('No new files to add - all files already exist in project');
+                }
+            }
             res.json({
             status: 200,
             success: true,

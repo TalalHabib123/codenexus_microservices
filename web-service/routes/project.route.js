@@ -8,6 +8,7 @@ router.get('/getAll', projectController.getAll);
 router.get('/getAllProjectInfos', projectController.getAllProjectInfos);
 router.get('/getProjectById/:projectId', projectController.getProjectById);
 router.get('/latest-scan/:projectId', projectController.getLatestScan);
+router.get('/project-files/:projectName', projectController.getProjectFiles);
 // Updated member management routes
 router.post('/invite/:projectId', requireAuth, projectController.inviteMember);
 router.delete('/removeMember/:projectId', projectController.removeMember);

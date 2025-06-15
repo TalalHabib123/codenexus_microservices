@@ -2,7 +2,7 @@ const Scan = require("../mongo_models/Scan");
 const Project = require('../mongo_models/Project');
 const { DetectionResponse } = require('../mongo_models/DetectionData');
 const { RefactoringData } = require('../mongo_models/RefactorData');
-
+const {processFilesFromDetection}= require('../utils/scanUtils.jsx') ;
 const Log = require('../mongo_models/logs');
 
 const scanController = {
@@ -206,8 +206,7 @@ const scanController = {
   getCodeSmellTypeCount: async (req, res) => {
     try {
       const { projectId } = req.params;
-      console.log('projectId', projectId);
-      console.log("project", Project)
+    
       // Find the latest scan for the project
        // 1) Load the project and populate exactly one scan (the latest)
       const project = await Project.findById(projectId).populate({
@@ -417,7 +416,76 @@ const scanController = {
       console.error(error);
       res.status(500).json({ message: "Internal server error", error: error.message });
     }
+  },
+  // Get files with their code smell counts from latest scan
+// Updated route handler with better debugging
+getFileCodeSmells: async (req, res) => {
+  try {
+    const { projectId } = req.params;
+    console.log('Processing file code smells for project:', projectId);
+    
+    // Find the project and get the latest scan
+    const project = await Project.findById(projectId).populate({
+      path: 'scans',
+      options: { sort: { started_at: -1 }, limit: 1 },
+      populate: { path: 'detect_id', model: 'DetectionResponse' }
+    });
+
+    if (!project) {
+      return res.status(404).json({ message: 'Project not found' });
+    }
+
+    console.log('Project found:', project.title);
+
+    const latestScan = project.scans[0];
+    
+    if (!latestScan) {
+      console.log('No scans found for this project');
+      return res.status(200).json({
+        message: 'No scans found for this project',
+        files: []
+      });
+    }
+
+    console.log('Latest scan:', {
+      id: latestScan._id,
+      date: latestScan.started_at || latestScan.createdAt,
+      detectIdCount: latestScan.detect_id ? latestScan.detect_id.length : 0
+    });
+
+    if (!latestScan.detect_id || latestScan.detect_id.length === 0) {
+      console.log('No detection data found in latest scan');
+      return res.status(200).json({
+        message: 'No detection data found for this project',
+        files: []
+      });
+    }
+
+    // Log the structure of the first detection to debug
+    console.log('First detection structure:', JSON.stringify(latestScan.detect_id[0], null, 2));
+
+    // Process files and count code smells
+    const fileCodeSmells = processFilesFromDetection(latestScan.detect_id);
+
+    console.log(`Found ${fileCodeSmells.length} files with code smells`);
+
+    res.status(200).json({
+      message: 'Files with code smells retrieved successfully',
+      projectId: projectId,
+      scanId: latestScan._id,
+      scanDate: latestScan.started_at || latestScan.createdAt,
+      totalFiles: fileCodeSmells.length,
+      files: fileCodeSmells
+    });
+
+  } catch (error) {
+    console.error('Error getting file code smells:', error);
+    res.status(500).json({ 
+      message: 'Internal server error', 
+      error: error.message 
+    });
   }
+}
 };
 
 function calculateTotalIssuesDetected(detectionData) {
@@ -455,5 +523,6 @@ function calculateTotalIssuesDetected(detectionData) {
 
   return totalIssues;
 }
+
 
 module.exports = scanController;

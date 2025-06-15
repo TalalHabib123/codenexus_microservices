@@ -6433,3 +6433,1872 @@ The model meta-llama/Llama-3.1-70B-Instruct is too large to be loaded automatica
 2025-04-15 23:03:59,180 - utils.rag.retrieval - INFO - Loading knowledge base from database
 2025-04-15 23:03:59,181 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
 2025-04-15 23:03:59,181 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-06-15 18:27:26,451 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-06-15 18:27:26,470 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-06-15 18:27:26,519 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-06-15 18:27:26,519 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-06-15 18:27:26,520 - __main__ - INFO - Initializing knowledge base for detection
+2025-06-15 18:27:26,520 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-06-15 18:27:26,520 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-06-15 18:27:26,528 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-06-15 18:27:26,528 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-06-15 19:25:56,375 - __main__ - INFO - Received task message
+2025-06-15 19:25:56,375 - job.refactoring_job - INFO - Processing task message with correlation ID: 27a0e787-2967-4f4f-8f63-41f5f989aed8
+2025-06-15 19:25:56,376 - job.refactoring_job - INFO - Task type: refactoring
+2025-06-15 19:25:56,376 - job.refactoring_job - INFO - Task job: long_parameter_list
+2025-06-15 19:25:56,376 - job.refactoring_job - INFO - Additional data found for task message with correlation ID 27a0e787-2967-4f4f-8f63-41f5f989aed8: {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)'}
+2025-06-15 19:25:56,377 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 27a0e787-2967-4f4f-8f63-41f5f989aed8
+2025-06-15 19:25:56,377 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 19:26:00,432 - llm_processor - INFO - Processed result: ```python
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(params: DiscountParameters) -> float:
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+
+    return discount
+
+```
+
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)
+calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))
+2025-06-15 19:26:00,433 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 27a0e787-2967-4f4f-8f63-41f5f989aed8
+2025-06-15 19:26:00,433 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 19:26:06,015 - llm_processor - INFO - Processed result: The refactored code appears to be correct. It maintains the same logic as the original code, using a `DiscountParameters` dataclass to encapsulate the function's parameters.
+
+However, I do want to note that the original code didn't have a return statement. This could potentially cause issues if the function is expected to return a value. The refactored code has addressed this by adding a return statement.
+
+Since the refactored code accurately represents the original code's logic, the response should be:
+
+None
+2025-06-15 19:26:06,016 - job.refactoring_job - ERROR - Error processing task message with correlation ID: 27a0e787-2967-4f4f-8f63-41f5f989aed8
+2025-06-15 19:26:06,017 - job.refactoring_job - ERROR - list index out of range
+2025-06-15 19:34:17,302 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-06-15 19:34:17,321 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-06-15 19:34:17,368 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-06-15 19:34:17,369 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-06-15 19:34:17,369 - __main__ - INFO - Initializing knowledge base for detection
+2025-06-15 19:34:17,370 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-06-15 19:34:17,370 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-06-15 19:34:17,371 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-06-15 19:34:17,371 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-06-15 19:34:27,568 - __main__ - INFO - Received task message
+2025-06-15 19:34:27,568 - job.refactoring_job - INFO - Processing task message with correlation ID: 4061e83d-b9f1-42b8-a285-5d31111c755c
+2025-06-15 19:34:27,569 - job.refactoring_job - INFO - Task type: refactoring
+2025-06-15 19:34:27,569 - job.refactoring_job - INFO - Task job: long_parameter_list
+2025-06-15 19:34:27,570 - job.refactoring_job - INFO - Additional data found for task message with correlation ID 4061e83d-b9f1-42b8-a285-5d31111c755c: {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)'}
+2025-06-15 19:34:27,570 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 4061e83d-b9f1-42b8-a285-5d31111c755c
+2025-06-15 19:34:27,570 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 19:34:32,425 - llm_processor - INFO - Processed result: ### Refactored Function
+
+```python
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(discount_params: DiscountParameters) -> float:
+    discount = 0
+
+    if discount_params.customer_type == "regular":
+        if discount_params.is_member:
+            if discount_params.day_of_week in ["Saturday", "Sunday"]:
+                if discount_params.coupon_code:
+                    if discount_params.coupon_code.startswith("VIP"):
+                        discount = discount_params.price * 0.25
+                    else:
+                        discount = discount_params.price * 0.20
+                else:
+                    discount = discount_params.price * 0.20
+            else:
+                if discount_params.coupon_code:
+                    if len(discount_params.coupon_code) > 3:
+                        discount = discount_params.price * 0.15
+                    else:
+                        discount = discount_params.price * 0.12
+                else:
+                    discount = discount_params.price * 0.10
+    return discount
+```
+
+### Refactored Call-Sites
+
+**File 1: `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\main.py`**
+```python
+# === PARAM_OBJECT_SECTION ===
+from dataclasses import dataclass
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)
+calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))
+```
+2025-06-15 19:34:32,426 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 4061e83d-b9f1-42b8-a285-5d31111c755c
+2025-06-15 19:34:32,426 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 19:34:33,249 - llm_processor - INFO - Processed result: None
+2025-06-15 19:34:33,252 - job.refactoring_job - INFO - Final result for task message with correlation ID 4061e83d-b9f1-42b8-a285-5d31111c755c: ['from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(discount_params: DiscountParameters) -> float:\n    discount = 0\n\n    if discount_params.customer_type == "regular":\n        if discount_params.is_member:\n            if discount_params.day_of_week in ["Saturday", "Sunday"]:\n                if discount_params.coupon_code:\n                    if discount_params.coupon_code.startswith("VIP"):\n                        discount = discount_params.price * 0.25\n                    else:\n                        discount = discount_params.price * 0.20\n                else:\n                    discount = discount_params.price * 0.20\n            else:\n                if discount_params.coupon_code:\n                    if len(discount_params.coupon_code) > 3:\n                        discount = discount_params.price * 0.15\n                    else:\n                        discount = discount_params.price * 0.12\n                else:\n                    discount = discount_params.price * 0.10\n    return discount', '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))']
+2025-06-15 19:34:33,254 - job.refactoring_job - INFO - Final data for task message with correlation ID 4061e83d-b9f1-42b8-a285-5d31111c755c: {'file_path': 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py', 'refactored_code': 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(discount_params: DiscountParameters) -> float:\n    discount = 0\n\n    if discount_params.customer_type == "regular":\n        if discount_params.is_member:\n            if discount_params.day_of_week in ["Saturday", "Sunday"]:\n                if discount_params.coupon_code:\n                    if discount_params.coupon_code.startswith("VIP"):\n                        discount = discount_params.price * 0.25\n                    else:\n                        discount = discount_params.price * 0.20\n                else:\n                    discount = discount_params.price * 0.20\n            else:\n                if discount_params.coupon_code:\n                    if len(discount_params.coupon_code) > 3:\n                        discount = discount_params.price * 0.15\n                    else:\n                        discount = discount_params.price * 0.12\n                else:\n                    discount = discount_params.price * 0.10\n    return discount', 'additional_data': {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))'}}
+2025-06-15 19:37:45,796 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-06-15 19:37:45,823 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-06-15 19:37:45,871 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-06-15 19:37:45,871 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-06-15 19:37:45,872 - __main__ - INFO - Initializing knowledge base for detection
+2025-06-15 19:37:45,872 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-06-15 19:37:45,873 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-06-15 19:37:45,874 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-06-15 19:37:45,874 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-06-15 19:38:40,214 - __main__ - INFO - Received task message
+2025-06-15 19:38:40,215 - job.refactoring_job - INFO - Processing task message with correlation ID: 28108ce8-1adf-4164-899d-85ea26116c23
+2025-06-15 19:38:40,215 - job.refactoring_job - INFO - Task type: refactoring
+2025-06-15 19:38:40,215 - job.refactoring_job - INFO - Task job: long_parameter_list
+2025-06-15 19:38:40,216 - job.refactoring_job - INFO - Additional data found for task message with correlation ID 28108ce8-1adf-4164-899d-85ea26116c23: {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)'}
+2025-06-15 19:38:40,216 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 28108ce8-1adf-4164-899d-85ea26116c23
+2025-06-15 19:38:40,216 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 19:38:45,187 - llm_processor - INFO - Processed result: ### Refactored Function
+```python
+# === PARAM_OBJECT_SECTION ===
+from dataclasses import dataclass
+
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+
+# === PARAM_OBJECT_SECTION ===
+def calculate_discount(discount_params: DiscountParameters) -> float:
+    discount = 0
+
+    if discount_params.customer_type == "regular":
+        if discount_params.is_member:
+            if discount_params.day_of_week in ["Saturday", "Sunday"]:
+                if discount_params.coupon_code:
+                    if discount_params.coupon_code.startswith("VIP"):
+                        discount = discount_params.price * 0.25
+                    else:
+                        discount = discount_params.price * 0.20
+                else:
+                    discount = discount_params.price * 0.20
+            else:
+                if discount_params.coupon_code:
+                    if len(discount_params.coupon_code) > 3:
+                        discount = discount_params.price * 0.15
+                    else:
+                        discount = discount_params.price * 0.12
+                else:
+                    discount = discount_params.price * 0.10
+
+    return discount
+```
+
+### Refactored Call-Sites for `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\main.py`
+```python
+# === PARAM_OBJECT_SECTION ===
+from dataclasses import dataclass
+
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)
+calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))
+```
+2025-06-15 19:38:45,188 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 28108ce8-1adf-4164-899d-85ea26116c23
+2025-06-15 19:38:45,188 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 19:39:00,234 - llm_processor - INFO - Processed result: The provided refactored code appears to be mostly correct. However, I did notice that it's missing the return statement when the customer type is not "regular". In the original code, the function will implicitly return None in this case, but in the refactored code, it will not return anything. To fix this, we can add an explicit return statement at the end of the function.
+
+Here is the corrected refactored code:
+
+```python
+### Refactored Function
+```python
+from dataclasses import dataclass
+
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+
+def calculate_discount(discount_params: DiscountParameters) -> float:
+    discount = 0
+
+    if discount_params.customer_type == "regular":
+        if discount_params.is_member:
+            if discount_params.day_of_week in ["Saturday", "Sunday"]:
+                if discount_params.coupon_code:
+                    if discount_params.coupon_code.startswith("VIP"):
+                        discount = discount_params.price * 0.25
+                    else:
+                        discount = discount_params.price * 0.20
+                else:
+                    discount = discount_params.price * 0.20
+            else:
+                if discount_params.coupon_code:
+                    if len(discount_params.coupon_code) > 3:
+                        discount = discount_params.price * 0.15
+                    else:
+                        discount = discount_params.price * 0.12
+                else:
+                    discount = discount_params.price * 0.10
+    return discount  # Explicitly return the discount
+```
+```
+2025-06-15 19:39:00,235 - job.refactoring_job - INFO - Final result for task message with correlation ID 28108ce8-1adf-4164-899d-85ea26116c23: ['# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n\n# === PARAM_OBJECT_SECTION ===\ndef calculate_discount(discount_params: DiscountParameters) -> float:\n    discount = 0\n\n    if discount_params.customer_type == "regular":\n        if discount_params.is_member:\n            if discount_params.day_of_week in ["Saturday", "Sunday"]:\n                if discount_params.coupon_code:\n                    if discount_params.coupon_code.startswith("VIP"):\n                        discount = discount_params.price * 0.25\n                    else:\n                        discount = discount_params.price * 0.20\n                else:\n                    discount = discount_params.price * 0.20\n            else:\n                if discount_params.coupon_code:\n                    if len(discount_params.coupon_code) > 3:\n                        discount = discount_params.price * 0.15\n                    else:\n                        discount = discount_params.price * 0.12\n                else:\n                    discount = discount_params.price * 0.10\n\n    return discount', '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))']
+2025-06-15 19:39:00,236 - job.refactoring_job - INFO - Final data for task message with correlation ID 28108ce8-1adf-4164-899d-85ea26116c23: {'file_path': 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py', 'refactored_code': '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n\n# === PARAM_OBJECT_SECTION ===\ndef calculate_discount(discount_params: DiscountParameters) -> float:\n    discount = 0\n\n    if discount_params.customer_type == "regular":\n        if discount_params.is_member:\n            if discount_params.day_of_week in ["Saturday", "Sunday"]:\n                if discount_params.coupon_code:\n                    if discount_params.coupon_code.startswith("VIP"):\n                        discount = discount_params.price * 0.25\n                    else:\n                        discount = discount_params.price * 0.20\n                else:\n                    discount = discount_params.price * 0.20\n            else:\n                if discount_params.coupon_code:\n                    if len(discount_params.coupon_code) > 3:\n                        discount = discount_params.price * 0.15\n                    else:\n                        discount = discount_params.price * 0.12\n                else:\n                    discount = discount_params.price * 0.10\n\n    return discount', 'additional_data': {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))'}}
+2025-06-15 19:39:00,236 - __main__ - INFO - Sending response message for correlation ID: 28108ce8-1adf-4164-899d-85ea26116c23
+2025-06-15 19:39:00,285 - __main__ - INFO - Response message sent for correlation ID: 28108ce8-1adf-4164-899d-85ea26116c23
+2025-06-15 21:14:10,515 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-06-15 21:14:10,535 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-06-15 21:14:10,580 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-06-15 21:14:10,581 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-06-15 21:14:10,581 - __main__ - INFO - Initializing knowledge base for detection
+2025-06-15 21:14:10,581 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-06-15 21:14:10,582 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-06-15 21:14:10,588 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-06-15 21:14:10,588 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-06-15 21:14:41,323 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-06-15 21:14:41,349 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-06-15 21:14:41,397 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-06-15 21:14:41,398 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-06-15 21:14:41,398 - __main__ - INFO - Initializing knowledge base for detection
+2025-06-15 21:14:41,398 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-06-15 21:14:41,399 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-06-15 21:14:41,400 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-06-15 21:14:41,400 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-06-15 21:34:45,043 - __main__ - INFO - Received task message
+2025-06-15 21:34:45,044 - job.refactoring_job - INFO - Processing task message with correlation ID: be194aa7-8807-4221-803f-b9be691c2e91
+2025-06-15 21:34:45,044 - job.refactoring_job - INFO - Task type: refactoring
+2025-06-15 21:34:45,044 - job.refactoring_job - INFO - Task job: long_parameter_list
+2025-06-15 21:34:45,045 - job.refactoring_job - INFO - Additional data found for task message with correlation ID be194aa7-8807-4221-803f-b9be691c2e91: {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': 'calculate_discount(100, "regular", "Monday", True, "VIP123")'}
+2025-06-15 21:34:45,045 - job.refactoring_job - INFO - Generating response for task message with correlation ID: be194aa7-8807-4221-803f-b9be691c2e91
+2025-06-15 21:34:45,045 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 21:34:52,382 - llm_processor - INFO - Processed result: ### Refactored Function
+```python
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(params: DiscountParameters):
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+    return discount
+```
+
+### Refactored Call-Sites for `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\main.py`
+```python
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)
+calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))
+# --- CALL_SITE_SEPARATOR ---
+```
+
+### Refactored Call-Sites for `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\utils\retrieve_discount.py`
+```python
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(100, "regular", "Monday", True, "VIP123")
+calculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))
+# --- CALL_SITE_SEPARATOR ---
+```
+2025-06-15 21:34:52,384 - job.refactoring_job - INFO - Generating response for task message with correlation ID: be194aa7-8807-4221-803f-b9be691c2e91
+2025-06-15 21:34:52,384 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 21:34:53,457 - llm_processor - INFO - Processed result: None
+2025-06-15 21:34:53,458 - job.refactoring_job - INFO - Final result for task message with correlation ID be194aa7-8807-4221-803f-b9be691c2e91: ['from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters):\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n    return discount', '# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---', '# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(100, "regular", "Monday", True, "VIP123")\ncalculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))\n# --- CALL_SITE_SEPARATOR ---']
+2025-06-15 21:34:53,459 - job.refactoring_job - INFO - Final data for task message with correlation ID be194aa7-8807-4221-803f-b9be691c2e91: {'file_path': 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py', 'refactored_code': 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters):\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n    return discount', 'additional_data': {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': '# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': '# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(100, "regular", "Monday", True, "VIP123")\ncalculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))\n# --- CALL_SITE_SEPARATOR ---'}}
+2025-06-15 21:34:53,459 - __main__ - INFO - Sending response message for correlation ID: be194aa7-8807-4221-803f-b9be691c2e91
+2025-06-15 21:34:53,515 - __main__ - INFO - Response message sent for correlation ID: be194aa7-8807-4221-803f-b9be691c2e91
+2025-06-15 21:42:11,813 - __main__ - INFO - Received task message
+2025-06-15 21:42:11,813 - job.refactoring_job - INFO - Processing task message with correlation ID: 2eb0fe54-0f01-4b63-804e-79b093d33eaa
+2025-06-15 21:42:11,814 - job.refactoring_job - INFO - Task type: refactoring
+2025-06-15 21:42:11,814 - job.refactoring_job - INFO - Task job: long_parameter_list
+2025-06-15 21:42:11,814 - job.refactoring_job - INFO - Additional data found for task message with correlation ID 2eb0fe54-0f01-4b63-804e-79b093d33eaa: {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': 'calculate_discount(100, "regular", "Monday", True, "VIP123")'}
+2025-06-15 21:42:11,815 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 2eb0fe54-0f01-4b63-804e-79b093d33eaa
+2025-06-15 21:42:11,816 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 21:42:17,341 - llm_processor - INFO - Processed result: ### Refactored Function
+
+```python
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(params: DiscountParameters) -> float:
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+    return discount
+```
+
+### Refactored Call-Sites
+
+**File 1: `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\main.py`**
+```python
+# === PARAM_OBJECT_SECTION ===
+from main import DiscountParameters
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)
+calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))
+# --- CALL_SITE_SEPARATOR ---
+```
+
+**File 2: `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\utils\retrieve_discount.py`**
+```python
+# === PARAM_OBJECT_SECTION ===
+from retrieve_discount import DiscountParameters
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(100, "regular", "Monday", True, "VIP123")
+calculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))
+# --- CALL_SITE_SEPARATOR ---
+```
+2025-06-15 21:42:17,344 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 2eb0fe54-0f01-4b63-804e-79b093d33eaa
+2025-06-15 21:42:17,345 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 21:42:21,069 - llm_processor - INFO - Processed result: The provided refactoring appears to be correct. The original code's logic has been preserved, and the use of a `dataclass` for the `DiscountParameters` has improved the code's readability and maintainability.
+
+The refactored call-sites also correctly create and pass instances of `DiscountParameters` to the `calculate_discount` function.
+
+Therefore, I return:
+
+`None`
+2025-06-15 21:42:21,070 - job.refactoring_job - INFO - Final result for task message with correlation ID 2eb0fe54-0f01-4b63-804e-79b093d33eaa: ['from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n    return discount', '# === PARAM_OBJECT_SECTION ===\nfrom main import DiscountParameters\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---', '# === PARAM_OBJECT_SECTION ===\nfrom retrieve_discount import DiscountParameters\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(100, "regular", "Monday", True, "VIP123")\ncalculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))\n# --- CALL_SITE_SEPARATOR ---']
+2025-06-15 21:42:21,070 - job.refactoring_job - INFO - Final data for task message with correlation ID 2eb0fe54-0f01-4b63-804e-79b093d33eaa: {'file_path': 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py', 'refactored_code': 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n    return discount', 'additional_data': {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': '# === PARAM_OBJECT_SECTION ===\nfrom main import DiscountParameters\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': '# === PARAM_OBJECT_SECTION ===\nfrom retrieve_discount import DiscountParameters\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(100, "regular", "Monday", True, "VIP123")\ncalculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))\n# --- CALL_SITE_SEPARATOR ---'}}
+2025-06-15 21:42:21,070 - __main__ - INFO - Sending response message for correlation ID: 2eb0fe54-0f01-4b63-804e-79b093d33eaa
+2025-06-15 21:42:21,079 - __main__ - INFO - Response message sent for correlation ID: 2eb0fe54-0f01-4b63-804e-79b093d33eaa
+2025-06-15 21:42:54,581 - __main__ - INFO - Received task message
+2025-06-15 21:42:54,581 - job.refactoring_job - INFO - Processing task message with correlation ID: 5474cf37-f7ee-4738-b237-ad4c075a2e9f
+2025-06-15 21:42:54,582 - job.refactoring_job - INFO - Task type: refactoring
+2025-06-15 21:42:54,582 - job.refactoring_job - INFO - Task job: long_parameter_list
+2025-06-15 21:42:54,582 - job.refactoring_job - INFO - Additional data found for task message with correlation ID 5474cf37-f7ee-4738-b237-ad4c075a2e9f: {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': 'calculate_discount(100, "regular", "Monday", True, "VIP123")'}
+2025-06-15 21:42:54,583 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 5474cf37-f7ee-4738-b237-ad4c075a2e9f
+2025-06-15 21:42:54,583 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 21:43:00,312 - llm_processor - INFO - Processed result: ### Refactored Code
+```python
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(params: DiscountParameters) -> float:
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+    return discount
+```
+
+### Refactored Call-Sites for File 1: `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\main.py`
+```python
+# === PARAM_OBJECT_SECTION ===
+from dataclasses import dataclass
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)
+calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))
+```
+
+### Refactored Call-Sites for File 2: `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\utils\retrieve_discount.py`
+```python
+# === PARAM_OBJECT_SECTION ===
+from dataclasses import dataclass
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(100, "regular", "Monday", True, "VIP123")
+calculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))
+```
+2025-06-15 21:43:00,313 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 5474cf37-f7ee-4738-b237-ad4c075a2e9f
+2025-06-15 21:43:00,313 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 21:43:03,503 - llm_processor - INFO - Processed result: After comparing the refactored code with the original code, I found that the refactoring is correct. The dataclass `DiscountParameters` is correctly defined and used to encapsulate the parameters of the `calculate_discount` function. The function itself remains unchanged in terms of logic, and the call sites have been correctly updated to pass in instances of `DiscountParameters`.
+
+Therefore, I return: `None`
+2025-06-15 21:43:03,504 - job.refactoring_job - INFO - Final result for task message with correlation ID 5474cf37-f7ee-4738-b237-ad4c075a2e9f: ['from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n    return discount', '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))', '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(100, "regular", "Monday", True, "VIP123")\ncalculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))']
+2025-06-15 21:43:03,504 - job.refactoring_job - INFO - Final data for task message with correlation ID 5474cf37-f7ee-4738-b237-ad4c075a2e9f: {'file_path': 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py', 'refactored_code': 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n    return discount', 'additional_data': {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(100, "regular", "Monday", True, "VIP123")\ncalculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))'}}
+2025-06-15 21:43:03,505 - __main__ - INFO - Sending response message for correlation ID: 5474cf37-f7ee-4738-b237-ad4c075a2e9f
+2025-06-15 21:43:03,511 - __main__ - INFO - Response message sent for correlation ID: 5474cf37-f7ee-4738-b237-ad4c075a2e9f
+2025-06-15 21:43:54,167 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-06-15 21:43:54,175 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-06-15 21:43:54,220 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-06-15 21:43:54,221 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-06-15 21:43:54,221 - __main__ - INFO - Initializing knowledge base for detection
+2025-06-15 21:43:54,221 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-06-15 21:43:54,221 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-06-15 21:43:54,223 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-06-15 21:43:54,223 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-06-15 21:44:42,545 - __main__ - INFO - Received task message
+2025-06-15 21:44:42,545 - job.refactoring_job - INFO - Processing task message with correlation ID: 6d0d4e6a-926f-46a7-8f64-e0982eccc061
+2025-06-15 21:44:42,546 - job.refactoring_job - INFO - Task type: refactoring
+2025-06-15 21:44:42,546 - job.refactoring_job - INFO - Task job: long_parameter_list
+2025-06-15 21:44:42,546 - job.refactoring_job - INFO - Additional data found for task message with correlation ID 6d0d4e6a-926f-46a7-8f64-e0982eccc061: {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': 'calculate_discount(100, "regular", "Monday", True, "VIP123")'}
+2025-06-15 21:44:42,546 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 6d0d4e6a-926f-46a7-8f64-e0982eccc061
+2025-06-15 21:44:42,547 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 21:44:48,159 - llm_processor - INFO - Processed result: ### Refactored Function
+```python
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParams:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(params: DiscountParams) -> float:
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+
+    return discount
+```
+
+### Refactored Call-Sites
+#### File 1: `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\main.py`
+```python
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParams:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)
+calculate_discount(DiscountParams(price=0.0, customer_type="", day_of_week="", is_member=False, coupon_code=""))
+# --- CALL_SITE_SEPARATOR ---
+```
+
+#### File 2: `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\utils\retrieve_discount.py`
+```python
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParams:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(100, "regular", "Monday", True, "VIP123")
+calculate_discount(DiscountParams(price=100.0, customer_type="regular", day_of_week="Monday", is_member=True, coupon_code="VIP123"))
+# --- CALL_SITE_SEPARATOR ---
+```
+2025-06-15 21:44:48,162 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 6d0d4e6a-926f-46a7-8f64-e0982eccc061
+2025-06-15 21:44:48,163 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 21:45:08,831 - llm_processor - INFO - Processed result: The refactored code you provided is almost correct. However, there is a potential issue with the dataclass in the refactored call-sites.
+
+In the original call-sites, you have to provide parameters to the `calculate_discount` function. But in the refactored call-sites, you are passing an instance of `DiscountParams` class. 
+
+However, there are multiple instances of `DiscountParams` class defined in different files. Python won't be able to distinguish between these two classes. 
+
+So, either you should define the `DiscountParams` class in a separate file that can be imported by other files or you should define it in the same file where `calculate_discount` function is defined. 
+
+Here is the corrected code:
+
+```python
+### discounts.py
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParams:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(params: DiscountParams) -> float:
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+
+    return discount
+```
+
+```python
+### main.py
+from discounts import calculate_discount, DiscountParams
+
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)
+calculate_discount(DiscountParams(price=0.0, customer_type="", day_of_week="", is_member=False, coupon_code=""))
+# --- CALL_SITE_SEPARATOR ---
+```
+
+```python
+### utils/retrieve_discount.py
+from discounts import calculate_discount, DiscountParams
+
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(100, "regular", "Monday", True, "VIP123")
+calculate_discount(DiscountParams(price=100.0, customer_type="regular", day_of_week="Monday", is_member=True, coupon_code="VIP123"))
+# --- CALL_SITE_SEPARATOR ---
+```
+2025-06-15 21:45:08,832 - job.refactoring_job - INFO - Final result for task message with correlation ID 6d0d4e6a-926f-46a7-8f64-e0982eccc061: ['### discounts.py\nfrom dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParams:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParams) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n\n    return discount', '### main.py\nfrom discounts import calculate_discount, DiscountParams\n\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParams(price=0.0, customer_type="", day_of_week="", is_member=False, coupon_code=""))\n# --- CALL_SITE_SEPARATOR ---', '### utils/retrieve_discount.py\nfrom discounts import calculate_discount, DiscountParams\n\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(100, "regular", "Monday", True, "VIP123")\ncalculate_discount(DiscountParams(price=100.0, customer_type="regular", day_of_week="Monday", is_member=True, coupon_code="VIP123"))\n# --- CALL_SITE_SEPARATOR ---', 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParams:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParams) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n\n    return discount', '# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParams:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParams(price=0.0, customer_type="", day_of_week="", is_member=False, coupon_code=""))\n# --- CALL_SITE_SEPARATOR ---', '# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParams:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(100, "regular", "Monday", True, "VIP123")\ncalculate_discount(DiscountParams(price=100.0, customer_type="regular", day_of_week="Monday", is_member=True, coupon_code="VIP123"))\n# --- CALL_SITE_SEPARATOR ---']
+2025-06-15 21:45:08,833 - job.refactoring_job - INFO - Final data for task message with correlation ID 6d0d4e6a-926f-46a7-8f64-e0982eccc061: {'file_path': 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py', 'refactored_code': '### discounts.py\nfrom dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParams:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParams) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n\n    return discount', 'additional_data': {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': '### main.py\nfrom discounts import calculate_discount, DiscountParams\n\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParams(price=0.0, customer_type="", day_of_week="", is_member=False, coupon_code=""))\n# --- CALL_SITE_SEPARATOR ---', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': '### utils/retrieve_discount.py\nfrom discounts import calculate_discount, DiscountParams\n\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(100, "regular", "Monday", True, "VIP123")\ncalculate_discount(DiscountParams(price=100.0, customer_type="regular", day_of_week="Monday", is_member=True, coupon_code="VIP123"))\n# --- CALL_SITE_SEPARATOR ---'}}
+2025-06-15 21:45:08,833 - __main__ - INFO - Sending response message for correlation ID: 6d0d4e6a-926f-46a7-8f64-e0982eccc061
+2025-06-15 21:45:08,882 - __main__ - INFO - Response message sent for correlation ID: 6d0d4e6a-926f-46a7-8f64-e0982eccc061
+2025-06-15 21:47:35,261 - __main__ - INFO - Received task message
+2025-06-15 21:47:35,262 - job.refactoring_job - INFO - Processing task message with correlation ID: 4181a0af-c74d-4ad0-8906-72ea987f4f20
+2025-06-15 21:47:35,262 - job.refactoring_job - INFO - Task type: refactoring
+2025-06-15 21:47:35,263 - job.refactoring_job - INFO - Task job: long_parameter_list
+2025-06-15 21:47:35,263 - job.refactoring_job - INFO - Additional data found for task message with correlation ID 4181a0af-c74d-4ad0-8906-72ea987f4f20: {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': 'calculate_discount(100, "regular", "Monday", True, "VIP123")'}
+2025-06-15 21:47:35,263 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 4181a0af-c74d-4ad0-8906-72ea987f4f20
+2025-06-15 21:47:35,263 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 21:47:48,701 - llm_processor - INFO - Processed result: ### Refactored Function
+
+```python
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(params: DiscountParameters) -> float:
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+
+    return discount
+```
+
+### Refactored Call-Sites for `main.py`
+
+```python
+# === PARAM_OBJECT_SECTION ===
+from dataclasses import dataclass
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)
+calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))
+# --- CALL_SITE_SEPARATOR ---
+```
+
+### Refactored Call-Sites for `retrieve_discount.py`
+
+```python
+# === PARAM_OBJECT_SECTION ===
+from dataclasses import dataclass
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(100, "regular", "Monday", True, "VIP123")
+calculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))
+# --- CALL_SITE_SEPARATOR ---
+```
+2025-06-15 21:47:48,702 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 4181a0af-c74d-4ad0-8906-72ea987f4f20
+2025-06-15 21:47:48,703 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 21:47:55,343 - llm_processor - INFO - Processed result: ```python
+# Corrected Refactored Function
+
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(params: DiscountParameters) -> float:
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+        else:
+            discount = 0
+
+    return discount
+```
+2025-06-15 21:47:55,346 - job.refactoring_job - INFO - Final result for task message with correlation ID 4181a0af-c74d-4ad0-8906-72ea987f4f20: ['# Corrected Refactored Function\n\nfrom dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n        else:\n            discount = 0\n\n    return discount', 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n\n    return discount', '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---', '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(100, "regular", "Monday", True, "VIP123")\ncalculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))\n# --- CALL_SITE_SEPARATOR ---']
+2025-06-15 21:47:55,348 - job.refactoring_job - INFO - Final data for task message with correlation ID 4181a0af-c74d-4ad0-8906-72ea987f4f20: {'file_path': 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py', 'refactored_code': '# Corrected Refactored Function\n\nfrom dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n        else:\n            discount = 0\n\n    return discount', 'additional_data': {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n\n    return discount', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---'}}
+2025-06-15 21:47:55,348 - __main__ - INFO - Sending response message for correlation ID: 4181a0af-c74d-4ad0-8906-72ea987f4f20
+2025-06-15 21:47:55,354 - __main__ - INFO - Response message sent for correlation ID: 4181a0af-c74d-4ad0-8906-72ea987f4f20
+2025-06-15 21:51:57,853 - __main__ - INFO - Received task message
+2025-06-15 21:51:57,854 - job.refactoring_job - INFO - Processing task message with correlation ID: e862e2fe-15f6-4dae-a8d7-4e54bea82005
+2025-06-15 21:51:57,854 - job.refactoring_job - INFO - Task type: refactoring
+2025-06-15 21:51:57,854 - job.refactoring_job - INFO - Task job: long_parameter_list
+2025-06-15 21:51:57,854 - job.refactoring_job - INFO - Additional data found for task message with correlation ID e862e2fe-15f6-4dae-a8d7-4e54bea82005: {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': 'calculate_discount(100, "regular", "Monday", True, "VIP123")'}
+2025-06-15 21:51:57,855 - job.refactoring_job - INFO - Generating response for task message with correlation ID: e862e2fe-15f6-4dae-a8d7-4e54bea82005
+2025-06-15 21:51:57,855 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 21:53:58,643 - job.refactoring_job - ERROR - Error generating response for task message with correlation ID: e862e2fe-15f6-4dae-a8d7-4e54bea82005
+2025-06-15 21:53:58,645 - job.refactoring_job - ERROR - 504 Server Error: Gateway Time-out for url: https://router.huggingface.co/novita/v3/openai/chat/completions
+2025-06-15 21:53:58,645 - job.refactoring_job - ERROR - Error processing task message with correlation ID: e862e2fe-15f6-4dae-a8d7-4e54bea82005
+2025-06-15 21:53:58,645 - job.refactoring_job - ERROR - 504 Server Error: Gateway Time-out for url: https://router.huggingface.co/novita/v3/openai/chat/completions
+2025-06-15 21:53:58,645 - __main__ - INFO - Sending response message for correlation ID: e862e2fe-15f6-4dae-a8d7-4e54bea82005
+2025-06-15 21:53:58,656 - __main__ - INFO - Response message sent for correlation ID: e862e2fe-15f6-4dae-a8d7-4e54bea82005
+2025-06-15 21:54:16,823 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-06-15 21:54:16,831 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-06-15 21:54:16,876 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-06-15 21:54:16,876 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-06-15 21:54:16,877 - __main__ - INFO - Initializing knowledge base for detection
+2025-06-15 21:54:16,877 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-06-15 21:54:16,878 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-06-15 21:54:16,878 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-06-15 21:54:16,879 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-06-15 21:55:25,014 - __main__ - INFO - Received task message
+2025-06-15 21:55:25,014 - job.refactoring_job - INFO - Processing task message with correlation ID: fd363519-cb64-489b-a32f-94ba79200549
+2025-06-15 21:55:25,015 - job.refactoring_job - INFO - Task type: refactoring
+2025-06-15 21:55:25,015 - job.refactoring_job - INFO - Task job: long_parameter_list
+2025-06-15 21:55:25,015 - job.refactoring_job - INFO - Additional data found for task message with correlation ID fd363519-cb64-489b-a32f-94ba79200549: {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': 'calculate_discount(100, "regular", "Monday", True, "VIP123")'}
+2025-06-15 21:55:25,016 - job.refactoring_job - INFO - Generating response for task message with correlation ID: fd363519-cb64-489b-a32f-94ba79200549
+2025-06-15 21:55:25,016 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 21:55:30,773 - llm_processor - INFO - Processed result: ### Refactored Function
+```python
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(params: DiscountParameters) -> float:
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+
+    return discount
+```
+
+### Refactored Call-Sites for `main.py`
+```python
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)
+calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))
+# --- CALL_SITE_SEPARATOR ---
+```
+
+### Refactored Call-Sites for `retrieve_discount.py`
+```python
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(100, "regular", "Monday", True, "VIP123")
+calculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))
+# --- CALL_SITE_SEPARATOR ---
+```
+2025-06-15 21:55:30,774 - job.refactoring_job - INFO - Generating response for task message with correlation ID: fd363519-cb64-489b-a32f-94ba79200549
+2025-06-15 21:55:30,774 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 21:55:37,910 - llm_processor - INFO - Processed result: ```python
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(params: DiscountParameters) -> float:
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+
+    return discount
+```
+2025-06-15 21:55:37,911 - job.refactoring_job - INFO - Final result for task message with correlation ID fd363519-cb64-489b-a32f-94ba79200549: ['from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n\n    return discount', 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n\n    return discount', '# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---', '# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(100, "regular", "Monday", True, "VIP123")\ncalculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))\n# --- CALL_SITE_SEPARATOR ---']
+2025-06-15 21:55:37,912 - job.refactoring_job - INFO - Final data for task message with correlation ID fd363519-cb64-489b-a32f-94ba79200549: {'file_path': 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py', 'refactored_code': 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n\n    return discount', 'additional_data': {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n\n    return discount', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': '# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---'}}
+2025-06-15 21:55:37,912 - __main__ - INFO - Sending response message for correlation ID: fd363519-cb64-489b-a32f-94ba79200549
+2025-06-15 21:55:37,921 - __main__ - INFO - Response message sent for correlation ID: fd363519-cb64-489b-a32f-94ba79200549
+2025-06-15 21:58:13,335 - __main__ - INFO - Received task message
+2025-06-15 21:58:13,335 - job.refactoring_job - INFO - Processing task message with correlation ID: 3bfe9865-48b7-40df-bcbd-81d76108adad
+2025-06-15 21:58:13,336 - job.refactoring_job - INFO - Task type: refactoring
+2025-06-15 21:58:13,336 - job.refactoring_job - INFO - Task job: long_parameter_list
+2025-06-15 21:58:13,336 - job.refactoring_job - INFO - Additional data found for task message with correlation ID 3bfe9865-48b7-40df-bcbd-81d76108adad: {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': 'calculate_discount(100, "regular", "Monday", True, "VIP123")'}
+2025-06-15 21:58:13,337 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 3bfe9865-48b7-40df-bcbd-81d76108adad
+2025-06-15 21:58:13,337 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 21:58:18,662 - llm_processor - INFO - Processed result: ### Refactored Code
+
+```python
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(params: DiscountParameters) -> float:
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+
+    return discount
+```
+
+### Refactored Call-Sites for File 1: `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\main.py`
+
+```python
+# === PARAM_OBJECT_SECTION ===
+from dataclasses import dataclass
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)
+calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))
+# --- CALL_SITE_SEPARATOR ---
+```
+
+### Refactored Call-Sites for File 2: `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\utils\retrieve_discount.py`
+
+```python
+# === PARAM_OBJECT_SECTION ===
+from dataclasses import dataclass
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(100, "regular", "Monday", True, "VIP123")
+calculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))
+# --- CALL_SITE_SEPARATOR ---
+```
+2025-06-15 21:58:18,663 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 3bfe9865-48b7-40df-bcbd-81d76108adad
+2025-06-15 21:58:18,664 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 21:58:19,249 - llm_processor - INFO - Processed result: None
+2025-06-15 21:58:19,250 - job.refactoring_job - INFO - Final result for task message with correlation ID 3bfe9865-48b7-40df-bcbd-81d76108adad: ['from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n\n    return discount', '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---', '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(100, "regular", "Monday", True, "VIP123")\ncalculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))\n# --- CALL_SITE_SEPARATOR ---']
+2025-06-15 21:58:19,250 - job.refactoring_job - INFO - Final data for task message with correlation ID 3bfe9865-48b7-40df-bcbd-81d76108adad: {'file_path': 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py', 'refactored_code': 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n\n    return discount', 'additional_data': {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(100, "regular", "Monday", True, "VIP123")\ncalculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))\n# --- CALL_SITE_SEPARATOR ---'}}
+2025-06-15 21:58:19,251 - __main__ - INFO - Sending response message for correlation ID: 3bfe9865-48b7-40df-bcbd-81d76108adad
+2025-06-15 21:58:19,256 - __main__ - INFO - Response message sent for correlation ID: 3bfe9865-48b7-40df-bcbd-81d76108adad
+2025-06-15 22:03:51,230 - __main__ - INFO - Received task message
+2025-06-15 22:03:51,231 - job.refactoring_job - INFO - Processing task message with correlation ID: ee25ad91-9e6c-4c68-8cea-d0c89bcfd983
+2025-06-15 22:03:51,231 - job.refactoring_job - INFO - Task type: refactoring
+2025-06-15 22:03:51,231 - job.refactoring_job - INFO - Task job: long_parameter_list
+2025-06-15 22:03:51,231 - job.refactoring_job - INFO - Additional data found for task message with correlation ID ee25ad91-9e6c-4c68-8cea-d0c89bcfd983: {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': 'calculate_discount(100, "regular", "Monday", True, "VIP123")'}
+2025-06-15 22:03:51,232 - job.refactoring_job - INFO - Generating response for task message with correlation ID: ee25ad91-9e6c-4c68-8cea-d0c89bcfd983
+2025-06-15 22:03:51,232 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 22:03:55,957 - llm_processor - INFO - Processed result: ```python
+# === PARAM_OBJECT_SECTION ===
+from dataclasses import dataclass
+
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+
+# === PARAM_OBJECT_SECTION ===
+def calculate_discount(params: DiscountParameters):
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+    return discount
+```
+
+```python
+# === PARAM_OBJECT_SECTION ===
+from dataclasses import dataclass
+
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)
+calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))
+# --- CALL_SITE_SEPARATOR ---
+```
+
+```python
+# === PARAM_OBJECT_SECTION ===
+from dataclasses import dataclass
+
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# calculate_discount(100, "regular", "Monday", True, "VIP123")
+calculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))
+# --- CALL_SITE_SEPARATOR ---
+```
+2025-06-15 22:03:55,958 - job.refactoring_job - INFO - Generating response for task message with correlation ID: ee25ad91-9e6c-4c68-8cea-d0c89bcfd983
+2025-06-15 22:03:55,959 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 22:03:57,552 - llm_processor - INFO - Processed result: A well-structured refactoring!
+
+After reviewing the refactored code and the original code, I'm happy to report that... 
+
+`None`
+2025-06-15 22:03:57,553 - job.refactoring_job - INFO - Final result for task message with correlation ID ee25ad91-9e6c-4c68-8cea-d0c89bcfd983: ['# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n\n# === PARAM_OBJECT_SECTION ===\ndef calculate_discount(params: DiscountParameters):\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n    return discount', '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---', '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(100, "regular", "Monday", True, "VIP123")\ncalculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))\n# --- CALL_SITE_SEPARATOR ---']
+2025-06-15 22:03:57,553 - job.refactoring_job - INFO - Final data for task message with correlation ID ee25ad91-9e6c-4c68-8cea-d0c89bcfd983: {'file_path': 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py', 'refactored_code': '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n\n# === PARAM_OBJECT_SECTION ===\ndef calculate_discount(params: DiscountParameters):\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n    return discount', 'additional_data': {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ncalculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# calculate_discount(100, "regular", "Monday", True, "VIP123")\ncalculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))\n# --- CALL_SITE_SEPARATOR ---'}}
+2025-06-15 22:03:57,553 - __main__ - INFO - Sending response message for correlation ID: ee25ad91-9e6c-4c68-8cea-d0c89bcfd983
+2025-06-15 22:03:57,605 - __main__ - INFO - Response message sent for correlation ID: ee25ad91-9e6c-4c68-8cea-d0c89bcfd983
+2025-06-15 22:13:56,849 - __main__ - INFO - Received task message
+2025-06-15 22:13:56,850 - job.refactoring_job - INFO - Processing task message with correlation ID: 3861b614-abeb-4d99-8425-7290630a3a5a
+2025-06-15 22:13:56,850 - job.refactoring_job - INFO - Task type: refactoring
+2025-06-15 22:13:56,851 - job.refactoring_job - INFO - Task job: long_parameter_list
+2025-06-15 22:13:56,851 - job.refactoring_job - INFO - Additional data found for task message with correlation ID 3861b614-abeb-4d99-8425-7290630a3a5a: {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': 'discounted_price = calculate_discount(100, "regular", "Monday", True, "VIP123")'}
+2025-06-15 22:13:56,852 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 3861b614-abeb-4d99-8425-7290630a3a5a
+2025-06-15 22:13:56,852 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 22:14:02,578 - llm_processor - INFO - Processed result: ### Refactored Function
+```python
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(params: DiscountParameters) -> float:
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+
+    return discount
+```
+
+### File 1: `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\main.py`
+```python
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)
+discount = calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))
+# --- CALL_SITE_SEPARATOR ---
+```
+
+### File 2: `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\utils\retrieve_discount.py`
+```python
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# discounted_price = calculate_discount(100, "regular", "Monday", True, "VIP123")
+discounted_price = calculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))
+# --- CALL_SITE_SEPARATOR ---
+```
+2025-06-15 22:14:02,581 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 3861b614-abeb-4d99-8425-7290630a3a5a
+2025-06-15 22:14:02,582 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 22:14:21,999 - llm_processor - INFO - Processed result: After comparing the refactored code with the original code, I found that the refactoring is mostly correct. However, I noticed that the original code did not have a return statement at the end of the `calculate_discount` function, whereas the refactored code does.
+
+To ensure that the behavior of the original code is preserved, I suggest adding a return statement with the calculated discount at the end of the original code. 
+
+If the intention was to return the calculated discount from the function, then the refactored code is correct. 
+
+If the intention was not to return the calculated discount from the function, then the refactored code should be corrected by removing the return statement.
+
+Here's the refactored code with the potential fix:
+
+```python
+### Refactored Function
+def calculate_discount(params: DiscountParameters) -> float:
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+
+    # If the intention is not to return the calculated discount, remove the following line
+    return discount
+```
+Since I had to suggest a fix, I won't return `None`. Instead, I will return the refactored code with the suggested fix.
+
+```python
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(params: DiscountParameters) -> float:
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+
+    return discount
+```
+2025-06-15 22:14:22,000 - job.refactoring_job - INFO - Final result for task message with correlation ID 3861b614-abeb-4d99-8425-7290630a3a5a: ['from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n\n    return discount', '# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ndiscount = calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---', '# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# discounted_price = calculate_discount(100, "regular", "Monday", True, "VIP123")\ndiscounted_price = calculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))\n# --- CALL_SITE_SEPARATOR ---']
+2025-06-15 22:14:22,000 - job.refactoring_job - INFO - Final data for task message with correlation ID 3861b614-abeb-4d99-8425-7290630a3a5a: {'file_path': 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py', 'refactored_code': 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n\n    return discount', 'additional_data': {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': '# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ndiscount = calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': '# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# discounted_price = calculate_discount(100, "regular", "Monday", True, "VIP123")\ndiscounted_price = calculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))\n# --- CALL_SITE_SEPARATOR ---'}}
+2025-06-15 22:14:22,001 - __main__ - INFO - Sending response message for correlation ID: 3861b614-abeb-4d99-8425-7290630a3a5a
+2025-06-15 22:14:22,012 - __main__ - INFO - Response message sent for correlation ID: 3861b614-abeb-4d99-8425-7290630a3a5a
+2025-06-15 22:17:14,431 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-06-15 22:17:14,462 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-06-15 22:17:14,508 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-06-15 22:17:14,508 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-06-15 22:17:14,508 - __main__ - INFO - Initializing knowledge base for detection
+2025-06-15 22:17:14,509 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-06-15 22:17:14,509 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-06-15 22:17:14,510 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-06-15 22:17:14,510 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-06-15 22:18:01,757 - __main__ - INFO - Received task message
+2025-06-15 22:18:01,757 - job.refactoring_job - INFO - Processing task message with correlation ID: 8fe6cc6f-ac84-4f95-8af5-d3b9aa0df45a
+2025-06-15 22:18:01,757 - job.refactoring_job - INFO - Task type: refactoring
+2025-06-15 22:18:01,757 - job.refactoring_job - INFO - Task job: long_parameter_list
+2025-06-15 22:18:01,758 - job.refactoring_job - INFO - Additional data found for task message with correlation ID 8fe6cc6f-ac84-4f95-8af5-d3b9aa0df45a: {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': 'discounted_price = calculate_discount(100, "regular", "Monday", True, "VIP123")'}
+2025-06-15 22:18:01,758 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 8fe6cc6f-ac84-4f95-8af5-d3b9aa0df45a
+2025-06-15 22:18:01,758 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 22:18:14,265 - llm_processor - INFO - Processed result: ### Refactored Function
+
+```python
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(params: DiscountParameters) -> float:
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+    return discount
+```
+
+### Refactored Call-Sites for `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\main.py`
+
+```python
+# === PARAM_OBJECT_SECTION ===
+from dataclasses import dataclass
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)
+discount = calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))
+```
+
+### Refactored Call-Sites for `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\utils\retrieve_discount.py`
+
+```python
+# === PARAM_OBJECT_SECTION ===
+from dataclasses import dataclass
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# discounted_price = calculate_discount(100, "regular", "Monday", True, "VIP123")
+discounted_price = calculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))
+```
+2025-06-15 22:18:14,269 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 8fe6cc6f-ac84-4f95-8af5-d3b9aa0df45a
+2025-06-15 22:18:14,270 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 22:18:21,497 - llm_processor - INFO - Processed result: ```python
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(params: DiscountParameters) -> float:
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+    return discount
+```
+2025-06-15 22:18:21,501 - job.refactoring_job - INFO - Final result for task message with correlation ID 8fe6cc6f-ac84-4f95-8af5-d3b9aa0df45a: ['from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n    return discount', 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n    return discount', '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ndiscount = calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))', '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# discounted_price = calculate_discount(100, "regular", "Monday", True, "VIP123")\ndiscounted_price = calculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))']
+2025-06-15 22:18:21,502 - job.refactoring_job - INFO - Final data for task message with correlation ID 8fe6cc6f-ac84-4f95-8af5-d3b9aa0df45a: {'file_path': 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py', 'refactored_code': 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n    return discount', 'additional_data': {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n    return discount', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ndiscount = calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))'}}
+2025-06-15 22:18:21,503 - __main__ - INFO - Sending response message for correlation ID: 8fe6cc6f-ac84-4f95-8af5-d3b9aa0df45a
+2025-06-15 22:18:21,508 - __main__ - INFO - Response message sent for correlation ID: 8fe6cc6f-ac84-4f95-8af5-d3b9aa0df45a
+2025-06-15 22:23:26,172 - __main__ - INFO - Received task message
+2025-06-15 22:23:26,172 - job.refactoring_job - INFO - Processing task message with correlation ID: bffeab25-c559-4676-be10-3ccd86c06152
+2025-06-15 22:23:26,172 - job.refactoring_job - INFO - Task type: refactoring
+2025-06-15 22:23:26,172 - job.refactoring_job - INFO - Task job: long_parameter_list
+2025-06-15 22:23:26,172 - job.refactoring_job - INFO - Additional data found for task message with correlation ID bffeab25-c559-4676-be10-3ccd86c06152: {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': 'discounted_price = calculate_discount(100, "regular", "Monday", True, "VIP123")'}
+2025-06-15 22:23:26,172 - job.refactoring_job - INFO - Generating response for task message with correlation ID: bffeab25-c559-4676-be10-3ccd86c06152
+2025-06-15 22:23:26,173 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 22:23:38,204 - llm_processor - INFO - Processed result: ### Refactored Code
+```python
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+from dataclasses import dataclass
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(params: DiscountParameters) -> float:
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+    return discount
+```
+
+### Refactored Call-Sites for `main.py`
+```python
+# === PARAM_OBJECT_SECTION ===
+from dataclasses import dataclass
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)
+discount = calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))
+# --- CALL_SITE_SEPARATOR ---
+```
+
+### Refactored Call-Sites for `retrieve_discount.py`
+```python
+# === PARAM_OBJECT_SECTION ===
+from dataclasses import dataclass
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# discounted_price = calculate_discount(100, "regular", "Monday", True, "VIP123")
+discounted_price = calculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))
+# --- CALL_SITE_SEPARATOR ---
+```
+2025-06-15 22:23:38,205 - job.refactoring_job - INFO - Generating response for task message with correlation ID: bffeab25-c559-4676-be10-3ccd86c06152
+2025-06-15 22:23:38,205 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 22:23:51,211 - llm_processor - INFO - Processed result: ### Refactored Code Review
+
+The provided refactored code appears to be mostly correct, but there are a few areas that can be improved for consistency and accuracy.
+
+
+One major issue in the refactored code is that the `discount` variable's value isn't being properly returned from the function. To address this, a return statement should be added at the end of the function to ensure the correct discount value is returned. This will guarantee the function behaves as intended and returns the right discount value.
+
+
+Below, you can see corrected refactored code of the provided method.
+
+```python
+from dataclasses import dataclass
+
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: str
+
+def calculate_discount(params: DiscountParameters) -> float:
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+    return discount
+```
+2025-06-15 22:23:51,211 - job.refactoring_job - INFO - Final result for task message with correlation ID bffeab25-c559-4676-be10-3ccd86c06152: ['from dataclasses import dataclass\n\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n    return discount', 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n    return discount', '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ndiscount = calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---', '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# discounted_price = calculate_discount(100, "regular", "Monday", True, "VIP123")\ndiscounted_price = calculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))\n# --- CALL_SITE_SEPARATOR ---']
+2025-06-15 22:23:51,212 - job.refactoring_job - INFO - Final data for task message with correlation ID bffeab25-c559-4676-be10-3ccd86c06152: {'file_path': 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py', 'refactored_code': 'from dataclasses import dataclass\n\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n    return discount', 'additional_data': {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n    return discount', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': '# === PARAM_OBJECT_SECTION ===\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: str\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ndiscount = calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---'}}
+2025-06-15 22:23:51,213 - __main__ - INFO - Sending response message for correlation ID: bffeab25-c559-4676-be10-3ccd86c06152
+2025-06-15 22:23:51,217 - __main__ - INFO - Response message sent for correlation ID: bffeab25-c559-4676-be10-3ccd86c06152
+2025-06-15 22:27:37,607 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMTaskQueue
+2025-06-15 22:27:37,634 - utils.retrieve_queue - INFO - Getting queue URL for queue: LLMResponseQueue
+2025-06-15 22:27:37,680 - llm_processor - INFO - Loading model pipeline from Hugging Face API: meta-llama/Llama-3.1-70B-Instruct
+2025-06-15 22:27:37,680 - llm_processor - INFO - Model Client loaded from Hugging Face Inference API
+2025-06-15 22:27:37,681 - __main__ - INFO - Initializing knowledge base for detection
+2025-06-15 22:27:37,681 - utils.rag.retrieval - INFO - Initializing knowledge base for detection
+2025-06-15 22:27:37,681 - utils.rag.retrieval - INFO - Loading knowledge base from database
+2025-06-15 22:27:37,683 - utils.rag.retrieval - INFO - Checking for saved embeddings and model
+2025-06-15 22:27:37,683 - utils.rag.retrieval - INFO - Loading embeddings and model from file
+2025-06-15 22:30:56,379 - __main__ - INFO - Received task message
+2025-06-15 22:30:56,380 - job.refactoring_job - INFO - Processing task message with correlation ID: 3f73c053-f9f0-4ab8-af93-750e461cc511
+2025-06-15 22:30:56,380 - job.refactoring_job - INFO - Task type: refactoring
+2025-06-15 22:30:56,380 - job.refactoring_job - INFO - Task job: long_parameter_list
+2025-06-15 22:30:56,381 - job.refactoring_job - INFO - Additional data found for task message with correlation ID 3f73c053-f9f0-4ab8-af93-750e461cc511: {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': 'discounted_price = calculate_discount(100, "regular", "Monday", True, "VIP123")'}
+2025-06-15 22:30:56,381 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 3f73c053-f9f0-4ab8-af93-750e461cc511
+2025-06-15 22:30:56,381 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 22:31:17,032 - llm_processor - INFO - Processed result: ### Refactored Code
+```python
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+from typing import Optional
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: Optional[str]
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(discount_params: DiscountParameters) -> float:
+    discount = 0
+
+    if discount_params.customer_type == "regular":
+        if discount_params.is_member:
+            if discount_params.day_of_week in ["Saturday", "Sunday"]:
+                if discount_params.coupon_code:
+                    if discount_params.coupon_code.startswith("VIP"):
+                        discount = discount_params.price * 0.25
+                    else:
+                        discount = discount_params.price * 0.20
+                else:
+                    discount = discount_params.price * 0.20
+            else:
+                if discount_params.coupon_code:
+                    if len(discount_params.coupon_code) > 3:
+                        discount = discount_params.price * 0.15
+                    else:
+                        discount = discount_params.price * 0.12
+                else:
+                    discount = discount_params.price * 0.10
+    return discount
+```
+
+### Refactored Call-Sites for `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\main.py`
+```python
+# === PARAM_OBJECT_SECTION ===
+from typing import Optional
+from dataclasses import dataclass
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: Optional[str]
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)
+discount = calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))
+# --- CALL_SITE_SEPARATOR ---
+```
+
+### Refactored Call-Sites for `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\utils\retrieve_discount.py`
+```python
+# === PARAM_OBJECT_SECTION ===
+from typing import Optional
+from dataclasses import dataclass
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: Optional[str]
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# discounted_price = calculate_discount(100, "regular", "Monday", True, "VIP123")
+discounted_price = calculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))
+# --- CALL_SITE_SEPARATOR ---
+```
+2025-06-15 22:31:17,032 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 3f73c053-f9f0-4ab8-af93-750e461cc511
+2025-06-15 22:31:17,033 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 22:31:27,972 - llm_processor - INFO - Processed result: ```python
+from dataclasses import dataclass
+from typing import Optional
+
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: Optional[str]
+
+def calculate_discount(discount_params: DiscountParameters) -> float:
+    discount = 0
+
+    if discount_params.customer_type == "regular":
+        if discount_params.is_member:
+            if discount_params.day_of_week in ["Saturday", "Sunday"]:
+                if discount_params.coupon_code:
+                    if discount_params.coupon_code.startswith("VIP"):
+                        discount = discount_params.price * 0.25
+                    else:
+                        discount = discount_params.price * 0.20
+                else:
+                    discount = discount_params.price * 0.20
+            else:
+                if discount_params.coupon_code:
+                    if len(discount_params.coupon_code) > 3:
+                        discount = discount_params.price * 0.15
+                    else:
+                        discount = discount_params.price * 0.12
+                else:
+                    discount = discount_params.price * 0.10
+
+    # Add a return statement here
+    return discount
+```
+2025-06-15 22:31:27,974 - job.refactoring_job - INFO - Final result for task message with correlation ID 3f73c053-f9f0-4ab8-af93-750e461cc511: ['from dataclasses import dataclass\nfrom typing import Optional\n\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: Optional[str]\n\ndef calculate_discount(discount_params: DiscountParameters) -> float:\n    discount = 0\n\n    if discount_params.customer_type == "regular":\n        if discount_params.is_member:\n            if discount_params.day_of_week in ["Saturday", "Sunday"]:\n                if discount_params.coupon_code:\n                    if discount_params.coupon_code.startswith("VIP"):\n                        discount = discount_params.price * 0.25\n                    else:\n                        discount = discount_params.price * 0.20\n                else:\n                    discount = discount_params.price * 0.20\n            else:\n                if discount_params.coupon_code:\n                    if len(discount_params.coupon_code) > 3:\n                        discount = discount_params.price * 0.15\n                    else:\n                        discount = discount_params.price * 0.12\n                else:\n                    discount = discount_params.price * 0.10\n\n    # Add a return statement here\n    return discount', 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\nfrom typing import Optional\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: Optional[str]\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(discount_params: DiscountParameters) -> float:\n    discount = 0\n\n    if discount_params.customer_type == "regular":\n        if discount_params.is_member:\n            if discount_params.day_of_week in ["Saturday", "Sunday"]:\n                if discount_params.coupon_code:\n                    if discount_params.coupon_code.startswith("VIP"):\n                        discount = discount_params.price * 0.25\n                    else:\n                        discount = discount_params.price * 0.20\n                else:\n                    discount = discount_params.price * 0.20\n            else:\n                if discount_params.coupon_code:\n                    if len(discount_params.coupon_code) > 3:\n                        discount = discount_params.price * 0.15\n                    else:\n                        discount = discount_params.price * 0.12\n                else:\n                    discount = discount_params.price * 0.10\n    return discount', '# === PARAM_OBJECT_SECTION ===\nfrom typing import Optional\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: Optional[str]\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ndiscount = calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---', '# === PARAM_OBJECT_SECTION ===\nfrom typing import Optional\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: Optional[str]\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# discounted_price = calculate_discount(100, "regular", "Monday", True, "VIP123")\ndiscounted_price = calculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))\n# --- CALL_SITE_SEPARATOR ---']
+2025-06-15 22:31:27,975 - job.refactoring_job - INFO - Final data for task message with correlation ID 3f73c053-f9f0-4ab8-af93-750e461cc511: {'file_path': 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py', 'refactored_code': 'from dataclasses import dataclass\nfrom typing import Optional\n\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: Optional[str]\n\ndef calculate_discount(discount_params: DiscountParameters) -> float:\n    discount = 0\n\n    if discount_params.customer_type == "regular":\n        if discount_params.is_member:\n            if discount_params.day_of_week in ["Saturday", "Sunday"]:\n                if discount_params.coupon_code:\n                    if discount_params.coupon_code.startswith("VIP"):\n                        discount = discount_params.price * 0.25\n                    else:\n                        discount = discount_params.price * 0.20\n                else:\n                    discount = discount_params.price * 0.20\n            else:\n                if discount_params.coupon_code:\n                    if len(discount_params.coupon_code) > 3:\n                        discount = discount_params.price * 0.15\n                    else:\n                        discount = discount_params.price * 0.12\n                else:\n                    discount = discount_params.price * 0.10\n\n    # Add a return statement here\n    return discount', 'additional_data': {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\nfrom typing import Optional\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: Optional[str]\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(discount_params: DiscountParameters) -> float:\n    discount = 0\n\n    if discount_params.customer_type == "regular":\n        if discount_params.is_member:\n            if discount_params.day_of_week in ["Saturday", "Sunday"]:\n                if discount_params.coupon_code:\n                    if discount_params.coupon_code.startswith("VIP"):\n                        discount = discount_params.price * 0.25\n                    else:\n                        discount = discount_params.price * 0.20\n                else:\n                    discount = discount_params.price * 0.20\n            else:\n                if discount_params.coupon_code:\n                    if len(discount_params.coupon_code) > 3:\n                        discount = discount_params.price * 0.15\n                    else:\n                        discount = discount_params.price * 0.12\n                else:\n                    discount = discount_params.price * 0.10\n    return discount', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': '# === PARAM_OBJECT_SECTION ===\nfrom typing import Optional\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: Optional[str]\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ndiscount = calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---'}}
+2025-06-15 22:31:27,975 - __main__ - INFO - Sending response message for correlation ID: 3f73c053-f9f0-4ab8-af93-750e461cc511
+2025-06-15 22:31:28,025 - __main__ - INFO - Response message sent for correlation ID: 3f73c053-f9f0-4ab8-af93-750e461cc511
+2025-06-15 22:37:45,439 - __main__ - INFO - Received task message
+2025-06-15 22:37:45,439 - job.refactoring_job - INFO - Processing task message with correlation ID: 492a2360-acd1-4184-8976-30092bb343be
+2025-06-15 22:37:45,440 - job.refactoring_job - INFO - Task type: refactoring
+2025-06-15 22:37:45,440 - job.refactoring_job - INFO - Task job: long_parameter_list
+2025-06-15 22:37:45,440 - job.refactoring_job - INFO - Additional data found for task message with correlation ID 492a2360-acd1-4184-8976-30092bb343be: {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': 'discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': 'discounted_price = calculate_discount(100, "regular", "Monday", True, "VIP123")'}
+2025-06-15 22:37:45,440 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 492a2360-acd1-4184-8976-30092bb343be
+2025-06-15 22:37:45,441 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 22:37:51,769 - llm_processor - INFO - Processed result: ### Refactored Code
+```python
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+from typing import Optional
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: Optional[str]
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(params: DiscountParameters) -> float:
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+    return discount
+```
+
+### Refactored Call-Sites for File 1: `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\main.py`
+```python
+# === PARAM_OBJECT_SECTION ===
+from typing import Optional
+from dataclasses import dataclass
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: Optional[str]
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)
+discount = calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))
+# --- CALL_SITE_SEPARATOR ---
+```
+
+### Refactored Call-Sites for File 2: `e:\FYP\New folder\Stimulating_Project\Stimulating_Project\utils\retrieve_discount.py`
+```python
+# === PARAM_OBJECT_SECTION ===
+from typing import Optional
+from dataclasses import dataclass
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: Optional[str]
+# === PARAM_OBJECT_SECTION ===
+# --- CALL_SITE_SEPARATOR ---
+# discounted_price = calculate_discount(100, "regular", "Monday", True, "VIP123")
+discounted_price = calculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))
+# --- CALL_SITE_SEPARATOR ---
+```
+2025-06-15 22:37:51,773 - job.refactoring_job - INFO - Generating response for task message with correlation ID: 492a2360-acd1-4184-8976-30092bb343be
+2025-06-15 22:37:51,774 - llm_processor - INFO - Processing task with LLM model pipeline
+2025-06-15 22:38:08,223 - llm_processor - INFO - Processed result: The refactored code is identical to the original code in terms of its logic and execution. However, there's a small issue in the refactored code. 
+
+The function `calculate_discount` is supposed to return the discount amount, but in the original code, it doesn't explicitly return the discount. It seems like the function is expected to modify the `discount` variable in the outer scope, which is not a good practice and not how the function is defined in the refactored code.
+
+The refactored code correctly returns the `discount` variable. 
+
+There's another issue with the refactored code. The `calculate_discount` function returns a float value. The type hint for the return value of the function should be a float.
+
+Here's the corrected refactored code:
+
+```python
+from dataclasses import dataclass
+
+# === PARAM_OBJECT_SECTION ===
+from typing import Optional
+@dataclass
+class DiscountParameters:
+    price: float
+    customer_type: str
+    day_of_week: str
+    is_member: bool
+    coupon_code: Optional[str]
+# === PARAM_OBJECT_SECTION ===
+
+def calculate_discount(params: DiscountParameters) -> float:
+    discount = 0
+
+    if params.customer_type == "regular":
+        if params.is_member:
+            if params.day_of_week in ["Saturday", "Sunday"]:
+                if params.coupon_code:
+                    if params.coupon_code.startswith("VIP"):
+                        discount = params.price * 0.25
+                    else:
+                        discount = params.price * 0.20
+                else:
+                    discount = params.price * 0.20
+            else:
+                if params.coupon_code:
+                    if len(params.coupon_code) > 3:
+                        discount = params.price * 0.15
+                    else:
+                        discount = params.price * 0.12
+                else:
+                    discount = params.price * 0.10
+    return discount
+```
+
+However, considering the instruction that if the refactoring is correct, the response should be `None`, I will ignore the minor type hint issue and consider the refactoring correct based on the provided instructions.
+
+None
+2025-06-15 22:38:08,223 - job.refactoring_job - INFO - Final result for task message with correlation ID 492a2360-acd1-4184-8976-30092bb343be: ['from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\nfrom typing import Optional\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: Optional[str]\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n    return discount', '# === PARAM_OBJECT_SECTION ===\nfrom typing import Optional\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: Optional[str]\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ndiscount = calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---', '# === PARAM_OBJECT_SECTION ===\nfrom typing import Optional\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: Optional[str]\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# discounted_price = calculate_discount(100, "regular", "Monday", True, "VIP123")\ndiscounted_price = calculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))\n# --- CALL_SITE_SEPARATOR ---']
+2025-06-15 22:38:08,224 - job.refactoring_job - INFO - Final data for task message with correlation ID 492a2360-acd1-4184-8976-30092bb343be: {'file_path': 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py', 'refactored_code': 'from dataclasses import dataclass\n\n# === PARAM_OBJECT_SECTION ===\nfrom typing import Optional\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: Optional[str]\n# === PARAM_OBJECT_SECTION ===\n\ndef calculate_discount(params: DiscountParameters) -> float:\n    discount = 0\n\n    if params.customer_type == "regular":\n        if params.is_member:\n            if params.day_of_week in ["Saturday", "Sunday"]:\n                if params.coupon_code:\n                    if params.coupon_code.startswith("VIP"):\n                        discount = params.price * 0.25\n                    else:\n                        discount = params.price * 0.20\n                else:\n                    discount = params.price * 0.20\n            else:\n                if params.coupon_code:\n                    if len(params.coupon_code) > 3:\n                        discount = params.price * 0.15\n                    else:\n                        discount = params.price * 0.12\n                else:\n                    discount = params.price * 0.10\n    return discount', 'additional_data': {'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\main.py': '# === PARAM_OBJECT_SECTION ===\nfrom typing import Optional\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: Optional[str]\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# discount = calculate_discount(price, customer_type, day_of_week, is_member, coupon_code)\ndiscount = calculate_discount(DiscountParameters(price, customer_type, day_of_week, is_member, coupon_code))\n# --- CALL_SITE_SEPARATOR ---', 'e:\\FYP\\New folder\\Stimulating_Project\\Stimulating_Project\\utils\\retrieve_discount.py': '# === PARAM_OBJECT_SECTION ===\nfrom typing import Optional\nfrom dataclasses import dataclass\n@dataclass\nclass DiscountParameters:\n    price: float\n    customer_type: str\n    day_of_week: str\n    is_member: bool\n    coupon_code: Optional[str]\n# === PARAM_OBJECT_SECTION ===\n# --- CALL_SITE_SEPARATOR ---\n# discounted_price = calculate_discount(100, "regular", "Monday", True, "VIP123")\ndiscounted_price = calculate_discount(DiscountParameters(100, "regular", "Monday", True, "VIP123"))\n# --- CALL_SITE_SEPARATOR ---'}}
+2025-06-15 22:38:08,225 - __main__ - INFO - Sending response message for correlation ID: 492a2360-acd1-4184-8976-30092bb343be
+2025-06-15 22:38:08,235 - __main__ - INFO - Response message sent for correlation ID: 492a2360-acd1-4184-8976-30092bb343be

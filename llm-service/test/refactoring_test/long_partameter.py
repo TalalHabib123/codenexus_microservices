@@ -42,6 +42,17 @@ def calculate_discount(price, customer_type, day_of_week, is_member, coupon_code
                 else:
                     discount = price * 0.10
     """,
+    "additional_data": {
+        "file1.py":"""
+discount1 = calculate_discount(100, "regular", "Monday", True, "VIP123")
+
+discount2 = calculate_discount(200, "regular", "Saturday", False, "SAVE20")
+        """,
+        "file2.py": """
+discount1 = calculate_discount(150, "regular", "Wednesday", \\
+    True, "VIP456")
+        """
+    }
 }
 
 message = { 
@@ -65,6 +76,8 @@ while True:
         
         if task_status == "success":
             print(f"Processed data for correlation ID {correlation_id}: {processed_data['refactored_code']}")
+            for (key, value) in processed_data['additional_data'].items():
+                print(f"Additional data for {key}: \n{value}")
         else:
             print(f"Error processing data for correlation ID {correlation_id}")
         

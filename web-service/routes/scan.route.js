@@ -14,6 +14,8 @@ router.get('/monthly', scanController.Monthly);
 
 // Code smell type count routes
 router.get('/codeSmellTypes/:projectId', scanController.getCodeSmellTypeCount);
+router.get('/getFileCodeSmells/:projectId', scanController.getFileCodeSmells);
+
 router.get('/projectsCodeSmellDistribution', scanController.getProjectsCodeSmellDistribution);
 
 

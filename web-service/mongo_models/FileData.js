@@ -143,7 +143,6 @@ projectFileDataSchema.statics.getFileData = async function(projectId) {
 projectFileDataSchema.statics.getSpecificFile = async function(projectId, fileName) {
   try {
     const document = await this.findOne({ projectId });
-    
     if (!document) {
       return null;
     }

@@ -63,8 +63,9 @@ const fileDataController = {
 
     getFileData: async (req, res) => {
         try {
-            const { projectId, fileName } = req.params;
-            
+            console.log("hello")
+            const { projectId } = req.params;
+            const { fileName } = req.body;
             const fileData = await ProjectFileData.getSpecificFile(projectId, fileName);
             
             if (!fileData) {

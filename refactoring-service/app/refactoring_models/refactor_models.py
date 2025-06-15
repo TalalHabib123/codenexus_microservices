@@ -69,7 +69,7 @@ class RefactorResponse(BaseModel):
 class PartialMappingRequest(BaseModel):
     original_code: str  # Note: typo in "original"
     refactored_code: str
-    name: str
+    name: str | bool = False  # Changed from str to str | bool
 
 
 class CompleteMappingRequest(BaseModel):

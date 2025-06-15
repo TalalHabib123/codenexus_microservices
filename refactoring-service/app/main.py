@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api.endpoints import endpoints, task_forwarding, mapping_endpoints
+from app.api.endpoints import endpoints, task_forwarding, mapping_endpoints, mapping_calls
 
 app = FastAPI()
 
@@ -10,6 +10,7 @@ def health_check():
 app.include_router(endpoints.refactor_router)
 app.include_router(task_forwarding.forwarding_router)
 app.include_router(mapping_endpoints.mapping_router, prefix="/mapping")
+app.include_router(mapping_calls.calls_router, prefix="/mapping_calls")
 
 if __name__ == "__main__":
     import uvicorn

@@ -37,6 +37,7 @@ task_queue_url = get_or_create_queue('LLMTaskQueue')
 
 async def send_task_to_llm(correlation_id: str, task_type: str, task_job: str, task_data: dict):
     data = FORWARDING_KEYS[task_job](task_data)
+    print("Data:",data)
     if not data:
         raise Exception("Data extraction failed")
     

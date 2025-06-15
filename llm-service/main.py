@@ -87,7 +87,11 @@ async def process_tasks_from_queue():
                 'task_job': message_body['task_job']
             }
             
+            logger.info(f"Sending response message for correlation ID: {message_body['correlation_id']}")
+            
             sqs.send_message(QueueUrl=response_queue_url, MessageBody=json.dumps(response_message))
+            
+            logger.info(f"Response message sent for correlation ID: {message_body['correlation_id']}")
 
             # Delete the processed message from the task queue
             sqs.delete_message(QueueUrl=task_queue_url, ReceiptHandle=messages[0]['ReceiptHandle'])

@@ -16,6 +16,7 @@ from app.service.endpoints_url import (
 )
 
 from app.service.refactor_mapping_keys import MAPPING_KEYS
+from typing import Dict, List, Tuple, Any
 
 websocket_gateway_router = APIRouter()
 
@@ -152,6 +153,68 @@ async def process_detection_response(message_body: dict):
         }))
         del ws_connections[correlation_id]
         await websocket.close(code=1000)
+   
+
+async def apply_long_parameter_refactor(
+    org_file_path: str,
+    processed_data: Dict[str, Any],
+    refactoring_job: Dict[str, Any],
+    task_job: str,
+    url_base: str = REFACTOR_SERVICE_URL,
+    timeout: float = 20.0,
+) -> Dict[str, Any]:
+    print(task_job)
+    print(refactoring_job.get("additional_data", None))
+    print(processed_data.get("additional_data", None))
+    if (
+        task_job != "long_parameter_list"
+        or not refactoring_job.get("additional_data", None)
+        or not processed_data.get("additional_data", None)
+    ):
+        print("Getting returned")
+        return processed_data
+
+    src_map: Dict[str, str] = refactoring_job["additional_data"]
+    updates: Dict[str, str] = processed_data["additional_data"]
+
+    if len(src_map) != len(updates):
+        print(
+            f"Refactoring job {task_job} has {len(src_map)} files, "
+            f"but processed data has {len(updates)} updates. "
+            "This is a mismatch that should not happen."
+        )
+
+    async with httpx.AsyncClient(timeout=timeout) as client:
+        async def _post(idx_file_pair: Tuple[str, str]):
+            file_path, original_code = idx_file_pair
+            updated_calls = updates.get(file_path, None)
+            if not updated_calls:
+                return file_path, original_code
+            try:
+                resp = await client.post(
+                    f"{url_base}/mapping_calls/{task_job}",
+                    json={
+                        "name": True if file_path == org_file_path else False,
+                        "original_code": original_code,
+                        "refactored_code": updated_calls,
+                    },
+                )
+                resp.raise_for_status()
+                if resp.json().get("success") is False:
+                    print(f"[mapping_calls] {file_path}: {resp.json().get('error')}")
+                    return file_path, original_code
+                return file_path, resp.json().get("refactored_code", original_code)
+            except httpx.HTTPError as err:
+                # switch to your logger in real projects
+                print(f"[mapping_calls] {file_path}: {err}")
+                return file_path, original_code
+
+        tasks = [_post(pair) for pair in src_map.items()]
+        results = await asyncio.gather(*tasks)
+
+    processed_data["additional_data"] = dict(results)
+    return processed_data
+   
         
 async def process_refactoring_response(message_body: dict):
     correlation_id = message_body['correlation_id']
@@ -164,11 +227,11 @@ async def process_refactoring_response(message_body: dict):
     websocket = ws_connections.get(correlation_id)
     print(f"Websocket: {websocket}")
     refactoring_job = refactoring_tasks.get(correlation_id)
-    print(f"Refactoring Job: {refactoring_job}")
     print(f"task_job: {task_job}")  
     task_message = MAPPING_KEYS[task_job](refactoring_job, processed_data)
+    import copy
+    copy_processed_data = copy.deepcopy(processed_data)
     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-    print(f"Task Message: {task_message}")
     if websocket:
         print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         final_data = {
@@ -189,6 +252,18 @@ async def process_refactoring_response(message_body: dict):
             final_data['code_snippet'] = refactoring_job['code_snippet']
             processed_data = final_data
             task_status = "failed"
+        if task_status != "failed":
+            print("HERE")
+            if refactoring_job['additional_data'].get(processed_data['file_path'], None):
+                refactoring_job['additional_data'][processed_data['file_path']] = final_data['code_snippet']
+            processed_data = await apply_long_parameter_refactor(
+                processed_data['file_path'],
+                copy_processed_data, refactoring_job, task_job
+            )      
+            if refactoring_job['additional_data'].get(processed_data['file_path'], None):
+                processed_data['code_snippet'] = processed_data['additional_data'][processed_data['file_path']]
+                del processed_data['additional_data'][processed_data['file_path']]
+        
         print("Sending Task Response for Response")
         await websocket.send_text(json.dumps({
             "task_status": task_status,

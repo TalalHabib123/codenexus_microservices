@@ -192,7 +192,7 @@ Here is the refactored code: ```python
 {refactored_code}
 ```
 """.format(
-        original_code=task_data.get('original_code', 'No original code provided'),
+        original_code=task_data.get('code_snippet', 'No original code provided'),
         refactored_code=prompt
     )
 

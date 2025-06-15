@@ -8,4 +8,7 @@ router.get('/getAll', projectController.getAll);
 router.get('/getAllProjectInfos', projectController.getAllProjectInfos);
 router.get('/getProjectById/:projectId', projectController.getProjectById);
 router.get('/latest-scan/:projectId', projectController.getLatestScan);
+router.put('/addMember/:projectId', vscodeAuth, projectController.addMember);
+router.put('/removeMember/:projectId', vscodeAuth, projectController.removeMember);
+
 module.exports = router;

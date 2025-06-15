@@ -30,7 +30,6 @@ const FileNodeSchema = new mongoose.Schema({
     dependencies: { type: [DependentNodeSchema], default: [] } // Array instead of Set
 });
 
-// Update the graphSchema to match TypeScript's { [key: string]: Map<string, FileNode> }
 const graphSchema = new mongoose.Schema({
     graphData: { type: Object, default: {} }, // Change to Object instead of Map
     projectId: { type: mongoose.Schema.Types.ObjectId, ref: 'Project', required: true }

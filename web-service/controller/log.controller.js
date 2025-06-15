@@ -67,7 +67,7 @@ const logController = {
       const log = await Log.findByIdAndDelete(logId);
       if (!log) {
         return res.status(404).json({ message: 'Log not found' });
-      }
+      }2
 
       res.status(200).json({ message: 'Log deleted successfully' });
     } catch (error) {

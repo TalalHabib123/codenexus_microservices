@@ -10,3 +10,11 @@ class express_respone(BaseModel):
     message: str
     data: Optional[Dict[str, Any]] = None
     error: Optional[Dict[str, Any]] = None
+    
+class FileData(BaseModel):
+    code: Optional[str] = None
+    ast: Optional[str] = None
+
+class UpdateFileDataRequest(BaseModel):
+    title: str
+    fileData: Dict[str, FileData]

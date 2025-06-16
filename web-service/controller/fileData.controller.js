@@ -5,7 +5,6 @@ const fileDataController = {
     update: async (req, res) => {
         try {
             const { title, fileData } = req.body;
-            console.log('Received file data update request:', title);
             if (!title) {
             return res.status(400).json({
                 success: false,
@@ -20,8 +19,7 @@ const fileDataController = {
             });
             }
             const project = await Project.findOne({title: title})
-            // Update file data using the model
-            console.log(project, fileData );
+    
 
             const document = await ProjectFileData.updateFileData(project._id, fileData);
            
@@ -45,7 +43,6 @@ const fileDataController = {
                     // Add new files to the project's files array
                     project.files = [...currentFiles, ...newFiles];
                     await project.save();
-                    console.log('Added new files to project:', newFiles);
                 } else {
                     console.log('No new files to add - all files already exist in project');
                 }

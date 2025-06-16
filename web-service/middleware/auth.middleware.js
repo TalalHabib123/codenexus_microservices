@@ -38,6 +38,8 @@ const requireAuth = async (req, res, next) => {
 
 const vscodeAuth = async(req, res, next) => {
    const token = req.headers.authorization?.split(' ')[1];
+   console.log('Token:', token);
+   console.log('Headers:', req.headers);
    if (!token) {
       return res.status(401).json({ error: 'Authentication required' });
    }
@@ -47,6 +49,7 @@ const vscodeAuth = async(req, res, next) => {
           return res.status(401).json({ error: 'Invalid or expired token' });
         }
         req.user = user;
+        console.log('Authenticated user:', user);
         next();
     } catch (error) {
         console.error('Auth middleware error:', error);

@@ -16,7 +16,6 @@ const filesController = {
             if (!project) {
                 return res.status(404).json({ message: "Project not found" });
             }
-
             // Return the files associated with the project
             res.status(200).json({ files: Object.keys(project.graphData) || [] });   
         }

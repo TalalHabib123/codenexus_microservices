@@ -435,6 +435,37 @@ const projectController = {
             res.status(500).json({ message: 'Internal server error', error });
         }
     },
+    // Add this method to your project.controller.js
+
+getProjectFiles: async (req, res) => {
+    try {
+        const { projectId } = req.params;
+        
+        // Find the project and return just the files array
+        const project = await Project.findById(projectId).select('files title description');
+        
+        if (!project) {
+            return res.status(404).json({ 
+                message: "Project not found" 
+            });
+        }
+        
+        res.status(200).json({
+            success: true,
+            projectId: project._id,
+            title: project.title,
+            description: project.description,
+            files: project.files || []
+        });
+        
+    } catch (error) {
+        console.error('Error getting project files:', error);
+        res.status(500).json({ 
+            message: "Internal server error", 
+            error: error.message 
+        });
+    }
+},
 
     // Enhanced invite/add member functionality
     inviteMember: async (req, res) => {

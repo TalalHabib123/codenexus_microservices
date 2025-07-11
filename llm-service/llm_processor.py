@@ -24,7 +24,7 @@ def load_model_pipeline(use_inference_api=False, hf_model_id="meta-llama/Llama-3
             # with `model=hf_model_id` and `use_auth_token=hf_token`. The pipeline should handle this.
             model_pipeline = InferenceClient(
                 provider="auto",
-                api_key="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"
+                api_key="API_KEY"
             )
             logger.info("Model Client loaded from Hugging Face Inference API")
             return model_pipeline

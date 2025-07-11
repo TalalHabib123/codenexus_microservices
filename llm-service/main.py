@@ -12,7 +12,8 @@ from job.refactoring_job import process_refactoring_job
 
 from huggingface_hub import login
 
-login("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", True)
+login("API_KEY_REMOVED", True)
+# Redacted API Keys
 
 INFERENCING_API = True
 
